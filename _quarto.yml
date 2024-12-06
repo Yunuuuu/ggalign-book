@@ -1,5 +1,6 @@
 project:
   type: book
+  output-dir: _book
 
 book:
   title: "ggalign: Bridging the Grammar of Graphics and Complex layout"
@@ -16,5 +17,3 @@ bibliography: references.bib
 format:
   html:
     theme: cosmo
-  pdf:
-    documentclass: scrreprt
