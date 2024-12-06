@@ -36,6 +36,13 @@ jobs:
 
       - uses: r-lib/actions/setup-r-dependencies@v2
 
+      - name: Render Quarto Project
+        uses: quarto-dev/quarto-actions/render@v2
+        env:
+          QUARTO_PROFILE: preview
+        with:
+          to: pdf
+
       - name: Render and Publish
         uses: quarto-dev/quarto-actions/publish@v2
         with:
