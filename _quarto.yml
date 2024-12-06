@@ -6,6 +6,9 @@ book:
   title: "ggalign: Bridging the Grammar of Graphics and Complex layout"
   author: "Yun Peng"
   date: "11/24/2024"
+  repo-url: https://github.com/Yunuuuu/ggalign-book
+  repo-branch: main
+  repo-actions: ["edit", "source", "issue"]
   chapters:
     - index.qmd
     - introduction.qmd
@@ -17,3 +20,4 @@ bibliography: references.bib
 format:
   html:
     theme: cosmo
+    code-link: true
