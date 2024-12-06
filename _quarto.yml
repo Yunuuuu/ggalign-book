@@ -1,0 +1,20 @@
+project:
+  type: book
+
+book:
+  title: "ggalign: Bridging the Grammar of Graphics and Complex layout"
+  author: "Yun Peng"
+  date: "11/24/2024"
+  chapters:
+    - index.qmd
+    - introduction.qmd
+    - stack-layout.qmd
+    - references.qmd
+
+bibliography: references.bib
+
+format:
+  html:
+    theme: cosmo
+  pdf:
+    documentclass: scrreprt

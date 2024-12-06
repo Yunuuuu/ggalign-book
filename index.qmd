@@ -1,0 +1,3 @@
+# Preface {.unnumbered}
+
+Welcome to `ggalign` documents

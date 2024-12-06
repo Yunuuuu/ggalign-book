@@ -1,0 +1,170 @@
+# stack layout
+`stack_layout()` arranges plots either horizontally or vertically, and we can
+also use the alias `ggstack()`. Based on whether we want to align the
+observations, there are two types of stack layouts:
+
+  - `stack_align()`: align the observations along the stack.
+  - `stack_free()`: don't align the observations.
+
+Several aliases are available for convenience:
+
+  - `stack_alignv`: Aligns the stack vertically (special case of `stack_align()`).
+  - `stack_alignh`: Aligns the stack horizontally (special case of `stack_align()`).
+  - `stack_freev`: A vertical version of `stack_free()`.
+  - `stack_freeh`: A horizontal version of `stack_free()`.
+
+```{r}
+#| echo: false
+library(ggalign)
+```
+
+<!--  add the layout figure-->
+::: {.grid}
+
+::: {.g-col-6}
+```{r}
+#| echo: false
+set.seed(123)
+stack_alignh(matrix(rnorm(56), nrow = 7)) +
+    lapply(seq_len(3L), function(i) {
+        list(
+            ggalign(),
+            ggtitle(sprintf("Plot %s", i)),
+            theme(panel.background = element_rect(fill = scales::alpha("red", 0.5)))
+        )
+    }) +
+    layout_title("stack_layout(direction = 'horizontal')") +
+    layout_annotation(theme = theme(plot.title = element_text(size = 20)))
+```
+:::
+
+::: {.g-col-6}
+```{r}
+#| echo: false
+set.seed(123)
+stack_alignv(matrix(rnorm(56), nrow = 7)) +
+    lapply(seq_len(3L), function(i) {
+        list(
+            ggalign(),
+            ggtitle(sprintf("Plot %s", i)),
+            theme(panel.background = element_rect(fill = scales::alpha("red", 0.5)))
+        )
+    }) +
+    layout_title("stack_layout(direction = 'vertical')") +
+    layout_annotation(theme = theme(plot.title = element_text(size = 20)))
+```
+:::
+
+:::
+
+## Input data 
+When aligning observations, we typically use a matrix, as it is easy to melt the
+matrix into a long formated data frame. In addition, we need a matrix to fit the
+observations concept, since we need transpose the data (rows to columns, columns
+to rows) when used in `quad_layout()`/`ggheatmap()`, which can align
+observations in both direction simutaneuously.
+
+- For `stack_free()`, a data frame is required, and the input will be automatically
+  converted using `fortify_data_frame()` if needed. 
+- For `stack_align()`, a matrix is required, and the input will be automatically
+  converted using `fortify_matrix()` if needed. 
+
+By default, `fortify_data_frame()` will invoke the `ggplot2::fortify()` function
+for conversion. Note, for matrices, it will convert the matrix into a
+long-formatted data frame.
+
+```{r}
+set.seed(123)
+small_mat <- matrix(rnorm(56), nrow = 7)
+rownames(small_mat) <- paste0("row", seq_len(nrow(small_mat)))
+colnames(small_mat) <- paste0("column", seq_len(ncol(small_mat)))
+```
+
+By default, `stack_align()`/`stack_free()` will set up the layout, but no plot
+will be drawn until you add a plot element:
+```{r}
+#| eval: false
+stack_alignh(small_mat) 
+# the same for `stack_free()`
+```
+
+```{r}
+#| echo: false
+stack_alignh(small_mat) 
+```
+
+## plot initialize
+For `stack_align()`, plots can be added regardless of whether they need to align
+observations.
+
+```{r}
+stack_alignh(small_mat) +
+    align_kmeans(centers = 3L) +
+    ggalign(data = rowSums) +
+    geom_bar(aes(value, fill = .panel), orientation = "y", stat = "identity") +
+    facet_grid(switch = "y") +
+    theme(strip.text = element_text()) +
+    align_dendro(aes(color = branch))
+```
+
+We can stack the plots vertically with `stack_alignv()`:
+```{r}
+stack_alignv(small_mat) + align_dendro()
+```
+
+>Note that vertical stack take the `x-axis` as the observations, but horizontal
+stack take the `y-axis` as the observations.
+
+`stack_align()` can add plot without alignment of observations.
+```{r}
+stack_alignv() +
+    ggfree(aes(displ, hwy, colour = class), data = mpg) +
+    geom_point(size = 2) +
+    ggfree(aes(displ, hwy, colour = class), data = mpg) +
+    geom_point(size = 2) &
+    scale_color_brewer(palette = "Dark2") &
+    theme_bw()
+```
+
+For `stack_free()`, only plots that are free from alignment (`ggfree()`) can be
+added along the axis.
+```{r}
+stack_freev(mpg) +
+    ggfree(aes(displ, hwy, colour = class)) +
+    geom_point(size = 2) +
+    ggfree(aes(displ, hwy, colour = class)) +
+    geom_point(size = 2) &
+    scale_color_brewer(palette = "Dark2") &
+    theme_bw()
+```
+
+## Layout Customization
+When we use `stack_align()`, it aligns the observations across multiple plots
+along the specified direction: 
+
+  - For `stack_alignh()`: Alignment occurs along the horizontal direction (y-axis).
+  - For `stack_alignv()`: Alignment occurs along the vertical direction (x-axis).
+
+One useful situation for `stack_align()` is with dendrograms, which inherently
+reorder the observations. The `align_dendro()` function is specifically designed
+for this purpose. It can reorder the observations, split them into groups, and
+can add a plot for visualization.
+
+```{r}
+stack_alignh(small_mat) + 
+    align_dendro() +
+    theme(axis.text.y = element_text())
+```
+
+We don't provide data to `align_dendro()`, by default, it'll
+inherit data from the layout. But you can always provide another data, but note
+that this package use the concept of `"number of observations"` in the
+[vctrs](https://vctrs.r-lib.org/reference/vec_size.html) package or `NROW()`
+function. When aligning the observations, you must ensure the number of
+observations is equal.
+```{r}
+set.seed(123)
+stack_alignh(small_mat) + 
+    align_dendro(data =  matrix(rnorm(70), nrow = 7)) +
+    theme(axis.text.y = element_text())
+```

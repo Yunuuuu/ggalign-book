@@ -1,0 +1,9 @@
+.Rproj.user
+
+/.quarto/
+_book/
+.quarto
+Scratch.RConsole
+.Rhistory
+.radian_history
+ggalign-book.Rproj
