@@ -13,7 +13,6 @@ book:
     - index.qmd
     - introduction.qmd
     - stack-layout.qmd
-    - references.qmd
 
 bibliography: references.bib
 
