@@ -1,4 +1,4 @@
-# heatmap layout
+# heatmap layout {#sec-heatmap_layout}
 The `heatmap_layout()` function provides a powerful way to create customizable
 heatmaps in R using `ggplot2`. This chapter will guide you through its usage.
 

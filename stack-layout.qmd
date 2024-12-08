@@ -116,9 +116,8 @@ The active plot refers to the plot that subsequent ggplot2 components will
 target. In this case, the active plot is the dendrogram, and any new layers
 added will be applied to it. For instance, we can add additional layers to
 visualize the dendrogram's structure or data. The default data underlying the
-ggplot object of `align_dendro()` consists of the dendrogram node data, which
-can be used to further customize the dendrogram visualization. However, it is
-possible to use the dendrogram's edge data for customization, which I will
+`ggplot` object of `align_dendro()` consists of the dendrogram node data. It is
+also possible to use the dendrogram's edge data for customization, which I will
 introduce in a later chapter.
 
 ```{r}

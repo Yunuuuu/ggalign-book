@@ -79,7 +79,7 @@ typical workflow includes:
    - `align_kmeans()`: Group observations into panel by kmeans.
    - `align_order()`: Reorder layout observations based on statistical weights
    or by manually specifying the observation index.
-   - `align_hclust()`/`align_dendro()`: Reorder or Group layout based on
+   - `align_hclust()`/`align_dendro()`: Reorder or group observations based on
    hierarchical clustering.
  3. Adding plots with `ggalign()` or `ggfree()`, and then layer additional
  ggplot2 elements such as geoms, stats, or scales.
