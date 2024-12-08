@@ -161,6 +161,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">stack layout</span></span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./heatmap-layout.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">heatmap layout</span></span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -199,7 +205,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p><code>ggalign</code> extends ggplot2 by providing advanced tools for aligning and organizing multiple plots, particularly those that automatically reorder observations, such as dendrogram. It offers fine control over layout adjustment and plot annotations, enabling you to create complex, publication-quality visualizations while still using the familiar grammar of ggplot2.</p>
+<p><code>ggalign</code> extends ggplot2 by providing advanced tools for aligning and organizing multiple plots, particularly those that automatically reorder observations, such as dendrogram. It offers fine control over layout adjustment and plot annotations, enabling you to create complex layout while still using the familiar grammar of ggplot2.</p>
 <section id="installation" class="level2" data-number="1.1">
 <h2 data-number="1.1" class="anchored" data-anchor-id="installation"><span class="header-section-number">1.1</span> Installation</h2>
 <p>You can install <code>ggalign</code> from <code>CRAN</code> using:</p>
@@ -225,11 +231,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>the <code>StackLayout</code> class: Put plots horizontally or vertically.</li>
 <li>the <code>QuadLayout</code> class: Arranges plots in the four quadrants (top, left, bottom, right) around a main plot. This layout is ideal for designs that require supplementary plots or annotations surrounding a central figure.</li>
 </ul>
-<p>Both <code>Layout</code> classes support the alignment of observations. Observations refer to data points or samples, allowing for consistent alignment of corresponding data across multiple plots when using the same axis values. Depending on whether you want to align observations across multiple plots within the layout, the following variants are available:</p>
+<p>Both <code>Layout</code> classes support the alignment of observations (ordinal variable). Observations refer to data points or samples, allowing for consistent alignment of corresponding data across multiple plots when using the same axis values. Depending on whether you want to align observations across multiple plots within the layout, the following variants are available:</p>
 <p>For <code>StackLayout</code>:</p>
 <ul>
-<li><code>stack_align()</code>: align the observations along the stack.</li>
-<li><code>stack_free()</code>: don’t align the observations.</li>
+<li><code>stack_align()</code>: Align the observations along the stack.</li>
+<li><code>stack_free()</code>: Does not align the observations.</li>
 </ul>
 <p>For <code>QuadLayout</code>:</p>
 <ul>
@@ -285,6 +291,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
+<p>In this example:</p>
+<ol type="1">
+<li>We initialize a vertical stack (<code>stack_alignv(small_mat)</code>).</li>
+<li>Reorder the observations based on hierarchical clustering and add a dendrogram tree (<code>align_dendro()</code>).</li>
+<li>Add y-axis text (<code>theme(axis.text.y = element_text())</code>).</li>
+</ol>
 <p>This produces a simple dendrogram. By default, <code>stack_alignv()</code> removes the axis text on the axis used for aligning observations. This is because it’s often unclear which plot should display the axis text, as typically, we want it to appear in only one plot. However, you can easily use the <code>theme()</code> function to control where the axis text appears.</p>
 <p>Internally, <code>align_dendro()</code> will reorder the observations based on the dendrogram, and other plots in the layout will follow this ordering.</p>
 <div class="cell">
@@ -305,16 +317,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol type="1">
 <li>We initialize a vertical stack (<code>stack_alignv(small_mat)</code>).</li>
 <li>Reorder the observations based on hierarchical clustering and add a dendrogram tree (<code>align_dendro()</code>).</li>
-<li>Create a new plot in the layout, and use data based on the sum of the layout data (<code>ggalign(data = rowSums)</code>).</li>
-<li>Add ggplot2 components to the plot.</li>
+<li>Create a new ggplot in the layout, and use data based on the sum of the layout data (<code>ggalign(data = rowSums)</code>).</li>
+<li>Add a bar layer (<code>geom_bar(aes(.names, value), stat = "identity")</code>).</li>
+<li>Add y-axis text (<code>theme(axis.text.y = element_text())</code>).</li>
 </ol>
-<p>The data in the underlying <code>ggplot</code> object of <code>ggalign</code> contains at least following columns (more details will be introduced in a later chapter):</p>
+<p>The data in the underlying <code>ggplot</code> object of <code>ggalign</code> function contains at least following columns (more details will be introduced in the later chapter):</p>
 <ul>
-<li><code>.panel</code>: the panel for the aligned axis. It means <code>x-axis</code> for vertical stack layout (including top and bottom annotation), <code>y-axis</code> for horizontal stack layout (including left and right annotation).</li>
+<li><code>.panel</code>: the group panel for the aligned axis. It means <code>x-axis</code> for vertical stack layout (including top and bottom annotation), <code>y-axis</code> for horizontal stack layout (including left and right annotation).</li>
 <li><code>.x</code> or <code>.y</code>: the <code>x</code> or <code>y</code> coordinates</li>
 <li><code>.names</code> and <code>.index</code>: A factor of the names (only applicable when names exists) and an integer of index of the original data.</li>
 <li><code>value</code>: the actual value (only applicable if <code>data</code> is a <code>matrix</code> or atomic vector).</li>
 </ul>
+<p>It is recommended to use <code>.x</code>/<code>.y</code>, or <code>.names</code> as the x/y mapping.</p>
 <p><code>align_dendro()</code> can also split the observations into groups.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stack_alignv</span>(small_mat) <span class="sc">+</span></span>
@@ -335,14 +349,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol type="1">
 <li>We initialize a vertical stack (<code>stack_alignv(small_mat)</code>).</li>
 <li>Reorder and group the observations based on hierarchical clustering, and add a dendrogram tree (<code>align_dendro(k = 3)</code>).</li>
-<li>Create a new plot in the layout (<code>ggalign(data = rowSums)</code>), which will use data based on the sums of the layout data.</li>
-<li>Add ggplot2 components to the plot.</li>
+<li>Create a new ggplot in the layout, and use data based on the sum of the layout data (<code>ggalign(data = rowSums)</code>).</li>
+<li>Add a bar layer (<code>geom_bar(aes(.names, value), stat = "identity")</code>).</li>
+<li>Add fill mapping scale (<code>scale_fill_brewer(palette = "Dark2", name = "Group")</code>).</li>
+<li>Add y-axis text (<code>theme(axis.text.y = element_text())</code>).</li>
 </ol>
-<p>One common visualization associated with the dendrogram is the heatmap. You can use <code>ggheatmap()</code> to initialize a heatmap layout. When grouping the observations using <code>align_dendro(k = 3)</code>, a special column named branch is added, which you can use to color the dendrogram tree.</p>
+<p>One common visualization associated with the dendrogram is the heatmap. You can use <code>ggheatmap()</code> to initialize a heatmap layout. When grouping the observations using <code>align_dendro(k = 3)</code>, a special column named <code>branch</code> is added, which you can use to color the dendrogram tree.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggheatmap</span>(small_mat) <span class="sc">+</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">anno_left</span>() <span class="sc">+</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_dendro</span>(<span class="fu">aes</span>(<span class="at">color =</span> branch), <span class="at">k =</span> <span class="dv">3</span>)<span class="sc">+</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_dendro</span>(<span class="fu">aes</span>(<span class="at">color =</span> branch), <span class="at">k =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">"Dark2"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>→ heatmap built with `geom_tile()`</code></pre>
@@ -360,8 +376,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>We initialize a heatmap layout (<code>ggheatmap(small_mat)</code>).</li>
 <li>we initialize an annotation in the left side of the heatmap body, and set it as the active context, in this way, all following addition will be directed to the left annotation. (<code>anno_left()</code>)</li>
 <li>Reorder and group the observations based on hierarchical clustering, and add a dendrogram tree, coloring the tree by <code>branch</code> (<code>align_dendro(k = 3)</code>).</li>
+<li>Add fill mapping scale (<code>scale_fill_brewer(palette = "Dark2")</code>).</li>
 </ol>
-<p><code>ggheatmap()</code> will automatically add the names for the heatmap, so you don’t need to manually adjust axis text visibility using <code>theme(axis.text.x = element_text())</code>/<code>theme(axis.text.y = element_text())</code>.</p>
+<p><code>ggheatmap()</code> will automatically add axis text in the heatmap body, so you don’t need to manually adjust axis text visibility using <code>theme(axis.text.x = element_text())</code>/<code>theme(axis.text.y = element_text())</code>.</p>
 
 
 </section>

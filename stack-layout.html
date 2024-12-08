@@ -64,6 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<link href="./heatmap-layout.html" rel="next">
 <link href="./introduction.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -160,6 +161,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">stack layout</span></span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./heatmap-layout.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">heatmap layout</span></span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -170,9 +177,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#input-data" id="toc-input-data" class="nav-link active" data-scroll-target="#input-data"><span class="header-section-number">2.1</span> Input data</a></li>
-  <li><a href="#plot-initialize" id="toc-plot-initialize" class="nav-link" data-scroll-target="#plot-initialize"><span class="header-section-number">2.2</span> plot initialize</a></li>
-  <li><a href="#layout-customization" id="toc-layout-customization" class="nav-link" data-scroll-target="#layout-customization"><span class="header-section-number">2.3</span> Layout Customization</a></li>
+  <li><a href="#sec-stack_layout_input_data" id="toc-sec-stack_layout_input_data" class="nav-link active" data-scroll-target="#sec-stack_layout_input_data"><span class="header-section-number">2.1</span> Input data</a></li>
+  <li><a href="#layout-customization" id="toc-layout-customization" class="nav-link" data-scroll-target="#layout-customization"><span class="header-section-number">2.2</span> Layout Customization</a></li>
+  <li><a href="#plot-initialize" id="toc-plot-initialize" class="nav-link" data-scroll-target="#plot-initialize"><span class="header-section-number">2.3</span> Plot initialize</a></li>
+  <li><a href="#plot-size" id="toc-plot-size" class="nav-link" data-scroll-target="#plot-size"><span class="header-section-number">2.4</span> Plot Size</a></li>
+  <li><a href="#active-plot" id="toc-active-plot" class="nav-link" data-scroll-target="#active-plot"><span class="header-section-number">2.5</span> active plot</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/Yunuuuu/ggalign-book/edit/main/stack-layout.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/Yunuuuu/ggalign-book/blob/main/stack-layout.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li><li><a href="https://github.com/Yunuuuu/ggalign-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -181,7 +190,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">stack layout</span></h1>
+<h1 class="title"><span id="sec-stack_layout" class="quarto-section-identifier"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">stack layout</span></span></h1>
 </div>
 
 
@@ -216,38 +225,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <!--  add the layout figure-->
-<div class="grid">
-<div class="g-col-6">
-<div class="cell">
-<div class="cell-output-display">
 <div>
-<figure class="figure">
-<p><img src="stack-layout_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
+
+</div>
+<div class="cell quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="stack-layout_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="stack-layout_files/figure-html/unnamed-chunk-1-2.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </div>
-</div>
-<div class="g-col-6">
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="stack-layout_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-</div>
-</div>
-<section id="input-data" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="input-data"><span class="header-section-number">2.1</span> Input data</h2>
-<p>When aligning observations, we typically use a matrix, as it is easy to melt the matrix into a long formated data frame. In addition, we need a matrix to fit the observations concept, since we need transpose the data (rows to columns, columns to rows) when used in <code>quad_layout()</code>/<code>ggheatmap()</code>, which can align observations in both direction simutaneuously.</p>
+<section id="sec-stack_layout_input_data" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="sec-stack_layout_input_data"><span class="header-section-number">2.1</span> Input data</h2>
+<p>When aligning observations, we typically use a matrix, as it is easy to melt the matrix into a long-formatted data frame. Additionally, matrices are used to fit the observation concept, as they can be transposed (rows to columns, columns to rows), which is necessary for use in functions like <code>quad_layout()</code> and <code>ggheatmap()</code>, where observations may be aligned in both directions simultaneously.</p>
 <ul>
 <li>For <code>stack_free()</code>, a data frame is required, and the input will be automatically converted using <code>fortify_data_frame()</code> if needed.</li>
 <li>For <code>stack_align()</code>, a matrix is required, and the input will be automatically converted using <code>fortify_matrix()</code> if needed.</li>
 </ul>
-<p>By default, <code>fortify_data_frame()</code> will invoke the <code>ggplot2::fortify()</code> function for conversion. Note, for matrices, it will convert the matrix into a long-formatted data frame.</p>
+<p>By default, <code>fortify_data_frame()</code> will invoke the <code>ggplot2::fortify()</code> function for conversion. Note, for matrix, it will be converted to a long-formatted data frame.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>small_mat <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">rnorm</span>(<span class="dv">56</span>), <span class="at">nrow =</span> <span class="dv">7</span>)</span>
@@ -256,78 +254,118 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p><code>stack_align()</code>/<code>stack_free()</code> will set up the layout, but no plot will be drawn until you add a plot element:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stack_alignh</span>(small_mat) </span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># the same for `stack_free()`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stack_alignh</span>(small_mat) <span class="sc">+</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">layout_annotation</span>(<span class="at">theme =</span> <span class="fu">theme</span>(<span class="at">plot.background =</span> <span class="fu">element_rect</span>(<span class="at">color =</span> <span class="st">"red"</span>)))</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># the same for `stack_free()`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="stack-layout_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="stack-layout_files/figure-html/empty_layout-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
+<p>In this example, we use <code>layout_annotation()</code> to insert a plot background in the entire layout.</p>
 </section>
-<section id="plot-initialize" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="plot-initialize"><span class="header-section-number">2.2</span> plot initialize</h2>
-<p>For <code>stack_align()</code>, plots can be added regardless of whether they need to align observations.</p>
+<section id="layout-customization" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="layout-customization"><span class="header-section-number">2.2</span> Layout Customization</h2>
+<p>When we use <code>stack_align()</code>, it aligns the observations across multiple plots along the specified direction:</p>
+<ul>
+<li>For <code>stack_alignh()</code>: Alignment occurs along the horizontal direction (y-axis).</li>
+<li>For <code>stack_alignv()</code>: Alignment occurs along the vertical direction (x-axis).</li>
+</ul>
+<p>The package offers a suite of <code>align_*</code> functions designed to give you precise control over the layout. These functions enable you to reorder the observations or partition the observations into multiple groups. Instead of detailing each <code>align_*</code> function individually, we will focus on the general usage and how to combine them with <code>stack_align()</code>.</p>
+<p>Here, we remain take <code>align_dendro()</code> as a example, it can reorder the observations, split them into groups, and can add a plot for visualization.</p>
+<p>When used for <code>stack_alignh()</code>, the observations are aligned along the <code>y-axis</code>:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stack_alignh</span>(small_mat) <span class="sc">+</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_kmeans</span>(<span class="at">centers =</span> <span class="dv">3</span>L) <span class="sc">+</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggalign</span>(<span class="at">data =</span> rowSums) <span class="sc">+</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>(<span class="fu">aes</span>(value, <span class="at">fill =</span> .panel), <span class="at">orientation =</span> <span class="st">"y"</span>, <span class="at">stat =</span> <span class="st">"identity"</span>) <span class="sc">+</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_grid</span>(<span class="at">switch =</span> <span class="st">"y"</span>) <span class="sc">+</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">strip.text =</span> <span class="fu">element_text</span>()) <span class="sc">+</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_dendro</span>(<span class="fu">aes</span>(<span class="at">color =</span> branch))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_dendro</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="stack-layout_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="stack-layout_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
-<p>We can stack the plots vertically with <code>stack_alignv()</code>:</p>
+<p>When used for <code>stack_alignv()</code>, the observations are aligned along the <code>x-axis</code>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stack_alignv</span>(small_mat) <span class="sc">+</span> <span class="fu">align_dendro</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stack_alignv</span>(small_mat) <span class="sc">+</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_dendro</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="stack-layout_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="stack-layout_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
-<blockquote class="blockquote">
-<p>Note that vertical stack take the <code>x-axis</code> as the observations, but horizontal stack take the <code>y-axis</code> as the observations.</p>
-</blockquote>
-<p><code>stack_align()</code> can add plot without alignment of observations.</p>
+<p>When <code>align_dendro()</code> is added to the layout, it performs following actions: 1. reorder the observations. 2. set the active plot to the dendrogram.</p>
+<p>The active plot refers to the plot that subsequent ggplot2 components will target. In this case, the active plot is the dendrogram, and any new layers added will be applied to it. For instance, we can add additional layers to visualize the dendrogram’s structure or data. The default data underlying the ggplot object of <code>align_dendro()</code> consists of the dendrogram node data, which can be used to further customize the dendrogram visualization. However, it is possible to use the dendrogram’s edge data for customization, which I will introduce in a later chapter.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stack_alignv</span>() <span class="sc">+</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggfree</span>(<span class="fu">aes</span>(displ, hwy, <span class="at">colour =</span> class), <span class="at">data =</span> mpg) <span class="sc">+</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggfree</span>(<span class="fu">aes</span>(displ, hwy, <span class="at">colour =</span> class), <span class="at">data =</span> mpg) <span class="sc">+</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>) <span class="sc">&amp;</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_color_brewer</span>(<span class="at">palette =</span> <span class="st">"Dark2"</span>) <span class="sc">&amp;</span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stack_alignh</span>(small_mat) <span class="sc">+</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_dendro</span>() <span class="sc">+</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="stack-layout_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="stack-layout_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
-<p>For <code>stack_free()</code>, only plots that are free from alignment (<code>ggfree()</code>) can be added along the axis.</p>
+<p>The <code>active</code> argument controls whether a plot is set as the active plot. It accepts an <code>active()</code> object with the <code>use</code> argument to specify if the plot should be active.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stack_freev</span>(mpg) <span class="sc">+</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggfree</span>(<span class="fu">aes</span>(displ, hwy, <span class="at">colour =</span> class)) <span class="sc">+</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggfree</span>(<span class="fu">aes</span>(displ, hwy, <span class="at">colour =</span> class)) <span class="sc">+</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>) <span class="sc">&amp;</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_color_brewer</span>(<span class="at">palette =</span> <span class="st">"Dark2"</span>) <span class="sc">&amp;</span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stack_alignh</span>(small_mat) <span class="sc">+</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_dendro</span>(<span class="at">active =</span> <span class="fu">active</span>(<span class="at">use =</span> <span class="cn">FALSE</span>)) <span class="sc">+</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error in `stack_layout_add()`:
+! Cannot add `geom_point()` to `stack_align()`
+ℹ No active plot component
+ℹ Did you forget to initialize a &lt;ggplot&gt; object with `ggalign()` or
+  `ggfree()`?</code></pre>
+</div>
+</div>
+<p>Usually, you don’t need to set this manually, as the active context is automatically applied only for functions that add plot areas. You can inspect whether a <code>align_*</code> function will add a plot by print it:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">align_dendro</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`align_dendro()` object:
+  plot: yes
+  reorder: yes
+  split: no</code></pre>
+</div>
+</div>
+<p>You might find it confusing that we mentioned <code>align_dendro()</code> will split observations into groups, while the print output shows <code>split = "no"</code>. This happens because we haven’t specified the <code>k</code>/<code>h</code> argument in <code>align_dendro()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">align_dendro</span>(<span class="at">k =</span> <span class="dv">3</span>L)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`align_dendro()` object:
+  plot: yes
+  reorder: yes
+  split: yes</code></pre>
+</div>
+</div>
+<p>You don’t need to explicitly provide <code>data</code> to <code>align_dendro()</code>. By default, it inherits data from the layout. However, you can always provide another data source, but note that this package uses the concept of “number of observations” (<code>NROW()</code>). When aligning the observations, you must ensure the number of observations is consistent across all plots.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">stack_alignh</span>(small_mat) <span class="sc">+</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_dendro</span>(<span class="at">data =</span> <span class="fu">matrix</span>(<span class="fu">rnorm</span>(<span class="dv">56</span>), <span class="at">nrow =</span> <span class="dv">8</span>)) <span class="sc">+</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">axis.text.y =</span> <span class="fu">element_text</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error in `align()`:
+! `align_dendro(data = matrix(rnorm(56), nrow = 8))` (nobs: 8) is not
+  compatible with the `stack_align()` (nobs: 7)</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">stack_alignh</span>(small_mat) <span class="sc">+</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_dendro</span>(<span class="at">data =</span> <span class="fu">matrix</span>(<span class="fu">rnorm</span>(<span class="dv">70</span>), <span class="at">nrow =</span> <span class="dv">7</span>)) <span class="sc">+</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">axis.text.y =</span> <span class="fu">element_text</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -336,19 +374,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-</section>
-<section id="layout-customization" class="level2" data-number="2.3">
-<h2 data-number="2.3" class="anchored" data-anchor-id="layout-customization"><span class="header-section-number">2.3</span> Layout Customization</h2>
-<p>When we use <code>stack_align()</code>, it aligns the observations across multiple plots along the specified direction:</p>
-<ul>
-<li>For <code>stack_alignh()</code>: Alignment occurs along the horizontal direction (y-axis).</li>
-<li>For <code>stack_alignv()</code>: Alignment occurs along the vertical direction (x-axis).</li>
-</ul>
-<p>One useful situation for <code>stack_align()</code> is with dendrograms, which inherently reorder the observations. The <code>align_dendro()</code> function is specifically designed for this purpose. It can reorder the observations, split them into groups, and can add a plot for visualization.</p>
+<p>Alternatively, you can provide a function (or purrr-lambda) that will be applied to the layout’s matrix. Note that, for layouts that align observations, a matrix is always required, so the data input must be in matrix form.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stack_alignh</span>(small_mat) <span class="sc">+</span> </span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_dendro</span>() <span class="sc">+</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">axis.text.y =</span> <span class="fu">element_text</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">stack_alignh</span>(small_mat) <span class="sc">+</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_dendro</span>(<span class="at">data =</span> <span class="sc">~</span> .x[<span class="fu">sample</span>(<span class="fu">nrow</span>(.x)), ]) <span class="sc">+</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">axis.text.y =</span> <span class="fu">element_text</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -357,12 +388,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>We don’t provide data to <code>align_dendro()</code>, by default, it’ll inherit data from the layout. But you can always provide another data, but note that this package use the concept of <code>"number of observations"</code> in the <a href="https://vctrs.r-lib.org/reference/vec_size.html">vctrs</a> package or <code>NROW()</code> function. When aligning the observations, you must ensure the number of observations is equal.</p>
+<p>Without adding another plot, it’s difficult to appreciate the benefits. Let’s now explore how to incorporate a plot.</p>
+</section>
+<section id="plot-initialize" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="plot-initialize"><span class="header-section-number">2.3</span> Plot initialize</h2>
+<p>There are two primary functions for adding plots:</p>
+<ul>
+<li><code>align_gg()</code>/<code>ggalign()</code>: Create a ggplot object and align with the layout.</li>
+<li><code>free_gg()</code>/<code>ggfree()</code>: Create a ggplot object without aligning.</li>
+</ul>
+<p>Both functions initialize a <code>ggplot</code> object and, by default, set the active plot when added to the layout.</p>
+<p>For <code>stack_align()</code>, plots can be added regardless of whether they need to align observations.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">stack_alignh</span>(small_mat) <span class="sc">+</span> </span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_dendro</span>(<span class="at">data =</span>  <span class="fu">matrix</span>(<span class="fu">rnorm</span>(<span class="dv">70</span>), <span class="at">nrow =</span> <span class="dv">7</span>)) <span class="sc">+</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">axis.text.y =</span> <span class="fu">element_text</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stack_alignh</span>(small_mat) <span class="sc">+</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_dendro</span>() <span class="sc">+</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggalign</span>(<span class="at">data =</span> rowSums) <span class="sc">+</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>(<span class="fu">aes</span>(value, .names), <span class="at">stat =</span> <span class="st">"identity"</span>) <span class="sc">+</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">axis.text.y =</span> <span class="fu">element_text</span>()) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -371,6 +413,164 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
+<p>The <code>active</code> argument can also control the place of the plot area to be added. It accepts an <code>active()</code> object with the <code>order</code> argument to specify the order of the plot area.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stack_alignh</span>(small_mat) <span class="sc">+</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_dendro</span>() <span class="sc">+</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggalign</span>(<span class="at">data =</span> rowSums, <span class="at">active =</span> <span class="fu">active</span>(<span class="at">order =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>(<span class="fu">aes</span>(value, .names), <span class="at">stat =</span> <span class="st">"identity"</span>) <span class="sc">+</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">axis.text.y =</span> <span class="fu">element_text</span>()) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="stack-layout_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>You can also stack plots vertically using <code>stack_alignv()</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stack_alignv</span>(small_mat) <span class="sc">+</span> </span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_dendro</span>() <span class="sc">+</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggalign</span>(<span class="at">data =</span> rowSums) <span class="sc">+</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>(<span class="fu">aes</span>(value, .names), <span class="at">stat =</span> <span class="st">"identity"</span>) <span class="sc">+</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">axis.text.y =</span> <span class="fu">element_text</span>()) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="stack-layout_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><code>stack_align()</code> can also add plot without aligning observations. <code>free_gg()</code> focuses on layout integration without enforcing strict axis alignment. <code>ggfree()</code> is an alias for <code>free_gg</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stack_alignv</span>() <span class="sc">+</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggfree</span>(mpg, <span class="fu">aes</span>(displ, hwy, <span class="at">colour =</span> class)) <span class="sc">+</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggfree</span>(mpg, <span class="fu">aes</span>(displ, hwy, <span class="at">colour =</span> class)) <span class="sc">+</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>) <span class="sc">&amp;</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_color_brewer</span>(<span class="at">palette =</span> <span class="st">"Dark2"</span>) <span class="sc">&amp;</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="stack-layout_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The <code>&amp;</code> operator applies the added element to all plots in the layout, similar to its functionality in the <code>patchwork</code> package.</p>
+<p>For <code>stack_free()</code>, only free plots (<code>ggfree()</code>) can be added. This layout arranges plots in one row or column without enforcing axis alignment:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stack_freev</span>(mpg) <span class="sc">+</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggfree</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(displ, hwy, <span class="at">colour =</span> class)) <span class="sc">+</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggfree</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(displ, hwy, <span class="at">colour =</span> class)) <span class="sc">+</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>) <span class="sc">&amp;</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_color_brewer</span>(<span class="at">palette =</span> <span class="st">"Dark2"</span>) <span class="sc">&amp;</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="stack-layout_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>By default, <code>ggfree()</code> will also inherit data from the layout and call <code>fortify_data_frame()</code> to convert the data to a data frame. So, note that if the layout data is a matrix, it will be converted into a long-formatted data frame.</p>
+</section>
+<section id="plot-size" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="plot-size"><span class="header-section-number">2.4</span> Plot Size</h2>
+<p>Both <code>ggalign()</code> and <code>ggfree()</code> functions have a <code>size</code> argument to control the relative <code>width</code> (for horizontal stack layout) or <code>height</code> (for vertical stack layout) of the plot’s panel area.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stack_freev</span>(mpg) <span class="sc">+</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggfree</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(displ, hwy, <span class="at">colour =</span> class), <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggfree</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(displ, hwy, <span class="at">colour =</span> class), <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>) <span class="sc">&amp;</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_color_brewer</span>(<span class="at">palette =</span> <span class="st">"Dark2"</span>) <span class="sc">&amp;</span></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="stack-layout_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Alternatively, you can define an absolute size by using a <code>unit()</code> object:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stack_freev</span>(mpg) <span class="sc">+</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggfree</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(displ, hwy, <span class="at">colour =</span> class), <span class="at">size =</span> <span class="fu">unit</span>(<span class="dv">1</span>, <span class="st">"cm"</span>)) <span class="sc">+</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggfree</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(displ, hwy, <span class="at">colour =</span> class)) <span class="sc">+</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>) <span class="sc">&amp;</span></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_color_brewer</span>(<span class="at">palette =</span> <span class="st">"Dark2"</span>) <span class="sc">&amp;</span></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="stack-layout_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="active-plot" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="active-plot"><span class="header-section-number">2.5</span> active plot</h2>
+<p>As mentioned earlier, the active plot refers to the plot that subsequent ggplot2 components will target. The package provide two functions to work with active plot.</p>
+<ul>
+<li><code>stack_switch()</code>: switch the active context</li>
+<li><code>stack_active</code>: An alias for <code>stack_switch()</code>, which sets <code>what = NULL</code></li>
+</ul>
+<p>The <code>stack_switch()</code> function accepts the <code>what</code> argument, which can either be the index of the plot added (based on its adding order) or the plot name specified via the <code>active()</code> object using the <code>name</code> argument.</p>
+<p>Note that the <code>what</code> argument must be explicitly named, as it is placed second in the function signature. This is because, in most cases, we don’t need to switch the active plot manually—adjusting the order of plot additions typically suffices.</p>
+<div class="grid">
+<div class="g-col-6">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stack_alignh</span>(small_mat) <span class="sc">+</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_dendro</span>() <span class="sc">+</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggalign</span>(<span class="at">data =</span> rowSums) <span class="sc">+</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>(<span class="fu">aes</span>(value, .names), <span class="at">stat =</span> <span class="st">"identity"</span>) <span class="sc">+</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># switch to the `align_dendro()` plot area</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">stack_switch</span>(<span class="at">what =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">axis.text.y =</span> <span class="fu">element_text</span>()) <span class="sc">+</span></span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">layout_title</span>(<span class="at">title =</span> <span class="st">"switch by integer"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="stack-layout_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div class="g-col-6">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stack_alignh</span>(small_mat) <span class="sc">+</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_dendro</span>(<span class="at">active =</span> <span class="fu">active</span>(<span class="at">name =</span> <span class="st">"tree"</span>)) <span class="sc">+</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggalign</span>(<span class="at">data =</span> rowSums) <span class="sc">+</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>(<span class="fu">aes</span>(value, .names), <span class="at">stat =</span> <span class="st">"identity"</span>) <span class="sc">+</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># switch to the `align_dendro()` plot area</span></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">stack_switch</span>(<span class="at">what =</span> <span class="st">"tree"</span>) <span class="sc">+</span></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">axis.text.y =</span> <span class="fu">element_text</span>()) <span class="sc">+</span></span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">layout_title</span>(<span class="at">title =</span> <span class="st">"switch by string"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="stack-layout_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>In the example, we use <code>layout_title()</code> to insert a title for the entire layout. Alternatively, you can add a title to a single plot with <code>ggtitle()</code>.</p>
+<p>By setting <code>what = NULL</code> (or alias <code>stack_active()</code>), we remove the active plot. This is particularly useful when the active plot is a nested <code>Layout</code> object, as any additions would otherwise be directed to that nested <code>Layout</code>. By removing the active plot, you can continue adding components directly to the <code>StackLayout</code>.</p>
+<p>Now, let’s move on to the next chapter where I’ll introduce a new <code>Layout</code>.</p>
 
 
 </section>
@@ -800,6 +1000,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="./heatmap-layout.html" class="pagination-link" aria-label="heatmap layout">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">heatmap layout</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->
