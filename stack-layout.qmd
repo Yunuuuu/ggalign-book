@@ -14,8 +14,13 @@ Several aliases are available for convenience:
   - `stack_freeh`: A horizontal version of `stack_free()`.
 
 ```{r setup}
-#| echo: false
+#| code-fold: true
+#| collapse: true
 library(ggalign)
+set.seed(123)
+small_mat <- matrix(rnorm(56), nrow = 7)
+rownames(small_mat) <- paste0("row", seq_len(nrow(small_mat)))
+colnames(small_mat) <- paste0("column", seq_len(ncol(small_mat)))
 ```
 
 <!--  add the layout figure-->
@@ -58,13 +63,6 @@ simultaneously.
 By default, `fortify_data_frame()` will invoke the `ggplot2::fortify()` function
 for conversion. Note, for matrix, it will be converted to a long-formatted data
 frame.
-
-```{r}
-set.seed(123)
-small_mat <- matrix(rnorm(56), nrow = 7)
-rownames(small_mat) <- paste0("row", seq_len(nrow(small_mat)))
-colnames(small_mat) <- paste0("column", seq_len(ncol(small_mat)))
-```
 
 `stack_align()`/`stack_free()` will set up the layout, but no plot will be drawn
 until you add a plot element:
@@ -202,6 +200,16 @@ stack_alignh(small_mat) +
     ggalign(data = rowSums) +
     geom_bar(aes(value, .names), stat = "identity") +
     theme(axis.text.y = element_text()) 
+```
+
+Alternatively, you can build the plot layer separately and then add it to the layout:
+```{r}
+my_bar <-ggalign(data = rowSums) +
+    geom_bar(aes(value, .names), stat = "identity") +
+    theme(axis.text.y = element_text()) 
+stack_alignh(small_mat) +
+    align_dendro() +
+    my_bar
 ```
 
 The `active` argument can also control the place of the plot area to be added. It
