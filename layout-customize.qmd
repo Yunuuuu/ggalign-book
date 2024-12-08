@@ -78,6 +78,7 @@ ggheatmap(small_mat) +
 
 Additionally, you can provide the ordering integer index or character index
 directly:
+
 ::: {.grid}
 
 ::: {.g-col-6}
