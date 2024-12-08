@@ -108,6 +108,7 @@ stack_alignv(small_mat) +
 ```
 
 When `align_dendro()` is added to the layout, it performs following actions:
+
     1. reorder the observations.
     2. set the active plot to the dendrogram.
 
