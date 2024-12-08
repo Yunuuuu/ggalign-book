@@ -198,6 +198,7 @@ described in @sec-stack_layout), since the annotation is a `Layout` object.
 
 ```{r}
 ggheatmap(small_mat) +
+    theme(axis.text.x = element_text(angle = -60, hjust = 0)) +
     # we set the active context to the left annotation
     anno_left() +
     align_dendro()
@@ -268,6 +269,7 @@ To add a `stack_layout()` to the `ggheatmap()`, we must prevent the automatical 
 my_stack_align <- stack_alignh(small_mat) +
     align_dendro(aes(color = branch), k = 3L)
 ggheatmap(small_mat) +
+    theme(axis.text.x = element_text(angle = -60, hjust = 0)) +
     anno_right(initialize = FALSE) +
     my_stack_align +
     layout_title("stack_align()")
@@ -281,6 +283,7 @@ my_stack_free <- stack_freeh(mpg) +
     ggfree(mapping = aes(displ, hwy, colour = class)) +
     geom_point(size = 2)
 ggheatmap(small_mat) +
+    theme(axis.text.x = element_text(angle = -60, hjust = 0)) +
     anno_right(initialize = FALSE) +
     my_stack_free +
     layout_title("stack_free()")
