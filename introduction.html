@@ -226,7 +226,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="general-design" class="level2" data-number="1.2">
 <h2 data-number="1.2" class="anchored" data-anchor-id="general-design"><span class="header-section-number">1.2</span> General design</h2>
-<p>The core feature of <code>ggalign</code> lies in its integration of the grammar of graphics principles into advanced visualization, achieved through its object-oriented <code>Layout</code> system. Two primary <code>Layout</code> classes are available:</p>
+<p>The core feature of <code>ggalign</code> lies in its integration of the grammar of graphics principles into advanced visualization, achieved through its object-oriented <code>Layout</code> system. Two basic <code>Layout</code> classes are available:</p>
 <ul>
 <li>the <code>StackLayout</code> class: Put plots horizontally or vertically.</li>
 <li>the <code>QuadLayout</code> class: Arranges plots in the four quadrants (top, left, bottom, right) around a main plot. This layout is ideal for designs that require supplementary plots or annotations surrounding a central figure.</li>
@@ -260,17 +260,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>The usage of <code>ggalign</code> is simple if you’re familiar with <code>ggplot2</code> syntax, the typical workflow includes:</p>
+<ol type="1">
+<li>Initialize the layout using:</li>
+</ol>
 <ul>
-<li>Initialize the layout using <code>stack_layout()</code> (<code>ggstack()</code>/<code>cross_align()</code>) or <code>quad_layout()</code> (<code>ggside()</code>/<code>ggheatmap()</code>/<code>ggoncoplot()</code>).</li>
-<li>Customize the layout with:
+<li><code>stack_layout()</code>: Arrange Plots Horizontally or Vertically
+<ul>
+<li><code>cross_align</code>: Arrange Plots Crosswise Horizontally or Vertically</li>
+</ul></li>
+<li><code>quad_layout()</code>: Arrange Plots in the Quad-Side of a main plot
+<ul>
+<li><code>ggheatmap()</code>: Create a Complex Heatmap.</li>
+<li><code>ggoncoplot()</code>: Create <code>OncoPrint</code> Visualizations from Genetic Alteration Data</li>
+</ul></li>
+</ul>
+<ol start="2" type="1">
+<li>Customize the layout with:</li>
+</ol>
 <ul>
 <li><code>align_group()</code>: Group observations into panel with a group variable.</li>
 <li><code>align_kmeans()</code>: Group observations into panel by kmeans.</li>
 <li><code>align_order()</code>: Reorder layout observations based on statistical weights or by manually specifying the observation index.</li>
 <li><code>align_hclust()</code>/<code>align_dendro()</code>: Reorder or Group layout based on hierarchical clustering.</li>
-</ul></li>
-<li>Adding plots with <code>ggalign()</code> or <code>ggfree()</code>, and then layer additional ggplot2 elements such as geoms, stats, or scales.</li>
 </ul>
+<ol start="3" type="1">
+<li>Adding plots with <code>ggalign()</code> or <code>ggfree()</code>, and then layer additional ggplot2 elements such as geoms, stats, or scales.</li>
+</ol>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>small_mat <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">rnorm</span>(<span class="dv">56</span>), <span class="at">nrow =</span> <span class="dv">7</span>)</span>
