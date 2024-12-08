@@ -307,7 +307,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>Additionally, you can provide the ordering integer index or character index directly: ::: {.grid}</p>
+<p>Additionally, you can provide the ordering integer index or character index directly:</p>
+<div class="grid">
 <div class="g-col-6">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>my_order <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">nrow</span>(small_mat))</span>
@@ -347,7 +348,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>:::</p>
+</div>
 <p>Some <code>align_*</code> functions also accept a <code>data</code> argument. It’s important to note that all <code>align_*</code> functions treat rows as the observations. This means <code>NROW(data)</code> must match the number of observations along the axis used for alignment. The <code>data</code> argument can also accept a function (supporting purrr-like lambda syntax), which will be applied to the layout matrix.</p>
 <p>As mentioned in <a href="heatmap-layout.html" class="quarto-xref"><span>Chapter 3</span></a>, for top and bottom annotations, the data matrix of <code>quad_layout()</code>/<code>ggheatmap()</code> is transposed to create the annotation <code>stack_layout()</code>. Therefore, you can use <code>rowMeans()</code> to calculate the mean value across all columns.</p>
 <div class="cell">
