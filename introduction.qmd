@@ -168,7 +168,7 @@ In this example:
   layout data (`ggalign(data = rowSums)`).
   4. Add a bar layer (`geom_bar(aes(.names, value), stat = "identity")`).
   5. Add fill mapping scale (`scale_fill_brewer(palette = "Dark2", name = "Group")`).
-  5. Add y-axis text (`theme(axis.text.y = element_text())`).
+  6. Add y-axis text (`theme(axis.text.y = element_text())`).
 
 One common visualization associated with the dendrogram is the heatmap. You can
 use `ggheatmap()` to initialize a heatmap layout. When grouping the observations
