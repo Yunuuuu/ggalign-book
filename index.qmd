@@ -1,3 +1,9 @@
 # Preface {.unnumbered}
 
-Welcome to `ggalign` documents
+Welcome to `ggalign` documents, Examples in the book are generated under version
+`r ggalign:::code_quote(installed.packages()["ggalign", "Version"])`
+
+# Session infomations
+```{r}
+sessionInfo()
+```
