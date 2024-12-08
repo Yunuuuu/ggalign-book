@@ -22,40 +22,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -168,6 +134,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">heatmap layout</span></span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./layout-customize.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Layout customize</span></span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -179,7 +151,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#preface" id="toc-preface" class="nav-link active" data-scroll-target="#preface">Preface</a></li>
-  <li><a href="#session-infomations" id="toc-session-infomations" class="nav-link" data-scroll-target="#session-infomations">Session infomations</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/Yunuuuu/ggalign-book/edit/main/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/Yunuuuu/ggalign-book/blob/main/index.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li><li><a href="https://github.com/Yunuuuu/ggalign-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -219,44 +190,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="preface" class="level1 unnumbered">
 <h1 class="unnumbered">Preface</h1>
-<p>Welcome to <code>ggalign</code> documents, Examples in the book are generated under version <code>"0.0.5.9000"</code></p>
-</section>
-<section id="session-infomations" class="level1">
-<h1>Session infomations</h1>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>R version 4.4.2 (2024-10-31)
-Platform: x86_64-pc-linux-gnu
-Running under: Ubuntu 22.04.5 LTS
-
-Matrix products: default
-BLAS:   /usr/lib/x86_64-linux-gnu/openblas-pthread/libblas.so.3 
-LAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.20.so;  LAPACK version 3.10.0
-
-locale:
- [1] LC_CTYPE=C.UTF-8       LC_NUMERIC=C           LC_TIME=C.UTF-8       
- [4] LC_COLLATE=C.UTF-8     LC_MONETARY=C.UTF-8    LC_MESSAGES=C.UTF-8   
- [7] LC_PAPER=C.UTF-8       LC_NAME=C              LC_ADDRESS=C          
-[10] LC_TELEPHONE=C         LC_MEASUREMENT=C.UTF-8 LC_IDENTIFICATION=C   
-
-time zone: UTC
-tzcode source: system (glibc)
-
-attached base packages:
-[1] stats     graphics  grDevices utils     datasets  methods   base     
-
-loaded via a namespace (and not attached):
- [1] digest_0.6.37      utf8_1.2.4         R6_2.5.1           fastmap_1.2.0     
- [5] xfun_0.49          magrittr_2.0.3     gtable_0.3.6       glue_1.8.0        
- [9] tibble_3.2.1       ggalign_0.0.5.9000 knitr_1.49         pkgconfig_2.0.3   
-[13] htmltools_0.5.8.1  rmarkdown_2.29     lifecycle_1.0.4    ggplot2_3.5.1     
-[17] cli_3.6.3          fansi_1.0.6        scales_1.3.0       grid_4.4.2        
-[21] vctrs_0.6.5        compiler_4.4.2     tools_4.4.2        pillar_1.9.0      
-[25] munsell_0.5.1      evaluate_1.0.1     colorspace_2.1-1   rlang_1.1.4       
-[29] jsonlite_1.8.9    </code></pre>
-</div>
-</div>
+<p>Welcome to <a href="https://github.com/Yunuuuu/ggalign"><code>ggalign</code></a> documents. Examples in the book are generated under version <code>0.0.5.9000</code>.</p>
+<p>In the world of data visualization, aligning multiple plots in a coherent and organized layout is often a challenging task, especially when dealing with complex datasets that require precise alignment across rows, columns, and even within plot elements. While existing tools provide some solutions, they often fall short in offering the flexibility, control, and simplicity that users need to create intricate and beautiful plots. This is where <code>ggalign</code> comes in.</p>
+<p>The <code>ggalign</code> package, built on top of the powerful ggplot2 framework, is designed to solve this very problem. It offers a suite of functions specifically crafted for aligning and organizing plots with minimal effort. Whether you need to align observations based on statistical measures, group plots by categorical factors, or fine-tune the layout to match the precise needs of your data, <code>ggalign</code> gives you the tools you need to create polished, publication-ready visualizations.</p>
+<p>This book serves as both an introduction to the <code>ggalign</code> package and a comprehensive guide to mastering its features. Whether you’re a beginner or an experienced user of ggplot2, you’ll find detailed explanations, step-by-step tutorials, and real-world examples to help you leverage the full potential of <code>ggalign</code> in your work.</p>
+<p>Throughout this book, we will cover everything from basic concepts to advanced layout customizations, focusing on key functions like <code>stack_layout()</code>, <code>align_*</code> series (including <code>align_group()</code>, <code>align_order()</code>, and <code>align_hclust()</code>), and how to combine them with other ggplot2 layers to create aligned plots. Additionally, you’ll learn how to adapt <code>ggalign</code> for different data types and scenarios, allowing you to develop flexible, dynamic visualizations tailored to your specific needs.</p>
+<p>By the end of this book, you will be equipped to use <code>ggalign</code> effectively in your own projects, whether for scientific research, data analysis, or any other field where data visualization is key. Our goal is to provide you with the knowledge and confidence to tackle complex visualization challenges and transform your datasets into clear, impactful, and visually appealing plots.</p>
+<p>Thank you for choosing <code>ggalign</code>. We hope this book will inspire you to explore the endless possibilities that come with aligned data visualization.</p>
 
 
 </section>
