@@ -191,7 +191,8 @@ There are two primary functions for adding plots:
   - `align_gg()`/`ggalign()`: Create a ggplot object and align with the layout.
   - `free_gg()`/`ggfree()`: Create a ggplot object without aligning.
 
-Both function will by default set the active plot when added to the layout.
+Both functions initialize a `ggplot` object and, by default, set the active plot
+when added to the layout.
 
 For `stack_align()`, plots can be added regardless of whether they need to align
 observations.
