@@ -1,0 +1,391 @@
+# heatmap layout
+The `heatmap_layout()` function provides a powerful way to create customizable
+heatmaps in R using `ggplot2`. This chapter will guide you through its usage.
+
+`heatmap_layout()` is a specialized version of `quad_alignb()`, which is a
+special `QuadLayout` (`quad_layout()`) that aligns observations both
+horizontally and vertically. We introduce `heatmap_layout()` directly, as it is
+more familiar to many users, especially those experienced with popular heatmap
+packages like `pheatmap` and `ComplexHeatmap`.
+
+```{r setup}
+#| code-fold: true
+#| collapse: true
+library(ggalign)
+set.seed(123)
+small_mat <- matrix(rnorm(56), nrow = 7)
+rownames(small_mat) <- paste0("row", seq_len(nrow(small_mat)))
+colnames(small_mat) <- paste0("column", seq_len(ncol(small_mat)))
+```
+
+```{r}
+#| echo: false
+ggside() +
+    lapply(c("top", "left", "bottom", "right"), function(side) {
+        c(
+            list(quad_anno(side, initialize = TRUE)),
+            lapply(seq_len(3L), function(i) {
+                ggfree() +
+                    ggtitle(sprintf("Plot %s", i)) +
+                    theme(panel.background = element_rect(fill = scales::alpha("red", 0.5)))
+            }),
+            list(layout_annotation(theme = theme(
+                plot.background = element_rect(color = "red", linewidth = unit(3, "cm"))
+            )))
+        )
+    }) +
+    quad_active() +
+    ggtitle("Main Plot") +
+    theme(panel.background = element_rect(fill = scales::alpha("red", 0.5))) +
+    layout_title("QuadLayout") +
+    layout_annotation(theme = theme(plot.title = element_text(size = 20)))
+```
+
+`heatmap_layout()` simplifies the creation of heatmap plots by integrating
+essential elements for a standard heatmap layout, ensuring that the appropriate
+data mapping and visualization layers are automatically applied. `ggheatmap()`
+is an alias for `heatmap_layout()`.
+
+## input data
+As mentioned in @sec-stack_layout_input_data, we typically require a matrix for
+the `Layout` which need align observations. Internally, `fortify_matrix()` will
+be used to process the data. You can provide a numeric or character vector, a
+data frame, or any other data type that can be converted into a matrix using
+`as.matrix()`.
+
+```{r}
+ggheatmap(small_mat)
+```
+
+## heatmap body
+A `ggplot` object will be automatically created for the heatmap body, the matrix
+input will be converted into a long formated data frame when drawing. The data
+in the underlying `ggplot` object contains following columns:
+
+  - `.xpanel` and `.ypanel`: the column and row panel
+
+  - `.x` and `.y`: the `x` and `y` coordinates
+
+  - `.row_names` and `.column_names`: A factor of the row and column names of
+    the original matrix (only applicable when names exist).
+
+  - `.row_index` and `.column_index`: the row and column index of the original
+    matrix.
+
+  - `value`: the actual matrix value.
+
+The default mapping will use `aes(.data$.x, .data$.y)`, but can be customized
+using `mapping` argument.
+
+By default, the heatmap body is regarded as the active plot, meaning you can add
+ggplot2 elements directly to the heatmap body. 
+```{r}
+ggheatmap(small_mat) + geom_point() + scale_fill_viridis_c()
+```
+
+By default, `ggheatmap()`/`heatmap_layout()` adds a heatmap layer. If the matrix
+has more than 20,000 cells (`nrow * ncol > 20000`), it uses `geom_raster()` for
+performance efficiency; for smaller matrices, `geom_tile()` is used. You can
+explicitly choose the layer by providing a single string (`"raster"` or
+`"tile"`) in the `filling` argument.
+```{r}
+ggheatmap(small_mat, filling = "raster")
+```
+
+```{r}
+ggheatmap(small_mat, filling = "tile")
+```
+
+Note, the filling layer will always use `mapping` of `aes(.data$.x, .data$.y)`,
+if you want to customize filling, you can set `filling = NULL`, which will
+remove the filling layer and allow you to add custom filling geoms.
+```{r}
+ggheatmap(small_mat, filling = NULL) +
+    geom_tile(aes(fill = value), color = "black", width = 0.9, height = 0.9)
+```
+
+A heatmap pie charts can be easily drawn:
+```{r}
+set.seed(123)
+ggheatmap(matrix(runif(360L), nrow = 20L), filling = NULL) +
+    geom_pie(aes(angle = value * 360, fill = value))
+```
+
+For more complex customizations of pie charts, you can try using
+`ggforce::geom_arc_bar()` instead.
+
+## rasterization
+When working with large heatmaps, it's often beneficial to rasterize the heatmap
+body layer. You can achieve this by using the `raster_magick()` function. The
+`res` argument controls the resolution of the raster image. By default, the
+`res` argument matches the resolution of the current device, but specifying a
+different value can help reduce the resolution of the rasterized heatmap body.
+```{r}
+ggheatmap(small_mat, filling = NULL) +
+    raster_magick(geom_tile(aes(fill = value)), res = 50)
+```
+
+By leveraging `raster_magick()`, you can also perform image post-processing
+using the `magick` package. This allows for custom image resizing with filters.
+```{r}
+ggheatmap(small_mat, filling = NULL) +
+    # Use `magick::filter_types()` to check available `filter` arguments
+    raster_magick(geom_raster(aes(fill = value)),
+        magick = function(image) {
+            magick::image_resize(image,
+                # we resize to the 50% of width
+                geometry = "50%x", filter = "Lanczos"
+            )
+        }
+    )
+```
+
+Note: When using `magick::image_resize()`, you should specify the `geometry`
+argument to resize the image. If only the `filter` is specified, it will only
+distort the image data (though subtle). For more information on image resizing,
+refer to
+[ImageMagick's resize documentation](https://usage.imagemagick.org/resize/).
+
+You can also rasterize all plots in the layout directly with `raster_magick()`.
+This method is defined for both `ggheatmap()`/`quad_layout()` and
+`stack_layout()` objects.
+
+Additionally, You can use external packages like
+[ggrastr](https://github.com/VPetukhov/ggrastr) or
+[ggfx](https://ggfx.data-imaginist.com/reference/with_raster.html) to rasterize
+the heatmap body.
+```{r}
+ggheatmap(small_mat, filling = FALSE) +
+    ggrastr::rasterise(geom_tile(aes(fill = value)), dev = "ragg")
+```
+
+Likewise, you can also rasterize all plots in the layout directly with
+`ggrastr::rasterise()` for both `ggheatmap()`/`quad_layout()` and
+`stack_layout()`.
+```{r}
+ggrastr::rasterise(ggheatmap(small_mat), dev = "ragg")
+```
+
+Furthermore, [ggfx](https://ggfx.data-imaginist.com/) offers many image filters
+that can be applied to ggplot2 layers. See the package for the details.
+
+## annotations
+In `ggheatmap()`/`quad_layout()`, annotations are handled by a `stack_layout()`
+object and can be positioned at the top, left, bottom, or right of the main plot
+(heatmap body). 
+
+By default, `ggheatmap()`/`quad_layout()` do not activate an annotation, You can
+use `quad_anno()` to activate an annotation, directing all subsequent additions
+to the specified annotation position. The `quad_anno()` function has the
+following aliases:
+
+  - `anno_top`: A special case of `quad_anno()` with `position = "top"`.
+  - `anno_left`: A special case of `quad_anno()` with `position = "left"`.
+  - `anno_bottom`: A special case of `quad_anno()` with `position = "bottom"`.
+  - `anno_right`: A special case of `quad_anno()` with `position = "right"`.
+
+When `quad_anno()` is added to a `ggheatmap()`/`quad_layout()`, it will try to
+automatically create a new `stack_layout()` (either `stack_align()` or
+`stack_free()`) depending on whether you want to align observations in the
+specified direction. For top and bottom annotations, `stack_alignv()` or
+`stack_freev()` will be used; for left and right annotations, `stack_alignh()`
+or `stack_freeh()` will be applied.
+
+Additionally, `quad_anno()` will set the active context to the annotation. This
+means that subsequent additions will be directed to the annotation rather than
+the main plot. We use the term `active context` in contrast to `active plot` (as
+described in @sec-stack_layout), since the annotation is a `Layout` object.
+
+```{r}
+ggheatmap(small_mat) +
+    # we set the active context to the left annotation
+    anno_left() +
+    align_dendro()
+```
+
+By default, the annotation `stack_layout()` will inherit data from
+`ggheatmap()`/`quad_layout()`. If the observations require alignment vertically,
+this means the data from `ggheatmap()`/`quad_layout()` should be a matrix, the
+column annotations will also require a matrix and the matrix from
+`ggheatmap()`/`quad_layout()` will be transposed for use in the column annotations.
+```{r}
+ggheatmap(small_mat) +
+    # we set the active context to the top annotation
+    anno_top() +
+    align_dendro()
+```
+
+You can further customize the layout design or add new plots in the annotation
+stack, as described in @sec-stack_layout.
+```{r}
+ggheatmap(small_mat) +
+    # in the heatmap body, we set the axis text theme
+    theme(axis.text.x = element_text(angle = -60, hjust = 0)) +
+    # we set the active context to the right annotation
+    anno_right() +
+    # in the right annotation, we add a dendrogram
+    align_dendro(k = 3L) +
+    # in the dendrogram, we add a point layer
+    geom_point(aes(color = factor(branch)))
+```
+
+In this example:
+
+ - `anno_right()` initialize the right annotation stack, and change the active
+ context to the right of the heatmap.
+ - `align_dendro(k = 3L)` adds a dendrogram to the annotation and sets itself as
+ the active plot in the annotation stack. 
+ - `geom_point(aes(color = factor(branch)))` is then added to this active plot
+ within the annotation stack, here, it means the `align_dendro()` plot.
+
+
+`ggheatmap()` aligns observations both horizontally and vertically, so it’s safe
+to always use `quad_anno()` directly, as all annotations require a matrix, and
+the layout data is also a matrix. However, for `quad_alignh()` and
+`quad_alignv()`, which only align observations in one direction, the data in the
+layout may not fit the data for the annotation (when the layout requires
+alignment of observations, we typically use a matrix, regardless of whether
+alignment is needed in one or two directions)
+    - `quad_alignh()`: aligning observations in horizontal direction, for column
+    annotations, we ll need a data frame for `stack_free()`.
+    - `quad_alignv()`: aligning observations in vertical direction, for row
+    annotations, we ll need a data frame for `stack_free()`.
+
+In both conditions, `quad_anno()` won't initialize the annotation by default,
+instead, you must provide the annotation `stack_layout()` manually.
+
+## Adding stack layout
+Like adding plot in `stack_layout()` (@sec-stack_layout), when the direction
+neeed alignment, you can add a `stack_layout()` regardless of whether it need
+to align observations.
+
+To add a `stack_layout()` to the `ggheatmap()`, we must prevent the automatical creation of annotation by `quad_anno()` by setting `initialize = FALSE`
+
+::: {.grid}
+
+::: {.g-col-6}
+```{r}
+my_stack_align <- stack_alignh(small_mat) +
+    align_dendro(aes(color = branch), k = 3L)
+ggheatmap(small_mat) +
+    anno_right(initialize = FALSE) +
+    my_stack_align +
+    layout_title("stack_align()")
+
+```
+:::
+
+::: {.g-col-6}
+```{r}
+my_stack_free <- stack_freeh(mpg) +
+    ggfree(mapping = aes(displ, hwy, colour = class)) +
+    geom_point(size = 2)
+ggheatmap(small_mat) +
+    anno_right(initialize = FALSE) +
+    my_stack_free +
+    layout_title("stack_free()")
+```
+:::
+
+:::
+
+Note when aligning the observations, you must ensure the number of observations
+is consistent in the direction. So for column annotations, you need transpose the data
+manually.
+```{r}
+my_stack <- stack_alignv(t(small_mat)) +
+    align_dendro(aes(color = branch), k = 3L)
+ggheatmap(small_mat) +
+    anno_top(initialize = FALSE) +
+    my_stack
+```
+
+## `quad_active()`
+To remove the active context and redirect additions back to the heatmap body,
+you can use `quad_active()`. 
+```{r}
+ggheatmap(small_mat) +
+    # we set the active context to the top annotation
+    anno_top() +
+    # we split the observations into 3 groups by hierarchical clustering
+    align_dendro(k = 3L) +
+    # remove any active annotation
+    quad_active() +
+    # set fill color scale for the heatmap body
+    scale_fill_viridis_c()
+```
+
+## `quad_switch()`/`hmanno()`
+We also provide `quad_switch()`/`hmanno()` (heatmap annotation) which integrates
+`quad_active()` and `quad_anno()` into one function for ease of use. Feel free
+to use any of these functions to streamline your annotation process.
+
+::: {.grid}
+
+::: {.g-col-6}
+```{r}
+ggheatmap(small_mat) +
+    # we set the active context to the top annotation
+    quad_switch("t") +
+    # we split the observations into 3 groups by hierarchical clustering
+    align_dendro(k = 3L) +
+    # remove any active annotation
+    quad_switch() +
+    # set fill color scale for the heatmap body
+    scale_fill_viridis_c()
+```
+:::
+
+::: {.g-col-6}
+```{r}
+ggheatmap(small_mat) +
+    # we set the active context to the top annotation
+    hmanno("t") +
+    # we split the observations into 3 groups by hierarchical clustering
+    align_dendro(k = 3L) +
+    # remove any active annotation
+    hmanno() +
+    # set fill color scale for the heatmap body
+    scale_fill_viridis_c()
+```
+:::
+
+:::
+
+## Plot Size
+### Heatmap Body Size
+You can specify the relative sizes of the heatmap body using the `width` and
+`height` arguments in the `ggheatmap()` function.
+```{r}
+ggheatmap(small_mat, height = 2) +
+    anno_top() +
+    align_dendro()
+```
+
+Alternatively, the `quad_active()` function allows you to control the heatmap
+body sizes. 
+```{r}
+ggheatmap(small_mat) +
+    quad_active(height = 2) +
+    anno_top() +
+    align_dendro()
+```
+
+### Annotation Stack Size
+The `quad_anno()` function allows you to control the total annotation stack
+size. The `size` argument controls the relative width (for left and right
+annotations) or height (for top and bottom annotations) of the whole annotation
+stack.
+
+```{r}
+ggheatmap(small_mat) +
+    anno_top(size = 1) +
+    align_dendro()
+```
+
+You can also specify it as an absolute size using `unit()`:
+```{r}
+ggheatmap(small_mat) +
+    anno_top(size = unit(30, "mm")) +
+    align_dendro()
+```

@@ -13,6 +13,7 @@ book:
     - index.qmd
     - introduction.qmd
     - stack-layout.qmd
+    - heatmap-layout.qmd
 
 bibliography: references.bib
 
