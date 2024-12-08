@@ -33,7 +33,7 @@ remotes::install_github("Yunuuuu/ggalign")
 ## General design
 The core feature of `ggalign` lies in its integration of the grammar of graphics
 principles into advanced visualization, achieved through its object-oriented
-`Layout` system. Two primary `Layout` classes are available: 
+`Layout` system. Two basic `Layout` classes are available: 
 
  - the `StackLayout` class: Put plots horizontally or vertically.
  - the `QuadLayout` class: Arranges plots in the four quadrants (top, left,
@@ -68,16 +68,20 @@ library(ggalign)
 The usage of `ggalign` is simple if you're familiar with `ggplot2` syntax, the
 typical workflow includes: 
 
- - Initialize the layout using `stack_layout()` (`ggstack()`/`cross_align()`) or
- `quad_layout()` (`ggside()`/`ggheatmap()`/`ggoncoplot()`).
- - Customize the layout with:
+ 1. Initialize the layout using:
+   - `stack_layout()`: Arrange Plots Horizontally or Vertically
+     * `cross_align`: Arrange Plots Crosswise Horizontally or Vertically
+   - `quad_layout()`: Arrange Plots in the Quad-Side of a main plot
+     * `ggheatmap()`: Create a Complex Heatmap.
+     * `ggoncoplot()`: Create `OncoPrint` Visualizations from Genetic Alteration Data
+ 2. Customize the layout with:
    - `align_group()`: Group observations into panel with a group variable.
    - `align_kmeans()`: Group observations into panel by kmeans.
    - `align_order()`: Reorder layout observations based on statistical weights
    or by manually specifying the observation index.
    - `align_hclust()`/`align_dendro()`: Reorder or Group layout based on
    hierarchical clustering.
- - Adding plots with `ggalign()` or `ggfree()`, and then layer additional
+ 3. Adding plots with `ggalign()` or `ggfree()`, and then layer additional
  ggplot2 elements such as geoms, stats, or scales.
 
 ```{r}
