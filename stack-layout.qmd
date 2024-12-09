@@ -68,16 +68,21 @@ frame.
 until you add a plot element:
 ```{r empty_layout}
 #| eval: false
-stack_alignh(small_mat) +
-    layout_annotation(theme = theme(plot.background = element_rect(color = "red")))
+stack_alignh(small_mat) +                                                    # <1>
+    layout_annotation(                                                       # <2>
+        theme = theme(plot.background = element_rect(color = "red"))         # <2>
+    )                                                                        # <2>
 # the same for `stack_free()`
 ```
-
+  1. initialize a vertical stack layout.
+  2. Add a plot background in for the entire layout.
 ```{r empty_layout}
 #| echo: false
 ```
 
-In this example, we use `layout_annotation()` to insert a plot background in the entire layout.
+In this example, we use `layout_annotation()` to insert a plot background in the
+entire layout, it can be also used to control the theme of title,
+subtitle, caption (`layout_title()`), guides, margins, panel.border.
 
 ## Layout Customization
 When we use `stack_align()`, it aligns the observations across multiple plots
@@ -97,15 +102,21 @@ observations, split them into groups, and can add a plot for visualization.
 
 When used for `stack_alignh()`, the observations are aligned along the `y-axis`:
 ```{r}
-stack_alignh(small_mat) +
-    align_dendro()
+stack_alignh(small_mat) + # <1>
+    align_dendro()        # <2>
 ```
+  1. initialize a horizontal stack layout.
+  2. reorder the observations based on the hierarchical clustering, add
+  a dendrogram tree, and set the active plot to this plot.
 
 When used for `stack_alignv()`, the observations are aligned along the `x-axis`:
 ```{r}
-stack_alignv(small_mat) +
-    align_dendro()
+stack_alignv(small_mat) + # <1>
+    align_dendro()        # <2>
 ```
+  1. initialize a vertical stack layout.
+  2. reorder the observations based on the hierarchical clustering, add
+  a dendrogram tree, and set the active plot to this plot.
 
 When `align_dendro()` is added to the layout, it performs following actions:
 
@@ -121,20 +132,28 @@ also possible to use the dendrogram's edge data for customization, which I will
 introduce in a later chapter.
 
 ```{r}
-stack_alignh(small_mat) +
-    align_dendro() +
-    geom_point()
+stack_alignh(small_mat) + # <1>
+    align_dendro() +      # <2>
+    geom_point()          # <3>
 ```
+  1. initialize a horizontal stack layout.
+  2. reorder the observations based on the hierarchical clustering, add
+  a dendrogram tree, and set the active plot to this plot.
+  3. add a point layer to the dendrogram
 
-The `active` argument controls whether a plot is set as the active plot. It
+The `active` argument controls whether a plot should be set as the active plot. It
 accepts an `active()` object with the `use` argument to specify if the plot should
-be active. 
+be active when added. 
 ```{r}
 #| error: true
-stack_alignh(small_mat) +
-    align_dendro(active = active(use = FALSE)) +
-    geom_point()
+stack_alignh(small_mat) +                             # <1>
+    align_dendro(active = active(use = FALSE)) +      # <2>
+    geom_point()                                      # <3>
 ```
+  1. initialize a horizontal stack layout.
+  2. reorder the observations based on the hierarchical clustering, add
+  a dendrogram tree, but don't set the active plot to this plot.
+  3. try to add a point layer to the dendrogram, should fail due to no active plot
 
 Usually, you don't need to set this manually, as the active context is
 automatically applied only for functions that add plot areas. You can inspect
@@ -158,21 +177,31 @@ observations is consistent across all plots.
 ```{r}
 #| error: true
 set.seed(123)
-stack_alignh(small_mat) +
-    align_dendro(data = matrix(rnorm(56), nrow = 8)) +
-    theme(axis.text.y = element_text())
+stack_alignh(small_mat) +                                     # <1>
+    align_dendro(data = matrix(rnorm(56), nrow = 8)) +        # <2>
+    theme(axis.text.y = element_text())                       # <3>
 ```
+  1. initialize a horizontal stack layout.
+  2. reorder the observations based on hierarchical clustering, add a dendrogram
+  tree, and set the active plot to this one, using self-provided data. This
+  should fail because the number of observations is inconsistent.
+  3. try to add y-axis text to the dendrogram.
 
 ```{r}
 set.seed(123)
-stack_alignh(small_mat) +
-    align_dendro(data = matrix(rnorm(70), nrow = 7)) +
-    theme(axis.text.y = element_text())
+stack_alignh(small_mat) +                                # <1>
+    align_dendro(data = matrix(rnorm(70), nrow = 7)) +   # <2>
+    theme(axis.text.y = element_text())                  # <3>
 ```
 
+  1. initialize a horizontal stack layout.
+  2. reorder the observations based on the hierarchical clustering, add
+  a dendrogram tree, and set the active plot to this plot, using self-provided data
+  3. add y-axis text to the dendrogram.
+
 Alternatively, you can provide a function (or purrr-lambda) that will be applied
-to the layout's matrix. Note that, for layouts that align observations, a matrix
-is always required, so the data input must be in matrix form.
+to the layout's matrix. For layouts that align observations, a matrix is always
+required, so the data input must be in matrix form.
 ```{r}
 set.seed(123)
 stack_alignh(small_mat) +
@@ -202,7 +231,7 @@ stack_alignh(small_mat) +
     theme(axis.text.y = element_text()) 
 ```
 
-You can build the plot layer separately and then add it to the layout:
+You can build the plot separately and then add it to the layout:
 ```{r}
 my_bar <- ggalign(data = rowSums) +
     geom_bar(aes(value, .names), stat = "identity") +
@@ -345,4 +374,7 @@ This is particularly useful when the active plot is a nested `Layout` object, as
 any additions would otherwise be directed to that nested `Layout`. By removing the
 active plot, you can continue adding components directly to the `StackLayout`.
 
-Now, let's move on to the next chapter where I'll introduce a new `Layout`.
+In the next chapter, we will dive into the `HeatmapLayout`, which can take the
+`StackLayout` as input. Heatmap layouts offer additional features for aligning
+observations in both directions. Let’s move ahead and explore how heatmaps can
+be seamlessly integrated into your layout workflows.
