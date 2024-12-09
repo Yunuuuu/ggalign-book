@@ -293,7 +293,7 @@ By default, `ggfree()` will also inherit data from the layout and call
 `fortify_data_frame()` to convert the data to a data frame. So, note that if the
 layout data is a matrix, it will be converted into a long-formatted data frame. 
 
-## Plot Size
+## Plot Size {#sec-stack_layout_plot_size}
 Both `ggalign()` and `ggfree()` functions have a `size` argument to control the
 relative `width` (for horizontal stack layout) or `height` (for vertical stack
 layout) of the plot's panel area.

@@ -80,7 +80,9 @@ using `mapping` argument.
 By default, the heatmap body is regarded as the active plot, meaning you can add
 ggplot2 elements directly to the heatmap body. 
 ```{r}
-ggheatmap(small_mat) + geom_point() + scale_fill_viridis_c()
+ggheatmap(small_mat) + 
+    geom_point() + 
+    scale_fill_viridis_c()
 ```
 
 By default, `ggheatmap()`/`heatmap_layout()` adds a heatmap layer. If the matrix
@@ -392,3 +394,31 @@ ggheatmap(small_mat) +
     anno_top(size = unit(30, "mm")) +
     align_dendro()
 ```
+
+Note that the size of an individual plot ([@sec-stack_layout_plot_size]) does not
+affect the total annotation stack size. You must adjust the annotation size using the
+method described above.
+
+::: {.grid}
+
+::: {.g-col-6}
+```{r}
+ggheatmap(small_mat) +
+    anno_top() +
+    align_dendro(size = unit(30, "mm")) +
+    layout_title("plot size")
+```
+:::
+
+
+::: {.g-col-6}
+
+```{r}
+ggheatmap(small_mat) +
+    anno_top(size = unit(30, "mm")) +
+    align_dendro() +
+    layout_title("annotation size")
+```
+:::
+
+:::
