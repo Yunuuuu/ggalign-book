@@ -296,7 +296,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>For <code>stack_alignh()</code>: Alignment occurs along the horizontal direction (y-axis).</li>
 <li>For <code>stack_alignv()</code>: Alignment occurs along the vertical direction (x-axis).</li>
 </ul>
-<p>The package offers a suite of <code>align_*</code> functions designed to give you precise control over the layout. These functions enable you to reorder the observations or partition the observations into multiple groups. Instead of detailing each <code>align_*</code> function individually, we will focus on the general usage and how to combine them with <code>stack_align()</code>.</p>
+<p>The package offers a suite of <code>align_*</code> functions designed to give you precise control over the observations. These functions enable you to reorder the observations or partition the observations into multiple groups. Instead of detailing each <code>align_*</code> function individually, we will focus on the general usage and how to combine them with <code>stack_align()</code>.</p>
 <p>Here, we remain take <code>align_dendro()</code> as a example, it can reorder the observations, split them into groups, and can add a plot for visualization.</p>
 <p>When used for <code>stack_alignh()</code>, the observations are aligned along the <code>y-axis</code>:</p>
 <div class="cell">
@@ -427,7 +427,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   split: yes</code></pre>
 </div>
 </div>
-<p>You don’t need to explicitly provide <code>data</code> to <code>align_dendro()</code>. By default, it inherits data from the layout. However, you can always provide another data source, but note that this package uses the concept of “number of observations” (<code>NROW()</code>). When aligning the observations, you must ensure the number of observations is consistent across all plots.</p>
+<p>You don’t need to explicitly provide <code>data</code> to <code>align_dendro()</code>. By default, it inherits data from the layout. However, you can always provide another data source, but note that this package uses the concept of <code>number of observations</code> (<code>NROW()</code>). When aligning the observations, you must ensure the number of observations is consistent across all plots.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="annotated-cell-10"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-10-1"><a href="#annotated-cell-10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
 <button class="code-annotation-anchor" data-target-cell="annotated-cell-10" data-target-annotation="1">1</button><span id="annotated-cell-10-2" class="code-annotation-target"><a href="#annotated-cell-10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">stack_alignh</span>(small_mat) <span class="sc">+</span></span>

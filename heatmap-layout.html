@@ -525,7 +525,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>Note when aligning the observations, you must ensure the number of observations is consistent in the direction. So for column annotations, you need transpose the data manually.</p>
+<p>Note when aligning the observations, you must ensure the <code>number of observations</code> is consistent in the direction. So for column annotations, you need transpose the data manually.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>my_stack <span class="ot">&lt;-</span> <span class="fu">stack_alignv</span>(<span class="fu">t</span>(small_mat)) <span class="sc">+</span></span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_dendro</span>(<span class="fu">aes</span>(<span class="at">color =</span> branch), <span class="at">k =</span> <span class="dv">3</span>L)</span>
@@ -732,6 +732,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
+<p>In this chapter, we explored the usage of heatmap layouts. These features provide a strong foundation for visualizing matrix-based data in a structured way. However, as your visualization needs grow more complex, the ability to further customize and fine-tune the layout becomes essential.</p>
+<p>In the next chapter, we will dive into the Layout Customize functionalities, where you can gain full control over your plot’s layout.</p>
 
 
 </section>
