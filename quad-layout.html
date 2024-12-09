@@ -64,6 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<link href="./multiple-quad-layouts.html" rel="next">
 <link href="./plot-initialize.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -184,6 +185,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">quad-layout</span></span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./multiple-quad-layouts.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">A list of <code>quad_layout()</code></span></span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -294,9 +301,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Annotation is typically handled using a <code>stack_layout()</code>. Depending on whether you want to align observations in the specified direction, different <code>stack_layout()</code> are compatible (<a href="heatmap-layout.html#sec-heatmap-layout-add-stack-layout" class="quarto-xref"><span>Section 3.5</span></a>). Below is a table outlining the compatibility of various layout types for annotations:</p>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 18%">
-<col style="width: 40%">
-<col style="width: 40%">
+<col style="width: 31%">
+<col style="width: 34%">
+<col style="width: 34%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -307,7 +314,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </thead>
 <tbody>
 <tr class="odd">
-<td><code>quad_free()</code></td>
+<td><code>quad_free()</code>/<code>ggside()</code></td>
 <td><code>stack_freeh()</code></td>
 <td><code>stack_freev()</code></td>
 </tr>
@@ -322,7 +329,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td><code>stack_freev()</code>/<code>stack_alignv()</code></td>
 </tr>
 <tr class="even">
-<td><code>quad_alignb()</code></td>
+<td><code>quad_alignb()</code>/<code>ggheatmap()</code></td>
 <td><code>stack_freeh()</code>/<code>stack_alignh()</code></td>
 <td><code>stack_freev()</code>/<code>stack_alignv()</code></td>
 </tr>
@@ -537,8 +544,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>If an annotation contains multiple plots, it can be tedious to add the same element to each one individually. One way to simplify this is by creating an external <code>stack_layout()</code> and adding the desired elements using the <code>&amp;</code> operator. Then, you can add this <code>stack_layout()</code> to the <code>quad_layout()</code>.</p>
-<p>In the next chapter, I will introduce another operator that can seamlessly combine with the <code>+</code> operator to add elements to multiple plots at once.</p>
+<p>If an annotation contains multiple plots, it can be tedious to add the same element to each one individually. One way to simplify this is by creating an external <code>stack_layout()</code> and adding the desired elements using the <code>&amp;</code> operator. Then, you can add this <code>stack_layout()</code> to the <code>quad_layout()</code>. In a later chapter, I will introduce another operator that seamlessly combines with the <code>+</code> operator, allowing you to add elements to multiple plots at once.</p>
+<p>In the next chapter, we will explore even more advanced techniques for combining multiple <code>quad_layout()</code>s. These methods will provide you with the tools to manage more complex plot arrangements and make your visualizations even more flexible and powerful.</p>
 
 
 </section>
@@ -1007,6 +1014,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="./multiple-quad-layouts.html" class="pagination-link" aria-label="A list of `quad_layout()`">
+        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">A list of <code>quad_layout()</code></span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->

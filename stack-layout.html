@@ -185,6 +185,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">quad-layout</span></span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./multiple-quad-layouts.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">A list of <code>quad_layout()</code></span></span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -196,10 +202,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#sec-stack-layout-input-data" id="toc-sec-stack-layout-input-data" class="nav-link active" data-scroll-target="#sec-stack-layout-input-data"><span class="header-section-number">2.1</span> Input data</a></li>
-  <li><a href="#sec-stack_layout_layout_customize" id="toc-sec-stack_layout_layout_customize" class="nav-link" data-scroll-target="#sec-stack_layout_layout_customize"><span class="header-section-number">2.2</span> Layout Customize</a></li>
-  <li><a href="#plot-initialize" id="toc-plot-initialize" class="nav-link" data-scroll-target="#plot-initialize"><span class="header-section-number">2.3</span> Plot initialize</a></li>
-  <li><a href="#sec-stack_layout_plot_size" id="toc-sec-stack_layout_plot_size" class="nav-link" data-scroll-target="#sec-stack_layout_plot_size"><span class="header-section-number">2.4</span> Plot Size</a></li>
-  <li><a href="#active-plot" id="toc-active-plot" class="nav-link" data-scroll-target="#active-plot"><span class="header-section-number">2.5</span> active plot</a></li>
+  <li><a href="#sec-stack-layout-layout-customize" id="toc-sec-stack-layout-layout-customize" class="nav-link" data-scroll-target="#sec-stack-layout-layout-customize"><span class="header-section-number">2.2</span> Layout Customize</a></li>
+  <li><a href="#sec-stack-layout-plot-initialize" id="toc-sec-stack-layout-plot-initialize" class="nav-link" data-scroll-target="#sec-stack-layout-plot-initialize"><span class="header-section-number">2.3</span> Plot initialize</a></li>
+  <li><a href="#sec-stack-layout-plot-size" id="toc-sec-stack-layout-plot-size" class="nav-link" data-scroll-target="#sec-stack-layout-plot-size"><span class="header-section-number">2.4</span> Plot Size</a></li>
+  <li><a href="#sec-stack-layout-active-plot" id="toc-sec-stack-layout-active-plot" class="nav-link" data-scroll-target="#sec-stack-layout-active-plot"><span class="header-section-number">2.5</span> active plot</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/Yunuuuu/ggalign-book/edit/main/stack-layout.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/Yunuuuu/ggalign-book/blob/main/stack-layout.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li><li><a href="https://github.com/Yunuuuu/ggalign-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -300,8 +306,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>In this example, we use <code>layout_annotation()</code> to insert a plot background in the entire layout, it can be also used to control the theme of title, subtitle, caption (<code>layout_title()</code>), guides, margins, panel.border.</p>
 </section>
-<section id="sec-stack_layout_layout_customize" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="sec-stack_layout_layout_customize"><span class="header-section-number">2.2</span> Layout Customize</h2>
+<section id="sec-stack-layout-layout-customize" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="sec-stack-layout-layout-customize"><span class="header-section-number">2.2</span> Layout Customize</h2>
 <p>When we use <code>stack_align()</code>, it aligns the observations across multiple plots along the specified direction:</p>
 <ul>
 <li>For <code>stack_alignh()</code>: Alignment occurs along the horizontal direction (y-axis).</li>
@@ -503,8 +509,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>Without adding another plot, it’s difficult to appreciate the benefits. Let’s now explore how to incorporate a plot.</p>
 </section>
-<section id="plot-initialize" class="level2" data-number="2.3">
-<h2 data-number="2.3" class="anchored" data-anchor-id="plot-initialize"><span class="header-section-number">2.3</span> Plot initialize</h2>
+<section id="sec-stack-layout-plot-initialize" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="sec-stack-layout-plot-initialize"><span class="header-section-number">2.3</span> Plot initialize</h2>
 <p>There are two primary functions for adding plots:</p>
 <ul>
 <li><code>align_gg()</code>/<code>ggalign()</code>: Create a ggplot object and align with the layout.</li>
@@ -609,8 +615,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>By default, <code>ggfree()</code> will also inherit data from the layout and call <code>fortify_data_frame()</code> to convert the data to a data frame. So, note that if the layout data is a matrix, it will be converted into a long-formatted data frame.</p>
 </section>
-<section id="sec-stack_layout_plot_size" class="level2" data-number="2.4">
-<h2 data-number="2.4" class="anchored" data-anchor-id="sec-stack_layout_plot_size"><span class="header-section-number">2.4</span> Plot Size</h2>
+<section id="sec-stack-layout-plot-size" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="sec-stack-layout-plot-size"><span class="header-section-number">2.4</span> Plot Size</h2>
 <p>Both <code>ggalign()</code> and <code>ggfree()</code> functions have a <code>size</code> argument to control the relative <code>width</code> (for horizontal stack layout) or <code>height</code> (for vertical stack layout) of the plot’s panel area.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stack_freev</span>(mpg) <span class="sc">+</span></span>
@@ -646,12 +652,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="active-plot" class="level2" data-number="2.5">
-<h2 data-number="2.5" class="anchored" data-anchor-id="active-plot"><span class="header-section-number">2.5</span> active plot</h2>
+<section id="sec-stack-layout-active-plot" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="sec-stack-layout-active-plot"><span class="header-section-number">2.5</span> active plot</h2>
 <p>As mentioned earlier, the active plot refers to the plot that subsequent ggplot2 components will target. The package provide two functions to work with active plot.</p>
 <ul>
 <li><code>stack_switch()</code>: switch the active context</li>
-<li><code>stack_active</code>: An alias for <code>stack_switch()</code>, which sets <code>what = NULL</code></li>
+<li><code>stack_active()</code>: An alias for <code>stack_switch()</code>, which sets <code>what = NULL</code></li>
 </ul>
 <p>The <code>stack_switch()</code> function accepts the <code>what</code> argument, which can either be the index of the plot added (based on its adding order) or the plot name specified via the <code>active()</code> object using the <code>name</code> argument.</p>
 <p>Note that the <code>what</code> argument must be explicitly named, as it is placed second in the function signature. This is because, in most cases, we don’t need to switch the active plot manually—adjusting the order of plot additions typically suffices.</p>

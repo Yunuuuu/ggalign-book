@@ -185,6 +185,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">quad-layout</span></span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./multiple-quad-layouts.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">A list of <code>quad_layout()</code></span></span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -417,7 +423,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p>When <code>quad_anno()</code> is added to a <code>ggheatmap()</code>/<code>quad_layout()</code>, it will try to automatically create a new <code>stack_layout()</code>. For top and bottom annotations, <code>stack_alignv()</code> or <code>stack_freev()</code> will be used; for left and right annotations, <code>stack_alignh()</code> or <code>stack_freeh()</code> will be applied.</p>
 <p><code>quad_anno()</code> will always attempt to initialize a <code>stack_layout()</code> with the same alignment as the current direction. This means that if observations need to be aligned horizontally, <code>stack_alignh()</code> will be used for left and right annotations, otherwise, <code>stack_freeh()</code> will be initialized instead. The same logic applies for vertical alignment—<code>stack_alignv()</code> or <code>stack_freev()</code> will be applied for top and bottom annotations, depending on whether alignment is required. However, you can also manually add a <code>stack_free()</code> for directions that require alignment, which I’ll cover in the following section.</p>
-<p>Additionally, <code>quad_anno()</code> will set the active context to the annotation. This means that subsequent additions will be directed to the annotation rather than the main plot. We use the term <code>active context</code> in contrast to <code>active plot</code> (as described in <span class="quarto-unresolved-ref">?sec-stack-layout-layout-customize</span>), since the annotation is a <code>Layout</code> object.</p>
+<p>Additionally, <code>quad_anno()</code> will set the active context to the annotation. This means that subsequent additions will be directed to the annotation rather than the main plot. We use the term <code>active context</code> in contrast to <code>active plot</code> (as described in <a href="stack-layout.html#sec-stack-layout-layout-customize" class="quarto-xref"><span>Section 2.2</span></a>), since the annotation is a <code>Layout</code> object.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggheatmap</span>(small_mat) <span class="sc">+</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="sc">-</span><span class="dv">60</span>, <span class="at">hjust =</span> <span class="dv">0</span>)) <span class="sc">+</span></span>
