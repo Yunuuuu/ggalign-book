@@ -92,10 +92,10 @@ along the specified direction:
   - For `stack_alignv()`: Alignment occurs along the vertical direction (x-axis).
 
 The package offers a suite of `align_*` functions designed to give you precise
-control over the layout. These functions enable you to reorder the observations
-or partition the observations into multiple groups. Instead of detailing each
-`align_*` function individually, we will focus on the general usage and how to
-combine them with `stack_align()`.
+control over the observations. These functions enable you to reorder the
+observations or partition the observations into multiple groups. Instead of
+detailing each `align_*` function individually, we will focus on the general
+usage and how to combine them with `stack_align()`.
 
 Here, we remain take `align_dendro()` as a example, it can reorder the
 observations, split them into groups, and can add a plot for visualization.
@@ -171,7 +171,7 @@ align_dendro(k = 3L)
 
 You don't need to explicitly provide `data` to `align_dendro()`. By default, it
 inherits data from the layout. However, you can always provide another data
-source, but note that this package uses the concept of "number of observations"
+source, but note that this package uses the concept of `number of observations`
 (`NROW()`). When aligning the observations, you must ensure the number of
 observations is consistent across all plots.
 ```{r}

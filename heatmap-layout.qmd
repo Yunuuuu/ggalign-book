@@ -294,7 +294,7 @@ ggheatmap(small_mat) +
 
 :::
 
-Note when aligning the observations, you must ensure the number of observations
+Note when aligning the observations, you must ensure the `number of observations`
 is consistent in the direction. So for column annotations, you need transpose the data
 manually.
 ```{r}
@@ -422,3 +422,11 @@ ggheatmap(small_mat) +
 :::
 
 :::
+
+In this chapter, we explored the usage of heatmap layouts. These features
+provide a strong foundation for visualizing matrix-based data in a structured
+way. However, as your visualization needs grow more complex, the ability to
+further customize and fine-tune the layout becomes essential.
+
+In the next chapter, we will dive into the Layout Customize functionalities,
+where you can gain full control over your plot’s layout.

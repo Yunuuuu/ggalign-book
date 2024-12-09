@@ -1,7 +1,8 @@
 # Layout customize
-For layouts that can align observations, the package provides a suite of `align_*`
-functions designed to give you precise control over the layout. These functions
-allow you to reorder observations or partition them into multiple groups.
+For layouts that can align observations, the package provides a suite of
+`align_*` functions designed to give you precise control over the observations.
+These functions allow you to reorder observations or partition them into
+multiple groups.
 
 Currently, there are four key `align_*` functions available for layout customization:
 
@@ -11,8 +12,9 @@ Currently, there are four key `align_*` functions available for layout customiza
 - **`align_kmeans`**: Group observations by k-means clustering results.
 - **`align_hclust`**: Reorder or group observations based on hierarchical clustering.
 
-Note that none of these functions add a plot area or set the active context,
-meaning you cannot add ggplot2 elements to these objects.
+You can inspect the behavior of any `align_*` function by printing it. Note that
+these functions do not add plot areas and set the active context, meaning you
+cannot incorporate `ggplot2` elements directly into these objects.
 
 ```{r setup}
 #| code-fold: true
@@ -79,12 +81,15 @@ ggheatmap(small_mat) +
 Additionally, you can provide the ordering integer index or character index
 directly:
 
+```{r}
+my_order <- sample(nrow(small_mat))
+print(rownames(small_mat)[my_order])
+```
+
 ::: {.grid}
 
 ::: {.g-col-6}
 ```{r}
-my_order <- sample(nrow(small_mat))
-print(rownames(small_mat)[my_order])
 ggheatmap(small_mat) +
     anno_left() +
     align_order(my_order)
@@ -103,7 +108,7 @@ ggheatmap(small_mat) +
 
 Some `align_*` functions also accept a `data` argument. It’s important to note
 that all `align_*` functions treat rows as the observations. This means
-`NROW(data)` must match the number of observations along the axis used for
+`NROW(data)` must match the `number of observations` along the axis used for
 alignment. The `data` argument can also accept a function (supporting purrr-like
 lambda syntax), which will be applied to the layout matrix.
 
@@ -140,42 +145,42 @@ ggheatmap(small_mat) +
 ```
 
 ## `align_hclust()`
-The `align_dendro()` function adds a dendrogram to the layout and can also
-reorder or split the layout based on hierarchical clustering. This is
-particularly useful for working with heatmap plots.
+The `align_hclust()` function is a specialized version of `align_dendro()`, designed
+to reorder observations and group them based on hierarchical clustering. Unlike
+`align_dendro()`, however, `align_hclust()` does not add a dendrogram tree to the
+plot. All the arguments intruduced here can also be used by `align_dendro()`.
 
-```{r align_dendro}
+```{r}
 ggheatmap(small_mat) +
     anno_top() +
-    align_dendro()
+    align_hclust()
 ```
 
 Hierarchical clustering is performed in two steps: calculate the distance matrix
 and apply clustering. You can use the `distance` and `method` argument to
-control the dendrogram builind process.
+control the builind process.
 
 There are two ways to specify `distance` metric for clustering:
 
-- specify `distance` as a pre-defined option. The valid values are the supported
-methods in `dist()` function and coorelation coefficient `"pearson"`,
-`"spearman"` and `"kendall"`. The correlation distance is defined as `1 - cor(x,
-y, method = distance)`.
-- a self-defined function which calculates distance from a matrix. The function
-should only contain one argument. Please note for clustering on columns, the
-matrix will be transposed automatically. 
+  - specify `distance` as a pre-defined option. The valid values are the supported
+  methods in `dist()` function and coorelation coefficient `"pearson"`,
+  `"spearman"` and `"kendall"`. The correlation distance is defined as 
+  `1 - cor(x, y, method = distance)`.
+  - a self-defined function which calculates distance from a matrix. The function
+  should only contain one argument.
 
-```{r align_dendro_distance_pearson}
+```{r}
 ggheatmap(small_mat) +
     anno_top() +
-    align_dendro(distance = "pearson") +
-    patch_titles(top = "pre-defined distance method (1 - pearson)")
+    align_hclust(distance = "pearson") +
+    layout_title("pre-defined distance method (1 - pearson)")
 ```
 
-```{r align_dendro_distance_function}
+```{r}
 ggheatmap(small_mat) +
     anno_top() +
-    align_dendro(distance = function(m) dist(m)) +
-    patch_titles(top = "a function that calculates distance matrix")
+    align_hclust(distance = function(m) dist(m)) +
+    layout_title("a function that calculates distance matrix")
 ```
 
 Method to perform hierarchical clustering can be specified by `method`. Possible
@@ -186,59 +191,41 @@ object.
 ```{r}
 ggheatmap(small_mat) +
     anno_top() +
-    align_dendro(method = "ward.D2")
+    align_hclust(method = "ward.D2")
 ```
 
-The dendrogram can also be used to cut the columns/rows into groups. You can
-specify `k` or `h`, which work similarly to `cutree()`: 
+You can specify `k` or `h` to split observations into groups, which work
+similarly to `cutree()`: 
 
 ```{r}
 ggheatmap(small_mat) +
     anno_top() +
-    align_dendro(k = 3L)
-```
-
-In contrast to `align_group()`, `align_kmeans()`, and `align_order()`,
-`align_dendro()` is capable of drawing plot components. So it has a default
-`set_context` value of `TRUE`, meaning it will set the active context of the
-annotation stack layout. In this way, we can add any ggplot elements to this
-plot area.
-
-```{r}
-ggheatmap(small_mat) +
-    anno_top() +
-    align_dendro() +
-    geom_point(aes(y = y))
-```
-
-The `align_dendro()` function creates default `node` data for the ggplot. See
-`ggplot2 specification` in `?align_dendro` for details. Additionally, `edge`
-data is added to the `ggplote::geom_segment()` layer directly, used to draw the
-dendrogram tree. One useful variable in both `node` and `edge` data is the
-`branch` column, corresponding to the `cutree` result: 
-
-```{r}
-ggheatmap(small_mat) +
-    anno_top() +
-    align_dendro(aes(color = branch), k = 3) +
-    geom_point(aes(color = branch, y = y))
+    align_hclust(k = 3L)
 ```
 
 You can reorder the dendrogram based on the mean values of the observations by
 setting `reorder_dendrogram = TRUE`.
-```{r fig.width=10}
+```{r}
+#| fig.width: 10
 h1 <- ggheatmap(small_mat) +
     anno_top() +
-    align_dendro(aes(color = branch), k = 3, reorder_dendrogram = TRUE) +
-    ggtitle("reorder_dendrogram = TRUE")
+    align_hclust(k = 3, reorder_dendrogram = TRUE) +
+    layout_title("reorder_dendrogram = TRUE")
 h2 <- ggheatmap(small_mat) +
     anno_top() +
-    align_dendro(aes(color = branch), k = 3) +
-    ggtitle("reorder_dendrogram = FALSE")
+    align_hclust(k = 3) +
+    layout_title("reorder_dendrogram = FALSE")
 align_plots(h1, h2)
 ```
 
-`align_dendro()` can also perform clustering between groups, meaning it can be
+In this example, we use `align_plots()` to arrange the plots, which functions
+similarly to `cowplot::align_plots()` and `patchwork::wrap_plots()`. However,
+unlike those, `align_plots()` can be directly used with quad_layout() and
+stack_layout(), ensuring proper alignment by plot panel. Additionally,
+`align_plots()` can align pheatmap and ComplexHeatmap objects, although they
+won’t align by panel area in the same way as ggplot2 plots.
+
+`align_hclust()` can also perform clustering between groups, meaning it can be
 used even if there are existing groups present in the layout, in this way, you
 cannot specify `k` or `h`: 
 
@@ -248,7 +235,7 @@ column_groups <- sample(letters[1:3], ncol(small_mat), replace = TRUE)
 ggheatmap(small_mat) +
     anno_top() +
     align_group(column_groups) +
-    align_dendro(aes(color = branch))
+    align_hclust()
 ```
 
 You can reorder the groups by setting `reorder_group = TRUE`.
@@ -256,39 +243,15 @@ You can reorder the groups by setting `reorder_group = TRUE`.
 ggheatmap(small_mat) +
     anno_top() +
     align_group(column_groups) +
-    align_dendro(aes(color = branch), reorder_group = TRUE)
-```
-
-You can merge the sub-tree in each group by settting `merge_dendrogram = TRUE`.
-```{r}
-ggheatmap(small_mat) +
-    anno_top() +
-    align_group(column_groups) +
-    align_dendro(aes(color = branch), merge_dendrogram = TRUE)
-```
-
-You can reorder the dendrogram and merge simutaneously.
-```{r}
-ggheatmap(small_mat) +
-    anno_top() +
-    align_group(column_groups) +
-    align_dendro(aes(color = branch),
-        reorder_group = TRUE,
-        merge_dendrogram = TRUE
-    ) +
-    anno_bottom() +
-    align_dendro(aes(color = branch),
-        reorder_group = FALSE,
-        merge_dendrogram = TRUE
-    )
+    align_hclust(reorder_group = TRUE)
 ```
 
 If you specify `k` or `h`, this will always turn off sub-clustering. The same
-principle applies to `align_dendro()`, where new groups must be nested within
-the previously established groups.  
+principle applies to `align_hclust()`, where new groups must be nested within
+the previously established groups.
 ```{r error=TRUE}
 ggheatmap(small_mat) +
     anno_top() +
     align_group(column_groups) +
-    align_dendro(k = 2L)
+    align_hclust(k = 2L)
 ```
