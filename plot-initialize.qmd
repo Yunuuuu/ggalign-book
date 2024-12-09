@@ -1,0 +1,323 @@
+# Plot initialize
+There are three primary functions for adding plots: 
+
+  - `align_gg()`/`ggalign()`: Create a ggplot object and aligns the observation.
+  - `free_gg()`/`ggfree()`: Create a ggplot object without aligning the
+  observation.
+  - `align_dendro()`: Create a ggplot object of dendrogram tree, and align the
+  observation. In addition, it can reorder and group the observations.
+
+`ggalign()` and `ggfree()` are aliases for `align_gg()` and `free_gg()`,
+respectively. All three functions will set the active plot when added to the
+layout.
+
+Both `ggalign()` and `align_dendro()` can only be used with a `stack_layout()`
+that aligns observations (`stack_align()`), whereas `ggfree()` can be added to a
+`stack_layout()` that does not align the observations (`stack_free()`). 
+
+```{r setup}
+#| code-fold: true
+#| collapse: true
+library(ggalign)
+set.seed(123)
+small_mat <- matrix(rnorm(56), nrow = 7)
+rownames(small_mat) <- paste0("row", seq_len(nrow(small_mat)))
+colnames(small_mat) <- paste0("column", seq_len(ncol(small_mat)))
+```
+
+## `align_gg()`/`ggalign()` {#sec-ggalign}
+`ggalign()` is similar to `ggplot` in that it initializes a `ggplot` data and
+`mapping`. `ggalign()` allowing you to provide data in various formats,
+including matrices, data frames, or simple vectors. By default, it will inherit
+from the layout. If a function, it will apply with the layout matrix.
+
+`ggalign()` always applies a default mapping for the axis of the data index in
+the layout. This mapping is `aes(y = .data$.y)` for horizontal stacking
+(including left and right quad layout annotation) and `aes(x = .data$.x)` for
+vertical stacking (including top and bottom quad layout annotation).
+
+The data in the underlying `ggplot` object will contain following columns:
+
+  - `.panel`: the panel for the aligned axis. It means `x-axis` for vertical
+    stack layout (including top and bottom annotation), `y-axis` for
+    horizontal stack layout (including left and right annotation). 
+
+  - `.x` or `.y`: the `x` or `y` coordinates.
+
+  - `.names` and `.index`: A factor of the names (only applicable when names
+  exists) and an integer of index of the original data.
+
+  - `.row_names` and `.row_index`: the row names and an integer of
+    row index of the original matrix (only applicable if `data` is a
+    `matrix`).
+
+  - `.column_names` and `.column_index`: the column names and column index of
+    the original matrix (only applicable if `data` is a `matrix`).
+
+  - `value`: the actual value (only applicable if `data` is a `matrix` or
+    atomic vector).
+
+>It is recommended to use `.x`/`.y`, or `.names` as the `x`/`y` mapping.
+
+```{r}
+ggheatmap(small_mat) +
+    anno_top() +
+    ggalign(data = rowSums) +
+    geom_point(aes(y = value))
+```
+
+In the case where the input data is already a data frame, following columns
+(`.x`/`.y`, `.names`, `.index`, and `.panel`) will be added to the data frame
+if applicable. Note, `NROW(data)` must match the `number of observations` along
+the axis used for alignment.
+```{r}
+my_df <- mtcars[seq_len(ncol(small_mat)), ]
+ggheatmap(small_mat) +
+    anno_top() +
+    ggalign(data = my_df) +
+    geom_point(aes(y = cyl))
+```
+
+You may wonder if the strict data requirements will prevent us from preparing
+the data for plotting. Don't worry! In the later chapters, I'll introduce
+powerful techniques to prepare data for your plots.
+
+If `data = NULL`, the data in the underlying `ggplot` object contains following
+columns: 
+
+ - `.panel`: the panel for the axis used for alignment.
+ - `.index`: the index of the original layout data.
+ - `.x` or `.y`: the `x` or `y` coordinates
+
+You can use it to integrate additional elements, such as block annotation or
+customized panel title, into your layout.
+
+```{r}
+ggheatmap(small_mat) +
+    anno_top(size = unit(1, "cm")) +
+    align_kmeans(centers = 3L) +
+    ggalign(data = NULL) +
+    geom_tile(aes(y = 1L, fill = .panel, color = .panel))
+```
+
+### Cross panel sumamry
+When used in a `quad_layout()`, and the data is inherited from the
+`quad_layout()`, a special column `.extra_panel` will be added if applicable,
+which is the panel information for column (for left or right annotation) or row
+(for top or bottom annotation). This is useful if you want to create summary
+plot using another axis panel groups. In such cases, it's often necessary to
+disable the automatic setting of limits (`limits = FALSE` in `ggalign()`).
+
+```{r fig.dim = c(5, 10)}
+set.seed(1234)
+ggheatmap(small_mat) +
+    anno_right() +
+    align_kmeans(2) +
+    anno_top(size = 0.5) +
+    ggalign(limits = FALSE) +
+    geom_boxplot(aes(.extra_panel, value, fill = .extra_panel)) +
+    scale_fill_brewer(palette = "Dark2", name = "row groups")
+```
+
+This approach replicates the functionality of
+[ComplexHeatmap::anno_summary()](https://jokergoo.github.io/ComplexHeatmap-reference/book/heatmap-annotations.html#summary-annotation),
+but is versatile enough to be used with any heatmap, not just single-column or
+single-row heatmaps.
+
+## `free_gg()`/`ggfree()`
+The `ggfree()` function allows you to incorporate a ggplot object into your
+layout. Unlike `align_gg()`, which aligns every axis value precisely,
+`free_gg()` focuses on layout integration without enforcing strict axis
+alignment.
+
+Internally, the function uses `fortify_data_frame()` to transform the input into
+a data frame. For matrices, it converts them into a long-formatted data frame.
+Note that `ggfree()` does not provide a default aesthetic mapping, which
+contrasts with `ggalign()`. You will need to manually provide the default
+mappings.
+
+```{r}
+ggheatmap(small_mat) +
+    anno_top() +
+    ggfree(mtcars, aes(wt, mpg)) +
+    geom_point()
+```
+
+Alternatively, you can directly input the ggplot object.
+```{r}
+ggheatmap(small_mat) +
+    anno_top() +
+    ggfree(ggplot(mtcars, aes(wt, mpg))) +
+    geom_point()
+```
+
+You can also add the `ggplot` object directly without using `ggfree()`. However,
+doing so will limit control over the plot (like plot area `size`, and `active`
+components):
+```{r}
+ggheatmap(small_mat) +
+    anno_top() +
+    ggplot(mtcars, aes(wt, mpg)) +
+    geom_point()
+```
+
+## `ggwrap()` and `inset()`
+The `ggwrap()` function allows you to wrap objects that can be converted into a
+grob, turning them into a `ggplot` for plotting. Further you can still add
+ggplot elements like title, subtitle, tag, caption, and geoms using the same
+approach as with normal ggplots (using `ggtitle()`, `labs()`, `geom_*()`) as
+well as styling using `theme()`. This enables you to pass these wrapped objects
+into `ggfree()`.
+```{r}
+library(grid)
+ggheatmap(small_mat) +
+    anno_top() +
+    # `ggwrap()` will create a `ggplot` object, we use `ggfree` to add it into the layout
+    ggfree(data = ggwrap(rectGrob(gp = gpar(fill = "goldenrod")), align = "full"))
+```
+You can also integrate base plots, `pheatmap`, `ComplexHeatmap`, e.g.
+
+Additionally, you can add any graphics as a inset to a ggplot using the
+`inset()` function. Like `ggwrap()`, `inset()` can accept any object that can be
+converted to a grob.
+```{r}
+ggheatmap(small_mat) +
+    anno_top() +
+    ggfree(data = ggwrap(rectGrob(gp = gpar(fill = "goldenrod")), align = "full")) +
+    # we can then add any inset grobs (the same as ggwrap, it can take any objects
+    # which can be converted to a `grob`)
+    inset(rectGrob(gp = gpar(fill = "steelblue")), align = "panel") +
+    inset(textGrob("Here are some text", gp = gpar(color = "black")),
+        align = "panel"
+    )
+```
+
+## `align_dendro()`
+`align_dendro()` is an extension of `align_hclust()` that adds a dendrogram to
+the layout. All functions of `align_hclust()` introduced in @sec-align_hclust can
+be used with `align_dendro()`. Here, we focus on the plot-related function.
+
+`align_dendro()` will initialize a ggplot object, the data underlying the ggplot
+object contains the dendrogram `node` data with dendrogram `edge` data attached
+in a special attribute.
+
+dendrogram `node` and `edge` contains following columns:
+  - `index`: the original index in the tree for the current node
+  - `label`: node label text
+  - `x` and `y`: x-axis and y-axis coordinates for current node or the start
+                 node of the current edge.
+  - `xend` and `yend`: the x-axis and y-axis coordinates of the terminal node
+                       for current edge.
+  - `branch`: which branch current node or edge is. You can use this column
+              to color different groups.
+  - `leaf`: A logical value indicates whether current node is a leaf.
+
+By default, `plot_dendrogram` is set to `TRUE`, meaning a `geom_segment()` layer
+will be added using the dendrogram edge data when drawing. Note that this layer
+is always added to the first.
+```{r}
+ggheatmap(small_mat) +
+    anno_top() +
+    align_dendro()
+```
+
+You can choose between two dendrogram types: `"rectangle"` (default) and
+`"triangle"`. However, if there are any groups in the stack, `"rectangle"` will
+be used.
+```{r}
+ggheatmap(small_mat) +
+    anno_top() +
+    align_dendro(type = "triangle")
+```
+
+You can also manually add the dendrogram tree using the edge data by setting
+`plot_dendrogram = FALSE`. In this case, you can access the dendrogram `edge`
+data with `ggalign_attr()`. The `edge` data is stored in the edge field of
+`ggalign_attr()`:
+```{r}
+ggheatmap(small_mat) +
+    anno_top() +
+    align_dendro() +
+    geom_segment(
+        aes(x = .data$x, y = .data$y, xend = .data$xend, yend = .data$yend),
+        data = function(x) ggalign_attr(x, "edge")
+    )
+```
+
+When there are multiple groups, a `branch` column will be available. This can be
+used to color the nodes or edges based on the group source.
+```{r}
+ggheatmap(small_mat) +
+    anno_top() +
+    align_dendro(aes(color = branch), k = 3) +
+    geom_point(aes(color = branch))
+```
+
+`align_dendro()` will draw dendrogram tree in each group when previous group exists.
+```{r}
+set.seed(1234)
+ggheatmap(small_mat) +
+    anno_top() +
+    align_kmeans(2) +
+    align_dendro(aes(color = branch))
+```
+
+You can merge the sub-tree by settting `merge_dendrogram = TRUE`.
+```{r}
+ggheatmap(small_mat) +
+    anno_top() +
+    align_kmeans(2) +
+    align_dendro(aes(color = branch), merge_dendrogram = TRUE)
+```
+
+## Plot titles
+`ggplot2` only allow add titles in the top or add caption in the bottom. we
+extends this capability, allowing you to place titles around any border of the
+plot using the `patch_titles()` function. 
+
+```{r}
+ggheatmap(small_mat) +
+    anno_top() +
+    align_dendro(aes(color = branch), k = 3) +
+    patch_titles(
+        top = "top patch title",
+        left = "left patch title", 
+        bottom = "bottom patch title",
+        right = "right patch title"
+    )
+```
+
+The appearance and alignment of these patch titles can be customized using
+`ggplot2::theme()`:
+  - `plot.patch_title`/`plot.patch_title.*`: Controls the text appearance of
+    patch titles. By default, `plot.patch_title` inherit from `plot.title`, and
+    settings for each border will inherit from `plot.patch_title`, with the
+    exception of the `angle` property, which is not inherited.
+  - `plot.patch_title.position`/`plot.patch_title.position.*`: Determines the
+    alignment of the patch titles. By default, `plot.patch_title.position`
+    inherit from `plot.title.position`, and settings for each border will
+    inherit from `plot.patch_title`. The value `"panel"` aligns the patch
+    titles with the plot panels. Setting this to `"plot"` aligns the patch
+    title with the entire plot (excluding margins and plot tags).
+```{r}
+ggheatmap(small_mat) +
+    anno_top() +
+    align_dendro(aes(color = branch), k = 3) +
+    patch_titles(
+        top = "top patch title",
+        left = "left patch title", 
+        bottom = "bottom patch title",
+        right = "right patch title"
+    ) +
+    theme(
+        plot.patch_title.position = "plot",
+        plot.patch_title = element_text(hjust = 0)
+    )
+```
+
+
+Now, let's move on to the next chapter, where we will introduce `quad_layout()`
+in full. While we've already introduced `ggheatmap()`—a specialized version of
+`quad_layout()`—most of the operations discussed in @sec-heatmap_layout can also
+be applied to `quad_layout()`. In the next section, we'll delve into
+quad_layout() and explore its full functionality.

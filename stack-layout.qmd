@@ -76,6 +76,7 @@ stack_alignh(small_mat) +                                                    # <
 ```
   1. initialize a vertical stack layout.
   2. Add a plot background in for the entire layout.
+
 ```{r empty_layout}
 #| echo: false
 ```
@@ -84,7 +85,7 @@ In this example, we use `layout_annotation()` to insert a plot background in the
 entire layout, it can be also used to control the theme of title,
 subtitle, caption (`layout_title()`), guides, margins, panel.border.
 
-## Layout Customization
+## Layout Customize {#sec-stack_layout_layout_customize}
 When we use `stack_align()`, it aligns the observations across multiple plots
 along the specified direction: 
 
@@ -97,7 +98,7 @@ observations or partition the observations into multiple groups. Instead of
 detailing each `align_*` function individually, we will focus on the general
 usage and how to combine them with `stack_align()`.
 
-Here, we remain take `align_dendro()` as a example, it can reorder the
+Here, we remain take `align_dendro()` as an example, it can reorder the
 observations, split them into groups, and can add a plot for visualization.
 
 When used for `stack_alignh()`, the observations are aligned along the `y-axis`:
@@ -193,7 +194,6 @@ stack_alignh(small_mat) +                                # <1>
     align_dendro(data = matrix(rnorm(70), nrow = 7)) +   # <2>
     theme(axis.text.y = element_text())                  # <3>
 ```
-
   1. initialize a horizontal stack layout.
   2. reorder the observations based on the hierarchical clustering, add
   a dendrogram tree, and set the active plot to this plot, using self-provided data
@@ -218,7 +218,7 @@ There are two primary functions for adding plots:
   - `align_gg()`/`ggalign()`: Create a ggplot object and align with the layout.
   - `free_gg()`/`ggfree()`: Create a ggplot object without aligning.
 
-Both functions initialize a `ggplot` object and, by default, set the active plot
+Both functions initialize a `ggplot` object and, by default, set the `active` plot
 when added to the layout.
 
 For `stack_align()`, plots can be added regardless of whether they need to align
@@ -376,5 +376,5 @@ active plot, you can continue adding components directly to the `StackLayout`.
 
 In the next chapter, we will dive into the `HeatmapLayout`, which can take the
 `StackLayout` as input. Heatmap layouts offer additional features for aligning
-observations in both directions. Let’s move ahead and explore how heatmaps can
+observations in both directions. Let's move ahead and explore how heatmaps can
 be seamlessly integrated into your layout workflows.

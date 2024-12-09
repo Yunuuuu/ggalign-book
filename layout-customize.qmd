@@ -11,10 +11,11 @@ Currently, there are four key `align_*` functions available for layout customiza
  or allows for manual reordering based on user-defined ordering index.
 - **`align_kmeans`**: Group observations by k-means clustering results.
 - **`align_hclust`**: Reorder or group observations based on hierarchical clustering.
+- **`align_reorder`**: Reorder observations using an arbitrary statistical function.
 
-You can inspect the behavior of any `align_*` function by printing it. Note that
-these functions do not add plot areas and set the active context, meaning you
-cannot incorporate `ggplot2` elements directly into these objects.
+Note that these functions do not add plot areas and set the active context,
+meaning you cannot incorporate `ggplot2` elements directly into these objects.
+You can inspect the behavior of any `align_*` function by printing it.
 
 ```{r setup}
 #| code-fold: true
@@ -82,6 +83,7 @@ Additionally, you can provide the ordering integer index or character index
 directly:
 
 ```{r}
+set.seed(1234)
 my_order <- sample(nrow(small_mat))
 print(rownames(small_mat)[my_order])
 ```
@@ -106,16 +108,16 @@ ggheatmap(small_mat) +
 
 :::
 
-Some `align_*` functions also accept a `data` argument. It’s important to note
+Some `align_*` functions also accept a `data` argument. It's important to note
 that all `align_*` functions treat rows as the observations. This means
 `NROW(data)` must match the `number of observations` along the axis used for
 alignment. The `data` argument can also accept a function (supporting purrr-like
 lambda syntax), which will be applied to the layout matrix.
 
-As mentioned in @sec-heatmap_layout, for top and bottom annotations, the data
-matrix of `quad_layout()`/`ggheatmap()` is transposed to create the annotation
-`stack_layout()`. Therefore, you can use `rowMeans()` to calculate the mean value
-across all columns.
+As mentioned in @sec-heatmap_layout_annotations, for top and bottom annotations,
+the data matrix of `quad_layout()`/`ggheatmap()` is transposed to create the
+annotation `stack_layout()`. Therefore, you can use `rowMeans()` to calculate
+the mean value across all columns.
 
 ```{r}
 ggheatmap(small_mat) +
@@ -135,20 +137,34 @@ ggheatmap(small_mat) +
     align_order(rowMeans, strict = FALSE)
 ```
 
+Note that we always prevent reordering the observations into two different
+orderings. If you want to apply two different orderings, you should use
+`cross_layout()` instead, which I'll introduce in a later chapter:
+```{r}
+#| error: true
+set.seed(1234)
+another_order <- sample(ncol(small_mat))
+ggheatmap(small_mat) +
+    anno_top() +
+    align_order(rowMeans) +
+    align_order(another_order)
+```
+
 ## `align_kmeans()`
 The `align_kmeans()` function split the observations into groups based on
 k-means clustering.
 ```{r}
+set.seed(1234)
 ggheatmap(small_mat) +
     anno_top() +
     align_kmeans(3L)
 ```
 
-## `align_hclust()`
-The `align_hclust()` function is a specialized version of `align_dendro()`, designed
-to reorder observations and group them based on hierarchical clustering. Unlike
-`align_dendro()`, however, `align_hclust()` does not add a dendrogram tree to the
-plot. All the arguments intruduced here can also be used by `align_dendro()`.
+## `align_hclust()` {#sec-align_hclust}
+The `align_hclust()` function is designed to reorder observations and group them
+based on hierarchical clustering. Unlike `align_dendro()`, however,
+`align_hclust()` does not add a dendrogram tree to the plot. All the arguments
+intruduced here can also be used by `align_dendro()`.
 
 ```{r}
 ggheatmap(small_mat) +
@@ -218,12 +234,12 @@ h2 <- ggheatmap(small_mat) +
 align_plots(h1, h2)
 ```
 
-In this example, we use `align_plots()` to arrange the plots, which functions
+In this example, we use `align_plots()` to arrange the layouts, which functions
 similarly to `cowplot::align_plots()` and `patchwork::wrap_plots()`. However,
-unlike those, `align_plots()` can be directly used with quad_layout() and
-stack_layout(), ensuring proper alignment by plot panel. Additionally,
-`align_plots()` can align pheatmap and ComplexHeatmap objects, although they
-won’t align by panel area in the same way as ggplot2 plots.
+unlike those, `align_plots()` can be directly used with `quad_layout()` and
+`stack_layout()`, ensuring proper alignment by plot panel. Additionally,
+`align_plots()` can align `pheatmap` and `ComplexHeatmap` objects, though they
+won't align by panel area in the same way as ggplot2 plots.
 
 `align_hclust()` can also perform clustering between groups, meaning it can be
 used even if there are existing groups present in the layout, in this way, you
@@ -238,7 +254,8 @@ ggheatmap(small_mat) +
     align_hclust()
 ```
 
-You can reorder the groups by setting `reorder_group = TRUE`.
+You can reorder the groups by setting `reorder_group = TRUE`, which reorders the
+hierarchical clusters based on the group tree:
 ```{r}
 ggheatmap(small_mat) +
     anno_top() +
@@ -255,3 +272,42 @@ ggheatmap(small_mat) +
     align_group(column_groups) +
     align_hclust(k = 2L)
 ```
+
+## `align_reorder()`
+The `align_reorder()` function enables the reordering of observations based on a
+specified statistical function. This function accepts a data argument and
+computes a statistic that determines the new ordering of the observations. The
+resulting order is extracted using the `order2()` function.
+
+Foe example, you can also use hierarchical clustering to reorder the observations
+like this:
+```{r}
+ggheatmap(small_mat) +
+    anno_left() +
+    align_reorder(hclust2)
+```
+
+Here, `hclust2()` is a special function used by `align_hclust()` to calculate
+the distance matrix and perform hierarchical clustering. 
+
+In addition to hierarchical clustering, the `align_reorder()` function can also
+handle objects from the
+[seriation](https://CRAN.R-project.org/package=seriation) package. For
+example, you can use the `seriate()` function with a method like `"BEA_TSP"` to
+reorder the observations based on a specific seriation algorithm:
+```{r}
+ggheatmap(small_mat) +
+    anno_left() +
+    align_reorder(seriation::seriate, method = "BEA_TSP", data = abs)
+```
+
+This approach gives you the flexibility to apply different statistical or
+algorithmic methods for reordering observations, which can be especially useful
+for exploring complex patterns in data.
+
+
+With the `align_*` functions in place, we've covered how to reorder and group
+observations within a heatmap layout. Now, having set the stage for proper
+observation alignment, we can move on to the next essential step: `plot
+initialize`. In the following chapter, we'll dive deeper into how to set up your
+plots within the layout.

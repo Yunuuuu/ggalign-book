@@ -57,10 +57,14 @@ data frame, or any other data type that can be converted into a matrix using
 ggheatmap(small_mat)
 ```
 
-## heatmap body
-A `ggplot` object will be automatically created for the heatmap body, the matrix
-input will be converted into a long formated data frame when drawing. The data
-in the underlying `ggplot` object contains following columns:
+## Main plot (heatmap body)
+The `ggheatmap()`/`quad_layout()` functions arrange plots in the Quad-Side layout of
+the main plot. When the layout is initialized, a `ggplot` object is automatically
+created for the main plot.
+
+For `ggheatmap()`, the matrix input will be converted into a long-format data
+frame when drawing. The data in the underlying `ggplot` object includes the
+following columns:
 
   - `.xpanel` and `.ypanel`: the column and row panel
 
@@ -77,19 +81,19 @@ in the underlying `ggplot` object contains following columns:
 The default mapping will use `aes(.data$.x, .data$.y)`, but can be customized
 using `mapping` argument.
 
-By default, the heatmap body is regarded as the active plot, meaning you can add
-ggplot2 elements directly to the heatmap body. 
+By default, the main plot is regarded as the active plot, meaning you can add
+ggplot2 elements directly to the main plot. 
 ```{r}
 ggheatmap(small_mat) + 
     geom_point() + 
     scale_fill_viridis_c()
 ```
 
-By default, `ggheatmap()`/`heatmap_layout()` adds a heatmap layer. If the matrix
-has more than 20,000 cells (`nrow * ncol > 20000`), it uses `geom_raster()` for
-performance efficiency; for smaller matrices, `geom_tile()` is used. You can
-explicitly choose the layer by providing a single string (`"raster"` or
-`"tile"`) in the `filling` argument.
+By default, `ggheatmap()` adds a heatmap layer. If the matrix has more than
+20,000 cells (`nrow * ncol > 20000`), it uses `geom_raster()` for performance
+efficiency; for smaller matrices, `geom_tile()` is used. You can explicitly
+choose the layer by providing a single string (`"raster"` or `"tile"`) in the
+`filling` argument.
 ```{r}
 ggheatmap(small_mat, filling = "raster")
 ```
@@ -171,7 +175,7 @@ ggrastr::rasterise(ggheatmap(small_mat), dev = "ragg")
 Furthermore, [ggfx](https://ggfx.data-imaginist.com/) offers many image filters
 that can be applied to ggplot2 layers. See the package for the details.
 
-## annotations
+## annotations {#sec-heatmap_layout_annotations}
 In `ggheatmap()`/`quad_layout()`, annotations are handled by a `stack_layout()`
 object and can be positioned at the top, left, bottom, or right of the main plot
 (heatmap body). 
@@ -196,7 +200,8 @@ or `stack_freeh()` will be applied.
 Additionally, `quad_anno()` will set the active context to the annotation. This
 means that subsequent additions will be directed to the annotation rather than
 the main plot. We use the term `active context` in contrast to `active plot` (as
-described in @sec-stack_layout), since the annotation is a `Layout` object.
+described in @sec-stack_layout_layout_customize), since the annotation is a
+`Layout` object.
 
 ```{r}
 ggheatmap(small_mat) +
@@ -242,19 +247,20 @@ In this example:
  within the annotation stack, here, it means the `align_dendro()` plot.
 
 
-`ggheatmap()` aligns observations both horizontally and vertically, so it’s safe
+`ggheatmap()` aligns observations both horizontally and vertically, so it's safe
 to always use `quad_anno()` directly, as all annotations require a matrix, and
 the layout data is also a matrix. However, for `quad_alignh()` and
-`quad_alignv()`, which only align observations in one direction, the data in the
-layout may not fit the data for the annotation (when the layout requires
-alignment of observations, we typically use a matrix, regardless of whether
-alignment is needed in one or two directions)
+`quad_alignv()` (which I'll discuss in more detail in a later chapter), which
+only align observations in one direction, the data in the layout may not fit the
+data for the annotation (when the layout requires alignment of observations, we
+typically use a matrix, regardless of whether alignment is needed in one or two
+directions)
     - `quad_alignh()`: aligning observations in horizontal direction, for column
     annotations, we ll need a data frame for `stack_free()`.
     - `quad_alignv()`: aligning observations in vertical direction, for row
     annotations, we ll need a data frame for `stack_free()`.
 
-In both conditions, `quad_anno()` won't initialize the annotation by default,
+In both cases, `quad_anno()` won't initialize the annotation by default,
 instead, you must provide the annotation `stack_layout()` manually.
 
 ## Adding stack layout
@@ -337,7 +343,8 @@ ggheatmap(small_mat) +
     # remove any active annotation
     quad_switch() +
     # set fill color scale for the heatmap body
-    scale_fill_viridis_c()
+    scale_fill_viridis_c() +
+    layout_title("quad_switch()")
 ```
 :::
 
@@ -351,7 +358,8 @@ ggheatmap(small_mat) +
     # remove any active annotation
     hmanno() +
     # set fill color scale for the heatmap body
-    scale_fill_viridis_c()
+    scale_fill_viridis_c()+
+    layout_title("hmanno()")
 ```
 :::
 
@@ -429,4 +437,4 @@ way. However, as your visualization needs grow more complex, the ability to
 further customize and fine-tune the layout becomes essential.
 
 In the next chapter, we will dive into the Layout Customize functionalities,
-where you can gain full control over your plot’s layout.
+where you can gain full control over your plot's layout.

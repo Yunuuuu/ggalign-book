@@ -81,6 +81,7 @@ typical workflow includes:
    or by manually specifying the observation index.
    - `align_hclust()`: Reorder or group observations based on
    hierarchical clustering.
+   - `align_reorder`: Reorder observations using an arbitrary statistical function.
  3. Adding plots with `align_dendro()`, `ggalign()` or `ggfree()`, and then layer additional
    ggplot2 elements such as geoms, stats, or scales.
 
@@ -94,7 +95,7 @@ colnames(small_mat) <- paste0("column", seq_len(ncol(small_mat)))
 Every `*_layout()` function accepts default data, which will be inherited by all
 plots within the layout.
 
-Here’s a simple example:
+Here's a simple example:
 ```{r}
 stack_alignv(small_mat) +                  # <1>
     align_dendro() +                       # <2>
@@ -130,11 +131,10 @@ stack_alignv(small_mat) +                             # <1>
   5. Add y-axis text.
 
 The data in the underlying `ggplot` object of `ggalign()` function contains at
-least following columns (more details will be introduced in the later chapter):
+least following columns (more details will be introduced in the [@sec-ggalign]):
 
  - `.panel`: the group panel for the aligned axis. It means `x-axis` for
- vertical stack layout (including top and bottom annotation), `y-axis` for
- horizontal stack layout (including left and right annotation).
+ vertical stack layout, `y-axis` for horizontal stack layout.
  - `.x` or `.y`: the `x` or `y` coordinates
  - `.names` and `.index`: A factor of the names (only applicable when names
  exists) and an integer of index of the original data.
@@ -180,14 +180,14 @@ ggheatmap(small_mat) +                               # <1>
   add a dendrogram tree, coloring the tree by `branch`.
   4. Add fill mapping scale.
 
-`ggheatmap()` will automatically add axis text in the heatmap body, so you don’t
+`ggheatmap()` will automatically add axis text in the heatmap body, so you don't
 need to manually adjust axis text visibility using
 `theme(axis.text.x = element_text())`/`theme(axis.text.y = element_text())`.
 
 
 Having explored the core principles of `ggalign`, you should now be familiar with
-its basic workflow. In the next chapter, we’ll introduce the `StackLayout`
+its basic workflow. In the next chapter, we'll introduce the `StackLayout`
 functionality, a powerful tool for arranging multiple plots in a stacked
 fashion—either horizontally or vertically—while maintaining full control over
-their alignment. We’ll explore how `stack_layout()` and its various functions can
+their alignment. We'll explore how `stack_layout()` and its various functions can
 give you even greater flexibility in creating sophisticated layouts.

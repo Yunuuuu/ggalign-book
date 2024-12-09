@@ -14,6 +14,7 @@ Imports:
     ggalign,
     ggrastr,
     ragg,
-    magick
+    magick,
+    seriation
 Remotes:
     Yunuuuu/ggalign
