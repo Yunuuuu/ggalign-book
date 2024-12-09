@@ -430,19 +430,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <dl class="code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-9" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-cell="annotated-cell-9" data-code-lines="1" data-code-annotation="1">We initialize a heatmap layout (<code>ggheatmap(small_mat)</code>).</span>
+<span data-code-cell="annotated-cell-9" data-code-lines="1" data-code-annotation="1">We initialize a heatmap layout.</span>
 </dd>
 <dt data-target-cell="annotated-cell-9" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-cell="annotated-cell-9" data-code-lines="2" data-code-annotation="2">we initialize an annotation in the left side of the heatmap body, and set it as the active context, in this way, all following addition will be directed to the left annotation. (<code>anno_left()</code>)</span>
+<span data-code-cell="annotated-cell-9" data-code-lines="2" data-code-annotation="2">we initialize an annotation in the left side of the heatmap body, and set it as the active context, in this way, all following addition will be directed to the left annotation.</span>
 </dd>
 <dt data-target-cell="annotated-cell-9" data-target-annotation="3">3</dt>
 <dd>
-<span data-code-cell="annotated-cell-9" data-code-lines="3" data-code-annotation="3">Reorder and group the observations based on hierarchical clustering, and add a dendrogram tree, coloring the tree by <code>branch</code> (<code>align_dendro(k = 3)</code>).</span>
+<span data-code-cell="annotated-cell-9" data-code-lines="3" data-code-annotation="3">Reorder and group the observations based on hierarchical clustering, and add a dendrogram tree, coloring the tree by <code>branch</code>.</span>
 </dd>
 <dt data-target-cell="annotated-cell-9" data-target-annotation="4">4</dt>
 <dd>
-<span data-code-cell="annotated-cell-9" data-code-lines="4" data-code-annotation="4">Add fill mapping scale (<code>scale_fill_brewer(palette = "Dark2")</code>).</span>
+<span data-code-cell="annotated-cell-9" data-code-lines="4" data-code-annotation="4">Add fill mapping scale.</span>
 </dd>
 </dl>
 </div>
@@ -458,7 +458,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p><code>ggheatmap()</code> will automatically add axis text in the heatmap body, so you don’t need to manually adjust axis text visibility using <code>theme(axis.text.x = element_text())</code>/<code>theme(axis.text.y = element_text())</code>.</p>
-<p>Now that we’ve covered the basic workflow of <code>ggalign</code>, let’s move on to exploring <code>StackLayout</code>, a core layout for arranging plots either horizontally or vertically. In the next chapter, we’ll dive deeper into how to effectively use <code>StackLayout</code> for arranging and aligning your plots.</p>
+<p>Having explored the core principles of <code>ggalign</code>, you should now be familiar with its basic workflow. In the next chapter, we’ll introduce the <code>StackLayout</code> functionality, a powerful tool for arranging multiple plots in a stacked fashion—either horizontally or vertically—while maintaining full control over their alignment. We’ll explore how <code>stack_layout()</code> and its various functions can give you even greater flexibility in creating sophisticated layouts.</p>
 
 
 </section>
