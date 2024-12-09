@@ -38,11 +38,10 @@ stack_alignv(small_mat) +
     scale_fill_viridis_c()
 ```
 
-The data of `ggheatmap()`/`quad_layout()` can inherit from the parent
-`stack_layout()`, but the data format must match. Otherwise, you will need to
-manually provide the data. For `stack_align()`, the data is always expected to
-be a matrix, if you try to add a `ggside()` (which uses a data frame), it will
-result in an error.
+The data of `ggheatmap()`/`quad_layout()` can inherit from the `stack_layout()`,
+but the data format must match. Otherwise, you will need to manually provide the
+data. For `stack_align()`, the data is always expected to be a matrix, if you
+try to add a `ggside()` (which uses a data frame), it will result in an error.
 
 ```{r}
 #| error: true
@@ -102,6 +101,9 @@ stack_alignv(small_mat) +
 :::
 
 :::
+
+When applied to a `stack_layout()`, the orientation of the dendrogram may need
+to be manually adjusted.
 
 ## `stack_free()`
 However, `stack_free()` is designed to only accept plots that are not aligned
