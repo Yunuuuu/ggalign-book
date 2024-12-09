@@ -204,11 +204,10 @@ quad_alignv(small_mat) +
 :::
 
 ## `quad_free()`
-`quad_free()` does not align observations. `ggside()` is an alias of
-`quad_free()` and performs the same function as the
-[ggside](https://cran.r-project.org/package=ggside) package. This is
-particularly useful for adding metadata or summary graphics along a continuous
-axis.
+`quad_free()` does not align observations and is functionally equivalent to the
+[ggside](https://cran.r-project.org/package=ggside) package. For convenience,
+`ggside()` is provided as an alias for quad_free(). This layout is particularly
+useful for adding metadata or summary graphics along a continuous axis.
 
 ```{r}
 ggside(mpg, aes(displ, hwy, colour = class)) +
