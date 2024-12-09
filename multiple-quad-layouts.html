@@ -64,6 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<link href="./operator.html" rel="next">
 <link href="./quad-layout.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -190,6 +191,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">A list of <code>quad_layout()</code></span></span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./operator.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Operators</span></span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -276,7 +283,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>The data of <code>ggheatmap()</code>/<code>quad_layout()</code> can inherit from the parent <code>stack_layout()</code>, but the data format must match. Otherwise, you will need to manually provide the data. For <code>stack_align()</code>, the data is always expected to be a matrix, if you try to add a <code>ggside()</code> (which uses a data frame), it will result in an error.</p>
+<p>The data of <code>ggheatmap()</code>/<code>quad_layout()</code> can inherit from the <code>stack_layout()</code>, but the data format must match. Otherwise, you will need to manually provide the data. For <code>stack_align()</code>, the data is always expected to be a matrix, if you try to add a <code>ggside()</code> (which uses a data frame), it will result in an error.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stack_alignh</span>(small_mat) <span class="sc">+</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggside</span>()</span>
@@ -375,6 +382,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
+<p>When applied to a <code>stack_layout()</code>, the orientation of the dendrogram may need to be manually adjusted.</p>
 </section>
 <section id="stack_free" class="level2" data-number="7.2">
 <h2 data-number="7.2" class="anchored" data-anchor-id="stack_free"><span class="header-section-number">7.2</span> <code>stack_free()</code></h2>
@@ -965,6 +973,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="./operator.html" class="pagination-link" aria-label="Operators">
+        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Operators</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->
