@@ -1,4 +1,4 @@
-# heatmap layout {#sec-heatmap_layout}
+# heatmap layout {#sec-heatmap-layout}
 The `heatmap_layout()` function provides a powerful way to create customizable
 heatmaps in R using `ggplot2`. This chapter will guide you through its usage.
 
@@ -9,8 +9,8 @@ directly, as it is more familiar to many users, especially those experienced
 with popular heatmap packages like `pheatmap` and `ComplexHeatmap`.
 
 ```{r setup}
-#| code-fold: true
-#| collapse: true
+#| echo: false
+#| output: false
 library(ggalign)
 set.seed(123)
 small_mat <- matrix(rnorm(56), nrow = 7)
@@ -46,8 +46,13 @@ essential elements for a standard heatmap layout, ensuring that the appropriate
 data mapping and visualization layers are automatically applied. `ggheatmap()`
 is an alias for `heatmap_layout()`.
 
+```{r setup}
+#| code-fold: true
+#| eval: true
+```
+
 ## input data
-As mentioned in @sec-stack_layout_input_data, we typically require a matrix for
+As mentioned in @sec-stack-layout-input-data, we typically require a matrix for
 the `Layout` which need align observations. Internally, `fortify_matrix()` will
 be used to process the data. You can provide a numeric or character vector, a
 data frame, or any other data type that can be converted into a matrix using
@@ -175,7 +180,7 @@ ggrastr::rasterise(ggheatmap(small_mat), dev = "ragg")
 Furthermore, [ggfx](https://ggfx.data-imaginist.com/) offers many image filters
 that can be applied to ggplot2 layers. See the package for the details.
 
-## annotations {#sec-heatmap_layout_annotations}
+## annotations {#sec-heatmap-layout-annotations}
 In `ggheatmap()`/`quad_layout()`, annotations are handled by a `stack_layout()`
 object and can be positioned at the top, left, bottom, or right of the main plot
 (heatmap body). 
@@ -191,16 +196,23 @@ following aliases:
   - `anno_right`: A special case of `quad_anno()` with `position = "right"`.
 
 When `quad_anno()` is added to a `ggheatmap()`/`quad_layout()`, it will try to
-automatically create a new `stack_layout()` (either `stack_align()` or
-`stack_free()`) depending on whether you want to align observations in the
-specified direction. For top and bottom annotations, `stack_alignv()` or
-`stack_freev()` will be used; for left and right annotations, `stack_alignh()`
-or `stack_freeh()` will be applied.
+automatically create a new `stack_layout()`. For top and bottom annotations,
+`stack_alignv()` or `stack_freev()` will be used; for left and right
+annotations, `stack_alignh()` or `stack_freeh()` will be applied.
+
+`quad_anno()` will always attempt to initialize a `stack_layout()` with the same
+alignment as the current direction. This means that if observations need to be
+aligned horizontally, `stack_alignh()` will be used for left and right
+annotations, otherwise, `stack_freeh()` will be initialized instead. The same
+logic applies for vertical alignment—`stack_alignv()` or `stack_freev()` will be
+applied for top and bottom annotations, depending on whether alignment is
+required. However, you can also manually add a `stack_free()` for directions
+that require alignment, which I'll cover in the following section.
 
 Additionally, `quad_anno()` will set the active context to the annotation. This
 means that subsequent additions will be directed to the annotation rather than
 the main plot. We use the term `active context` in contrast to `active plot` (as
-described in @sec-stack_layout_layout_customize), since the annotation is a
+described in @sec-stack-layout-layout-customize), since the annotation is a
 `Layout` object.
 
 ```{r}
@@ -211,7 +223,7 @@ ggheatmap(small_mat) +
     align_dendro()
 ```
 
-By default, the annotation `stack_layout()` will inherit data from
+By default, the annotation `stack_layout()` will try to inherit data from
 `ggheatmap()`/`quad_layout()`. If the observations require alignment vertically,
 this means the data from `ggheatmap()`/`quad_layout()` should be a matrix, the
 column annotations will also require a matrix and the matrix from
@@ -224,7 +236,7 @@ ggheatmap(small_mat) +
 ```
 
 You can further customize the layout design or add new plots in the annotation
-stack, as described in @sec-stack_layout.
+stack, as described in @sec-stack-layout.
 ```{r}
 ggheatmap(small_mat) +
     # in the heatmap body, we set the axis text theme
@@ -250,11 +262,12 @@ In this example:
 `ggheatmap()` aligns observations both horizontally and vertically, so it's safe
 to always use `quad_anno()` directly, as all annotations require a matrix, and
 the layout data is also a matrix. However, for `quad_alignh()` and
-`quad_alignv()` (which I'll discuss in more detail in a later chapter), which
+`quad_alignv()` (which I'll discuss in more detail in a @sec-quad-layout), which
 only align observations in one direction, the data in the layout may not fit the
 data for the annotation (when the layout requires alignment of observations, we
 typically use a matrix, regardless of whether alignment is needed in one or two
 directions)
+
     - `quad_alignh()`: aligning observations in horizontal direction, for column
     annotations, we ll need a data frame for `stack_free()`.
     - `quad_alignv()`: aligning observations in vertical direction, for row
@@ -263,12 +276,14 @@ directions)
 In both cases, `quad_anno()` won't initialize the annotation by default,
 instead, you must provide the annotation `stack_layout()` manually.
 
-## Adding stack layout
-Like adding plot in `stack_layout()` (@sec-stack_layout), when the direction
-neeed alignment, you can add a `stack_layout()` regardless of whether it need
-to align observations.
+## Adding stack layout {#sec-heatmap-layout-add-stack-layout}
+Similar to adding a plot in `stack_layout()` (@sec-stack-layout), when the
+direction requires alignment, you can add both `stack_align()` and
+`stack_free()`. However, if the direction does not require alignment, you can
+add only `stack_free()`.
 
-To add a `stack_layout()` to the `ggheatmap()`, we must prevent the automatical creation of annotation by `quad_anno()` by setting `initialize = FALSE`
+To add a `stack_layout()` to the `ggheatmap()`, we must prevent the automatical
+creation of annotation by `quad_anno()` by setting `initialize = FALSE`
 
 ::: {.grid}
 
@@ -403,7 +418,7 @@ ggheatmap(small_mat) +
     align_dendro()
 ```
 
-Note that the size of an individual plot ([@sec-stack_layout_plot_size]) does not
+Note that the size of an individual plot ([@sec-stack-layout_plot_size]) does not
 affect the total annotation stack size. You must adjust the annotation size using the
 method described above.
 
@@ -431,7 +446,7 @@ ggheatmap(small_mat) +
 
 :::
 
-In this chapter, we explored the usage of heatmap layouts. These features
+In this chapter, we explored the usage of heatmap layout. These features
 provide a strong foundation for visualizing matrix-based data in a structured
 way. However, as your visualization needs grow more complex, the ability to
 further customize and fine-tune the layout becomes essential.

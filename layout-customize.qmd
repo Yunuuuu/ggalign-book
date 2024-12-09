@@ -114,7 +114,7 @@ that all `align_*` functions treat rows as the observations. This means
 alignment. The `data` argument can also accept a function (supporting purrr-like
 lambda syntax), which will be applied to the layout matrix.
 
-As mentioned in @sec-heatmap_layout_annotations, for top and bottom annotations,
+As mentioned in @sec-heatmap-layout-annotations, for top and bottom annotations,
 the data matrix of `quad_layout()`/`ggheatmap()` is transposed to create the
 annotation `stack_layout()`. Therefore, you can use `rowMeans()` to calculate
 the mean value across all columns.

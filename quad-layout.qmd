@@ -1,0 +1,260 @@
+# quad-layout {#sec-quad-layout}
+`quad_layout()` arranges plots in the Quad-Side of a main plot.
+```{r setup}
+#| echo: false
+#| output: false
+library(ggalign)
+set.seed(123)
+small_mat <- matrix(rnorm(56), nrow = 7)
+rownames(small_mat) <- paste0("row", seq_len(nrow(small_mat)))
+colnames(small_mat) <- paste0("column", seq_len(ncol(small_mat)))
+```
+
+```{r}
+#| echo: false
+ggside() +
+    lapply(c("top", "left", "bottom", "right"), function(side) {
+        c(
+            list(quad_anno(side, initialize = TRUE)),
+            lapply(seq_len(3L), function(i) {
+                ggfree() +
+                    ggtitle(sprintf("Plot %s", i)) +
+                    theme(panel.background = element_rect(fill = scales::alpha("red", 0.5)))
+            }),
+            list(layout_annotation(theme = theme(
+                plot.background = element_rect(color = "red", linewidth = unit(3, "cm"))
+            )))
+        )
+    }) +
+    quad_active() +
+    ggtitle("Main Plot") +
+    theme(panel.background = element_rect(fill = scales::alpha("red", 0.5))) +
+    layout_title("QuadLayout") +
+    layout_annotation(theme = theme(plot.title = element_text(size = 20)))
+```
+
+```{r setup}
+#| code-fold: true
+#| eval: true
+```
+
+## introduction
+Depending on whether you want to align observations in the `horizontal` or `vertical`
+direction, there are four main types of `quad_layout()`:
+
+| Alignment of Observations     | horizontal | vertical | Data Format |
+| ----------------------------- | ---------- | -------- | ----------- |
+| `quad_free()`/`ggside()`      | ❌         | ❌       | data frame  |
+| `quad_alignh()`               | ✅         | ❌       | matrix      |
+| `quad_alignv()`               | ❌         | ✅       | matrix      |
+| `quad_alignb()`/`ggheatmap()` | ✅         | ✅       | matrix      |
+
+When the layout requires alignment of observations, we typically use a matrix,
+regardless of whether alignment is needed in one or two directions.
+
+ - For data frame, the input will be automatically converted using
+ `fortify_data_frame()` if needed.
+ - For matrix, the input will be automatically converted using
+ `fortify_matrix()` if required.
+
+## Annotations
+Annotation is typically handled using a `stack_layout()`. Depending on whether
+you want to align observations in the specified direction, different
+`stack_layout()` are compatible (@sec-heatmap-layout-add-stack-layout). Below is
+a table outlining the compatibility of various layout types for annotations:
+
+| Annotations     | left and right                   | top and bottom                   |
+| --------------- | -------------------------------- | -------------------------------- |
+| `quad_free()`   | `stack_freeh()`                  | `stack_freev()`                  |
+| `quad_alignh()` | `stack_freeh()`/`stack_alignh()` | `stack_freev()`                  |
+| `quad_alignv()` | `stack_freeh()`                  | `stack_freev()`/`stack_alignv()` |
+| `quad_alignb()` | `stack_freeh()`/`stack_alignh()` | `stack_freev()`/`stack_alignv()` |
+
+## `quad_alignb()`
+`quad_alignb()` aligns observations in both horizontal and vertical directions. It
+serves as the base version of `ggheatmap()`/`heatmap_layout()` and does not
+automatically add default layers or mappings.
+
+The underlying `ggplot` data of the main plot is the same with
+`ggheatmap()`/`heatmap_layout()`, it is recommended to use `.y`, or `.row_names`
+as the `y` mapping and use `.x` or `.column_names` as the `x` mapping in the
+main plot.
+
+```{r}
+quad_alignb(small_mat, aes(.x, .y)) +
+    geom_tile(aes(fill = value)) +
+    scale_fill_viridis_c()
+```
+
+## `quad_alignh()`/`quad_alignv()`
+`quad_alignh()` aligns observations horizontally, while `quad_alignv()` aligns
+observations vertically.
+
+The underlying `ggplot` data is the same with `ggheatmap()`/`heatmap_layout()`,
+it is recommended to use `.y`, or `.row_names` as the `y` mapping in the main
+plot for `quad_alignh()` but use `.x` or `.column_names` as the `x` mapping in
+the main plot for `quad_alignv()`.
+
+::: {.grid}
+
+::: {.g-col-6}
+```{r}
+quad_alignh(small_mat) +
+    geom_boxplot(aes(value, .row_names, fill = .row_names)) +
+    scale_fill_brewer(palette = "Dark2") +
+    layout_title("quad_alignh()")
+```
+:::
+
+::: {.g-col-6}
+```{r}
+quad_alignv(small_mat) +
+    geom_boxplot(aes(.column_names, value, fill = .column_names)) +
+    scale_fill_brewer(palette = "Dark2") +
+    layout_title("quad_alignv()")
+```
+:::
+
+:::
+
+As discussed in @sec-heatmap-layout-annotations, `quad_anno()` will always
+attempt to initialize a `stack_layout()` with the same alignment as the current
+direction. For top and bottom annotations in `quad_alignh()`, and left and right
+annotations in `quad_alignv()`, `quad_anno()` will not initialize the annotation
+due to inconsistent data types.
+
+```{r}
+quadh <- quad_alignh(small_mat) +
+    anno_top()
+quadv <- quad_alignv(small_mat) +
+    anno_left()
+```
+
+Manual adding of a `stack_layout()` is required in such cases, you can set
+`initialize = FALSE` to prevent the warning message.
+```{r}
+quadh <- quad_alignh(small_mat) +
+    anno_top(initialize = FALSE)
+quadv <- quad_alignv(small_mat) +
+    anno_left(initialize = FALSE)
+```
+
+::: {.grid}
+
+::: {.g-col-6}
+```{r}
+quadh +
+    stack_freev(mpg) +
+    # add a plot in the top annotation
+    ggfree(mapping = aes(displ, hwy, colour = class)) +
+    geom_point(aes(displ, hwy, colour = class)) +
+    quad_active() +
+    geom_boxplot(aes(value, .row_names, fill = .row_names)) +
+    scale_fill_brewer(palette = "Dark2")+
+    layout_title("quad_alignh()")
+```
+::: 
+
+::: {.g-col-6}
+```{r}
+quadv +
+    stack_freeh(data = mpg) +
+    # add a plot in the top annotation
+    ggfree(mapping = aes(displ, hwy, colour = class)) +
+    geom_point(aes(displ, hwy, colour = class)) +
+    quad_active() +
+    geom_boxplot(aes(.column_names, value, fill = .column_names)) +
+    scale_fill_brewer(palette = "Dark2") +
+    layout_title("quad_alignv()")
+```
+::: 
+
+::: 
+
+Alternatively, you can set `initialize = TRUE`, which will initialize the
+annotation stack layout with no data. In this case, you must provide `data` in
+each plot within the annotation.
+
+::: {.grid}
+
+::: {.g-col-6}
+```{r}
+quad_alignh(small_mat) +
+    geom_boxplot(aes(value, .row_names, fill = .row_names)) +
+    scale_fill_brewer(palette = "Dark2") +
+    anno_top(initialize = TRUE) +
+    ggfree(data = mpg, aes(displ, hwy, colour = class)) +
+    geom_point(aes(displ, hwy, colour = class))+
+    layout_title("quad_alignh()")
+```
+::: 
+
+::: {.g-col-6}
+```{r}
+quad_alignv(small_mat) +
+    geom_boxplot(aes(.column_names, value, fill = .column_names)) +
+    scale_fill_brewer(palette = "Dark2") +
+    anno_left(initialize = TRUE) +
+    ggfree(data = mpg, aes(displ, hwy, colour = class)) +
+    geom_point(aes(displ, hwy, colour = class))+
+    layout_title("quad_alignv()")
+```
+:::
+
+:::
+
+## `quad_free()`
+`quad_free()` does not align observations. `ggside()` is an alias of
+`quad_free()` and performs the same function as the
+[ggside](https://cran.r-project.org/package=ggside) package. This is
+particularly useful for adding metadata or summary graphics along a continuous
+axis.
+
+```{r}
+ggside(mpg, aes(displ, hwy, colour = class)) +
+    geom_point(size = 2) +
+    # initialize top annotation
+    anno_top(size = 0.3) +
+    # add a plot in the top annotation
+    ggfree() +
+    geom_density(aes(displ, y = after_stat(density), colour = class), position = "stack") +
+    # initialize right annotation
+    anno_right(size = 0.3) +
+    # add a plot in the right annotation
+    ggfree() +
+    geom_density(aes(x = after_stat(density), hwy, colour = class),
+        position = "stack"
+    ) &
+    theme_bw()
+```
+
+`ggside()` allows facetting for the main plot, which should also be applied to
+the annotations for proper alignment.
+```{r}
+i2 <- iris
+i2$Species2 <- rep(c("A", "B"), 75)
+ggside(i2, aes(Sepal.Width, Sepal.Length, color = Species)) +
+    geom_point(size = 2) +
+    facet_grid(Species ~ Species2) +
+    anno_top(size = 0.3) +
+    ggfree() +
+    geom_density(aes(Sepal.Width, y = after_stat(density), colour = Species),
+        position = "stack"
+    ) +
+    facet_grid(cols = vars(Species2)) +
+    anno_right(size = 0.3) +
+    ggfree() +
+    geom_density(aes(x = after_stat(density), Sepal.Length, colour = Species),
+        position = "stack"
+    ) +
+    facet_grid(rows = vars(Species)) &
+    theme_bw()
+```
+
+If an annotation contains multiple plots, it can be tedious to add the same
+element to each one individually. One way to simplify this is by creating an
+external `stack_layout()` and adding the desired elements using the `&` operator.
+Then, you can add this `stack_layout()` to the `quad_layout()`.
+
+In the next chapter, I will introduce another operator that can seamlessly
+combine with the `+` operator to add elements to multiple plots at once.

@@ -80,7 +80,7 @@ ggheatmap(small_mat) +
 
 You may wonder if the strict data requirements will prevent us from preparing
 the data for plotting. Don't worry! In the later chapters, I'll introduce
-powerful techniques to prepare data for your plots.
+powerful way to prepare data for your plots.
 
 If `data = NULL`, the data in the underlying `ggplot` object contains following
 columns: 
@@ -192,7 +192,7 @@ ggheatmap(small_mat) +
     )
 ```
 
-## `align_dendro()`
+## `align_dendro()` {#sec-align-dendro}
 `align_dendro()` is an extension of `align_hclust()` that adds a dendrogram to
 the layout. All functions of `align_hclust()` introduced in @sec-align_hclust can
 be used with `align_dendro()`. Here, we focus on the plot-related function.
@@ -318,6 +318,6 @@ ggheatmap(small_mat) +
 
 Now, let's move on to the next chapter, where we will introduce `quad_layout()`
 in full. While we've already introduced `ggheatmap()`—a specialized version of
-`quad_layout()`—most of the operations discussed in @sec-heatmap_layout can also
+`quad_layout()`—most of the operations discussed in @sec-heatmap-layout can also
 be applied to `quad_layout()`. In the next section, we'll delve into
-quad_layout() and explore its full functionality.
+`quad_layout()` and explore its full functionality.

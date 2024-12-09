@@ -14,8 +14,8 @@ Several aliases are available for convenience:
   - `stack_freeh`: A horizontal version of `stack_free()`.
 
 ```{r setup}
-#| code-fold: true
-#| collapse: true
+#| echo: false
+#| output: false
 library(ggalign)
 set.seed(123)
 small_mat <- matrix(rnorm(56), nrow = 7)
@@ -47,7 +47,12 @@ stack_alignv(matrix(rnorm(56), nrow = 7)) +
     layout_annotation(theme = theme(plot.title = element_text(size = 20)))
 ```
 
-## Input data {#sec-stack_layout_input_data}
+```{r setup}
+#| code-fold: true
+#| eval: false
+```
+
+## Input data {#sec-stack-layout-input-data}
 When aligning observations, we typically use a matrix, as it is easy to melt the
 matrix into a long-formatted data frame. Additionally, matrices are used to fit
 the observation concept, as they can be transposed (rows to columns, columns to
@@ -130,7 +135,7 @@ added will be applied to it. For instance, we can add additional layers to
 visualize the dendrogram's structure or data. The default data underlying the
 `ggplot` object of `align_dendro()` consists of the dendrogram node data. It is
 also possible to use the dendrogram's edge data for customization, which I will
-introduce in a later chapter.
+introduce in @sec-align-dendro.
 
 ```{r}
 stack_alignh(small_mat) + # <1>

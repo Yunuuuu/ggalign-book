@@ -2,6 +2,8 @@ project:
   type: book
   output-dir: _book
 
+engine: knitr
+
 book:
   title: "ggalign: Bridging the Grammar of Graphics and Complex layout"
   author: "Yun Peng"
@@ -16,8 +18,14 @@ book:
     - heatmap-layout.qmd
     - layout-customize.qmd
     - plot-initialize.qmd
+    - quad-layout.qmd
 
 bibliography: references.bib
+
+knitr:
+  opts_chunk: 
+    collapse: true
+    comment: "#>"
 
 format:
   html:
