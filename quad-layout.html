@@ -484,7 +484,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="quad_free" class="level2" data-number="6.5">
 <h2 data-number="6.5" class="anchored" data-anchor-id="quad_free"><span class="header-section-number">6.5</span> <code>quad_free()</code></h2>
-<p><code>quad_free()</code> does not align observations. <code>ggside()</code> is an alias of <code>quad_free()</code> and performs the same function as the <a href="https://cran.r-project.org/package=ggside">ggside</a> package. This is particularly useful for adding metadata or summary graphics along a continuous axis.</p>
+<p><code>quad_free()</code> does not align observations and is functionally equivalent to the <a href="https://cran.r-project.org/package=ggside">ggside</a> package. For convenience, <code>ggside()</code> is provided as an alias for quad_free(). This layout is particularly useful for adding metadata or summary graphics along a continuous axis.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggside</span>(mpg, <span class="fu">aes</span>(displ, hwy, <span class="at">colour =</span> class)) <span class="sc">+</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
