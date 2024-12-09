@@ -22,5 +22,6 @@ format:
   html:
     theme: cosmo
     code-link: true
+    code-annotations: hover
   pdf:
     documentclass: scrreprt
