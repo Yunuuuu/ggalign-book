@@ -17,7 +17,6 @@ that aligns observations (`stack_align()`), whereas `ggfree()` can be added to a
 
 ```{r setup}
 #| code-fold: true
-#| collapse: true
 library(ggalign)
 set.seed(123)
 small_mat <- matrix(rnorm(56), nrow = 7)

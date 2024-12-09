@@ -19,6 +19,7 @@ book:
     - layout-customize.qmd
     - plot-initialize.qmd
     - quad-layout.qmd
+    - multiple-quad-layouts.qmd
 
 bibliography: references.bib
 

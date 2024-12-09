@@ -90,7 +90,7 @@ In this example, we use `layout_annotation()` to insert a plot background in the
 entire layout, it can be also used to control the theme of title,
 subtitle, caption (`layout_title()`), guides, margins, panel.border.
 
-## Layout Customize {#sec-stack_layout_layout_customize}
+## Layout Customize {#sec-stack-layout-layout-customize}
 When we use `stack_align()`, it aligns the observations across multiple plots
 along the specified direction: 
 
@@ -217,7 +217,7 @@ stack_alignh(small_mat) +
 Without adding another plot, it's difficult to appreciate the benefits. Let's
 now explore how to incorporate a plot.
 
-## Plot initialize
+## Plot initialize {#sec-stack-layout-plot-initialize}
 There are two primary functions for adding plots: 
 
   - `align_gg()`/`ggalign()`: Create a ggplot object and align with the layout.
@@ -298,7 +298,7 @@ By default, `ggfree()` will also inherit data from the layout and call
 `fortify_data_frame()` to convert the data to a data frame. So, note that if the
 layout data is a matrix, it will be converted into a long-formatted data frame. 
 
-## Plot Size {#sec-stack_layout_plot_size}
+## Plot Size {#sec-stack-layout-plot-size}
 Both `ggalign()` and `ggfree()` functions have a `size` argument to control the
 relative `width` (for horizontal stack layout) or `height` (for vertical stack
 layout) of the plot's panel area.
@@ -323,12 +323,12 @@ stack_freev(mpg) +
     theme_bw()
 ```
 
-## active plot
+## active plot {#sec-stack-layout-active-plot}
 As mentioned earlier, the active plot refers to the plot that subsequent ggplot2
 components will target. The package provide two functions to work with active plot.
 
   - `stack_switch()`: switch the active context
-  - `stack_active`: An alias for `stack_switch()`, which sets `what = NULL`
+  - `stack_active()`: An alias for `stack_switch()`, which sets `what = NULL`
 
 The `stack_switch()` function accepts the `what` argument, which can either be
 the index of the plot added (based on its adding order) or the plot name

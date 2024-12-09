@@ -1,0 +1,183 @@
+# A list of `quad_layout()` {#sec-multiple-quad-layouts}
+Similarly, `stack_layout()` can be added to a `quad_layout()`, and a
+`quad_layout()` can also be added to a `stack_layout()`.
+
+```{r setup}
+#| code-fold: true
+library(ggalign)
+set.seed(123)
+small_mat <- matrix(rnorm(56), nrow = 7)
+rownames(small_mat) <- paste0("row", seq_len(nrow(small_mat)))
+colnames(small_mat) <- paste0("column", seq_len(ncol(small_mat)))
+```
+
+> note: when `stack_layout()` contains a nested `quad_layout()`, it cannot be used
+within the annotation of another `quad_layout()`. 
+
+## `stack_align()`
+As discussed in @sec-stack-layout-plot-initialize, `stack_align()` can accept
+plots regardless of whether alignment of observations is required. 
+
+```{r}
+stack_alignh(small_mat) +
+    ggheatmap() +
+    ggheatmap()
+```
+
+When `ggheatmap()`/`quad_layout()` is added to a `stack_layout()`, it will also
+set the active context to itself, which means subsequent addition will be
+directed to `ggheatmap()`/`quad_layout()`. One exception is the
+`ggheatmap()`/`quad_layout()` itself, which cannot be added to another
+`quad_layout()`. In this case, they will be added directly to the
+`stack_layout()`.
+
+```{r}
+stack_alignv(small_mat) +
+    ggheatmap() +
+    ggheatmap() +
+    scale_fill_viridis_c()
+```
+
+The data of `ggheatmap()`/`quad_layout()` can inherit from the parent
+`stack_layout()`, but the data format must match. Otherwise, you will need to
+manually provide the data. For `stack_align()`, the data is always expected to
+be a matrix, if you try to add a `ggside()` (which uses a data frame), it will
+result in an error.
+
+```{r}
+#| error: true
+stack_alignh(small_mat) +
+    ggside()
+```
+
+When `ggheatmap()`/`quad_layout()` is added to a vertical `stack_align()`, the
+inherited matrix is transposed before use. This is because the columns of
+`ggheatmap()`/`quad_layout()` must match the number of observations in
+`stack_align()`.
+```{r}
+stack_alignv(small_mat) +
+    ggheatmap() +
+    ggheatmap()
+```
+
+`stack_align()` ensures that all plots aligned along the stack have the same
+ordering index or groups for the observations. Here's a table summarizing which
+`quad_layout()` will be aligned in `stack_align()`.
+
+|                               | `stack_alignh()` | `stack_alignv()` |
+| ----------------------------- | ---------------- | ---------------- |
+| `quad_free()`/`ggside()`      | ❌               | ❌               |
+| `quad_alignh()`               | ✅               | ❌               |
+| `quad_alignv()`               | ❌               | ✅               |
+| `quad_alignb()`/`ggheatmap()` | ✅               | ✅               |
+
+We can customize the layout in the `stack_align()` directly, or in
+`quad_layout()`. As introduced in @sec-stack-layout-active-plot, you can easily
+switch from the `ggheatmap()`/`quad_layout()` to the `stack_layout()` using
+`stack_active()`.
+
+::: {.grid}
+
+::: {.g-col-6}
+```{r}
+stack_alignv(small_mat) +
+    ggheatmap() +
+    ggheatmap() +
+    anno_bottom(size = 0.2) +
+    align_dendro(aes(color = branch), k = 3)+
+    layout_title("dendrogram in ggheatmap()")
+```
+:::
+
+::: {.g-col-6}
+```{r}
+stack_alignv(small_mat) +
+    ggheatmap() +
+    ggheatmap() +
+    stack_active() +
+    align_dendro(aes(color = branch), k = 3, size = 0.2) +
+    scale_y_reverse() +
+    layout_title("dendrogram in stack_layout()")
+```
+:::
+
+:::
+
+## `stack_free()`
+However, `stack_free()` is designed to only accept plots that are not aligned
+along the axis (@sec-stack-layout-plot-initialize). Below is a table summarizing
+which `quad_layout()` are compatible with `stack_free()`:
+
+|                               | `stack_freeh()` | `stack_freev()` |
+| ----------------------------- | --------------- | --------------- |
+| `quad_free()`/`ggside()`      | ✅              | ✅              |
+| `quad_alignh()`               | ❌              | ✅              |
+| `quad_alignv()`               | ✅              | ❌              |
+| `quad_alignb()`/`ggheatmap()` | ❌              | ❌              |
+
+
+```{r}
+alignh_quad_plot <- quad_alignh(small_mat) +
+    geom_boxplot(aes(value, .row_names, fill = .row_names)) +
+    scale_fill_brewer(palette = "Dark2")
+stack_freev() +
+    alignh_quad_plot +
+    alignh_quad_plot
+```
+
+## Control sizes
+A numeric or a unit object of length 3 should be provided in
+`stack_align()`/`stack_free()` when placing a `quad_layout()`. For vertical
+`stack_layout()`, this means `quad_layout()` with left or right annotations; for
+horizontal `stack_layout()`, this means `quad_layout()` with top or bottom
+annotations. The first size controls the relative `width`/`height` of the left
+or top annotation, the second controls the relative `width`/`height` of the main
+plot, and the third controls the relative `width`/`height` of the right or
+bottom annotation. 
+
+By default the three rows/columns will have equal sizes.
+```{r}
+stack_alignv(small_mat) +
+    ggheatmap() +
+    theme(axis.text.x = element_text(angle = -60, hjust = 0)) +
+    anno_left() +
+    align_dendro(aes(color = .panel), k = 3L) +
+    anno_right() +
+    ggalign(data = rowSums) +
+    geom_bar(aes(value, fill = .panel), orientation = "y", stat = "identity") +
+    ggheatmap() +
+    theme(axis.text.x = element_text(angle = -60, hjust = 0))
+```
+
+```{r}
+heat1 <- ggheatmap(t(small_mat)) +
+    theme(axis.text.x = element_text(angle = -60, hjust = 0)) +
+    anno_left() +
+    align_dendro(aes(color = .panel), k = 3L) +
+    anno_right() +
+    ggalign(data = rowSums) +
+    geom_bar(aes(value, fill = .panel), orientation = "y", stat = "identity")
+
+stack_alignv(small_mat, sizes = c(1, 2, 1)) +
+    heat1 +
+    ggheatmap() +
+    theme(axis.text.x = element_text(angle = -60, hjust = 0))
+```
+
+In this way, the width/height of main plot specified in `quad_active()` or
+`quad_layout()`/`ggheatmap()` won't work.
+```{r}
+stack_alignv(small_mat) +
+    ggheatmap(width = unit(2, "null")) + # not work
+    theme(axis.text.x = element_text(angle = -60, hjust = 0)) +
+    anno_left() +
+    align_dendro(aes(color = .panel), k = 3L) +
+    anno_right() +
+    ggalign(data = rowSums) +
+    geom_bar(aes(value, fill = .panel), orientation = "y", stat = "identity") +
+    ggheatmap(width = unit(2, "null")) + # not work
+    theme(axis.text.x = element_text(angle = -60, hjust = 0))
+```
+
+Next, we will build on these concepts and explore even more advanced strategies
+for integrating elements across multiple plots or annotations in a layout.
