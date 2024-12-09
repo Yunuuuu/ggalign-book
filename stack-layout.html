@@ -173,6 +173,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Layout customize</span></span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./plot-initialize.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Plot initialize</span></span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -184,7 +190,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#sec-stack_layout_input_data" id="toc-sec-stack_layout_input_data" class="nav-link active" data-scroll-target="#sec-stack_layout_input_data"><span class="header-section-number">2.1</span> Input data</a></li>
-  <li><a href="#layout-customization" id="toc-layout-customization" class="nav-link" data-scroll-target="#layout-customization"><span class="header-section-number">2.2</span> Layout Customization</a></li>
+  <li><a href="#sec-stack_layout_layout_customize" id="toc-sec-stack_layout_layout_customize" class="nav-link" data-scroll-target="#sec-stack_layout_layout_customize"><span class="header-section-number">2.2</span> Layout Customize</a></li>
   <li><a href="#plot-initialize" id="toc-plot-initialize" class="nav-link" data-scroll-target="#plot-initialize"><span class="header-section-number">2.3</span> Plot initialize</a></li>
   <li><a href="#sec-stack_layout_plot_size" id="toc-sec-stack_layout_plot_size" class="nav-link" data-scroll-target="#sec-stack_layout_plot_size"><span class="header-section-number">2.4</span> Plot Size</a></li>
   <li><a href="#active-plot" id="toc-active-plot" class="nav-link" data-scroll-target="#active-plot"><span class="header-section-number">2.5</span> active plot</a></li>
@@ -289,15 +295,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>In this example, we use <code>layout_annotation()</code> to insert a plot background in the entire layout, it can be also used to control the theme of title, subtitle, caption (<code>layout_title()</code>), guides, margins, panel.border.</p>
 </section>
-<section id="layout-customization" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="layout-customization"><span class="header-section-number">2.2</span> Layout Customization</h2>
+<section id="sec-stack_layout_layout_customize" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="sec-stack_layout_layout_customize"><span class="header-section-number">2.2</span> Layout Customize</h2>
 <p>When we use <code>stack_align()</code>, it aligns the observations across multiple plots along the specified direction:</p>
 <ul>
 <li>For <code>stack_alignh()</code>: Alignment occurs along the horizontal direction (y-axis).</li>
 <li>For <code>stack_alignv()</code>: Alignment occurs along the vertical direction (x-axis).</li>
 </ul>
 <p>The package offers a suite of <code>align_*</code> functions designed to give you precise control over the observations. These functions enable you to reorder the observations or partition the observations into multiple groups. Instead of detailing each <code>align_*</code> function individually, we will focus on the general usage and how to combine them with <code>stack_align()</code>.</p>
-<p>Here, we remain take <code>align_dendro()</code> as a example, it can reorder the observations, split them into groups, and can add a plot for visualization.</p>
+<p>Here, we remain take <code>align_dendro()</code> as an example, it can reorder the observations, split them into groups, and can add a plot for visualization.</p>
 <p>When used for <code>stack_alignh()</code>, the observations are aligned along the <code>y-axis</code>:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="annotated-cell-3"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><button class="code-annotation-anchor" data-target-cell="annotated-cell-3" data-target-annotation="1">1</button><span id="annotated-cell-3-1" class="code-annotation-target"><a href="#annotated-cell-3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stack_alignh</span>(small_mat) <span class="sc">+</span></span>
@@ -507,7 +513,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><code>align_gg()</code>/<code>ggalign()</code>: Create a ggplot object and align with the layout.</li>
 <li><code>free_gg()</code>/<code>ggfree()</code>: Create a ggplot object without aligning.</li>
 </ul>
-<p>Both functions initialize a <code>ggplot</code> object and, by default, set the active plot when added to the layout.</p>
+<p>Both functions initialize a <code>ggplot</code> object and, by default, set the <code>active</code> plot when added to the layout.</p>
 <p>For <code>stack_align()</code>, plots can be added regardless of whether they need to align observations.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stack_alignh</span>(small_mat) <span class="sc">+</span></span>

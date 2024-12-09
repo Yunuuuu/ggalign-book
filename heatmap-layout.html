@@ -173,6 +173,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Layout customize</span></span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./plot-initialize.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Plot initialize</span></span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -184,9 +190,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#input-data" id="toc-input-data" class="nav-link active" data-scroll-target="#input-data"><span class="header-section-number">3.1</span> input data</a></li>
-  <li><a href="#heatmap-body" id="toc-heatmap-body" class="nav-link" data-scroll-target="#heatmap-body"><span class="header-section-number">3.2</span> heatmap body</a></li>
+  <li><a href="#main-plot-heatmap-body" id="toc-main-plot-heatmap-body" class="nav-link" data-scroll-target="#main-plot-heatmap-body"><span class="header-section-number">3.2</span> Main plot (heatmap body)</a></li>
   <li><a href="#rasterization" id="toc-rasterization" class="nav-link" data-scroll-target="#rasterization"><span class="header-section-number">3.3</span> rasterization</a></li>
-  <li><a href="#annotations" id="toc-annotations" class="nav-link" data-scroll-target="#annotations"><span class="header-section-number">3.4</span> annotations</a></li>
+  <li><a href="#sec-heatmap_layout_annotations" id="toc-sec-heatmap_layout_annotations" class="nav-link" data-scroll-target="#sec-heatmap_layout_annotations"><span class="header-section-number">3.4</span> annotations</a></li>
   <li><a href="#adding-stack-layout" id="toc-adding-stack-layout" class="nav-link" data-scroll-target="#adding-stack-layout"><span class="header-section-number">3.5</span> Adding stack layout</a></li>
   <li><a href="#quad_active" id="toc-quad_active" class="nav-link" data-scroll-target="#quad_active"><span class="header-section-number">3.6</span> <code>quad_active()</code></a></li>
   <li><a href="#quad_switchhmanno" id="toc-quad_switchhmanno" class="nav-link" data-scroll-target="#quad_switchhmanno"><span class="header-section-number">3.7</span> <code>quad_switch()</code>/<code>hmanno()</code></a></li>
@@ -260,9 +266,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="heatmap-body" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="heatmap-body"><span class="header-section-number">3.2</span> heatmap body</h2>
-<p>A <code>ggplot</code> object will be automatically created for the heatmap body, the matrix input will be converted into a long formated data frame when drawing. The data in the underlying <code>ggplot</code> object contains following columns:</p>
+<section id="main-plot-heatmap-body" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="main-plot-heatmap-body"><span class="header-section-number">3.2</span> Main plot (heatmap body)</h2>
+<p>The <code>ggheatmap()</code>/<code>quad_layout()</code> functions arrange plots in the Quad-Side layout of the main plot. When the layout is initialized, a <code>ggplot</code> object is automatically created for the main plot.</p>
+<p>For <code>ggheatmap()</code>, the matrix input will be converted into a long-format data frame when drawing. The data in the underlying <code>ggplot</code> object includes the following columns:</p>
 <ul>
 <li><p><code>.xpanel</code> and <code>.ypanel</code>: the column and row panel</p></li>
 <li><p><code>.x</code> and <code>.y</code>: the <code>x</code> and <code>y</code> coordinates</p></li>
@@ -271,7 +278,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><code>value</code>: the actual matrix value.</p></li>
 </ul>
 <p>The default mapping will use <code>aes(.data$.x, .data$.y)</code>, but can be customized using <code>mapping</code> argument.</p>
-<p>By default, the heatmap body is regarded as the active plot, meaning you can add ggplot2 elements directly to the heatmap body.</p>
+<p>By default, the main plot is regarded as the active plot, meaning you can add ggplot2 elements directly to the main plot.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggheatmap</span>(small_mat) <span class="sc">+</span> </span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
@@ -287,7 +294,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>By default, <code>ggheatmap()</code>/<code>heatmap_layout()</code> adds a heatmap layer. If the matrix has more than 20,000 cells (<code>nrow * ncol &gt; 20000</code>), it uses <code>geom_raster()</code> for performance efficiency; for smaller matrices, <code>geom_tile()</code> is used. You can explicitly choose the layer by providing a single string (<code>"raster"</code> or <code>"tile"</code>) in the <code>filling</code> argument.</p>
+<p>By default, <code>ggheatmap()</code> adds a heatmap layer. If the matrix has more than 20,000 cells (<code>nrow * ncol &gt; 20000</code>), it uses <code>geom_raster()</code> for performance efficiency; for smaller matrices, <code>geom_tile()</code> is used. You can explicitly choose the layer by providing a single string (<code>"raster"</code> or <code>"tile"</code>) in the <code>filling</code> argument.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggheatmap</span>(small_mat, <span class="at">filling =</span> <span class="st">"raster"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
@@ -399,8 +406,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>Furthermore, <a href="https://ggfx.data-imaginist.com/">ggfx</a> offers many image filters that can be applied to ggplot2 layers. See the package for the details.</p>
 </section>
-<section id="annotations" class="level2" data-number="3.4">
-<h2 data-number="3.4" class="anchored" data-anchor-id="annotations"><span class="header-section-number">3.4</span> annotations</h2>
+<section id="sec-heatmap_layout_annotations" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="sec-heatmap_layout_annotations"><span class="header-section-number">3.4</span> annotations</h2>
 <p>In <code>ggheatmap()</code>/<code>quad_layout()</code>, annotations are handled by a <code>stack_layout()</code> object and can be positioned at the top, left, bottom, or right of the main plot (heatmap body).</p>
 <p>By default, <code>ggheatmap()</code>/<code>quad_layout()</code> do not activate an annotation, You can use <code>quad_anno()</code> to activate an annotation, directing all subsequent additions to the specified annotation position. The <code>quad_anno()</code> function has the following aliases:</p>
 <ul>
@@ -410,7 +417,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><code>anno_right</code>: A special case of <code>quad_anno()</code> with <code>position = "right"</code>.</li>
 </ul>
 <p>When <code>quad_anno()</code> is added to a <code>ggheatmap()</code>/<code>quad_layout()</code>, it will try to automatically create a new <code>stack_layout()</code> (either <code>stack_align()</code> or <code>stack_free()</code>) depending on whether you want to align observations in the specified direction. For top and bottom annotations, <code>stack_alignv()</code> or <code>stack_freev()</code> will be used; for left and right annotations, <code>stack_alignh()</code> or <code>stack_freeh()</code> will be applied.</p>
-<p>Additionally, <code>quad_anno()</code> will set the active context to the annotation. This means that subsequent additions will be directed to the annotation rather than the main plot. We use the term <code>active context</code> in contrast to <code>active plot</code> (as described in <a href="stack-layout.html" class="quarto-xref"><span>Chapter 2</span></a>), since the annotation is a <code>Layout</code> object.</p>
+<p>Additionally, <code>quad_anno()</code> will set the active context to the annotation. This means that subsequent additions will be directed to the annotation rather than the main plot. We use the term <code>active context</code> in contrast to <code>active plot</code> (as described in <a href="stack-layout.html#sec-stack_layout_layout_customize" class="quarto-xref"><span>Section 2.2</span></a>), since the annotation is a <code>Layout</code> object.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggheatmap</span>(small_mat) <span class="sc">+</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="sc">-</span><span class="dv">60</span>, <span class="at">hjust =</span> <span class="dv">0</span>)) <span class="sc">+</span></span>
@@ -473,8 +480,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><code>align_dendro(k = 3L)</code> adds a dendrogram to the annotation and sets itself as the active plot in the annotation stack.</li>
 <li><code>geom_point(aes(color = factor(branch)))</code> is then added to this active plot within the annotation stack, here, it means the <code>align_dendro()</code> plot.</li>
 </ul>
-<p><code>ggheatmap()</code> aligns observations both horizontally and vertically, so it’s safe to always use <code>quad_anno()</code> directly, as all annotations require a matrix, and the layout data is also a matrix. However, for <code>quad_alignh()</code> and <code>quad_alignv()</code>, which only align observations in one direction, the data in the layout may not fit the data for the annotation (when the layout requires alignment of observations, we typically use a matrix, regardless of whether alignment is needed in one or two directions) - <code>quad_alignh()</code>: aligning observations in horizontal direction, for column annotations, we ll need a data frame for <code>stack_free()</code>. - <code>quad_alignv()</code>: aligning observations in vertical direction, for row annotations, we ll need a data frame for <code>stack_free()</code>.</p>
-<p>In both conditions, <code>quad_anno()</code> won’t initialize the annotation by default, instead, you must provide the annotation <code>stack_layout()</code> manually.</p>
+<p><code>ggheatmap()</code> aligns observations both horizontally and vertically, so it’s safe to always use <code>quad_anno()</code> directly, as all annotations require a matrix, and the layout data is also a matrix. However, for <code>quad_alignh()</code> and <code>quad_alignv()</code> (which I’ll discuss in more detail in a later chapter), which only align observations in one direction, the data in the layout may not fit the data for the annotation (when the layout requires alignment of observations, we typically use a matrix, regardless of whether alignment is needed in one or two directions) - <code>quad_alignh()</code>: aligning observations in horizontal direction, for column annotations, we ll need a data frame for <code>stack_free()</code>. - <code>quad_alignv()</code>: aligning observations in vertical direction, for row annotations, we ll need a data frame for <code>stack_free()</code>.</p>
+<p>In both cases, <code>quad_anno()</code> won’t initialize the annotation by default, instead, you must provide the annotation <code>stack_layout()</code> manually.</p>
 </section>
 <section id="adding-stack-layout" class="level2" data-number="3.5">
 <h2 data-number="3.5" class="anchored" data-anchor-id="adding-stack-layout"><span class="header-section-number">3.5</span> Adding stack layout</h2>
@@ -583,7 +590,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># remove any active annotation</span></span>
 <span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">quad_switch</span>() <span class="sc">+</span></span>
 <span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># set fill color scale for the heatmap body</span></span>
-<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_viridis_c</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_viridis_c</span>() <span class="sc">+</span></span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">layout_title</span>(<span class="st">"quad_switch()"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>→ heatmap built with `geom_tile()`</code></pre>
 </div>
@@ -606,7 +614,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># remove any active annotation</span></span>
 <span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">hmanno</span>() <span class="sc">+</span></span>
 <span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># set fill color scale for the heatmap body</span></span>
-<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_viridis_c</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_viridis_c</span>()<span class="sc">+</span></span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">layout_title</span>(<span class="st">"hmanno()"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>→ heatmap built with `geom_tile()`</code></pre>
 </div>

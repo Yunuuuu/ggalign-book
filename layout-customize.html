@@ -64,6 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<link href="./plot-initialize.html" rel="next">
 <link href="./heatmap-layout.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -172,6 +173,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Layout customize</span></span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./plot-initialize.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Plot initialize</span></span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -185,7 +192,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#align_group" id="toc-align_group" class="nav-link active" data-scroll-target="#align_group"><span class="header-section-number">4.1</span> <code>align_group()</code></a></li>
   <li><a href="#align_order" id="toc-align_order" class="nav-link" data-scroll-target="#align_order"><span class="header-section-number">4.2</span> <code>align_order()</code></a></li>
   <li><a href="#align_kmeans" id="toc-align_kmeans" class="nav-link" data-scroll-target="#align_kmeans"><span class="header-section-number">4.3</span> <code>align_kmeans()</code></a></li>
-  <li><a href="#align_hclust" id="toc-align_hclust" class="nav-link" data-scroll-target="#align_hclust"><span class="header-section-number">4.4</span> <code>align_hclust()</code></a></li>
+  <li><a href="#sec-align_hclust" id="toc-sec-align_hclust" class="nav-link" data-scroll-target="#sec-align_hclust"><span class="header-section-number">4.4</span> <code>align_hclust()</code></a></li>
+  <li><a href="#align_reorder" id="toc-align_reorder" class="nav-link" data-scroll-target="#align_reorder"><span class="header-section-number">4.5</span> <code>align_reorder()</code></a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/Yunuuuu/ggalign-book/edit/main/layout-customize.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/Yunuuuu/ggalign-book/blob/main/layout-customize.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li><li><a href="https://github.com/Yunuuuu/ggalign-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -218,8 +226,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong><code>align_order</code></strong>: Reorder layout observations based on statistical weights or allows for manual reordering based on user-defined ordering index.</li>
 <li><strong><code>align_kmeans</code></strong>: Group observations by k-means clustering results.</li>
 <li><strong><code>align_hclust</code></strong>: Reorder or group observations based on hierarchical clustering.</li>
+<li><strong><code>align_reorder</code></strong>: Reorder observations using an arbitrary statistical function.</li>
 </ul>
-<p>You can inspect the behavior of any <code>align_*</code> function by printing it. Note that these functions do not add plot areas and set the active context, meaning you cannot incorporate <code>ggplot2</code> elements directly into these objects.</p>
+<p>Note that these functions do not add plot areas and set the active context, meaning you cannot incorporate <code>ggplot2</code> elements directly into these objects. You can inspect the behavior of any <code>align_*</code> function by printing it.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
@@ -309,10 +318,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>Additionally, you can provide the ordering integer index or character index directly:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>my_order <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">nrow</span>(small_mat))</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">rownames</span>(small_mat)[my_order])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>my_order <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">nrow</span>(small_mat))</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">rownames</span>(small_mat)[my_order])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "row4" "row3" "row7" "row6" "row5" "row1" "row2"</code></pre>
+<pre><code>[1] "row4" "row2" "row5" "row7" "row3" "row1" "row6"</code></pre>
 </div>
 </div>
 <div class="grid">
@@ -352,7 +362,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Some <code>align_*</code> functions also accept a <code>data</code> argument. It’s important to note that all <code>align_*</code> functions treat rows as the observations. This means <code>NROW(data)</code> must match the <code>number of observations</code> along the axis used for alignment. The <code>data</code> argument can also accept a function (supporting purrr-like lambda syntax), which will be applied to the layout matrix.</p>
-<p>As mentioned in <a href="heatmap-layout.html" class="quarto-xref"><span>Chapter 3</span></a>, for top and bottom annotations, the data matrix of <code>quad_layout()</code>/<code>ggheatmap()</code> is transposed to create the annotation <code>stack_layout()</code>. Therefore, you can use <code>rowMeans()</code> to calculate the mean value across all columns.</p>
+<p>As mentioned in <a href="heatmap-layout.html#sec-heatmap_layout_annotations" class="quarto-xref"><span>Section 3.4</span></a>, for top and bottom annotations, the data matrix of <code>quad_layout()</code>/<code>ggheatmap()</code> is transposed to create the annotation <code>stack_layout()</code>. Therefore, you can use <code>rowMeans()</code> to calculate the mean value across all columns.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggheatmap</span>(small_mat) <span class="sc">+</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">anno_top</span>() <span class="sc">+</span></span>
@@ -386,33 +396,29 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
+<p>Note that we always prevent reordering the observations into two different orderings. If you want to apply two different orderings, you should use <code>cross_layout()</code> instead, which I’ll introduce in a later chapter:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>another_order <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">ncol</span>(small_mat))</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggheatmap</span>(small_mat) <span class="sc">+</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">anno_top</span>() <span class="sc">+</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_order</span>(rowMeans) <span class="sc">+</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_order</span>(another_order)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error in `align()`:
+! align_order(another_order) disrupt the previously established ordering
+  index of the top annotation `stack_align()`</code></pre>
+</div>
+</div>
 </section>
 <section id="align_kmeans" class="level2" data-number="4.3">
 <h2 data-number="4.3" class="anchored" data-anchor-id="align_kmeans"><span class="header-section-number">4.3</span> <code>align_kmeans()</code></h2>
 <p>The <code>align_kmeans()</code> function split the observations into groups based on k-means clustering.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggheatmap</span>(small_mat) <span class="sc">+</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">anno_top</span>() <span class="sc">+</span></span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_kmeans</span>(<span class="dv">3</span>L)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>→ heatmap built with `geom_tile()`</code></pre>
-</div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="layout-customize_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="align_hclust" class="level2" data-number="4.4">
-<h2 data-number="4.4" class="anchored" data-anchor-id="align_hclust"><span class="header-section-number">4.4</span> <code>align_hclust()</code></h2>
-<p>The <code>align_hclust()</code> function is a specialized version of <code>align_dendro()</code>, designed to reorder observations and group them based on hierarchical clustering. Unlike <code>align_dendro()</code>, however, <code>align_hclust()</code> does not add a dendrogram tree to the plot. All the arguments intruduced here can also be used by <code>align_dendro()</code>.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggheatmap</span>(small_mat) <span class="sc">+</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">anno_top</span>() <span class="sc">+</span></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_hclust</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggheatmap</span>(small_mat) <span class="sc">+</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">anno_top</span>() <span class="sc">+</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_kmeans</span>(<span class="dv">3</span>L)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>→ heatmap built with `geom_tile()`</code></pre>
 </div>
@@ -424,17 +430,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>Hierarchical clustering is performed in two steps: calculate the distance matrix and apply clustering. You can use the <code>distance</code> and <code>method</code> argument to control the builind process.</p>
-<p>There are two ways to specify <code>distance</code> metric for clustering:</p>
-<ul>
-<li>specify <code>distance</code> as a pre-defined option. The valid values are the supported methods in <code>dist()</code> function and coorelation coefficient <code>"pearson"</code>, <code>"spearman"</code> and <code>"kendall"</code>. The correlation distance is defined as <code>1 - cor(x, y, method = distance)</code>.</li>
-<li>a self-defined function which calculates distance from a matrix. The function should only contain one argument.</li>
-</ul>
+</section>
+<section id="sec-align_hclust" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="sec-align_hclust"><span class="header-section-number">4.4</span> <code>align_hclust()</code></h2>
+<p>The <code>align_hclust()</code> function is designed to reorder observations and group them based on hierarchical clustering. Unlike <code>align_dendro()</code>, however, <code>align_hclust()</code> does not add a dendrogram tree to the plot. All the arguments intruduced here can also be used by <code>align_dendro()</code>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggheatmap</span>(small_mat) <span class="sc">+</span></span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">anno_top</span>() <span class="sc">+</span></span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_hclust</span>(<span class="at">distance =</span> <span class="st">"pearson"</span>) <span class="sc">+</span></span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">layout_title</span>(<span class="st">"pre-defined distance method (1 - pearson)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_hclust</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>→ heatmap built with `geom_tile()`</code></pre>
 </div>
@@ -446,11 +449,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
+<p>Hierarchical clustering is performed in two steps: calculate the distance matrix and apply clustering. You can use the <code>distance</code> and <code>method</code> argument to control the builind process.</p>
+<p>There are two ways to specify <code>distance</code> metric for clustering:</p>
+<ul>
+<li>specify <code>distance</code> as a pre-defined option. The valid values are the supported methods in <code>dist()</code> function and coorelation coefficient <code>"pearson"</code>, <code>"spearman"</code> and <code>"kendall"</code>. The correlation distance is defined as <code>1 - cor(x, y, method = distance)</code>.</li>
+<li>a self-defined function which calculates distance from a matrix. The function should only contain one argument.</li>
+</ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggheatmap</span>(small_mat) <span class="sc">+</span></span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">anno_top</span>() <span class="sc">+</span></span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_hclust</span>(<span class="at">distance =</span> <span class="cf">function</span>(m) <span class="fu">dist</span>(m)) <span class="sc">+</span></span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">layout_title</span>(<span class="st">"a function that calculates distance matrix"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_hclust</span>(<span class="at">distance =</span> <span class="st">"pearson"</span>) <span class="sc">+</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">layout_title</span>(<span class="st">"pre-defined distance method (1 - pearson)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>→ heatmap built with `geom_tile()`</code></pre>
 </div>
@@ -462,11 +471,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>Method to perform hierarchical clustering can be specified by <code>method</code>. Possible methods are those supported in <code>hclust()</code> function. And you can also provide a self-defined function, which accepts the distance object and return a <code>hclust</code> object.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggheatmap</span>(small_mat) <span class="sc">+</span></span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">anno_top</span>() <span class="sc">+</span></span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_hclust</span>(<span class="at">method =</span> <span class="st">"ward.D2"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_hclust</span>(<span class="at">distance =</span> <span class="cf">function</span>(m) <span class="fu">dist</span>(m)) <span class="sc">+</span></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">layout_title</span>(<span class="st">"a function that calculates distance matrix"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>→ heatmap built with `geom_tile()`</code></pre>
 </div>
@@ -478,11 +487,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>You can specify <code>k</code> or <code>h</code> to split observations into groups, which work similarly to <code>cutree()</code>:</p>
+<p>Method to perform hierarchical clustering can be specified by <code>method</code>. Possible methods are those supported in <code>hclust()</code> function. And you can also provide a self-defined function, which accepts the distance object and return a <code>hclust</code> object.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggheatmap</span>(small_mat) <span class="sc">+</span></span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">anno_top</span>() <span class="sc">+</span></span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_hclust</span>(<span class="at">k =</span> <span class="dv">3</span>L)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_hclust</span>(<span class="at">method =</span> <span class="st">"ward.D2"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>→ heatmap built with `geom_tile()`</code></pre>
 </div>
@@ -494,17 +503,33 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
+<p>You can specify <code>k</code> or <code>h</code> to split observations into groups, which work similarly to <code>cutree()</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggheatmap</span>(small_mat) <span class="sc">+</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">anno_top</span>() <span class="sc">+</span></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_hclust</span>(<span class="at">k =</span> <span class="dv">3</span>L)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>→ heatmap built with `geom_tile()`</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="layout-customize_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
 <p>You can reorder the dendrogram based on the mean values of the observations by setting <code>reorder_dendrogram = TRUE</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>h1 <span class="ot">&lt;-</span> <span class="fu">ggheatmap</span>(small_mat) <span class="sc">+</span></span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">anno_top</span>() <span class="sc">+</span></span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_hclust</span>(<span class="at">k =</span> <span class="dv">3</span>, <span class="at">reorder_dendrogram =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
-<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">layout_title</span>(<span class="st">"reorder_dendrogram = TRUE"</span>)</span>
-<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>h2 <span class="ot">&lt;-</span> <span class="fu">ggheatmap</span>(small_mat) <span class="sc">+</span></span>
-<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">anno_top</span>() <span class="sc">+</span></span>
-<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_hclust</span>(<span class="at">k =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
-<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">layout_title</span>(<span class="st">"reorder_dendrogram = FALSE"</span>)</span>
-<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a><span class="fu">align_plots</span>(h1, h2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>h1 <span class="ot">&lt;-</span> <span class="fu">ggheatmap</span>(small_mat) <span class="sc">+</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">anno_top</span>() <span class="sc">+</span></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_hclust</span>(<span class="at">k =</span> <span class="dv">3</span>, <span class="at">reorder_dendrogram =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">layout_title</span>(<span class="st">"reorder_dendrogram = TRUE"</span>)</span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>h2 <span class="ot">&lt;-</span> <span class="fu">ggheatmap</span>(small_mat) <span class="sc">+</span></span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">anno_top</span>() <span class="sc">+</span></span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_hclust</span>(<span class="at">k =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">layout_title</span>(<span class="st">"reorder_dendrogram = FALSE"</span>)</span>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a><span class="fu">align_plots</span>(h1, h2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>→ heatmap built with `geom_tile()`
 → heatmap built with `geom_tile()`</code></pre>
@@ -512,37 +537,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="layout-customize_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="960"></p>
+<p><img src="layout-customize_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="960"></p>
 </figure>
 </div>
 </div>
 </div>
-<p>In this example, we use <code>align_plots()</code> to arrange the plots, which functions similarly to <code>cowplot::align_plots()</code> and <code>patchwork::wrap_plots()</code>. However, unlike those, <code>align_plots()</code> can be directly used with quad_layout() and stack_layout(), ensuring proper alignment by plot panel. Additionally, <code>align_plots()</code> can align pheatmap and ComplexHeatmap objects, although they won’t align by panel area in the same way as ggplot2 plots.</p>
+<p>In this example, we use <code>align_plots()</code> to arrange the layouts, which functions similarly to <code>cowplot::align_plots()</code> and <code>patchwork::wrap_plots()</code>. However, unlike those, <code>align_plots()</code> can be directly used with <code>quad_layout()</code> and <code>stack_layout()</code>, ensuring proper alignment by plot panel. Additionally, <code>align_plots()</code> can align <code>pheatmap</code> and <code>ComplexHeatmap</code> objects, though they won’t align by panel area in the same way as ggplot2 plots.</p>
 <p><code>align_hclust()</code> can also perform clustering between groups, meaning it can be used even if there are existing groups present in the layout, in this way, you cannot specify <code>k</code> or <code>h</code>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">3</span>L)</span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>column_groups <span class="ot">&lt;-</span> <span class="fu">sample</span>(letters[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>], <span class="fu">ncol</span>(small_mat), <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggheatmap</span>(small_mat) <span class="sc">+</span></span>
-<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">anno_top</span>() <span class="sc">+</span></span>
-<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_group</span>(column_groups) <span class="sc">+</span></span>
-<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_hclust</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>→ heatmap built with `geom_tile()`</code></pre>
-</div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="layout-customize_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>You can reorder the groups by setting <code>reorder_group = TRUE</code>.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggheatmap</span>(small_mat) <span class="sc">+</span></span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">anno_top</span>() <span class="sc">+</span></span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_group</span>(column_groups) <span class="sc">+</span></span>
-<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_hclust</span>(<span class="at">reorder_group =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">3</span>L)</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>column_groups <span class="ot">&lt;-</span> <span class="fu">sample</span>(letters[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>], <span class="fu">ncol</span>(small_mat), <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggheatmap</span>(small_mat) <span class="sc">+</span></span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">anno_top</span>() <span class="sc">+</span></span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_group</span>(column_groups) <span class="sc">+</span></span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_hclust</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>→ heatmap built with `geom_tile()`</code></pre>
 </div>
@@ -554,18 +562,74 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>If you specify <code>k</code> or <code>h</code>, this will always turn off sub-clustering. The same principle applies to <code>align_hclust()</code>, where new groups must be nested within the previously established groups.</p>
+<p>You can reorder the groups by setting <code>reorder_group = TRUE</code>, which reorders the hierarchical clusters based on the group tree:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggheatmap</span>(small_mat) <span class="sc">+</span></span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">anno_top</span>() <span class="sc">+</span></span>
 <span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_group</span>(column_groups) <span class="sc">+</span></span>
-<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_hclust</span>(<span class="at">k =</span> <span class="dv">2</span>L)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_hclust</span>(<span class="at">reorder_group =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>→ heatmap built with `geom_tile()`</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="layout-customize_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>If you specify <code>k</code> or <code>h</code>, this will always turn off sub-clustering. The same principle applies to <code>align_hclust()</code>, where new groups must be nested within the previously established groups.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggheatmap</span>(small_mat) <span class="sc">+</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">anno_top</span>() <span class="sc">+</span></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_group</span>(column_groups) <span class="sc">+</span></span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_hclust</span>(<span class="at">k =</span> <span class="dv">2</span>L)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
 <pre><code>Error in `align()`:
 ! align_hclust(k = 2L) disrupt the previously established panel groups
   of the top annotation `stack_align()`</code></pre>
 </div>
 </div>
+</section>
+<section id="align_reorder" class="level2" data-number="4.5">
+<h2 data-number="4.5" class="anchored" data-anchor-id="align_reorder"><span class="header-section-number">4.5</span> <code>align_reorder()</code></h2>
+<p>The <code>align_reorder()</code> function enables the reordering of observations based on a specified statistical function. This function accepts a data argument and computes a statistic that determines the new ordering of the observations. The resulting order is extracted using the <code>order2()</code> function.</p>
+<p>Foe example, you can also use hierarchical clustering to reorder the observations like this:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggheatmap</span>(small_mat) <span class="sc">+</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">anno_left</span>() <span class="sc">+</span></span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_reorder</span>(hclust2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>→ heatmap built with `geom_tile()`</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="layout-customize_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Here, <code>hclust2()</code> is a special function used by <code>align_hclust()</code> to calculate the distance matrix and perform hierarchical clustering.</p>
+<p>In addition to hierarchical clustering, the <code>align_reorder()</code> function can also handle objects from the <a href="https://CRAN.R-project.org/package=seriation">seriation</a> package. For example, you can use the <code>seriate()</code> function with a method like <code>"BEA_TSP"</code> to reorder the observations based on a specific seriation algorithm:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggheatmap</span>(small_mat) <span class="sc">+</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">anno_left</span>() <span class="sc">+</span></span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_reorder</span>(seriation<span class="sc">::</span>seriate, <span class="at">method =</span> <span class="st">"BEA_TSP"</span>, <span class="at">data =</span> abs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>→ heatmap built with `geom_tile()`</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="layout-customize_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>This approach gives you the flexibility to apply different statistical or algorithmic methods for reordering observations, which can be especially useful for exploring complex patterns in data.</p>
+<p>With the <code>align_*</code> functions in place, we’ve covered how to reorder and group observations within a heatmap layout. Now, having set the stage for proper observation alignment, we can move on to the next essential step: <code>plot initialize</code>. In the following chapter, we’ll dive deeper into how to set up your plots within the layout.</p>
 
 
 </section>
@@ -1034,6 +1098,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="./plot-initialize.html" class="pagination-link" aria-label="Plot initialize">
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Plot initialize</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->

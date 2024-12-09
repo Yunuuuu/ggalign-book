@@ -173,6 +173,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Layout customize</span></span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./plot-initialize.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Plot initialize</span></span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -288,6 +294,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><code>align_kmeans()</code>: Group observations into panel by kmeans.</li>
 <li><code>align_order()</code>: Reorder layout observations based on statistical weights or by manually specifying the observation index.</li>
 <li><code>align_hclust()</code>: Reorder or group observations based on hierarchical clustering.</li>
+<li><code>align_reorder</code>: Reorder observations using an arbitrary statistical function.</li>
 </ul>
 <ol start="3" type="1">
 <li>Adding plots with <code>align_dendro()</code>, <code>ggalign()</code> or <code>ggfree()</code>, and then layer additional ggplot2 elements such as geoms, stats, or scales.</li>
@@ -368,9 +375,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>The data in the underlying <code>ggplot</code> object of <code>ggalign()</code> function contains at least following columns (more details will be introduced in the later chapter):</p>
+<p>The data in the underlying <code>ggplot</code> object of <code>ggalign()</code> function contains at least following columns (more details will be introduced in the <a href="plot-initialize.html#sec-ggalign" class="quarto-xref"><span>Section 5.1</span></a>):</p>
 <ul>
-<li><code>.panel</code>: the group panel for the aligned axis. It means <code>x-axis</code> for vertical stack layout (including top and bottom annotation), <code>y-axis</code> for horizontal stack layout (including left and right annotation).</li>
+<li><code>.panel</code>: the group panel for the aligned axis. It means <code>x-axis</code> for vertical stack layout, <code>y-axis</code> for horizontal stack layout.</li>
 <li><code>.x</code> or <code>.y</code>: the <code>x</code> or <code>y</code> coordinates</li>
 <li><code>.names</code> and <code>.index</code>: A factor of the names (only applicable when names exists) and an integer of index of the original data.</li>
 <li><code>value</code>: the actual value (only applicable if <code>data</code> is a <code>matrix</code> or atomic vector).</li>
