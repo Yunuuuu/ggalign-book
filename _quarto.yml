@@ -39,8 +39,8 @@ book:
 
     - part: complexheatmap.qmd
       chapters:
-        - complexheatmap-more-examples.qmd
         - complexheatmap-single-heatmap.qmd
+        - complexheatmap-more-examples.qmd
 
 bibliography: references.bib
 
