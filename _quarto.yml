@@ -9,6 +9,7 @@ book:
   author: "Yun Peng"
   date: "11/24/2024"
   cover-image: cover.png
+  favicon: cover.jpg
   repo-url: https://github.com/Yunuuuu/ggalign-book
   repo-branch: main
   repo-actions: ["edit", "source", "issue"]
