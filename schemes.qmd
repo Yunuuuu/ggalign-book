@@ -28,7 +28,7 @@ rownames(small_mat) <- paste0("row", seq_len(nrow(small_mat)))
 colnames(small_mat) <- paste0("column", seq_len(ncol(small_mat)))
 ```
 
-## `scheme_theme`
+## `scheme_theme()`
 The `scheme_theme()` function extends `theme()` to set a default theme for plots,
 allowing you to input `theme()` elements directly or add the theme elements.
 
@@ -97,7 +97,7 @@ ggheatmap(small_mat) +
     scheme_theme(plot.background = element_rect(fill = "red"))
 ```
 
-## `scheme_data`
+## `scheme_data()`
 `align_gg()`/`ggalign()` requires the specific data format for its operations.
 If you need to transform or filter data for individual `geoms`, you can use the
 `data` argument within each `geom`. However, if you have multiple `geoms` and
@@ -123,8 +123,8 @@ ggheatmap(small_mat) +
     geom_bar(aes(y = value, fill = .row_names), stat = "identity")
 ```
 
-## `scheme_align`
-The `scheme_align()` function defines the align Specifications for plots.
+## `scheme_align()`
+The `scheme_align()` function controls the align specifications for plots.
 
 ### guides
 By default, `ggheatmap()` will collect all guide legends on the side from which
@@ -185,9 +185,8 @@ heatmap_collect_all_guides -
 Note: The legend on the left side of the heatmap body is collected and
 positioned on the left side at the layout level.
 
->If you're annoyed by the large space between the left annotation and the heatmap
-body, don't worry! This issue can be addressed using the `free_spaces` feature,
-which is covered in its dedicated section.
+If you're annoyed by the large space between the left annotation and the heatmap
+body, don't worry! This issue will be addressed in @sec-free-spaces.
 
 Now, Let's dive deeper into the guide collection process.
 
@@ -242,7 +241,7 @@ heatmap_collect_all_guides -
 >Note: The heatmap layout will only collect guide legends from the annotation
 stack if the stack layout collects its own guides first.
 
-### free_spaces
+### free_spaces {#sec-free-spaces}
 By default, `ggheatmap()` will align all elements of the plot, which can
 sometimes lead to unwanted spacing. Consider the following example:
 

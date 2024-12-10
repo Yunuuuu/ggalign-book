@@ -13,15 +13,27 @@ book:
   repo-actions: ["edit", "source", "issue"]
   chapters:
     - index.qmd
-    - introduction.qmd
-    - stack-layout.qmd
-    - heatmap-layout.qmd
-    - layout-customize.qmd
-    - plot-initialize.qmd
-    - quad-layout.qmd
-    - multiple-quad-layouts.qmd
-    - operator.qmd
-    - schemes.qmd
+
+    - part: "Basics"
+      chapters:
+        - introduction.qmd
+        - stack-layout.qmd
+        - heatmap-layout.qmd
+        - layout-customize.qmd
+        - plot-initialize.qmd
+        - quad-layout.qmd
+        - multiple-quad-layouts.qmd
+        - operator.qmd
+        - schemes.qmd
+
+    - part: "Cases"
+      chapters:
+        - complete-examples.qmd
+
+    - part: complexheatmap.qmd
+      chapters:
+        - complexheatmap-more-examples.qmd
+        - complexheatmap-single-heatmap.qmd
 
 bibliography: references.bib
 
