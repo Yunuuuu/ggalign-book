@@ -62,7 +62,7 @@ ggheatmap(small_mat) +
 ```
 
 ## logical AND operator
-> `&`: applies elements to all plots in the layout.
+> `&`: applies elements to all plots in the layout including plots in the nested layout.
 
 The `&` operator works similarly to `patchwork`, applying an element across all
 plots in a layout. Since `&` has lower precedence than `+`, it's generally best
@@ -88,10 +88,10 @@ addition of elements to multiple plots. While its use might initially seem
 unintuitive, the reason behind this is that `-` shares the same precedence group
 as `+`, which allows it to seamlessly combine with `+`.
 
-### `quad_layout()`
-If the active context is the `ggheatmap()`/`quad_layout()` itself, the `-`
-operator behaves similarly to `&`. It applies the specified elements to all
-plots within the layout. 
+### `quad_layout()` {#sec-quad-layout-subtract}
+If the active context is the `ggheatmap()`/`quad_layout()` itself (no active
+annotation), the `-` operator behaves similarly to `&`. It applies the specified
+elements to all plots within the layout. 
 ```{r}
 # Initialize the heatmap
 ggheatmap(small_mat) +
@@ -106,8 +106,8 @@ ggheatmap(small_mat) +
     scale_color_brewer(palette = "Dark2")
 ```
 
-If the active layout is the annotation stack, the `-` operator will only add
-the elements to all plots in the active annotation stack: 
+If the active layout is an annotation stack, the `-` operator will only add the
+elements to all plots in the active annotation stack: 
 ```{r}
 ggheatmap(small_mat) +
     # initialize the left annotation
@@ -138,7 +138,7 @@ stack_alignv(small_mat) +
 
 When the active layout is the nested `ggheatmap()`/`quad_layout()`, the `-`
 operator applies the elements to this nested layout, following the same
-principles as in the `ggheatmap()`/`quad_layout()`.
+principles as in the @sec-quad-layout-subtract.
 
 Want apply elements for plots in both `stack_layout()` and the nested
 `ggheatmap()`/`quad_layout()` at the same time? refer to the following section.

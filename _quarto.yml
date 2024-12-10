@@ -21,6 +21,7 @@ book:
     - quad-layout.qmd
     - multiple-quad-layouts.qmd
     - operator.qmd
+    - schemes.qmd
 
 bibliography: references.bib
 

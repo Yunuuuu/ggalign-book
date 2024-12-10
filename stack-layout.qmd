@@ -126,8 +126,8 @@ stack_alignv(small_mat) + # <1>
 
 When `align_dendro()` is added to the layout, it performs following actions:
 
-    1. reorder the observations.
-    2. set the active plot to the dendrogram.
+  1. reorder the observations.
+  2. set the active plot to the dendrogram.
 
 The active plot refers to the plot that subsequent ggplot2 components will
 target. In this case, the active plot is the dendrogram, and any new layers
@@ -209,10 +209,15 @@ to the layout's matrix. For layouts that align observations, a matrix is always
 required, so the data input must be in matrix form.
 ```{r}
 set.seed(123)
-stack_alignh(small_mat) +
-    align_dendro(data = ~ .x[sample(nrow(.x)), ]) +
-    theme(axis.text.y = element_text())
+stack_alignh(small_mat) +                             # <1>
+    align_dendro(data = ~ .x[sample(nrow(.x)), ]) +   # <2>
+    theme(axis.text.y = element_text())               # <3>
 ```
+  1. initialize a horizontal stack layout.
+  2. reorder the observations based on the hierarchical clustering, add a
+  dendrogram tree, and set the active plot to this plot, using self-provided
+  data function
+  3. add y-axis text to the dendrogram.
 
 Without adding another plot, it's difficult to appreciate the benefits. Let's
 now explore how to incorporate a plot.
@@ -229,12 +234,19 @@ when added to the layout.
 For `stack_align()`, plots can be added regardless of whether they need to align
 observations.
 ```{r}
-stack_alignh(small_mat) +
-    align_dendro() +
-    ggalign(data = rowSums) +
-    geom_bar(aes(value, .names), stat = "identity") +
-    theme(axis.text.y = element_text()) 
+stack_alignh(small_mat) +                              # <1>
+    align_dendro() +                                   # <2>
+    ggalign(data = rowSums) +                          # <3>
+    geom_bar(aes(value, .names), stat = "identity") +  # <4>
+    theme(axis.text.y = element_text())                # <5>
 ```
+  1. initialize a horizontal stack layout.
+  2. reorder the observations based on the hierarchical clustering, add
+  a dendrogram tree, and set the active plot to this plot.
+  3. initialize a ggplot object, and set the active plot to this plot, using
+  self-provided data function
+  4. add a bar to the plot
+  5. add y-axis text
 
 You can build the plot separately and then add it to the layout:
 ```{r}
@@ -347,7 +359,6 @@ stack_alignh(small_mat) +
     align_dendro() +
     ggalign(data = rowSums) +
     geom_bar(aes(value, .names), stat = "identity") +
-    # switch to the `align_dendro()` plot area
     stack_switch(what = 1) +
     geom_point() +
     theme(axis.text.y = element_text()) +
@@ -361,7 +372,6 @@ stack_alignh(small_mat) +
     align_dendro(active = active(name = "tree")) +
     ggalign(data = rowSums) +
     geom_bar(aes(value, .names), stat = "identity") +
-    # switch to the `align_dendro()` plot area
     stack_switch(what = "tree") +
     geom_point() +
     theme(axis.text.y = element_text()) +
