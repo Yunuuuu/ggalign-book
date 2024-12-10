@@ -28,6 +28,7 @@ book:
         - multiple-quad-layouts.qmd
         - operator.qmd
         - schemes.qmd
+        - plot-composer.qmd
 
     - part: "Advanced"
       chapters:
