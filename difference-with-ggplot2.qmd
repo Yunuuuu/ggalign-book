@@ -1,4 +1,4 @@
-# Difference-with-ggplot2
+# Difference with ggplot2
 `ggalign` focuses on aligning observations across multiple plots. While it
 builds on the `ggplot2` framework, there are key differences in how scales,
 facets, and coordinates are handled in alignment axes. This vignette highlights
