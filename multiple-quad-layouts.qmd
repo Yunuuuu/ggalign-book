@@ -21,7 +21,9 @@ plots regardless of whether alignment of observations is required.
 ```{r}
 stack_alignh(small_mat) +
     ggheatmap() +
-    ggheatmap()
+    theme(axis.text.x = element_text(hjust = -60, angle = -90)) +
+    ggheatmap() +
+    theme(axis.text.x = element_text(hjust = -60, angle = -90))
 ```
 
 When `ggheatmap()`/`quad_layout()` is added to a `stack_layout()`, it will also
