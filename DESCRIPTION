@@ -17,6 +17,7 @@ Imports:
     magick,
     seriation,
     ggh4x,
-    ComplexHeatmap
+    ComplexHeatmap,
+    maftools
 Remotes:
     Yunuuuu/ggalign

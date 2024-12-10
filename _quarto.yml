@@ -25,6 +25,9 @@ book:
         - multiple-quad-layouts.qmd
         - operator.qmd
         - schemes.qmd
+    - part: "Advanced"
+      chapters:
+        - oncoplot.qmd
 
     - part: "Cases"
       chapters:
