@@ -274,7 +274,7 @@ You can also stack plots vertically using `stack_alignv()`:
 stack_alignv(small_mat) + 
     align_dendro() +
     ggalign(data = rowSums) +
-    geom_bar(aes(value, .names), stat = "identity") +
+    geom_bar(aes(.names, value), stat = "identity") +
     theme(axis.text.y = element_text()) 
 ```
 
