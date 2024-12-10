@@ -418,7 +418,7 @@ ggheatmap(small_mat) +
     align_dendro()
 ```
 
-Note that the size of an individual plot ([@sec-stack-layout_plot_size]) does not
+Note that the size of an individual plot ([@sec-stack-layout-plot-size]) does not
 affect the total annotation stack size. You must adjust the annotation size using the
 method described above.
 

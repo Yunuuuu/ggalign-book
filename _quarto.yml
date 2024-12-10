@@ -54,3 +54,4 @@ format:
     code-annotations: hover
   pdf:
     documentclass: scrreprt
+    output-file: ggalign-book
