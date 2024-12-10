@@ -534,7 +534,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>You can further customize the layout design or add new plots in the annotation stack, as described in <span class="quarto-unresolved-ref">?sec-stack-layout</span>.</p>
+<p>You can further customize the layout design or add new plots in the annotation stack, as described in <a href="stack-layout.html" class="quarto-xref"><span>Chapter 2</span></a>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggheatmap</span>(small_mat) <span class="sc">+</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># in the heatmap body, we set the axis text theme</span></span>
@@ -569,7 +569,7 @@ annotations, we ll need a data frame for `stack_free()`.</code></pre>
 </section>
 <section id="sec-heatmap-layout-add-stack-layout" class="level2" data-number="3.5">
 <h2 data-number="3.5" class="anchored" data-anchor-id="sec-heatmap-layout-add-stack-layout"><span class="header-section-number">3.5</span> Adding stack layout</h2>
-<p>Similar to adding a plot in <code>stack_layout()</code> (<span class="quarto-unresolved-ref">?sec-stack-layout</span>), when the direction requires alignment, you can add both <code>stack_align()</code> and <code>stack_free()</code>. However, if the direction does not require alignment, you can add only <code>stack_free()</code>.</p>
+<p>Similar to adding a plot in <code>stack_layout()</code> (<a href="stack-layout.html" class="quarto-xref"><span>Chapter 2</span></a>), when the direction requires alignment, you can add both <code>stack_align()</code> and <code>stack_free()</code>. However, if the direction does not require alignment, you can add only <code>stack_free()</code>.</p>
 <p>To add a <code>stack_layout()</code> to the <code>ggheatmap()</code>, we must prevent the automatical creation of annotation by <code>quad_anno()</code> by setting <code>initialize = FALSE</code></p>
 <div class="grid">
 <div class="g-col-6">
@@ -766,7 +766,7 @@ annotations, we ll need a data frame for `stack_free()`.</code></pre>
 </div>
 </div>
 </div>
-<p>Note that the size of an individual plot (<span class="quarto-unresolved-ref">?sec-stack-layout_plot_size</span>) does not affect the total annotation stack size. You must adjust the annotation size using the method described above.</p>
+<p>Note that the size of an individual plot (<a href="stack-layout.html#sec-stack-layout-plot-size" class="quarto-xref"><span>Section 2.4</span></a>) does not affect the total annotation stack size. You must adjust the annotation size using the method described above.</p>
 <div class="grid">
 <div class="g-col-6">
 <div class="cell">
