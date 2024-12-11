@@ -66,7 +66,7 @@ ggheatmap(small_mat) + scale_x_continuous(breaks = NULL)
 
 ```{r}
 ggheatmap(small_mat, filling = FALSE) +
-    geom_tile(aes(.column_names, .row_names, fill = value)) +
+    geom_tile(aes(.discrete_x, .discrete_y, fill = value)) +
     scale_x_discrete(breaks = NULL)
 ```
 
@@ -80,7 +80,7 @@ ggheatmap(small_mat) +
 
 ```{r}
 ggheatmap(small_mat, filling = FALSE) +
-    geom_tile(aes(.column_names, .row_names, fill = value)) +
+    geom_tile(aes(.discrete_x, .discrete_y, fill = value)) +
     scale_x_discrete(breaks = c("column3", "column5")) +
     anno_top() +
     align_dendro(k = 3L)
@@ -96,7 +96,7 @@ ggheatmap(small_mat) +
 
 ```{r}
 ggheatmap(small_mat, filling = FALSE) +
-    geom_tile(aes(.column_names, .row_names, fill = value)) +
+    geom_tile(aes(.discrete_x, .discrete_y, fill = value)) +
     scale_x_discrete(breaks = c(3, 5)) +
     anno_top() +
     align_dendro(k = 3L)

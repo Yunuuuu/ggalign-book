@@ -68,7 +68,7 @@ ggheatmap(small_mat) +
     # add a dendrogram to the top annotation
     align_dendro() +
     # add a bar plot to the top annotation
-    ggalign(aes(.names, value, fill = factor(.names)), data = rowSums) +
+    ggalign(aes(.discrete_x, value, fill = factor(.names)), data = rowSums) +
     geom_bar(stat = "identity") -
     # Change the default theme of the top annotation
     # All plots in the top annotation will inherit this default theme
@@ -89,7 +89,7 @@ ggheatmap(small_mat) +
     # change the scheme_theme for the dendrogram plot
     scheme_theme(plot.background = element_rect(fill = "blue")) +
     # add a bar plot to the top annotation
-    ggalign(aes(.names, value, fill = factor(.names)), data = rowSums) +
+    ggalign(aes(.discrete_x, value, fill = factor(.names)), data = rowSums) +
     geom_bar(stat = "identity") -
     # Change the default theme of the top annotation
     # All plots in the top annotation will inherit this default theme

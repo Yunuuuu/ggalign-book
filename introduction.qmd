@@ -119,7 +119,7 @@ dendrogram, and other plots in the layout will follow this ordering.
 stack_alignv(small_mat) +                             # <1>
     align_dendro() +                                  # <2>
     ggalign(data = rowSums) +                         # <3>
-    geom_bar(aes(.names, value), stat = "identity") + # <4>
+    geom_bar(aes(.discrete_x, value), stat = "identity") + # <4>
     theme(axis.text.y = element_text())               # <5>
 ```
   1. We initialize a vertical stack.
@@ -135,20 +135,22 @@ least following columns (more details will be introduced in the [@sec-ggalign]):
 
  - `.panel`: the group panel for the aligned axis. It means `x-axis` for
  vertical stack layout, `y-axis` for horizontal stack layout.
- - `.x` or `.y`: the `x` or `y` coordinates
- - `.names` and `.index`: A factor of the names (only applicable when names
- exists) and an integer of index of the original data.
+ - `.x`/`y` and `.discrete_x`/`.discrete_y`: an integer index of `x`/`y`
+   coordinates and a factor of the data labels (only applicable when names
+   exists).
+ - `.names` and `.index`: A character names (only applicable when names exists)
+ and an integer of index of the original data.
  - `value`: the actual value (only applicable if `data` is a `matrix` or
    atomic vector).
 
-It is recommended to use `.x`/`.y`, or `.names` as the x/y mapping. 
+It is recommended to use `.x`/`.y`, or `.discrete_x`/`.discrete_y` as the `x`/`y` mapping.
 
 `align_dendro()` can also split the observations into groups. 
 ```{r}
 stack_alignv(small_mat) +                                             # <1>
     align_dendro(k = 3) +                                             # <2>
     ggalign(data = rowSums) +                                         # <3>
-    geom_bar(aes(.names, value, fill = .panel), stat = "identity") +  # <4>
+    geom_bar(aes(.discrete_x, value, fill = .panel), stat = "identity") +  # <4>
     scale_fill_brewer(palette = "Dark2", name = "Group") +            # <5>
     theme(axis.text.y = element_text())                               # <6>
 ```

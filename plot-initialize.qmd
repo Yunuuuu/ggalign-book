@@ -39,12 +39,16 @@ The data in the underlying `ggplot` object will contain following columns:
 
   - `.panel`: the panel for the aligned axis. It means `x-axis` for vertical
     stack layout (including top and bottom annotation), `y-axis` for
-    horizontal stack layout (including left and right annotation). 
+    horizontal stack layout (including left and right annotation).
 
-  - `.x` or `.y`: the `x` or `y` coordinates.
+  - `.x`/`y` and `.discrete_x`/`.discrete_y`: an integer index of `x`/`y`
+    coordinates and a factor of the data labels (only applicable when names
+    exists).
 
-  - `.names` and `.index`: A factor of the names (only applicable when names
-  exists) and an integer of index of the original data.
+  - `.names` ([`vec_names()`][vctrs::vec_names]) and `.index`
+    ([`vec_size()`][vctrs::vec_size()]/[`NROW()`]): a character names (only
+    applicable when names exists) and an integer of index of the original
+    data.
 
   - `.row_names` and `.row_index`: the row names and an integer of
     row index of the original matrix (only applicable if `data` is a
@@ -56,7 +60,7 @@ The data in the underlying `ggplot` object will contain following columns:
   - `value`: the actual value (only applicable if `data` is a `matrix` or
     atomic vector).
 
->It is recommended to use `.x`/`.y`, or `.names` as the `x`/`y` mapping.
+>It is recommended to use `.x`/`.y`, or `.discrete_x`/`.discrete_y` as the `x`/`y` mapping.
 
 ```{r}
 ggheatmap(small_mat) +
@@ -66,9 +70,9 @@ ggheatmap(small_mat) +
 ```
 
 In the case where the input data is already a data frame, following columns
-(`.x`/`.y`, `.names`, `.index`, and `.panel`) will be added to the data frame
-if applicable. Note, `NROW(data)` must match the `number of observations` along
-the axis used for alignment.
+(`.panel`, `.index`, `.names`, `.x`/`.y`, `.discrete_x`/`.discrete_y`) are added
+to the data frame. Note, `NROW(data)` must match the `number of observations`
+along the axis used for alignment.
 ```{r}
 my_df <- mtcars[seq_len(ncol(small_mat)), ]
 ggheatmap(small_mat) +
