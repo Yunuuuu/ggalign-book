@@ -76,8 +76,8 @@ serves as the base version of `ggheatmap()`/`heatmap_layout()` and does not
 automatically add default layers or mappings.
 
 The underlying `ggplot` data of the main plot is the same with
-`ggheatmap()`/`heatmap_layout()`, it is recommended to use `.y`, or `.row_names`
-as the `y` mapping and use `.x` or `.column_names` as the `x` mapping in the
+`ggheatmap()`/`heatmap_layout()`, it is recommended to use `.y`, or `.discrete_y`
+as the `y` mapping and use `.x` or `.discrete_x` as the `x` mapping in the
 main plot.
 
 ```{r}
@@ -91,8 +91,8 @@ quad_alignb(small_mat, aes(.x, .y)) +
 observations vertically.
 
 The underlying `ggplot` data is the same with `ggheatmap()`/`heatmap_layout()`,
-it is recommended to use `.y`, or `.row_names` as the `y` mapping in the main
-plot for `quad_alignh()` but use `.x` or `.column_names` as the `x` mapping in
+it is recommended to use `.y`, or `.discrete_y` as the `y` mapping in the main
+plot for `quad_alignh()` but use `.x` or `.discrete_x` as the `x` mapping in
 the main plot for `quad_alignv()`.
 
 ::: {.grid}
@@ -100,7 +100,7 @@ the main plot for `quad_alignv()`.
 ::: {.g-col-6}
 ```{r}
 quad_alignh(small_mat) +
-    geom_boxplot(aes(value, .row_names, fill = .row_names)) +
+    geom_boxplot(aes(value, .discrete_y, fill = .row_names)) +
     scale_fill_brewer(palette = "Dark2") +
     layout_title("quad_alignh()")
 ```
@@ -109,7 +109,7 @@ quad_alignh(small_mat) +
 ::: {.g-col-6}
 ```{r}
 quad_alignv(small_mat) +
-    geom_boxplot(aes(.column_names, value, fill = .column_names)) +
+    geom_boxplot(aes(.discrete_x, value, fill = .column_names)) +
     scale_fill_brewer(palette = "Dark2") +
     layout_title("quad_alignv()")
 ```
@@ -149,7 +149,7 @@ quadh +
     ggfree(mapping = aes(displ, hwy, colour = class)) +
     geom_point(aes(displ, hwy, colour = class)) +
     quad_active() +
-    geom_boxplot(aes(value, .row_names, fill = .row_names)) +
+    geom_boxplot(aes(value, .discrete_y, fill = .row_names)) +
     scale_fill_brewer(palette = "Dark2")+
     layout_title("quad_alignh()")
 ```
@@ -163,7 +163,7 @@ quadv +
     ggfree(mapping = aes(displ, hwy, colour = class)) +
     geom_point(aes(displ, hwy, colour = class)) +
     quad_active() +
-    geom_boxplot(aes(.column_names, value, fill = .column_names)) +
+    geom_boxplot(aes(.discrete_x, value, fill = .column_names)) +
     scale_fill_brewer(palette = "Dark2") +
     layout_title("quad_alignv()")
 ```
@@ -180,7 +180,7 @@ each plot within the annotation.
 ::: {.g-col-6}
 ```{r}
 quad_alignh(small_mat) +
-    geom_boxplot(aes(value, .row_names, fill = .row_names)) +
+    geom_boxplot(aes(value, .discrete_y, fill = .row_names)) +
     scale_fill_brewer(palette = "Dark2") +
     anno_top(initialize = TRUE) +
     ggfree(data = mpg, aes(displ, hwy, colour = class)) +
@@ -192,7 +192,7 @@ quad_alignh(small_mat) +
 ::: {.g-col-6}
 ```{r}
 quad_alignv(small_mat) +
-    geom_boxplot(aes(.column_names, value, fill = .column_names)) +
+    geom_boxplot(aes(.discrete_x, value, fill = .column_names)) +
     scale_fill_brewer(palette = "Dark2") +
     anno_left(initialize = TRUE) +
     ggfree(data = mpg, aes(displ, hwy, colour = class)) +

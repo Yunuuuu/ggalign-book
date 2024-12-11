@@ -122,7 +122,7 @@ which `quad_layout()` are compatible with `stack_free()`:
 
 ```{r}
 alignh_quad_plot <- quad_alignh(small_mat) +
-    geom_boxplot(aes(value, .row_names, fill = .row_names)) +
+    geom_boxplot(aes(value, .discrete_y, fill = .row_names)) +
     scale_fill_brewer(palette = "Dark2")
 stack_freev() +
     alignh_quad_plot +
