@@ -358,14 +358,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The data in the underlying <code>ggplot</code> object will contain following columns:</p>
 <ul>
 <li><p><code>.panel</code>: the panel for the aligned axis. It means <code>x-axis</code> for vertical stack layout (including top and bottom annotation), <code>y-axis</code> for horizontal stack layout (including left and right annotation).</p></li>
-<li><p><code>.x</code> or <code>.y</code>: the <code>x</code> or <code>y</code> coordinates.</p></li>
-<li><p><code>.names</code> and <code>.index</code>: A factor of the names (only applicable when names exists) and an integer of index of the original data.</p></li>
+<li><p><code>.x</code>/<code>y</code> and <code>.discrete_x</code>/<code>.discrete_y</code>: an integer index of <code>x</code>/<code>y</code> coordinates and a factor of the data labels (only applicable when names exists).</p></li>
+<li><p><code>.names</code> ([<code>vec_names()</code>][vctrs::vec_names]) and <code>.index</code> ([<code>vec_size()</code>][vctrs::vec_size()]/[<code>NROW()</code>]): a character names (only applicable when names exists) and an integer of index of the original data.</p></li>
 <li><p><code>.row_names</code> and <code>.row_index</code>: the row names and an integer of row index of the original matrix (only applicable if <code>data</code> is a <code>matrix</code>).</p></li>
 <li><p><code>.column_names</code> and <code>.column_index</code>: the column names and column index of the original matrix (only applicable if <code>data</code> is a <code>matrix</code>).</p></li>
 <li><p><code>value</code>: the actual value (only applicable if <code>data</code> is a <code>matrix</code> or atomic vector).</p></li>
 </ul>
 <blockquote class="blockquote">
-<p>It is recommended to use <code>.x</code>/<code>.y</code>, or <code>.names</code> as the <code>x</code>/<code>y</code> mapping.</p>
+<p>It is recommended to use <code>.x</code>/<code>.y</code>, or <code>.discrete_x</code>/<code>.discrete_y</code> as the <code>x</code>/<code>y</code> mapping.</p>
 </blockquote>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggheatmap</span>(small_mat) <span class="sc">+</span></span>
@@ -381,7 +381,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>In the case where the input data is already a data frame, following columns (<code>.x</code>/<code>.y</code>, <code>.names</code>, <code>.index</code>, and <code>.panel</code>) will be added to the data frame if applicable. Note, <code>NROW(data)</code> must match the <code>number of observations</code> along the axis used for alignment.</p>
+<p>In the case where the input data is already a data frame, following columns (<code>.panel</code>, <code>.index</code>, <code>.names</code>, <code>.x</code>/<code>.y</code>, <code>.discrete_x</code>/<code>.discrete_y</code>) are added to the data frame. Note, <code>NROW(data)</code> must match the <code>number of observations</code> along the axis used for alignment.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>my_df <span class="ot">&lt;-</span> mtcars[<span class="fu">seq_len</span>(<span class="fu">ncol</span>(small_mat)), ]</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggheatmap</span>(small_mat) <span class="sc">+</span></span>
