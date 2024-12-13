@@ -62,7 +62,7 @@ data frame, or any other data type that can be converted into a matrix using
 ggheatmap(small_mat)
 ```
 
-## Main plot (heatmap body)
+## Main plot (heatmap body) {#sec-heatmap-layout-main-plot}
 The `ggheatmap()`/`quad_layout()` functions arrange plots in the Quad-Side layout of
 the main plot. When the layout is initialized, a `ggplot` object is automatically
 created for the main plot.

@@ -76,9 +76,9 @@ serves as the base version of `ggheatmap()`/`heatmap_layout()` and does not
 automatically add default layers or mappings.
 
 The underlying `ggplot` data of the main plot is the same with
-`ggheatmap()`/`heatmap_layout()`, it is recommended to use `.y`, or `.discrete_y`
-as the `y` mapping and use `.x` or `.discrete_x` as the `x` mapping in the
-main plot.
+`ggheatmap()`/`heatmap_layout()` (@sec-heatmap-layout-main-plot), it is
+recommended to use `.y`, or `.discrete_y` as the `y` mapping and use `.x` or
+`.discrete_x` as the `x` mapping in the main plot.
 
 ```{r}
 quad_alignb(small_mat, aes(.x, .y)) +
@@ -206,7 +206,7 @@ quad_alignv(small_mat) +
 ## `quad_free()`
 `quad_free()` does not align observations and is functionally equivalent to the
 [ggside](https://cran.r-project.org/package=ggside) package. For convenience,
-`ggside()` is provided as an alias for quad_free(). This layout is particularly
+`ggside()` is provided as an alias for `quad_free()`. This layout is particularly
 useful for adding metadata or summary graphics along a continuous axis.
 
 ```{r}
