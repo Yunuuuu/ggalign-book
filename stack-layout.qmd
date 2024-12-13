@@ -1,7 +1,6 @@
 # stack layout {#sec-stack-layout}
-`stack_layout()` arranges plots either horizontally or vertically, and we can
-also use the alias `ggstack()`. Based on whether we want to align the
-observations, there are two types of stack layouts:
+`stack_layout()` arranges plots either horizontally or vertically. Based on
+whether we want to align the observations, there are two types of stack layouts:
 
   - `stack_align()`: align the observations along the stack.
   - `stack_free()`: don't align the observations.
