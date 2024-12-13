@@ -372,7 +372,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>For <code>stack_free()</code>, a data frame is required, and the input will be automatically converted using <code>fortify_data_frame()</code> if needed.</li>
 <li>For <code>stack_align()</code>, a matrix is required, and the input will be automatically converted using <code>fortify_matrix()</code> if needed.</li>
 </ul>
-<p>By default, <code>fortify_data_frame()</code> will invoke the <code>ggplot2::fortify()</code> function for conversion. Note, for matrix, it will be converted to a long-formatted data frame.</p>
+<p>By default, <code>fortify_data_frame()</code> will invoke the <code>ggplot2::fortify()</code> function for conversion. Note, for matrix, it will be converted to a long-formatted data frame which is different from the <code>ggplot2::fortify()</code>.</p>
 <p><code>stack_align()</code>/<code>stack_free()</code> will set up the layout, but no plot will be drawn until you add a plot element:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="annotated-cell-2"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><button class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="1">1</button><span id="annotated-cell-2-1" class="code-annotation-target"><a href="#annotated-cell-2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stack_alignh</span>(small_mat) <span class="sc">+</span></span>
@@ -402,7 +402,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>In this example, we use <code>layout_annotation()</code> to insert a plot background in the entire layout, it can be also used to control the theme of title, subtitle, caption (<code>layout_title()</code>), guides, margins, panel.border.</p>
+<p>In this example, we use <code>layout_annotation()</code> to insert a plot background in the entire layout, it can be also used to control the theme of title, subtitle, caption (<code>layout_title()</code>), guides, margins, panel.border, panel.spacing.</p>
 </section>
 <section id="sec-stack-layout-layout-customize" class="level2" data-number="2.2">
 <h2 data-number="2.2" class="anchored" data-anchor-id="sec-stack-layout-layout-customize"><span class="header-section-number">2.2</span> Layout Customize</h2>
@@ -794,7 +794,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="sec-stack-layout-active-plot" class="level2" data-number="2.5">
 <h2 data-number="2.5" class="anchored" data-anchor-id="sec-stack-layout-active-plot"><span class="header-section-number">2.5</span> active plot</h2>
-<p>As mentioned earlier, the active plot refers to the plot that subsequent ggplot2 components will target. The package provide two functions to work with active plot.</p>
+<p>As mentioned earlier, the active plot refers to the plot that subsequent ggplot2 components will target. The package provide two functions to work with active plot for <code>stack_layout</code>.</p>
 <ul>
 <li><code>stack_switch()</code>: switch the active context</li>
 <li><code>stack_active()</code>: An alias for <code>stack_switch()</code>, which sets <code>what = NULL</code></li>
@@ -842,7 +842,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>In the example, we use <code>layout_title()</code> to insert a title for the entire layout. Alternatively, you can add a title to a single plot with <code>ggtitle()</code>.</p>
-<p>By setting <code>what = NULL</code> (or alias <code>stack_active()</code>), we remove the active plot. This is particularly useful when the active plot is a nested <code>Layout</code> object, as any additions would otherwise be directed to that nested <code>Layout</code>. By removing the active plot, you can continue adding components directly to the <code>StackLayout</code>.</p>
+<p>By setting <code>what = NULL</code> (or alias <code>stack_active()</code>), we remove the active plot. This is particularly useful when the active plot is a nested <code>Layout</code> object, as any additions would otherwise be directed to that nested <code>Layout</code>. By removing the active plot, you can continue adding components directly to the <code>StackLayout</code>. We’ll introduce the nested layout of <code>StackLayout</code> in <a href="multiple-quad-layouts.html" class="quarto-xref"><span>Chapter 7</span></a>.</p>
 <p>In the next chapter, we will dive into the <code>HeatmapLayout</code>, which can take the <code>StackLayout</code> as input. Heatmap layouts offer additional features for aligning observations in both directions. Let’s move ahead and explore how heatmaps can be seamlessly integrated into your layout workflows.</p>
 
 
