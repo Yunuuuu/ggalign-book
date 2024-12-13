@@ -304,9 +304,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#cross-panel-sumamry" id="toc-cross-panel-sumamry" class="nav-link" data-scroll-target="#cross-panel-sumamry"><span class="header-section-number">5.1.1</span> Cross panel sumamry</a></li>
   </ul></li>
   <li><a href="#free_ggggfree" id="toc-free_ggggfree" class="nav-link" data-scroll-target="#free_ggggfree"><span class="header-section-number">5.2</span> <code>free_gg()</code>/<code>ggfree()</code></a></li>
-  <li><a href="#ggwrap-and-inset" id="toc-ggwrap-and-inset" class="nav-link" data-scroll-target="#ggwrap-and-inset"><span class="header-section-number">5.3</span> <code>ggwrap()</code> and <code>inset()</code></a></li>
-  <li><a href="#sec-align-dendro" id="toc-sec-align-dendro" class="nav-link" data-scroll-target="#sec-align-dendro"><span class="header-section-number">5.4</span> <code>align_dendro()</code></a></li>
-  <li><a href="#plot-titles" id="toc-plot-titles" class="nav-link" data-scroll-target="#plot-titles"><span class="header-section-number">5.5</span> Plot titles</a></li>
+  <li><a href="#align_link-and-align_range" id="toc-align_link-and-align_range" class="nav-link" data-scroll-target="#align_link-and-align_range"><span class="header-section-number">5.3</span> <code>align_link()</code> and <code>align_range()</code></a></li>
+  <li><a href="#ggwrap-and-inset" id="toc-ggwrap-and-inset" class="nav-link" data-scroll-target="#ggwrap-and-inset"><span class="header-section-number">5.4</span> <code>ggwrap()</code> and <code>inset()</code></a></li>
+  <li><a href="#sec-align-dendro" id="toc-sec-align-dendro" class="nav-link" data-scroll-target="#sec-align-dendro"><span class="header-section-number">5.5</span> <code>align_dendro()</code></a></li>
+  <li><a href="#plot-titles" id="toc-plot-titles" class="nav-link" data-scroll-target="#plot-titles"><span class="header-section-number">5.6</span> Plot titles</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/Yunuuuu/ggalign-book/edit/main/plot-initialize.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/Yunuuuu/ggalign-book/blob/main/plot-initialize.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li><li><a href="https://github.com/Yunuuuu/ggalign-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -335,6 +336,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>There are three primary functions for adding plots:</p>
 <ul>
 <li><code>align_gg()</code>/<code>ggalign()</code>: Create a ggplot object and aligns the observation.</li>
+<li><code>align_line()</code>/<code>align_range()</code>: Add a plot to annotate selected observations.</li>
 <li><code>free_gg()</code>/<code>ggfree()</code>: Create a ggplot object without aligning the observation.</li>
 <li><code>align_dendro()</code>: Create a ggplot object of dendrogram tree, and align the observation. In addition, it can reorder and group the observations.</li>
 </ul>
@@ -398,12 +400,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>You may wonder if the strict data requirements will prevent us from preparing the data for plotting. Don’t worry! In the later chapters, I’ll introduce powerful way to prepare data for your plots.</p>
-<p>If <code>data = NULL</code>, the data in the underlying <code>ggplot</code> object contains following columns:</p>
-<ul>
-<li><code>.panel</code>: the panel for the axis used for alignment.</li>
-<li><code>.index</code>: the index of the original layout data.</li>
-<li><code>.x</code> or <code>.y</code>: the <code>x</code> or <code>y</code> coordinates</li>
-</ul>
+<p>If <code>data = NULL</code>, the data in the underlying <code>ggplot</code> object contains following columns: <code>.panel</code>, <code>.index</code>, <code>.names</code>, <code>.x</code>/<code>.y</code>, <code>.discrete_x</code>/<code>.discrete_y</code>.</p>
 <p>You can use it to integrate additional elements, such as block annotation or customized panel title, into your layout.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggheatmap</span>(small_mat) <span class="sc">+</span></span>
@@ -493,8 +490,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="ggwrap-and-inset" class="level2" data-number="5.3">
-<h2 data-number="5.3" class="anchored" data-anchor-id="ggwrap-and-inset"><span class="header-section-number">5.3</span> <code>ggwrap()</code> and <code>inset()</code></h2>
+<section id="align_link-and-align_range" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="align_link-and-align_range"><span class="header-section-number">5.3</span> <code>align_link()</code> and <code>align_range()</code></h2>
+<p>waiting from document</p>
+</section>
+<section id="ggwrap-and-inset" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="ggwrap-and-inset"><span class="header-section-number">5.4</span> <code>ggwrap()</code> and <code>inset()</code></h2>
 <p>The <code>ggwrap()</code> function allows you to wrap objects that can be converted into a grob, turning them into a <code>ggplot</code> for plotting. Further you can still add ggplot elements like title, subtitle, tag, caption, and geoms using the same approach as with normal ggplots (using <code>ggtitle()</code>, <code>labs()</code>, <code>geom_*()</code>) as well as styling using <code>theme()</code>. This enables you to pass these wrapped objects into <code>ggfree()</code>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(grid)</span>
@@ -533,8 +534,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="sec-align-dendro" class="level2" data-number="5.4">
-<h2 data-number="5.4" class="anchored" data-anchor-id="sec-align-dendro"><span class="header-section-number">5.4</span> <code>align_dendro()</code></h2>
+<section id="sec-align-dendro" class="level2" data-number="5.5">
+<h2 data-number="5.5" class="anchored" data-anchor-id="sec-align-dendro"><span class="header-section-number">5.5</span> <code>align_dendro()</code></h2>
 <p><code>align_dendro()</code> is an extension of <code>align_hclust()</code> that adds a dendrogram to the layout. All functions of <code>align_hclust()</code> introduced in <a href="layout-customize.html#sec-align_hclust" class="quarto-xref"><span>Section 4.4</span></a> can be used with <code>align_dendro()</code>. Here, we focus on the plot-related function.</p>
 <p><code>align_dendro()</code> will initialize a ggplot object, the data underlying the ggplot object contains the dendrogram <code>node</code> data with dendrogram <code>edge</code> data attached in a special attribute.</p>
 <p>dendrogram <code>node</code> and <code>edge</code> contains following columns: - <code>index</code>: the original index in the tree for the current node - <code>label</code>: node label text - <code>x</code> and <code>y</code>: x-axis and y-axis coordinates for current node or the start node of the current edge. - <code>xend</code> and <code>yend</code>: the x-axis and y-axis coordinates of the terminal node for current edge. - <code>branch</code>: which branch current node or edge is. You can use this column to color different groups. - <code>leaf</code>: A logical value indicates whether current node is a leaf.</p>
@@ -631,8 +632,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="plot-titles" class="level2" data-number="5.5">
-<h2 data-number="5.5" class="anchored" data-anchor-id="plot-titles"><span class="header-section-number">5.5</span> Plot titles</h2>
+<section id="plot-titles" class="level2" data-number="5.6">
+<h2 data-number="5.6" class="anchored" data-anchor-id="plot-titles"><span class="header-section-number">5.6</span> Plot titles</h2>
 <p><code>ggplot2</code> only allow add titles in the top or add caption in the bottom. we extends this capability, allowing you to place titles around any border of the plot using the <code>patch_titles()</code> function.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggheatmap</span>(small_mat) <span class="sc">+</span></span>
