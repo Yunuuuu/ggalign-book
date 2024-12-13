@@ -199,7 +199,7 @@ ggheatmap(small_mat) +
 
 Method to perform hierarchical clustering can be specified by `method`. Possible
 methods are those supported in `hclust()` function. And you can also provide a
-self-defined function, which accepts the distance object and return a `hclust`
+self-defined function, which accepts the `distance` object and return a `hclust`
 object.
 
 ```{r}
@@ -222,13 +222,13 @@ setting `reorder_dendrogram = TRUE`.
 ```{r}
 #| fig.width: 10
 h1 <- ggheatmap(small_mat) +
+    ggtitle("reorder_dendrogram = TRUE") +
     anno_top() +
-    align_hclust(k = 3, reorder_dendrogram = TRUE) +
-    layout_title("reorder_dendrogram = TRUE")
+    align_hclust(k = 3, reorder_dendrogram = TRUE)
 h2 <- ggheatmap(small_mat) +
+    ggtitle("reorder_dendrogram = FALSE") +
     anno_top() +
-    align_hclust(k = 3) +
-    layout_title("reorder_dendrogram = FALSE")
+    align_hclust(k = 3)
 align_plots(h1, h2)
 ```
 
