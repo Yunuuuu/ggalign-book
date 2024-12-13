@@ -79,11 +79,17 @@ typical workflow includes:
    - `align_kmeans()`: Group observations into panel by kmeans.
    - `align_order()`: Reorder layout observations based on statistical weights
    or by manually specifying the observation index.
-   - `align_hclust()`: Reorder or group observations based on
-   hierarchical clustering.
+   - `align_hclust()`: Reorder or group observations based on hierarchical
+   clustering.
    - `align_reorder`: Reorder observations using an arbitrary statistical function.
- 3. Adding plots with `align_dendro()`, `ggalign()` or `ggfree()`, and then layer additional
-   ggplot2 elements such as geoms, stats, or scales.
+ 3. Adding plots with 
+   - `ggfree()`: Initialize a ggplot object without aligning the observations.
+   - `ggalign()`: Initialize a ggplot object and align the observations.
+   - `align_dendro()`: Add a dendrogram to the plot, and reorder or group
+   observations based on hierarchical clustering.
+   - `align_line()`/`align_range()`: Add a plot to annotate selected observations.
+   - `ggcross()`: Initialize a ggplot object to connect two different layout crosswise.
+ 4. Layer additional `ggplot2` elements such as geoms, stats, or scales.
 
 ```{r}
 set.seed(123)
@@ -143,7 +149,7 @@ least following columns (more details will be introduced in the [@sec-ggalign]):
  - `value`: the actual value (only applicable if `data` is a `matrix` or
    atomic vector).
 
-It is recommended to use `.x`/`.y`, or `.discrete_x`/`.discrete_y` as the `x`/`y` mapping.
+>It is recommended to use `.x`/`.y`, or `.discrete_x`/`.discrete_y` as the `x`/`y` mapping.
 
 `align_dendro()` can also split the observations into groups. 
 ```{r}
