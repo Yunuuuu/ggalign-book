@@ -1,4 +1,4 @@
-# Operators
+# Operators {#sec-operators}
 
 In `ggalign`, operators are used to manage and manipulate the plot elements in
 various layouts. These operators help you build complex visualizations by

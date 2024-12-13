@@ -253,10 +253,10 @@ ggside(i2, aes(Sepal.Width, Sepal.Length, color = Species)) +
 If an annotation contains multiple plots, it can be tedious to add the same
 element to each one individually. One way to simplify this is by creating an
 external `stack_layout()` and adding the desired elements using the `&`
-operator. Then, you can add this `stack_layout()` to the `quad_layout()`. In a
-later chapter, I will introduce another operator that seamlessly combines with
-the `+` operator, allowing you to add elements to multiple plots at once.
-
+operator. Then, you can add this `stack_layout()` to the `quad_layout()`. In
+@sec-operators, I will introduce another more powerful operator that seamlessly
+combines with the `+` operator, allowing you to add elements to multiple plots
+at once.
 
 In the next chapter, we will explore even more advanced techniques for combining
 multiple `quad_layout()`s. These methods will provide you with the tools to manage
