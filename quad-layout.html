@@ -437,7 +437,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="quad_alignb" class="level2" data-number="6.3">
 <h2 data-number="6.3" class="anchored" data-anchor-id="quad_alignb"><span class="header-section-number">6.3</span> <code>quad_alignb()</code></h2>
 <p><code>quad_alignb()</code> aligns observations in both horizontal and vertical directions. It serves as the base version of <code>ggheatmap()</code>/<code>heatmap_layout()</code> and does not automatically add default layers or mappings.</p>
-<p>The underlying <code>ggplot</code> data of the main plot is the same with <code>ggheatmap()</code>/<code>heatmap_layout()</code>, it is recommended to use <code>.y</code>, or <code>.discrete_y</code> as the <code>y</code> mapping and use <code>.x</code> or <code>.discrete_x</code> as the <code>x</code> mapping in the main plot.</p>
+<p>The underlying <code>ggplot</code> data of the main plot is the same with <code>ggheatmap()</code>/<code>heatmap_layout()</code> (<a href="heatmap-layout.html#sec-heatmap-layout-main-plot" class="quarto-xref"><span>Section 3.2</span></a>), it is recommended to use <code>.y</code>, or <code>.discrete_y</code> as the <code>y</code> mapping and use <code>.x</code> or <code>.discrete_x</code> as the <code>x</code> mapping in the main plot.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quad_alignb</span>(small_mat, <span class="fu">aes</span>(.x, .y)) <span class="sc">+</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_tile</span>(<span class="fu">aes</span>(<span class="at">fill =</span> value)) <span class="sc">+</span></span>
@@ -589,7 +589,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="quad_free" class="level2" data-number="6.5">
 <h2 data-number="6.5" class="anchored" data-anchor-id="quad_free"><span class="header-section-number">6.5</span> <code>quad_free()</code></h2>
-<p><code>quad_free()</code> does not align observations and is functionally equivalent to the <a href="https://cran.r-project.org/package=ggside">ggside</a> package. For convenience, <code>ggside()</code> is provided as an alias for quad_free(). This layout is particularly useful for adding metadata or summary graphics along a continuous axis.</p>
+<p><code>quad_free()</code> does not align observations and is functionally equivalent to the <a href="https://cran.r-project.org/package=ggside">ggside</a> package. For convenience, <code>ggside()</code> is provided as an alias for <code>quad_free()</code>. This layout is particularly useful for adding metadata or summary graphics along a continuous axis.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggside</span>(mpg, <span class="fu">aes</span>(displ, hwy, <span class="at">colour =</span> class)) <span class="sc">+</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
@@ -642,7 +642,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>If an annotation contains multiple plots, it can be tedious to add the same element to each one individually. One way to simplify this is by creating an external <code>stack_layout()</code> and adding the desired elements using the <code>&amp;</code> operator. Then, you can add this <code>stack_layout()</code> to the <code>quad_layout()</code>. In a later chapter, I will introduce another operator that seamlessly combines with the <code>+</code> operator, allowing you to add elements to multiple plots at once.</p>
+<p>If an annotation contains multiple plots, it can be tedious to add the same element to each one individually. One way to simplify this is by creating an external <code>stack_layout()</code> and adding the desired elements using the <code>&amp;</code> operator. Then, you can add this <code>stack_layout()</code> to the <code>quad_layout()</code>. In <a href="operator.html" class="quarto-xref"><span>Chapter 8</span></a>, I will introduce another more powerful operator that seamlessly combines with the <code>+</code> operator, allowing you to add elements to multiple plots at once.</p>
 <p>In the next chapter, we will explore even more advanced techniques for combining multiple <code>quad_layout()</code>s. These methods will provide you with the tools to manage more complex plot arrangements and make your visualizations even more flexible and powerful.</p>
 
 
