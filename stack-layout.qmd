@@ -66,7 +66,7 @@ simultaneously.
 
 By default, `fortify_data_frame()` will invoke the `ggplot2::fortify()` function
 for conversion. Note, for matrix, it will be converted to a long-formatted data
-frame.
+frame which is different from the `ggplot2::fortify()`.
 
 `stack_align()`/`stack_free()` will set up the layout, but no plot will be drawn
 until you add a plot element:
@@ -87,7 +87,7 @@ stack_alignh(small_mat) +                                                    # <
 
 In this example, we use `layout_annotation()` to insert a plot background in the
 entire layout, it can be also used to control the theme of title,
-subtitle, caption (`layout_title()`), guides, margins, panel.border.
+subtitle, caption (`layout_title()`), guides, margins, panel.border, panel.spacing.
 
 ## Layout Customize {#sec-stack-layout-layout-customize}
 When we use `stack_align()`, it aligns the observations across multiple plots
@@ -336,7 +336,8 @@ stack_freev(mpg) +
 
 ## active plot {#sec-stack-layout-active-plot}
 As mentioned earlier, the active plot refers to the plot that subsequent ggplot2
-components will target. The package provide two functions to work with active plot.
+components will target. The package provide two functions to work with active
+plot for `stack_layout`.
 
   - `stack_switch()`: switch the active context
   - `stack_active()`: An alias for `stack_switch()`, which sets `what = NULL`
@@ -385,8 +386,10 @@ Alternatively, you can add a title to a single plot with `ggtitle()`.
 
 By setting `what = NULL` (or alias `stack_active()`), we remove the active plot.
 This is particularly useful when the active plot is a nested `Layout` object, as
-any additions would otherwise be directed to that nested `Layout`. By removing the
-active plot, you can continue adding components directly to the `StackLayout`.
+any additions would otherwise be directed to that nested `Layout`. By removing
+the active plot, you can continue adding components directly to the
+`StackLayout`. We'll introduce the nested layout of `StackLayout` in
+@sec-multiple-quad-layouts.
 
 In the next chapter, we will dive into the `HeatmapLayout`, which can take the
 `StackLayout` as input. Heatmap layouts offer additional features for aligning
