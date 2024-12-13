@@ -405,7 +405,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><code>align_reorder</code>: Reorder observations using an arbitrary statistical function.</li>
 </ul>
 <ol start="3" type="1">
-<li>Adding plots with <code>align_dendro()</code>, <code>ggalign()</code> or <code>ggfree()</code>, and then layer additional ggplot2 elements such as geoms, stats, or scales.</li>
+<li>Adding plots with</li>
+</ol>
+<ul>
+<li><code>ggfree()</code>: Initialize a ggplot object without aligning the observations.</li>
+<li><code>ggalign()</code>: Initialize a ggplot object and align the observations.</li>
+<li><code>align_dendro()</code>: Add a dendrogram to the plot, and reorder or group observations based on hierarchical clustering.</li>
+<li><code>align_line()</code>/<code>align_range()</code>: Add a plot to annotate selected observations.</li>
+<li><code>ggcross()</code>: Initialize a ggplot object to connect two different layout crosswise.</li>
+</ul>
+<ol start="4" type="1">
+<li>Layer additional <code>ggplot2</code> elements such as geoms, stats, or scales.</li>
 </ol>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
@@ -490,7 +500,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><code>.names</code> and <code>.index</code>: A character names (only applicable when names exists) and an integer of index of the original data.</li>
 <li><code>value</code>: the actual value (only applicable if <code>data</code> is a <code>matrix</code> or atomic vector).</li>
 </ul>
+<blockquote class="blockquote">
 <p>It is recommended to use <code>.x</code>/<code>.y</code>, or <code>.discrete_x</code>/<code>.discrete_y</code> as the <code>x</code>/<code>y</code> mapping.</p>
+</blockquote>
 <p><code>align_dendro()</code> can also split the observations into groups.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="annotated-cell-8"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><button class="code-annotation-anchor" data-target-cell="annotated-cell-8" data-target-annotation="1">1</button><span id="annotated-cell-8-1" class="code-annotation-target"><a href="#annotated-cell-8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stack_alignv</span>(small_mat) <span class="sc">+</span></span>
