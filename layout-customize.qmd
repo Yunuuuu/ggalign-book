@@ -181,8 +181,7 @@ There are two ways to specify `distance` metric for clustering:
   methods in `dist()` function and coorelation coefficient `"pearson"`,
   `"spearman"` and `"kendall"`. The correlation distance is defined as 
   `1 - cor(x, y, method = distance)`.
-  - a self-defined function which calculates distance from a matrix. The function
-  should only contain one argument.
+  - a self-defined function which calculates distance from a matrix.
 
 ```{r}
 ggheatmap(small_mat) +
