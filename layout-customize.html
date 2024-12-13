@@ -521,7 +521,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="sec-align_hclust" class="level2" data-number="4.4">
 <h2 data-number="4.4" class="anchored" data-anchor-id="sec-align_hclust"><span class="header-section-number">4.4</span> <code>align_hclust()</code></h2>
-<p>The <code>align_hclust()</code> function is designed to reorder observations and group them based on hierarchical clustering. Unlike <code>align_dendro()</code>, however, <code>align_hclust()</code> does not add a dendrogram tree to the plot. All the arguments intruduced here can also be used by <code>align_dendro()</code>.</p>
+<p>The <code>align_hclust()</code> function is designed to reorder observations and group them based on hierarchical clustering. Unlike <code>align_dendro()</code>, <code>align_hclust()</code> does not add a dendrogram tree to the plot. All the arguments intruduced here can also be used by <code>align_dendro()</code>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggheatmap</span>(small_mat) <span class="sc">+</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">anno_top</span>() <span class="sc">+</span></span>
@@ -539,7 +539,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>There are two ways to specify <code>distance</code> metric for clustering:</p>
 <ul>
 <li>specify <code>distance</code> as a pre-defined option. The valid values are the supported methods in <code>dist()</code> function and coorelation coefficient <code>"pearson"</code>, <code>"spearman"</code> and <code>"kendall"</code>. The correlation distance is defined as <code>1 - cor(x, y, method = distance)</code>.</li>
-<li>a self-defined function which calculates distance from a matrix. The function should only contain one argument.</li>
+<li>a self-defined function which calculates distance from a matrix.</li>
 </ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggheatmap</span>(small_mat) <span class="sc">+</span></span>
@@ -569,7 +569,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>Method to perform hierarchical clustering can be specified by <code>method</code>. Possible methods are those supported in <code>hclust()</code> function. And you can also provide a self-defined function, which accepts the distance object and return a <code>hclust</code> object.</p>
+<p>Method to perform hierarchical clustering can be specified by <code>method</code>. Possible methods are those supported in <code>hclust()</code> function. And you can also provide a self-defined function, which accepts the <code>distance</code> object and return a <code>hclust</code> object.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggheatmap</span>(small_mat) <span class="sc">+</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">anno_top</span>() <span class="sc">+</span></span>
@@ -600,13 +600,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>You can reorder the dendrogram based on the mean values of the observations by setting <code>reorder_dendrogram = TRUE</code>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>h1 <span class="ot">&lt;-</span> <span class="fu">ggheatmap</span>(small_mat) <span class="sc">+</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">anno_top</span>() <span class="sc">+</span></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_hclust</span>(<span class="at">k =</span> <span class="dv">3</span>, <span class="at">reorder_dendrogram =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">layout_title</span>(<span class="st">"reorder_dendrogram = TRUE"</span>)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggtitle</span>(<span class="st">"reorder_dendrogram = TRUE"</span>) <span class="sc">+</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">anno_top</span>() <span class="sc">+</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_hclust</span>(<span class="at">k =</span> <span class="dv">3</span>, <span class="at">reorder_dendrogram =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>h2 <span class="ot">&lt;-</span> <span class="fu">ggheatmap</span>(small_mat) <span class="sc">+</span></span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">anno_top</span>() <span class="sc">+</span></span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_hclust</span>(<span class="at">k =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">layout_title</span>(<span class="st">"reorder_dendrogram = FALSE"</span>)</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggtitle</span>(<span class="st">"reorder_dendrogram = FALSE"</span>) <span class="sc">+</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">anno_top</span>() <span class="sc">+</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_hclust</span>(<span class="at">k =</span> <span class="dv">3</span>)</span>
 <span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a><span class="fu">align_plots</span>(h1, h2)</span>
 <span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; → heatmap built with `geom_tile()`</span></span>
 <span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; → heatmap built with `geom_tile()`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
