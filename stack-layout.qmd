@@ -233,11 +233,11 @@ when added to the layout.
 For `stack_align()`, plots can be added regardless of whether they need to align
 observations.
 ```{r}
-stack_alignh(small_mat) +                              # <1>
-    align_dendro() +                                   # <2>
-    ggalign(data = rowSums) +                          # <3>
+stack_alignh(small_mat) +                                   # <1>
+    align_dendro() +                                        # <2>
+    ggalign(data = rowSums) +                               # <3>
     geom_bar(aes(value, .discrete_y), stat = "identity") +  # <4>
-    theme(axis.text.y = element_text())                # <5>
+    theme(axis.text.y = element_text())                     # <5>
 ```
   1. initialize a horizontal stack layout.
   2. reorder the observations based on the hierarchical clustering, add
@@ -249,13 +249,18 @@ stack_alignh(small_mat) +                              # <1>
 
 You can build the plot separately and then add it to the layout:
 ```{r}
-my_bar <- ggalign(data = rowSums) +
-    geom_bar(aes(value, .discrete_y), stat = "identity") +
-    theme(axis.text.y = element_text()) 
-stack_alignh(small_mat) +
-    align_dendro() +
+my_bar <- ggalign(data = rowSums) +                           # <1>
+    geom_bar(aes(value, .discrete_y), stat = "identity") +    # <1>
+    theme(axis.text.y = element_text())                       # <1>
+stack_alignh(small_mat) +                                     # <2>
+    align_dendro() +                                          # <3>
     my_bar
 ```
+  1. Create the bar plot.
+  2. initialize a horizontal stack layout.
+  3. reorder the observations based on the hierarchical clustering, add
+  a dendrogram tree, and set the active plot to this plot.
+  4. Add another bar plot to the layout.
 
 The `active` argument can also control the place of the plot area to be added. It
 accepts an `active()` object with the `order` argument to specify the order of
