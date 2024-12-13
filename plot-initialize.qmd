@@ -2,6 +2,7 @@
 There are three primary functions for adding plots: 
 
   - `align_gg()`/`ggalign()`: Create a ggplot object and aligns the observation.
+  - `align_line()`/`align_range()`: Add a plot to annotate selected observations.
   - `free_gg()`/`ggfree()`: Create a ggplot object without aligning the
   observation.
   - `align_dendro()`: Create a ggplot object of dendrogram tree, and align the
@@ -86,11 +87,7 @@ the data for plotting. Don't worry! In the later chapters, I'll introduce
 powerful way to prepare data for your plots.
 
 If `data = NULL`, the data in the underlying `ggplot` object contains following
-columns: 
-
- - `.panel`: the panel for the axis used for alignment.
- - `.index`: the index of the original layout data.
- - `.x` or `.y`: the `x` or `y` coordinates
+columns: `.panel`, `.index`, `.names`, `.x`/`.y`, `.discrete_x`/`.discrete_y`.
 
 You can use it to integrate additional elements, such as block annotation or
 customized panel title, into your layout.
@@ -163,6 +160,10 @@ ggheatmap(small_mat) +
     ggplot(mtcars, aes(wt, mpg)) +
     geom_point()
 ```
+
+## `align_link()` and `align_range()`
+
+waiting from document
 
 ## `ggwrap()` and `inset()`
 The `ggwrap()` function allows you to wrap objects that can be converted into a
