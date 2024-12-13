@@ -161,9 +161,9 @@ ggheatmap(small_mat) +
 
 ## `align_hclust()` {#sec-align_hclust}
 The `align_hclust()` function is designed to reorder observations and group them
-based on hierarchical clustering. Unlike `align_dendro()`, however,
-`align_hclust()` does not add a dendrogram tree to the plot. All the arguments
-intruduced here can also be used by `align_dendro()`.
+based on hierarchical clustering. Unlike `align_dendro()`, `align_hclust()` does
+not add a dendrogram tree to the plot. All the arguments intruduced here can
+also be used by `align_dendro()`.
 
 ```{r}
 ggheatmap(small_mat) +
