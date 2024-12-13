@@ -428,7 +428,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The <code>-</code> operator is more powerful than the <code>&amp;</code> operator, enabling flexible addition of elements to multiple plots. While its use might initially seem unintuitive, the reason behind this is that <code>-</code> shares the same precedence group as <code>+</code>, which allows it to seamlessly combine with <code>+</code>.</p>
 <section id="sec-quad-layout-subtract" class="level3" data-number="8.3.1">
 <h3 data-number="8.3.1" class="anchored" data-anchor-id="sec-quad-layout-subtract"><span class="header-section-number">8.3.1</span> <code>quad_layout()</code></h3>
-<p>If the active context is the <code>ggheatmap()</code>/<code>quad_layout()</code> itself (no active annotation), the <code>-</code> operator behaves similarly to <code>&amp;</code>. It applies the specified elements to all plots within the layout.</p>
+<p>For <code>ggheatmap()</code>/<code>quad_layout()</code>, if the active context is the <code>ggheatmap()</code>/<code>quad_layout()</code> itself (no active annotation), the <code>-</code> operator behaves similarly to <code>&amp;</code>. It applies the specified elements to all plots within the layout.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize the heatmap</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggheatmap</span>(small_mat) <span class="sc">+</span></span>
@@ -471,7 +471,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="stack_layout" class="level3" data-number="8.3.2">
 <h3 data-number="8.3.2" class="anchored" data-anchor-id="stack_layout"><span class="header-section-number">8.3.2</span> <code>stack_layout()</code></h3>
-<p>If the active layout is the <code>stack_layout()</code> itself, <code>-</code> applies the elements to all plots in the layout except the nested <code>ggheatmap()</code>/<code>quad_layout()</code>.</p>
+<p>For <code>stack_layout()</code>, if the active layout is the <code>stack_layout()</code> itself, <code>-</code> applies the elements to all plots in the layout except the nested <code>ggheatmap()</code>/<code>quad_layout()</code>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stack_alignv</span>(small_mat) <span class="sc">+</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_dendro</span>() <span class="sc">+</span></span>
@@ -500,7 +500,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="with_quad" class="level2" data-number="8.4">
 <h2 data-number="8.4" class="anchored" data-anchor-id="with_quad"><span class="header-section-number">8.4</span> <code>with_quad()</code></h2>
-<p>The <code>with_quad()</code> function adjusts the context in which elements are applied in <code>ggheatmap()</code>/<code>quad_layout()</code>. It allows you to control how objects such as themes, scales, and other plot modifications are applied to specific annotation stacks or the main plot, without changing the currently active layout or plot.</p>
+<p>The <code>with_quad()</code> function adjusts the context in which elements are applied in <code>ggheatmap()</code>/<code>quad_layout()</code>. It allows you to control how objects such as themes, scales, and other plot modifications are applied to specific annotation stacks or the main plot, without changing the currently active context.</p>
 <p>This function accepts three arguments:</p>
 <ol type="1">
 <li><strong>x</strong>: An object which can be added to the plot.</li>
