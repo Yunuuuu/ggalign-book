@@ -329,7 +329,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>Special thanks to the <code>patchwork</code> project—many core codes of the plot composer process were adapted from <code>patchwork</code>. We have added new features to better implement <code>ggalign</code>’s layout functions (<code>ggheatmap()</code> and <code>ggstack()</code>), including:</p>
+<p>Special thanks to the <code>patchwork</code> project—many core codes of the plot composer process were adapted from <code>patchwork</code>. We have added new features to better implement <code>ggalign</code>’s layout functions (<code>stack_layout()</code> and <code>quad_layout()</code>), including:</p>
 <ul>
 <li><code>free_align()</code></li>
 <li><code>free_border()</code></li>
@@ -339,7 +339,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><code>free_vp()</code></li>
 </ul>
 <p>These features have not been pushed to <code>patchwork</code> because they required significant modification of core code. We attempted to merge them, but the author of <code>patchwork</code> decided to implement some of these features independently. The latest version of patchwork now includes <code>free_align()</code>, <code>free_lab()</code>, and <code>free_space()</code> functionality under a single function: <code>patchwork::free()</code>. For more details, see: <a href="https://www.tidyverse.org/blog/2024/09/patchwork-1-3-0/" class="uri">https://www.tidyverse.org/blog/2024/09/patchwork-1-3-0/</a>.</p>
-<p>The plot composer function in <code>ggalign</code> is <code>align_plots()</code>, which behaves similarly to <code>cowplot::align_plots()</code> and <code>patchwork::wrap_plots()</code>. However, you can directly use <code>align_plots()</code> with <code>quad_layout()</code>/<code>ggheatmap()</code> and <code>ggstack()</code>, ensuring that they align correctly by plot panel. Additionally, <code>align_plots()</code> can align <code>pheatmap</code> and <code>ComplexHeatmap</code> objects, although they won’t align by panel area with ggplot2.</p>
+<p>The plot composer function in <code>ggalign</code> is <code>align_plots()</code>, which behaves similarly to <code>cowplot::align_plots()</code> and <code>patchwork::wrap_plots()</code>. However, you can directly use <code>align_plots()</code> with <code>quad_layout()</code>/<code>ggheatmap()</code> and <code>stack_layout()</code>, ensuring that they align correctly by plot panel. Additionally, <code>align_plots()</code> can align <code>pheatmap</code> and <code>ComplexHeatmap</code> objects, although they won’t align by panel area with ggplot2.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
