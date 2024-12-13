@@ -674,12 +674,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>You can build the plot separately and then add it to the layout:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>my_bar <span class="ot">&lt;-</span> <span class="fu">ggalign</span>(<span class="at">data =</span> rowSums) <span class="sc">+</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>(<span class="fu">aes</span>(value, .discrete_y), <span class="at">stat =</span> <span class="st">"identity"</span>) <span class="sc">+</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">axis.text.y =</span> <span class="fu">element_text</span>()) </span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">stack_alignh</span>(small_mat) <span class="sc">+</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_dendro</span>() <span class="sc">+</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    my_bar</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="annotated-cell-13"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><button class="code-annotation-anchor" data-target-cell="annotated-cell-13" data-target-annotation="1">1</button><span id="annotated-cell-13-1" class="code-annotation-target"><a href="#annotated-cell-13-1" aria-hidden="true" tabindex="-1"></a>my_bar <span class="ot">&lt;-</span> <span class="fu">ggalign</span>(<span class="at">data =</span> rowSums) <span class="sc">+</span></span>
+<span id="annotated-cell-13-2"><a href="#annotated-cell-13-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>(<span class="fu">aes</span>(value, .discrete_y), <span class="at">stat =</span> <span class="st">"identity"</span>) <span class="sc">+</span></span>
+<span id="annotated-cell-13-3"><a href="#annotated-cell-13-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">axis.text.y =</span> <span class="fu">element_text</span>())</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-13" data-target-annotation="2">2</button><span id="annotated-cell-13-4" class="code-annotation-target"><a href="#annotated-cell-13-4" aria-hidden="true" tabindex="-1"></a><span class="fu">stack_alignh</span>(small_mat) <span class="sc">+</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-13" data-target-annotation="3">3</button><span id="annotated-cell-13-5" class="code-annotation-target"><a href="#annotated-cell-13-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_dendro</span>() <span class="sc">+</span></span>
+<span id="annotated-cell-13-6"><a href="#annotated-cell-13-6" aria-hidden="true" tabindex="-1"></a>    my_bar</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-hidden code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-13" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-13" data-code-lines="1,2,3" data-code-annotation="1">Create the bar plot.</span>
+</dd>
+<dt data-target-cell="annotated-cell-13" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-13" data-code-lines="4" data-code-annotation="2">initialize a horizontal stack layout.</span>
+</dd>
+<dt data-target-cell="annotated-cell-13" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-cell="annotated-cell-13" data-code-lines="5" data-code-annotation="3">reorder the observations based on the hierarchical clustering, add a dendrogram tree, and set the active plot to this plot.</span>
+</dd>
+</dl>
+</div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -690,11 +706,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>The <code>active</code> argument can also control the place of the plot area to be added. It accepts an <code>active()</code> object with the <code>order</code> argument to specify the order of the plot area.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stack_alignh</span>(small_mat) <span class="sc">+</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_dendro</span>() <span class="sc">+</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggalign</span>(<span class="at">data =</span> rowSums, <span class="at">active =</span> <span class="fu">active</span>(<span class="at">order =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>(<span class="fu">aes</span>(value, .discrete_y), <span class="at">stat =</span> <span class="st">"identity"</span>) <span class="sc">+</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">axis.text.y =</span> <span class="fu">element_text</span>()) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stack_alignh</span>(small_mat) <span class="sc">+</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_dendro</span>() <span class="sc">+</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggalign</span>(<span class="at">data =</span> rowSums, <span class="at">active =</span> <span class="fu">active</span>(<span class="at">order =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>(<span class="fu">aes</span>(value, .discrete_y), <span class="at">stat =</span> <span class="st">"identity"</span>) <span class="sc">+</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">axis.text.y =</span> <span class="fu">element_text</span>()) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -705,11 +721,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>You can also stack plots vertically using <code>stack_alignv()</code>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stack_alignv</span>(small_mat) <span class="sc">+</span> </span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_dendro</span>() <span class="sc">+</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggalign</span>(<span class="at">data =</span> rowSums) <span class="sc">+</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>(<span class="fu">aes</span>(.discrete_x, value), <span class="at">stat =</span> <span class="st">"identity"</span>) <span class="sc">+</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">axis.text.y =</span> <span class="fu">element_text</span>()) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stack_alignv</span>(small_mat) <span class="sc">+</span> </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_dendro</span>() <span class="sc">+</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggalign</span>(<span class="at">data =</span> rowSums) <span class="sc">+</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>(<span class="fu">aes</span>(.discrete_x, value), <span class="at">stat =</span> <span class="st">"identity"</span>) <span class="sc">+</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">axis.text.y =</span> <span class="fu">element_text</span>()) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -720,13 +736,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p><code>stack_align()</code> can also add plot without aligning observations. <code>free_gg()</code> focuses on layout integration without enforcing strict axis alignment. <code>ggfree()</code> is an alias for <code>free_gg</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stack_alignv</span>() <span class="sc">+</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggfree</span>(mpg, <span class="fu">aes</span>(displ, hwy, <span class="at">colour =</span> class)) <span class="sc">+</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggfree</span>(mpg, <span class="fu">aes</span>(displ, hwy, <span class="at">colour =</span> class)) <span class="sc">+</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>) <span class="sc">&amp;</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_color_brewer</span>(<span class="at">palette =</span> <span class="st">"Dark2"</span>) <span class="sc">&amp;</span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stack_alignv</span>() <span class="sc">+</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggfree</span>(mpg, <span class="fu">aes</span>(displ, hwy, <span class="at">colour =</span> class)) <span class="sc">+</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggfree</span>(mpg, <span class="fu">aes</span>(displ, hwy, <span class="at">colour =</span> class)) <span class="sc">+</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>) <span class="sc">&amp;</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_color_brewer</span>(<span class="at">palette =</span> <span class="st">"Dark2"</span>) <span class="sc">&amp;</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -738,13 +754,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The <code>&amp;</code> operator applies the added element to all plots in the layout, similar to its functionality in the <code>patchwork</code> package.</p>
 <p>For <code>stack_free()</code>, only free plots (<code>ggfree()</code>) can be added. This layout arranges plots in one row or column without enforcing axis alignment:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stack_freev</span>(mpg) <span class="sc">+</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggfree</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(displ, hwy, <span class="at">colour =</span> class)) <span class="sc">+</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggfree</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(displ, hwy, <span class="at">colour =</span> class)) <span class="sc">+</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>) <span class="sc">&amp;</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_color_brewer</span>(<span class="at">palette =</span> <span class="st">"Dark2"</span>) <span class="sc">&amp;</span></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stack_freev</span>(mpg) <span class="sc">+</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggfree</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(displ, hwy, <span class="at">colour =</span> class)) <span class="sc">+</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggfree</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(displ, hwy, <span class="at">colour =</span> class)) <span class="sc">+</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>) <span class="sc">&amp;</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_color_brewer</span>(<span class="at">palette =</span> <span class="st">"Dark2"</span>) <span class="sc">&amp;</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -759,13 +775,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 data-number="2.4" class="anchored" data-anchor-id="sec-stack-layout-plot-size"><span class="header-section-number">2.4</span> Plot Size</h2>
 <p>Both <code>ggalign()</code> and <code>ggfree()</code> functions have a <code>size</code> argument to control the relative <code>width</code> (for horizontal stack layout) or <code>height</code> (for vertical stack layout) of the plot’s panel area.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stack_freev</span>(mpg) <span class="sc">+</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggfree</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(displ, hwy, <span class="at">colour =</span> class), <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggfree</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(displ, hwy, <span class="at">colour =</span> class), <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>) <span class="sc">&amp;</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_color_brewer</span>(<span class="at">palette =</span> <span class="st">"Dark2"</span>) <span class="sc">&amp;</span></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stack_freev</span>(mpg) <span class="sc">+</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggfree</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(displ, hwy, <span class="at">colour =</span> class), <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggfree</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(displ, hwy, <span class="at">colour =</span> class), <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>) <span class="sc">&amp;</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_color_brewer</span>(<span class="at">palette =</span> <span class="st">"Dark2"</span>) <span class="sc">&amp;</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -776,13 +792,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>Alternatively, you can define an absolute size by using a <code>unit()</code> object:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stack_freev</span>(mpg) <span class="sc">+</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggfree</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(displ, hwy, <span class="at">colour =</span> class), <span class="at">size =</span> <span class="fu">unit</span>(<span class="dv">1</span>, <span class="st">"cm"</span>)) <span class="sc">+</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggfree</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(displ, hwy, <span class="at">colour =</span> class)) <span class="sc">+</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>) <span class="sc">&amp;</span></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_color_brewer</span>(<span class="at">palette =</span> <span class="st">"Dark2"</span>) <span class="sc">&amp;</span></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stack_freev</span>(mpg) <span class="sc">+</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggfree</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(displ, hwy, <span class="at">colour =</span> class), <span class="at">size =</span> <span class="fu">unit</span>(<span class="dv">1</span>, <span class="st">"cm"</span>)) <span class="sc">+</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggfree</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(displ, hwy, <span class="at">colour =</span> class)) <span class="sc">+</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>) <span class="sc">&amp;</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_color_brewer</span>(<span class="at">palette =</span> <span class="st">"Dark2"</span>) <span class="sc">&amp;</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -804,14 +820,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="grid">
 <div class="g-col-6">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stack_alignh</span>(small_mat) <span class="sc">+</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_dendro</span>() <span class="sc">+</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggalign</span>(<span class="at">data =</span> rowSums) <span class="sc">+</span></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>(<span class="fu">aes</span>(value, .discrete_y), <span class="at">stat =</span> <span class="st">"identity"</span>) <span class="sc">+</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">stack_switch</span>(<span class="at">what =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">axis.text.y =</span> <span class="fu">element_text</span>()) <span class="sc">+</span></span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">layout_title</span>(<span class="at">title =</span> <span class="st">"switch by integer"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stack_alignh</span>(small_mat) <span class="sc">+</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_dendro</span>() <span class="sc">+</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggalign</span>(<span class="at">data =</span> rowSums) <span class="sc">+</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>(<span class="fu">aes</span>(value, .discrete_y), <span class="at">stat =</span> <span class="st">"identity"</span>) <span class="sc">+</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">stack_switch</span>(<span class="at">what =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">axis.text.y =</span> <span class="fu">element_text</span>()) <span class="sc">+</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">layout_title</span>(<span class="at">title =</span> <span class="st">"switch by integer"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -823,14 +839,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="g-col-6">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stack_alignh</span>(small_mat) <span class="sc">+</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_dendro</span>(<span class="at">active =</span> <span class="fu">active</span>(<span class="at">name =</span> <span class="st">"tree"</span>)) <span class="sc">+</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggalign</span>(<span class="at">data =</span> rowSums) <span class="sc">+</span></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>(<span class="fu">aes</span>(value, .discrete_y), <span class="at">stat =</span> <span class="st">"identity"</span>) <span class="sc">+</span></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">stack_switch</span>(<span class="at">what =</span> <span class="st">"tree"</span>) <span class="sc">+</span></span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">axis.text.y =</span> <span class="fu">element_text</span>()) <span class="sc">+</span></span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">layout_title</span>(<span class="at">title =</span> <span class="st">"switch by string"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stack_alignh</span>(small_mat) <span class="sc">+</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_dendro</span>(<span class="at">active =</span> <span class="fu">active</span>(<span class="at">name =</span> <span class="st">"tree"</span>)) <span class="sc">+</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggalign</span>(<span class="at">data =</span> rowSums) <span class="sc">+</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>(<span class="fu">aes</span>(value, .discrete_y), <span class="at">stat =</span> <span class="st">"identity"</span>) <span class="sc">+</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">stack_switch</span>(<span class="at">what =</span> <span class="st">"tree"</span>) <span class="sc">+</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">axis.text.y =</span> <span class="fu">element_text</span>()) <span class="sc">+</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">layout_title</span>(<span class="at">title =</span> <span class="st">"switch by string"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
