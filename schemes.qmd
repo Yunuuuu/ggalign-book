@@ -1,5 +1,5 @@
 # schemes
-Sechemes control the actions of plots within the layout. These sechemes can be
+Schemes control the actions of plots within the layout. These schemes can be
 applied either globally to the layout or individually to specific
 plots.
 
