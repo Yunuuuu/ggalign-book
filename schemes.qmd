@@ -1,4 +1,4 @@
-# schemes
+# schemes {#sec-schemes}
 Schemes control the actions of plots within the layout. These schemes can be
 applied either globally to the layout or individually to specific
 plots.
@@ -28,7 +28,7 @@ rownames(small_mat) <- paste0("row", seq_len(nrow(small_mat)))
 colnames(small_mat) <- paste0("column", seq_len(ncol(small_mat)))
 ```
 
-## `scheme_theme()`
+## `scheme_theme()` {#sec-scheme-theme}
 The `scheme_theme()` function extends `theme()` to set a default theme for plots,
 allowing you to input `theme()` elements directly or add the theme elements.
 
@@ -97,7 +97,7 @@ ggheatmap(small_mat) +
     scheme_theme(plot.background = element_rect(fill = "red"))
 ```
 
-## `scheme_data()`
+## `scheme_data()` {#sec-scheme-data}
 `align_gg()`/`ggalign()` requires the specific data format for its operations.
 If you need to transform or filter data for individual `geoms`, you can use the
 `data` argument within each `geom`. However, if you have multiple `geoms` and
@@ -123,7 +123,7 @@ ggheatmap(small_mat) +
     geom_bar(aes(y = value, fill = .row_names), stat = "identity")
 ```
 
-## `scheme_align()`
+## `scheme_align()` {#sec-scheme-data}
 The `scheme_align()` function controls the align specifications for plots.
 
 ### guides

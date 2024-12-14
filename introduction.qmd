@@ -172,18 +172,20 @@ using `align_dendro(k = 3)`, a special column named `branch` is added, which you
 can use to color the dendrogram tree.
 
 ```{r}
-ggheatmap(small_mat) +                               # <1>
-    anno_left() +                                    # <2>
-    align_dendro(aes(color = branch), k = 3) +       # <3>
-    scale_fill_brewer(palette = "Dark2")             # <4>
+ggheatmap(small_mat) +                                          # <1>
+    theme(axis.text.x = element_text(angle = -60, hjust = 0)) + # <2>
+    anno_left() +                                               # <3>
+    align_dendro(aes(color = branch), k = 3) +                  # <4>
+    scale_fill_brewer(palette = "Dark2")                        # <5>
 ```
   1. We initialize a heatmap layout.
-  2. we initialize an annotation in the left side of the heatmap body, and set
+  2. adjust the x-axis label theme element.
+  3. we initialize an annotation in the left side of the heatmap body, and set
   it as the active context, in this way, all following addition will be directed
   to the left annotation.
-  3. Reorder and group the observations based on hierarchical clustering, and
+  4. Reorder and group the observations based on hierarchical clustering, and
   add a dendrogram tree, coloring the tree by `branch`.
-  4. Add fill mapping scale.
+  5. Add fill mapping scale.
 
 `ggheatmap()` will automatically add axis text in the heatmap body, so you don't
 need to manually adjust axis text visibility using
