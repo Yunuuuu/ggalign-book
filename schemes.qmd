@@ -123,7 +123,7 @@ ggheatmap(small_mat) +
     geom_bar(aes(y = value, fill = .row_names), stat = "identity")
 ```
 
-## `scheme_align()` {#sec-scheme-data}
+## `scheme_align()` {#sec-scheme-align}
 The `scheme_align()` function controls the align specifications for plots.
 
 ### guides
