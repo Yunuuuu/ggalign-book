@@ -381,8 +381,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>The usage of <code>ggalign</code> is simple if you’re familiar with <code>ggplot2</code> syntax, the typical workflow includes:</p>
 <ol type="1">
-<li>Initialize the layout using:</li>
-</ol>
+<li>Initialize the layout using:
 <ul>
 <li><code>stack_layout()</code>: Arrange Plots Horizontally or Vertically
 <ul>
@@ -393,28 +392,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><code>ggheatmap()</code>: Create a Complex Heatmap.</li>
 <li><code>ggoncoplot()</code>: Create <code>OncoPrint</code> Visualizations from Genetic Alteration Data</li>
 </ul></li>
-</ul>
-<ol start="2" type="1">
-<li>Customize the layout with:</li>
-</ol>
+</ul></li>
+<li>Customize the layout with:
 <ul>
 <li><code>align_group()</code>: Group observations into panel with a group variable.</li>
 <li><code>align_kmeans()</code>: Group observations into panel by kmeans.</li>
 <li><code>align_order()</code>: Reorder layout observations based on statistical weights or by manually specifying the observation index.</li>
 <li><code>align_hclust()</code>: Reorder or group observations based on hierarchical clustering.</li>
-<li><code>align_reorder</code>: Reorder observations using an arbitrary statistical function.</li>
-</ul>
-<ol start="3" type="1">
-<li>Adding plots with</li>
-</ol>
+<li><code>align_reorder</code>: Reorder observations using an arbitrary statistical function</li>
+</ul></li>
+<li>Adding plots with:
 <ul>
 <li><code>ggfree()</code>: Initialize a ggplot object without aligning the observations.</li>
 <li><code>ggalign()</code>: Initialize a ggplot object and align the observations.</li>
 <li><code>align_dendro()</code>: Add a dendrogram to the plot, and reorder or group observations based on hierarchical clustering.</li>
 <li><code>align_line()</code>/<code>align_range()</code>: Add a plot to annotate selected observations.</li>
-<li><code>ggcross()</code>: Initialize a ggplot object to connect two different layout crosswise.</li>
-</ul>
-<ol start="4" type="1">
+<li><code>ggcross()</code>: Initialize a ggplot object to connect two different layout crosswise</li>
+</ul></li>
 <li>Layer additional <code>ggplot2</code> elements such as geoms, stats, or scales.</li>
 </ol>
 <div class="cell">
@@ -550,10 +544,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>One common visualization associated with the dendrogram is the heatmap. You can use <code>ggheatmap()</code> to initialize a heatmap layout. When grouping the observations using <code>align_dendro(k = 3)</code>, a special column named <code>branch</code> is added, which you can use to color the dendrogram tree.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="annotated-cell-9"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><button class="code-annotation-anchor" data-target-cell="annotated-cell-9" data-target-annotation="1">1</button><span id="annotated-cell-9-1" class="code-annotation-target"><a href="#annotated-cell-9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggheatmap</span>(small_mat) <span class="sc">+</span></span>
-<button class="code-annotation-anchor" data-target-cell="annotated-cell-9" data-target-annotation="2">2</button><span id="annotated-cell-9-2" class="code-annotation-target"><a href="#annotated-cell-9-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">anno_left</span>() <span class="sc">+</span></span>
-<button class="code-annotation-anchor" data-target-cell="annotated-cell-9" data-target-annotation="3">3</button><span id="annotated-cell-9-3" class="code-annotation-target"><a href="#annotated-cell-9-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_dendro</span>(<span class="fu">aes</span>(<span class="at">color =</span> branch), <span class="at">k =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
-<button class="code-annotation-anchor" data-target-cell="annotated-cell-9" data-target-annotation="4">4</button><span id="annotated-cell-9-4" class="code-annotation-target"><a href="#annotated-cell-9-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">"Dark2"</span>)</span>
-<span id="annotated-cell-9-5"><a href="#annotated-cell-9-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; → heatmap built with `geom_tile()`</span></span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-9" data-target-annotation="2">2</button><span id="annotated-cell-9-2" class="code-annotation-target"><a href="#annotated-cell-9-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="sc">-</span><span class="dv">60</span>, <span class="at">hjust =</span> <span class="dv">0</span>)) <span class="sc">+</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-9" data-target-annotation="3">3</button><span id="annotated-cell-9-3" class="code-annotation-target"><a href="#annotated-cell-9-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">anno_left</span>() <span class="sc">+</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-9" data-target-annotation="4">4</button><span id="annotated-cell-9-4" class="code-annotation-target"><a href="#annotated-cell-9-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_dendro</span>(<span class="fu">aes</span>(<span class="at">color =</span> branch), <span class="at">k =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-9" data-target-annotation="5">5</button><span id="annotated-cell-9-5" class="code-annotation-target"><a href="#annotated-cell-9-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">"Dark2"</span>)</span>
+<span id="annotated-cell-9-6"><a href="#annotated-cell-9-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; → heatmap built with `geom_tile()`</span></span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-annotation">
 <dl class="code-annotation-container-hidden code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-9" data-target-annotation="1">1</dt>
@@ -562,15 +557,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </dd>
 <dt data-target-cell="annotated-cell-9" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-cell="annotated-cell-9" data-code-lines="2" data-code-annotation="2">we initialize an annotation in the left side of the heatmap body, and set it as the active context, in this way, all following addition will be directed to the left annotation.</span>
+<span data-code-cell="annotated-cell-9" data-code-lines="2" data-code-annotation="2">adjust the x-axis label theme element.</span>
 </dd>
 <dt data-target-cell="annotated-cell-9" data-target-annotation="3">3</dt>
 <dd>
-<span data-code-cell="annotated-cell-9" data-code-lines="3" data-code-annotation="3">Reorder and group the observations based on hierarchical clustering, and add a dendrogram tree, coloring the tree by <code>branch</code>.</span>
+<span data-code-cell="annotated-cell-9" data-code-lines="3" data-code-annotation="3">we initialize an annotation in the left side of the heatmap body, and set it as the active context, in this way, all following addition will be directed to the left annotation.</span>
 </dd>
 <dt data-target-cell="annotated-cell-9" data-target-annotation="4">4</dt>
 <dd>
-<span data-code-cell="annotated-cell-9" data-code-lines="4" data-code-annotation="4">Add fill mapping scale.</span>
+<span data-code-cell="annotated-cell-9" data-code-lines="4" data-code-annotation="4">Reorder and group the observations based on hierarchical clustering, and add a dendrogram tree, coloring the tree by <code>branch</code>.</span>
+</dd>
+<dt data-target-cell="annotated-cell-9" data-target-annotation="5">5</dt>
+<dd>
+<span data-code-cell="annotated-cell-9" data-code-lines="5" data-code-annotation="5">Add fill mapping scale.</span>
 </dd>
 </dl>
 </div>
