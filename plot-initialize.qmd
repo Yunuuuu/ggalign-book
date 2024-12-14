@@ -2,7 +2,7 @@
 There are three primary functions for adding plots: 
 
   - `align_gg()`/`ggalign()`: Create a ggplot object and aligns the observation.
-  - `align_line()`/`align_range()`: Add a plot to annotate selected observations.
+  - `align_line()`/`align_range()`: Add a plot to annotate the selected observations.
   - `free_gg()`/`ggfree()`: Create a ggplot object without aligning the
   observation.
   - `align_dendro()`: Create a ggplot object of dendrogram tree, and align the
@@ -46,10 +46,8 @@ The data in the underlying `ggplot` object will contain following columns:
     coordinates and a factor of the data labels (only applicable when names
     exists).
 
-  - `.names` ([`vec_names()`][vctrs::vec_names]) and `.index`
-    ([`vec_size()`][vctrs::vec_size()]/[`NROW()`]): a character names (only
-    applicable when names exists) and an integer of index of the original
-    data.
+  - `.names` (`vec_names()`) and `.index` (`NROW()`): a character names (only
+    applicable when names exists) and an integer of index of the original data.
 
   - `.row_names` and `.row_index`: the row names and an integer of
     row index of the original matrix (only applicable if `data` is a
@@ -62,6 +60,17 @@ The data in the underlying `ggplot` object will contain following columns:
     atomic vector).
 
 >It is recommended to use `.x`/`.y`, or `.discrete_x`/`.discrete_y` as the `x`/`y` mapping.
+
+Almost all functions that add plots will generate data containing two key
+columns: `.panel` and `.index`.
+
+  - `.panel`: used to create ggplot2 facets.
+  - `.index`: serves to match the data across different layers or datasets. It
+  is useful for aligning observations or linking different data sources. You can
+  use `.index` to merge data and create a new data frame, using method provided
+  in @sec-scheme-data.
+
+Additionally, if names are provided, the `.names` column will also be created
 
 ```{r}
 ggheatmap(small_mat) +
@@ -83,8 +92,8 @@ ggheatmap(small_mat) +
 ```
 
 You may wonder if the strict data requirements will prevent us from preparing
-the data for plotting. Don't worry! In the later chapters, I'll introduce
-powerful way to prepare data for your plots.
+the data for plotting. Don't worry! In @sec-scheme-data, I'll introduce powerful
+way to prepare data for your plots.
 
 If `data = NULL`, the data in the underlying `ggplot` object contains following
 columns: `.panel`, `.index`, `.names`, `.x`/`.y`, `.discrete_x`/`.discrete_y`.
@@ -161,10 +170,6 @@ ggheatmap(small_mat) +
     geom_point()
 ```
 
-## `align_link()` and `align_range()`
-
-waiting from document
-
 ## `ggwrap()` and `inset()`
 The `ggwrap()` function allows you to wrap objects that can be converted into a
 grob, turning them into a `ggplot` for plotting. Further you can still add
@@ -196,6 +201,176 @@ ggheatmap(small_mat) +
     )
 ```
 
+## `align_link()` and `align_range()`
+It would be helpful if we can add an annotation plot for the selected observations, `align_link()` and `align_range()` can be used to do this. 
+
+ - `align_line`: Annotates a list of discrete observations. These observations
+ will be connected to the panel by a line.
+ - `align_range`: Annotates a list of continuous observation ranges. The ranges
+ will be connected to the panel by a polygon.
+
+`align_line` accepts `lines` argument, which should be a list of observations,
+Each element of the list will be represented by a facet panel. While `align_range`
+accepts `ranges` argument, which should be a list of the range.
+
+By default, `align_line()` will connect all observations and split them based on
+the groups defined in the layout. The data underlying the ggplot object created
+by `align_line()` is similar to that of `ggalign()` (@sec-ggalign), but it does
+not include the `.x`/`.y` and `.discrete_x`/`.discrete_y` columns. Instead, the
+data will be filtered to include only the selected observations. You can use the
+`plot.margin` argument to control the length or size of the link lines or ranges.
+
+::: {.grid}
+
+::: {.g-col-6}
+```{r}
+set.seed(123)
+ggheatmap(small_mat) +
+    anno_right() +
+    align_kmeans(3L) +
+    align_line() +
+    geom_boxplot(aes(.names, value)) +
+    theme(plot.margin = margin(l = 0.1, t = 0.1, unit = "npc"))
+```
+::: 
+
+::: {.g-col-6}
+```{r}
+set.seed(123)
+ggheatmap(small_mat) +
+    anno_right() +
+    align_kmeans(3L) +
+    align_range() +
+    geom_boxplot(aes(.names, value)) +
+    theme(plot.margin = margin(l = 0.1, t = 0.1, unit = "npc"))
+```
+::: 
+
+::: 
+
+`align_line` and `align_range` use `facet_wrap` to define the facet, and you can
+use it to control the facet apearance (just ignore the `facets` argument). We
+prefer `facet_wrap()` here because it offers flexibility in positioning the
+strip on any side of the panel, and typically, we only want to a single
+dimension to create the annotation.
+
+::: {.grid}
+
+::: {.g-col-6}
+```{r}
+set.seed(123)
+ggheatmap(small_mat, theme = theme(panel.spacing.y = unit(2, "cm"))) +
+    anno_right() +
+    align_kmeans(3L) +
+    align_line() +
+    geom_boxplot(aes(.names, value)) +
+    facet_wrap(vars(), scales = "free", strip.position = "right") +
+    theme(plot.margin = margin(l = 0.1, t = 0.1, unit = "npc"))
+```
+::: 
+
+::: {.g-col-6}
+```{r}
+set.seed(123)
+ggheatmap(small_mat) +
+    anno_right() +
+    align_kmeans(3L) +
+    align_range() +
+    geom_boxplot(aes(.names, value)) +
+    facet_wrap(vars(), scales = "free", strip.position = "right") +
+    theme(plot.margin = margin(l = 0.1, t = 0.1, unit = "npc"))
+```
+::: 
+
+:::
+
+You can further customize link lines and ranges using `theme()`:
+
+ - Link lines can be customized using the `plot.ggalign_lines` theme element
+ with `element_line()`.
+ - Link ranges can be customized using the `plot.ggalign_ranges` theme element
+ with `element_polygon()`.
+
+The drawing order by default is from bottom to the top and from the left to the
+right, and use the ordering specified in `lines` or `ranges`. Both can accept
+integer or character index of the original data.
+
+::: {.grid}
+
+::: {.g-col-6}
+```{r}
+set.seed(123)
+ggheatmap(small_mat) +
+    anno_right() +
+    align_kmeans(3L) +
+    align_line(lines = list(4:6, 1:2)) +
+    geom_boxplot(aes(.names, value, fill = .names)) +
+    facet_wrap(vars(), scales = "free", strip.position = "right") +
+    theme(
+        plot.margin = margin(l = 0.1, t = 0.1, unit = "npc"),
+        plot.ggalign_lines = element_line(color = c("red", "blue"))
+    )
+```
+::: 
+
+::: {.g-col-6}
+```{r}
+set.seed(123)
+ggheatmap(small_mat) +
+    anno_right() +
+    align_kmeans(3L) +
+    align_range(ranges = list(paste0("row", 1:2), paste0("row", 4:6))) +
+    geom_boxplot(aes(.names, value, fill = .names)) +
+    facet_wrap(vars(), scales = "free", strip.position = "right") +
+    theme(
+        plot.margin = margin(l = 0.1, t = 0.1, unit = "npc"),
+        plot.ggalign_ranges = element_polygon(fill = scales::alpha(c("red", "blue"),0.5))
+    )
+```
+::: 
+
+:::
+
+In addition, you can use ordered integer indices by wrapping them with `I()`.
+Since the usage is the same for both `align_link()` and `align_range()`, I'll only
+provide an example using `align_link()` and `align_range()`.
+```{r}
+set.seed(123)
+ggheatmap(small_mat) +
+    anno_right() +
+    align_kmeans(3L) +
+    align_range(ranges = list(I(4:6), I(1:2))) +
+    geom_boxplot(aes(.names, value, fill = .names)) +
+    facet_wrap(vars(), scales = "free", strip.position = "right") +
+    theme(
+        plot.margin = margin(l = 0.1, t = 0.1, unit = "npc"),
+        plot.ggalign_ranges = element_polygon(fill = scales::alpha(c("red", "blue"),0.5))
+    )
+```
+
+You can also add links on both side. For a horizontal `stack_layout()`, you can
+add links to the left and right sides, and for a vertical `stack_layout()`, you
+can add links to the top and bottom. By default, `stack_layout()` adds links to
+both sides, while `quad_layout()` adds links to only one position. However, you
+can control this behavior using the position argument.
+
+```{r}
+stack_alignh(small_mat) +
+    align_dendro(aes(color = branch), k = 3L) +
+    scale_x_reverse(expand = expansion()) +
+    theme(plot.margin = margin()) +
+    align_line(lines = list(I(4:6), I(1:2))) +
+    geom_boxplot(aes(.names, value, fill = .names)) +
+    facet_wrap(vars(), scales = "free", strip.position = "top") +
+    theme(
+        plot.margin = margin(l = 0.1, t = 0.1, r = 0.1, b = 0.1, unit = "npc"),
+        plot.ggalign_lines = element_line(color = c("red", "blue"))
+    ) +
+    align_dendro(aes(color = branch), k = 3L) +
+    scale_x_continuous(expand = expansion()) +
+    theme(plot.margin = margin())
+```
+
 ## `align_dendro()` {#sec-align-dendro}
 `align_dendro()` is an extension of `align_hclust()` that adds a dendrogram to
 the layout. All functions of `align_hclust()` introduced in @sec-align_hclust can
@@ -206,15 +381,18 @@ object contains the dendrogram `node` data with dendrogram `edge` data attached
 in a special attribute.
 
 dendrogram `node` and `edge` contains following columns:
-  - `index`: the original index in the tree for the current node
-  - `label`: node label text
-  - `x` and `y`: x-axis and y-axis coordinates for current node or the start
-                 node of the current edge.
-  - `xend` and `yend`: the x-axis and y-axis coordinates of the terminal node
-                       for current edge.
-  - `branch`: which branch current node or edge is. You can use this column
-              to color different groups.
-  - `leaf`: A logical value indicates whether current node is a leaf.
+
+  - `.panel`: Tree branch groups, used to create ggplot2 facet.
+  - `.names` and `.index`: a character names (only applicable when names
+    exists) and an integer index of the original data.
+   - `label`: node label text
+   - `x` and `y`: x-axis and y-axis coordinates for current node or the start
+                  node of the current edge.
+   - `xend` and `yend`: the x-axis and y-axis coordinates of the terminal node
+                        for current edge.
+   - `branch`: which branch current node or edge is. You can use this column
+               to color different groups.
+   - `leaf`: A logical value indicates whether current node is a leaf.
 
 By default, `plot_dendrogram` is set to `TRUE`, meaning a `geom_segment()` layer
 will be added using the dendrogram edge data when drawing. Note that this layer
@@ -293,6 +471,7 @@ ggheatmap(small_mat) +
 
 The appearance and alignment of these patch titles can be customized using
 `ggplot2::theme()`:
+
   - `plot.patch_title`/`plot.patch_title.*`: Controls the text appearance of
     patch titles. By default, `plot.patch_title` inherit from `plot.title`, and
     settings for each border will inherit from `plot.patch_title`, with the
@@ -303,6 +482,7 @@ The appearance and alignment of these patch titles can be customized using
     inherit from `plot.patch_title`. The value `"panel"` aligns the patch
     titles with the plot panels. Setting this to `"plot"` aligns the patch
     title with the entire plot (excluding margins and plot tags).
+
 ```{r}
 ggheatmap(small_mat) +
     anno_top() +
