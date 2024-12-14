@@ -68,28 +68,25 @@ library(ggalign)
 The usage of `ggalign` is simple if you're familiar with `ggplot2` syntax, the
 typical workflow includes: 
 
- 1. Initialize the layout using:
-   - `stack_layout()`: Arrange Plots Horizontally or Vertically
-     * `cross_align`: Arrange Plots Crosswise Horizontally or Vertically
-   - `quad_layout()`: Arrange Plots in the Quad-Side of a main plot
-     * `ggheatmap()`: Create a Complex Heatmap.
-     * `ggoncoplot()`: Create `OncoPrint` Visualizations from Genetic Alteration Data
- 2. Customize the layout with:
-   - `align_group()`: Group observations into panel with a group variable.
-   - `align_kmeans()`: Group observations into panel by kmeans.
-   - `align_order()`: Reorder layout observations based on statistical weights
-   or by manually specifying the observation index.
-   - `align_hclust()`: Reorder or group observations based on hierarchical
-   clustering.
-   - `align_reorder`: Reorder observations using an arbitrary statistical function.
- 3. Adding plots with 
-   - `ggfree()`: Initialize a ggplot object without aligning the observations.
-   - `ggalign()`: Initialize a ggplot object and align the observations.
-   - `align_dendro()`: Add a dendrogram to the plot, and reorder or group
-   observations based on hierarchical clustering.
-   - `align_line()`/`align_range()`: Add a plot to annotate selected observations.
-   - `ggcross()`: Initialize a ggplot object to connect two different layout crosswise.
- 4. Layer additional `ggplot2` elements such as geoms, stats, or scales.
+  1. Initialize the layout using:
+      - `stack_layout()`: Arrange Plots Horizontally or Vertically
+        * `cross_align`: Arrange Plots Crosswise Horizontally or Vertically
+      - `quad_layout()`: Arrange Plots in the Quad-Side of a main plot
+        * `ggheatmap()`: Create a Complex Heatmap.
+        * `ggoncoplot()`: Create `OncoPrint` Visualizations from Genetic Alteration Data
+  2. Customize the layout with:
+      - `align_group()`: Group observations into panel with a group variable.
+      - `align_kmeans()`: Group observations into panel by kmeans.
+      - `align_order()`: Reorder layout observations based on statistical weights or by manually specifying the observation index.
+      - `align_hclust()`: Reorder or group observations based on hierarchical clustering.
+      - `align_reorder`: Reorder observations using an arbitrary statistical function
+  3. Adding plots with:
+      - `ggfree()`: Initialize a ggplot object without aligning the observations.
+      - `ggalign()`: Initialize a ggplot object and align the observations.
+      - `align_dendro()`: Add a dendrogram to the plot, and reorder or group observations based on hierarchical clustering.
+      - `align_line()`/`align_range()`: Add a plot to annotate selected observations.
+      - `ggcross()`: Initialize a ggplot object to connect two different layout crosswise
+  4. Layer additional `ggplot2` elements such as geoms, stats, or scales.
 
 ```{r}
 set.seed(123)
@@ -122,11 +119,11 @@ Internally, `align_dendro()` will reorder the observations based on the
 dendrogram, and other plots in the layout will follow this ordering.
 
 ```{r}
-stack_alignv(small_mat) +                             # <1>
-    align_dendro() +                                  # <2>
-    ggalign(data = rowSums) +                         # <3>
-    geom_bar(aes(.discrete_x, value), stat = "identity") + # <4>
-    theme(axis.text.y = element_text())               # <5>
+stack_alignv(small_mat) +                                   # <1>
+    align_dendro() +                                        # <2>
+    ggalign(data = rowSums) +                               # <3>
+    geom_bar(aes(.discrete_x, value), stat = "identity") +  # <4>
+    theme(axis.text.y = element_text())                     # <5>
 ```
   1. We initialize a vertical stack.
   2. Reorder the observations based on hierarchical clustering and add a
