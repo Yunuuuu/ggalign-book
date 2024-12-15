@@ -226,6 +226,7 @@ data will be filtered to include only the selected observations. You can use the
 ```{r}
 set.seed(123)
 ggheatmap(small_mat) +
+    theme(axis.text.x = element_text(hjust = 0, angle = -60)) +
     anno_right() +
     align_kmeans(3L) +
     align_line() +
@@ -238,6 +239,7 @@ ggheatmap(small_mat) +
 ```{r}
 set.seed(123)
 ggheatmap(small_mat) +
+    theme(axis.text.x = element_text(hjust = 0, angle = -60)) +
     anno_right() +
     align_kmeans(3L) +
     align_range() +
@@ -259,7 +261,8 @@ dimension to create the annotation.
 ::: {.g-col-6}
 ```{r}
 set.seed(123)
-ggheatmap(small_mat, theme = theme(panel.spacing.y = unit(2, "cm"))) +
+ggheatmap(small_mat) +
+    theme(axis.text.x = element_text(hjust = 0, angle = -60)) +
     anno_right() +
     align_kmeans(3L) +
     align_line() +
@@ -273,6 +276,7 @@ ggheatmap(small_mat, theme = theme(panel.spacing.y = unit(2, "cm"))) +
 ```{r}
 set.seed(123)
 ggheatmap(small_mat) +
+    theme(axis.text.x = element_text(hjust = 0, angle = -60)) +
     anno_right() +
     align_kmeans(3L) +
     align_range() +
@@ -301,6 +305,7 @@ integer or character index of the original data.
 ```{r}
 set.seed(123)
 ggheatmap(small_mat) +
+    theme(axis.text.x = element_text(hjust = 0, angle = -60)) +
     anno_right() +
     align_kmeans(3L) +
     align_line(lines = list(4:6, 1:2)) +
@@ -317,6 +322,7 @@ ggheatmap(small_mat) +
 ```{r}
 set.seed(123)
 ggheatmap(small_mat) +
+    theme(axis.text.x = element_text(hjust = 0, angle = -60)) +
     anno_right() +
     align_kmeans(3L) +
     align_range(ranges = list(paste0("row", 1:2), paste0("row", 4:6))) +
@@ -337,6 +343,7 @@ provide an example using `align_link()` and `align_range()`.
 ```{r}
 set.seed(123)
 ggheatmap(small_mat) +
+    theme(axis.text.x = element_text(hjust = 0, angle = -60)) +
     anno_right() +
     align_kmeans(3L) +
     align_range(ranges = list(I(4:6), I(1:2))) +
