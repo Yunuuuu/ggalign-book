@@ -1,11 +1,10 @@
 # Difference with ggplot2
 `ggalign` focuses on aligning observations across multiple plots. While it
 builds on the `ggplot2` framework, there are key differences in how scales,
-facets, and coordinates are handled in alignment axes. This vignette highlights
-these syntax differences. 
+facets, and coordinates are handled. This vignette highlights these syntax
+differences. 
 
-The following syntax applies to all `align_*` functions that add a plot area,
-and to the main plot in `quad_layout()` when alignment is needed. 
+The following syntax applies to the axes used to align observations.
 
 ```{r setup}
 #| echo: false
