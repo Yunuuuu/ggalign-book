@@ -531,7 +531,7 @@
     "href": "difference-with-ggplot2.html",
     "title": "10  Difference with ggplot2",
     "section": "",
-    "text": "10.1 Axes used for alignment\nggalign focuses on aligning observations across multiple plots. While it builds on the ggplot2 framework, there are key differences in how scales, facets, and coordinates are handled in alignment axes. This vignette highlights these syntax differences.\nThe following syntax applies to all align_* functions that add a plot area, and to the main plot in quad_layout() when alignment is needed.\nAxes used for alignment in ggalign refer to: - x-axis in vertical stack layouts\nggalign introduces special syntax and handling for these axes, differing from the default behavior in ggplot2. These adjustments ensure that observations are properly aligned and operations are user-friendly.",
+    "text": "10.1 Axes used for alignment\nggalign focuses on aligning observations across multiple plots. While it builds on the ggplot2 framework, there are key differences in how scales, facets, and coordinates are handled. This vignette highlights these syntax differences.\nThe following syntax applies to the axes used to align observations.\nAxes used for alignment in ggalign refer to: - x-axis in vertical stack layouts\nggalign introduces special syntax and handling for these axes, differing from the default behavior in ggplot2. These adjustments ensure that observations are properly aligned and operations are user-friendly.",
     "crumbs": [
       "Basics",
       "<span class='chapter-number'>10</span>  <span class='chapter-title'>Difference with ggplot2</span>"
