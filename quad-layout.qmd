@@ -1,5 +1,7 @@
 # quad-layout {#sec-quad-layout}
-`quad_layout()` arranges plots in the Quad-Side of a main plot.
+`quad_layout()` arranges plots around the quad-sides of a main plot, aligning
+both horizontal and vertical axes, and can handle either discrete or continuous
+variables.
 ```{r setup}
 #| echo: false
 #| output: false
@@ -38,7 +40,7 @@ ggside() +
 #| eval: true
 ```
 
-## introduction
+## Introduction
 Depending on whether you want to align discrete or continuous variables in the
 `horizontal` and `vertical` direction, there are four main types of
 `quad_layout()`:
@@ -56,12 +58,12 @@ you want to align observations in the specified direction, different
 `stack_layout()` are compatible (@sec-heatmap-layout-add-stack-layout). Below is
 a table outlining the compatibility of various layout types for annotations:
 
-| Annotations                                                          | left and right       | top and bottom       |
-| -------------------------------------------------------------------- | -------------------- | -------------------- |
-| `quad_continuous()`/`ggside()`/`quad_layout(xlim = ..., ylim = ...)` | `stack_continuous()` | `stack_continuous()` |
-| `quad_layout(xlim = ...)`                                            | `stack_discrete()`   | `stack_continuous()` |
-| `quad_layout(ylim = ...)`                                            | `stack_continuous()` | `stack_discrete()`   |
-| `quad_discrete()`/`ggheatmap()`                                      | `stack_discrete()`   | `stack_discrete()`   |
+| Annotations                     | left and right       | top and bottom       |
+| ------------------------------- | -------------------- | -------------------- |
+| `quad_continuous()`/`ggside()`/ | `stack_continuous()` | `stack_continuous()` |
+| `quad_layout(xlim = ...)`       | `stack_discrete()`   | `stack_continuous()` |
+| `quad_layout(ylim = ...)`       | `stack_continuous()` | `stack_discrete()`   |
+| `quad_discrete()`/`ggheatmap()` | `stack_discrete()`   | `stack_discrete()`   |
 
 ## `quad_discrete()`
 `quad_discrete()` aligns discrete variables in both horizontal and vertical
@@ -79,6 +81,62 @@ quad_discrete(small_mat, aes(.x, .y)) +
     scale_fill_viridis_c()
 ```
 
+## `quad_continuous()`
+`quad_continuous()` align continuous variables and is functionally equivalent to
+the [ggside](https://cran.r-project.org/package=ggside) package. For
+convenience, `ggside()` is provided as an alias for `quad_continuous()`. This
+layout is particularly useful for adding metadata or summary graphics along a
+continuous axis.
+
+```{r}
+ggside(mpg, aes(displ, hwy, colour = class)) +
+    geom_point(size = 2) +
+    # initialize top annotation
+    anno_top(size = 0.3) +
+    # add a plot in the top annotation
+    ggfree() +
+    geom_density(aes(displ, y = after_stat(density), colour = class), position = "stack") +
+    # initialize right annotation
+    anno_right(size = 0.3) +
+    # add a plot in the right annotation
+    ggfree() +
+    geom_density(aes(x = after_stat(density), hwy, colour = class),
+        position = "stack"
+    ) &
+    theme_bw()
+```
+
+`ggside()` allows facetting for the main plot, which should also be applied to
+the annotations for proper alignment.
+```{r}
+i2 <- iris
+i2$Species2 <- rep(c("A", "B"), 75)
+ggside(i2, aes(Sepal.Width, Sepal.Length, color = Species)) +
+    geom_point(size = 2) +
+    facet_grid(Species ~ Species2) +
+    anno_top(size = 0.3) +
+    ggfree() +
+    geom_density(aes(Sepal.Width, y = after_stat(density), colour = Species),
+        position = "stack"
+    ) +
+    facet_grid(cols = vars(Species2)) +
+    anno_right(size = 0.3) +
+    ggfree() +
+    geom_density(aes(x = after_stat(density), Sepal.Length, colour = Species),
+        position = "stack"
+    ) +
+    facet_grid(rows = vars(Species)) &
+    theme_bw()
+```
+
+If an annotation contains multiple plots, it can be tedious to add the same
+element to each one individually. One way to simplify this is by creating an
+external `stack_layout()` and adding the desired elements using the `&`
+operator. Then, you can add this `stack_layout()` to the `quad_layout()`. In
+@sec-operators, I will introduce another more powerful operator that seamlessly
+combines with the `+` operator, allowing you to add elements to multiple plots
+at once.
+
 ## `quad_layout()`
 This function arranges plots around the quad-sides of a main plot, aligning both
 horizontal and vertical axes, and can handle either discrete or continuous
@@ -90,6 +148,11 @@ variables.
  - If `ylim` is provided, a continuous variable will be required and aligned in
  the horizontal direction. Otherwise, a discrete variable will be required and
  aligned.
+
+The functions `quad_continuous()` and `quad_discrete()` are specialized versions
+of `quad_layout()`: `quad_continuous()` sets both `xlim` and `ylim` arguments,
+while `quad_discrete()` does not set `xlim` or `ylim`. For simplicity,
+throughout this book, I will refer to all of the variants as `quad_layout()`.
 
 ::: {.grid}
 
@@ -197,62 +260,6 @@ quad_layout(small_mat, ylim = NULL) +
 :::
 
 :::
-
-## `quad_continuous()`
-`quad_continuous()` align continuous variables and is functionally equivalent to
-the [ggside](https://cran.r-project.org/package=ggside) package. For
-convenience, `ggside()` is provided as an alias for `quad_continuous()`. This
-layout is particularly useful for adding metadata or summary graphics along a
-continuous axis.
-
-```{r}
-ggside(mpg, aes(displ, hwy, colour = class)) +
-    geom_point(size = 2) +
-    # initialize top annotation
-    anno_top(size = 0.3) +
-    # add a plot in the top annotation
-    ggfree() +
-    geom_density(aes(displ, y = after_stat(density), colour = class), position = "stack") +
-    # initialize right annotation
-    anno_right(size = 0.3) +
-    # add a plot in the right annotation
-    ggfree() +
-    geom_density(aes(x = after_stat(density), hwy, colour = class),
-        position = "stack"
-    ) &
-    theme_bw()
-```
-
-`ggside()` allows facetting for the main plot, which should also be applied to
-the annotations for proper alignment.
-```{r}
-i2 <- iris
-i2$Species2 <- rep(c("A", "B"), 75)
-ggside(i2, aes(Sepal.Width, Sepal.Length, color = Species)) +
-    geom_point(size = 2) +
-    facet_grid(Species ~ Species2) +
-    anno_top(size = 0.3) +
-    ggfree() +
-    geom_density(aes(Sepal.Width, y = after_stat(density), colour = Species),
-        position = "stack"
-    ) +
-    facet_grid(cols = vars(Species2)) +
-    anno_right(size = 0.3) +
-    ggfree() +
-    geom_density(aes(x = after_stat(density), Sepal.Length, colour = Species),
-        position = "stack"
-    ) +
-    facet_grid(rows = vars(Species)) &
-    theme_bw()
-```
-
-If an annotation contains multiple plots, it can be tedious to add the same
-element to each one individually. One way to simplify this is by creating an
-external `stack_layout()` and adding the desired elements using the `&`
-operator. Then, you can add this `stack_layout()` to the `quad_layout()`. In
-@sec-operators, I will introduce another more powerful operator that seamlessly
-combines with the `+` operator, allowing you to add elements to multiple plots
-at once.
 
 In the next chapter, we will explore even more advanced techniques for combining
 multiple `quad_layout()`s. These methods will provide you with the tools to manage

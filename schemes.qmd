@@ -98,7 +98,7 @@ ggheatmap(small_mat) +
 ```
 
 ## `scheme_data()` {#sec-scheme-data}
-`align_gg()`/`ggalign()` requires the specific data format for its operations.
+`ggalign()` requires the specific data format for its operations.
 If you need to transform or filter data for individual `geoms`, you can use the
 `data` argument within each `geom`. However, if you have multiple `geoms` and
 want a consistent transformation applied across all, you can utilize the
