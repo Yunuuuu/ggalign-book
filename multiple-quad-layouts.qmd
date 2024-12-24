@@ -14,12 +14,21 @@ colnames(small_mat) <- paste0("column", seq_len(ncol(small_mat)))
 > note: when `stack_layout()` contains a nested `quad_layout()`, it cannot be used
 within the annotation of another `quad_layout()`. 
 
-## `stack_align()`
-As discussed in @sec-stack-layout-plot-initialize, `stack_align()` can accept
+Here is a summarized table showing which `quad_layout()` can be used with each `stack_layout()`:
+
+|                                 | `stack_discreteh()` | `stack_discretev()` | `stack_continuoush()` | `stack_continuousv()` |
+| ------------------------------- | ------------------- | ------------------- | --------------------- | --------------------- |
+| `quad_continuous()`/`ggside()`  | ❌                  | ❌                  | ✅                    | ✅                    |
+| `quad_layout(xlim = ...)`       | ✅                  | ❌                  | ❌                    | ✅                    |
+| `quad_layout(ylim = ...)`       | ❌                  | ✅                  | ✅                    | ❌                    |
+| `quad_discrete()`/`ggheatmap()` | ✅                  | ✅                  | ❌                    | ❌                    |
+
+## `stack_discrete()`
+As discussed in @sec-stack-layout-plot-initialize, `stack_discrete()` can accept
 plots regardless of whether alignment of observations is required. 
 
 ```{r}
-stack_alignh(small_mat) +
+stack_discreteh(small_mat) +
     ggheatmap() +
     theme(axis.text.x = element_text(hjust = -60, angle = -90)) +
     ggheatmap() +
@@ -34,7 +43,7 @@ directed to `ggheatmap()`/`quad_layout()`. One exception is the
 `stack_layout()`.
 
 ```{r}
-stack_alignv(small_mat) +
+stack_discretev(small_mat) +
     ggheatmap() +
     ggheatmap() +
     scale_fill_viridis_c()
@@ -42,37 +51,23 @@ stack_alignv(small_mat) +
 
 The data of `ggheatmap()`/`quad_layout()` can inherit from the `stack_layout()`,
 but the data format must match. Otherwise, you will need to manually provide the
-data. For `stack_align()`, the data is always expected to be a matrix, if you
-try to add a `ggside()` (which uses a data frame), it will result in an error.
+data. 
 
-```{r}
-#| error: true
-stack_alignh(small_mat) +
-    ggside()
-```
-
-When `ggheatmap()`/`quad_layout()` is added to a vertical `stack_align()`, the
-inherited matrix is transposed before use. This is because the columns of
+When `ggheatmap()`/`quad_layout()` is added to a vertical `stack_discrete()`,
+the inherited matrix is transposed before use. This is because the columns of
 `ggheatmap()`/`quad_layout()` must match the number of observations in
-`stack_align()`.
+`stack_discrete()`.
 ```{r}
-stack_alignv(small_mat) +
+stack_discretev(small_mat) +
     ggheatmap() +
     ggheatmap()
 ```
 
-`stack_align()` ensures that all plots aligned along the stack have the same
-ordering index or groups for the observations. Here's a table summarizing which
-`quad_layout()` will be aligned in `stack_align()`.
+`stack_discrete()` ensures that all plots aligned along the stack have the same
+ordering index or groups for the observations.
 
-|                               | `stack_alignh()` | `stack_alignv()` |
-| ----------------------------- | ---------------- | ---------------- |
-| `quad_free()`/`ggside()`      | ❌               | ❌               |
-| `quad_alignh()`               | ✅               | ❌               |
-| `quad_alignv()`               | ❌               | ✅               |
-| `quad_alignb()`/`ggheatmap()` | ✅               | ✅               |
 
-We can customize the layout in the `stack_align()` directly, or in
+We can customize the layout in the `stack_discrete()` directly, or in
 `quad_layout()`. As introduced in @sec-stack-layout-active-plot, you can easily
 switch from the `ggheatmap()`/`quad_layout()` to the `stack_layout()` using
 `stack_active()`.
@@ -81,7 +76,7 @@ switch from the `ggheatmap()`/`quad_layout()` to the `stack_layout()` using
 
 ::: {.g-col-6}
 ```{r}
-stack_alignv(small_mat) +
+stack_discretev(small_mat) +
     ggheatmap() +
     ggheatmap() +
     anno_bottom(size = 0.2) +
@@ -92,7 +87,7 @@ stack_alignv(small_mat) +
 
 ::: {.g-col-6}
 ```{r}
-stack_alignv(small_mat) +
+stack_discretev(small_mat) +
     ggheatmap() +
     ggheatmap() +
     stack_active() +
@@ -107,41 +102,33 @@ stack_alignv(small_mat) +
 When applied to a `stack_layout()`, the orientation of the dendrogram may need
 to be manually adjusted.
 
-## `stack_free()`
-However, `stack_free()` is designed to only accept plots that are not aligned
+## `stack_continuous()`
+However, `stack_continuous()` is designed to only accept plots that are not aligned
 along the axis (@sec-stack-layout-plot-initialize). Below is a table summarizing
-which `quad_layout()` are compatible with `stack_free()`:
-
-|                               | `stack_freeh()` | `stack_freev()` |
-| ----------------------------- | --------------- | --------------- |
-| `quad_free()`/`ggside()`      | ✅              | ✅              |
-| `quad_alignh()`               | ❌              | ✅              |
-| `quad_alignv()`               | ✅              | ❌              |
-| `quad_alignb()`/`ggheatmap()` | ❌              | ❌              |
-
+which `quad_layout()` are compatible with `stack_continuous()`:
 
 ```{r}
 alignh_quad_plot <- quad_alignh(small_mat) +
     geom_boxplot(aes(value, .discrete_y, fill = .row_names)) +
     scale_fill_brewer(palette = "Dark2")
-stack_freev() +
+stack_continuousv() +
     alignh_quad_plot +
     alignh_quad_plot
 ```
 
 ## Control sizes
 A numeric or a unit object of length 3 should be provided in
-`stack_align()`/`stack_free()` when placing a `quad_layout()`. For vertical
-`stack_layout()`, this means `quad_layout()` with left or right annotations; for
-horizontal `stack_layout()`, this means `quad_layout()` with top or bottom
-annotations. The first size controls the relative `width`/`height` of the left
-or top annotation, the second controls the relative `width`/`height` of the main
-plot, and the third controls the relative `width`/`height` of the right or
-bottom annotation. 
+`stack_discrete()`/`stack_continuous()` when placing a `quad_layout()`. For
+vertical `stack_layout()`, this means `quad_layout()` with left or right
+annotations; for horizontal `stack_layout()`, this means `quad_layout()` with
+top or bottom annotations. The first size controls the relative `width`/`height`
+of the left or top annotation, the second controls the relative `width`/`height`
+of the main plot, and the third controls the relative `width`/`height` of the
+right or bottom annotation. 
 
 By default the three rows/columns will have equal sizes.
 ```{r}
-stack_alignv(small_mat) +
+stack_discretev(small_mat) +
     ggheatmap() +
     theme(axis.text.x = element_text(angle = -60, hjust = 0)) +
     anno_left() +
@@ -162,7 +149,7 @@ heat1 <- ggheatmap(t(small_mat)) +
     ggalign(data = rowSums) +
     geom_bar(aes(value, fill = .panel), orientation = "y", stat = "identity")
 
-stack_alignv(small_mat, sizes = c(1, 2, 1)) +
+stack_discretev(small_mat, sizes = c(1, 2, 1)) +
     heat1 +
     ggheatmap() +
     theme(axis.text.x = element_text(angle = -60, hjust = 0))
@@ -171,7 +158,7 @@ stack_alignv(small_mat, sizes = c(1, 2, 1)) +
 In this way, the width/height of main plot specified in `quad_active()` or
 `quad_layout()`/`ggheatmap()` won't work.
 ```{r}
-stack_alignv(small_mat) +
+stack_discretev(small_mat) +
     ggheatmap(width = unit(2, "null")) + # not work
     theme(axis.text.x = element_text(angle = -60, hjust = 0)) +
     anno_left() +
