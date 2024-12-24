@@ -7,11 +7,11 @@ multiple groups.
 Currently, there are four key `align_*` functions available for layout customization:
 
 - **`align_group`**: Group and align plots based on categorical factors.
+- **`align_kmeans`**: Group observations by k-means clustering results.
 - **`align_order`**: Reorder layout observations based on statistical weights
  or allows for manual reordering based on user-defined ordering index.
-- **`align_kmeans`**: Group observations by k-means clustering results.
-- **`align_hclust`**: Reorder or group observations based on hierarchical clustering.
 - **`align_reorder`**: Reorder observations using an arbitrary statistical function.
+- **`align_hclust`**: Reorder or group observations based on hierarchical clustering.
 
 Note that these functions do not add plot areas and set the active context,
 meaning you cannot incorporate `ggplot2` elements directly into these objects.
@@ -46,6 +46,16 @@ ggheatmap(small_mat) +
     anno_top() +
     align_group(sample(letters[1:4], ncol(small_mat), replace = TRUE)) +
     align_group(sample(letters[1:5], ncol(small_mat), replace = TRUE))
+```
+
+## `align_kmeans()`
+The `align_kmeans()` function split the observations into groups based on
+k-means clustering.
+```{r}
+set.seed(1234)
+ggheatmap(small_mat) +
+    anno_top() +
+    align_kmeans(3L)
 ```
 
 ## `align_order()`
@@ -147,16 +157,6 @@ ggheatmap(small_mat) +
     anno_top() +
     align_order(rowMeans) +
     align_order(another_order)
-```
-
-## `align_kmeans()`
-The `align_kmeans()` function split the observations into groups based on
-k-means clustering.
-```{r}
-set.seed(1234)
-ggheatmap(small_mat) +
-    anno_top() +
-    align_kmeans(3L)
 ```
 
 ## `align_hclust()` {#sec-align_hclust}
@@ -305,7 +305,7 @@ for exploring complex patterns in data.
 
 
 With the `align_*` functions in place, we've covered how to reorder and group
-observations within a heatmap layout. Now, having set the stage for proper
-observation alignment, we can move on to the next essential step: `plot
-initialize`. In the following chapter, we'll dive deeper into how to set up your
-plots within the layout.
+observations within a layout. Now, having set the stage for proper observation
+alignment, we can move on to the next essential step: `plot initialize`. In the
+following chapter, we'll dive deeper into how to set up your plots within the
+layout.

@@ -1,20 +1,15 @@
 # Plot initialize
 There are three primary functions for adding plots: 
 
-  - `align_gg()`/`ggalign()`: Create a ggplot object and aligns the observation.
-  - `align_line()`/`align_range()`: Add a plot to annotate the selected observations.
-  - `free_gg()`/`ggfree()`: Create a ggplot object without aligning the
-  observation.
+  - `ggalign()`: Create a ggplot object and aligns the axes.
+  - `ggmark()`: Add a plot to annotate selected observations.
+  - `ggfree()`: Create a ggplot object without alignment.
   - `align_dendro()`: Create a ggplot object of dendrogram tree, and align the
   observation. In addition, it can reorder and group the observations.
 
-`ggalign()` and `ggfree()` are aliases for `align_gg()` and `free_gg()`,
-respectively. All three functions will set the active plot when added to the
-layout.
+All these functions will set the active plot when added to the layout.
 
-Both `ggalign()` and `align_dendro()` can only be used with a `stack_layout()`
-that aligns observations (`stack_align()`), whereas `ggfree()` can be added to a
-`stack_layout()` that does not align the observations (`stack_free()`). 
+Both `ggmark()` and `align_dendro()` can only for discrete variables.
 
 ```{r setup}
 #| code-fold: true
@@ -25,52 +20,34 @@ rownames(small_mat) <- paste0("row", seq_len(nrow(small_mat)))
 colnames(small_mat) <- paste0("column", seq_len(ncol(small_mat)))
 ```
 
-## `align_gg()`/`ggalign()` {#sec-ggalign}
+## `ggalign()` {#sec-ggalign}
+`ggalign` is the package name but it's also a function in the package.
 `ggalign()` is similar to `ggplot` in that it initializes a `ggplot` data and
 `mapping`. `ggalign()` allowing you to provide data in various formats,
 including matrices, data frames, or simple vectors. By default, it will inherit
-from the layout. If a function, it will apply with the layout matrix.
+from the layout. If a function, it will apply with the layout data. 
 
-`ggalign()` always applies a default mapping for the axis of the data index in
-the layout. This mapping is `aes(y = .data$.y)` for horizontal stacking
-(including left and right quad layout annotation) and `aes(x = .data$.x)` for
-vertical stacking (including top and bottom quad layout annotation).
+The underlying plot data will be created using `fortify_data_frame()`, which, By
+default, calls `ggplot2::fortify()` to build the data frame. Additional methods
+have been added for atomic vector and matrix. For atomic vector, it will convert 
+it to a data frame with following columns:
 
-The data in the underlying `ggplot` object will contain following columns:
+  - `.names`: the names for the vector (only applicable if names exist).
+  - `value`: the actual value of the vector.
 
-  - `.panel`: the panel for the aligned axis. It means `x-axis` for vertical
-    stack layout (including top and bottom annotation), `y-axis` for
-    horizontal stack layout (including left and right annotation).
+When `data` is a matrix, it will automatically be transformed into a
+long-form data frame, where each row represents a unique combination of
+matrix indices and their corresponding values. The resulting data frame will
+contain the following columns:
 
-  - `.x`/`y` and `.discrete_x`/`.discrete_y`: an integer index of `x`/`y`
-    coordinates and a factor of the data labels (only applicable when names
-    exists).
+  - `.row_names` and `.row_index`: the row names (only applicable when names
+  exist) and an integer representing the row index of the original matrix.
+  - `.column_names` and `.column_index`: the column names (only applicable when
+  names exist) and column index of the original matrix.
+  - `value`: the actual value.
 
-  - `.names` (`vec_names()`) and `.index` (`NROW()`): a character names (only
-    applicable when names exists) and an integer of index of the original data.
-
-  - `.row_names` and `.row_index`: the row names and an integer of
-    row index of the original matrix (only applicable if `data` is a
-    `matrix`).
-
-  - `.column_names` and `.column_index`: the column names and column index of
-    the original matrix (only applicable if `data` is a `matrix`).
-
-  - `value`: the actual value (only applicable if `data` is a `matrix` or
-    atomic vector).
-
->It is recommended to use `.x`/`.y`, or `.discrete_x`/`.discrete_y` as the `x`/`y` mapping.
-
-Almost all functions that add plots will generate data containing two key
-columns: `.panel` and `.index`.
-
-  - `.panel`: used to create ggplot2 facets.
-  - `.index`: serves to match the data across different layers or datasets. It
-  is useful for aligning observations or linking different data sources. You can
-  use `.index` to merge data and create a new data frame, using method provided
-  in @sec-scheme-data.
-
-Additionally, if names are provided, the `.names` column will also be created
+When alignning continuous variables, `ggalign()` will apply the `limits` set by
+the layout when drawing.
 
 ```{r}
 ggheatmap(small_mat) +
@@ -79,10 +56,49 @@ ggheatmap(small_mat) +
     geom_point(aes(y = value))
 ```
 
-In the case where the input data is already a data frame, following columns
-(`.panel`, `.index`, `.names`, `.x`/`.y`, `.discrete_x`/`.discrete_y`) are added
-to the data frame. Note, `NROW(data)` must match the `number of observations`
-along the axis used for alignment.
+When aligning discrete variables, `ggalign()` always applies a default mapping
+for the axis of the data index in the layout. Specifically, This mapping is
+`aes(y = .data$.y)` for horizontal stack (including left and right annotation)
+and `aes(x = .data$.x)` for vertical stack (including top and bottom
+annotation).
+
+The following columns will be added to the data frame to align discrete
+variables:
+
+ - `.panel`: The panel for the aligned axis. Refers to the `x-axis` for
+   vertical `stack_layout()` (including top and bottom annotations), and the
+   `y-axis` for horizontal `stack_layout()` (including left and right
+   annotations).
+ - `.names` ([`vec_names()`][vctrs::vec_names]) and `.index`
+   ([`vec_size()`][vctrs::vec_size()]/[`NROW()`]): Character names (if
+   available) and the integer index of the original data.
+ - `.x`/`.y` and `.discrete_x`/`.discrete_y`: Integer indices for `x`/`y`
+   coordinates, and a factor of the data labels (only applicable when names
+   exist).
+
+>It is recommended to use `.x`/`.y`, or `.discrete_x`/`.discrete_y` as the `x`/`y` mapping.
+
+When aligning discrete variables, almost all functions that add plots will
+generate data containing two key columns:
+
+  - `.panel`: used to create ggplot2 facets.
+  - `.index`: serves to match the data. It is useful for aligning observations
+  or linking different data sources. You can use `.index` to merge data and
+  create a new data frame, using method provided in @sec-scheme-data.
+
+Additionally, if names exist, the `.names` column will also be created.
+
+```{r}
+stack_continuous("v", mtcars, limits = continuous_limits(c(2, 4))) +
+    ggalign(mapping = aes(wt, mpg)) +
+    geom_point() +
+    ggalign(mapping = aes(wt, mpg)) +
+    geom_point() +
+    theme(axis.text.x = element_text())
+```
+
+When aligning discrete variables, ensure that the number of rows in the data
+matches the number of observations along the axis used for alignment:
 ```{r}
 my_df <- mtcars[seq_len(ncol(small_mat)), ]
 ggheatmap(small_mat) +
@@ -91,59 +107,30 @@ ggheatmap(small_mat) +
     geom_point(aes(y = cyl))
 ```
 
-You may wonder if the strict data requirements will prevent us from preparing
-the data for plotting. Don't worry! In @sec-scheme-data, I'll introduce powerful
-way to prepare data for your plots.
-
-If `data = NULL`, the data in the underlying `ggplot` object contains following
-columns: `.panel`, `.index`, `.names`, `.x`/`.y`, `.discrete_x`/`.discrete_y`.
-
-You can use it to integrate additional elements, such as block annotation or
-customized panel title, into your layout.
+If `data = NULL`, the data in the underlying `ggplot` object only contains
+following columns: `.panel`, `.index`, `.names`, `.x`/`.y`,
+`.discrete_x`/`.discrete_y`. You can use it to integrate additional elements,
+such as block annotation or customized panel title, into your layout.
 
 ```{r}
 ggheatmap(small_mat) +
     anno_top(size = unit(1, "cm")) +
     align_kmeans(centers = 3L) +
     ggalign(data = NULL) +
-    geom_tile(aes(y = 1L, fill = .panel, color = .panel))
+    geom_tile(aes(y = 1L, fill = .panel, color = .panel)) +
+    theme_no_axes("y")
 ```
 
-### Cross panel sumamry
-When used in a `quad_layout()`, and the data is inherited from the
-`quad_layout()`, a special column `.extra_panel` will be added if applicable,
-which is the panel information for column (for left or right annotation) or row
-(for top or bottom annotation). This is useful if you want to create summary
-plot using another axis panel groups. In such cases, it's often necessary to
-disable the automatic setting of limits (`limits = FALSE` in `ggalign()`).
+The function `theme_no_axes()` can be used to quickly remove axis text and
+titles from the plot. 
 
-```{r fig.dim = c(5, 10)}
-set.seed(1234)
-ggheatmap(small_mat) +
-    anno_right() +
-    align_kmeans(2) +
-    anno_top(size = 0.5) +
-    ggalign(limits = FALSE) +
-    geom_boxplot(aes(.extra_panel, value, fill = .extra_panel)) +
-    scale_fill_brewer(palette = "Dark2", name = "row groups")
-```
-
-This approach replicates the functionality of
-[ComplexHeatmap::anno_summary()](https://jokergoo.github.io/ComplexHeatmap-reference/book/heatmap-annotations.html#summary-annotation),
-but is versatile enough to be used with any heatmap, not just single-column or
-single-row heatmaps.
-
-## `free_gg()`/`ggfree()`
+## `ggfree()`
 The `ggfree()` function allows you to incorporate a ggplot object into your
-layout. Unlike `align_gg()`, which aligns every axis value precisely,
-`free_gg()` focuses on layout integration without enforcing strict axis
-alignment.
+layout. Unlike `ggalign()`, which aligns every axis value precisely, `ggfree()`
+focuses on layout integration without enforcing strict axis alignment.
 
-Internally, the function uses `fortify_data_frame()` to transform the input into
-a data frame. For matrices, it converts them into a long-formatted data frame.
-Note that `ggfree()` does not provide a default aesthetic mapping, which
-contrasts with `ggalign()`. You will need to manually provide the default
-mappings.
+Internally, the function also uses `fortify_data_frame()` to transform the input
+into a data frame.
 
 ```{r}
 ggheatmap(small_mat) +
@@ -151,6 +138,10 @@ ggheatmap(small_mat) +
     ggfree(mtcars, aes(wt, mpg)) +
     geom_point()
 ```
+
+Since `ggfree()` may use axes that are not aligned with the primary plot's axes,
+the axis titles will not be removed automatically. If you want to remove the
+axis titles, you must do so manually by customizing the theme.
 
 Alternatively, you can directly input the ggplot object.
 ```{r}
@@ -169,6 +160,36 @@ ggheatmap(small_mat) +
     ggplot(mtcars, aes(wt, mpg)) +
     geom_point()
 ```
+
+### Cross panel sumamry
+When used in `quad_layout()`/`ggheatmap()`, if the data is inherited from the
+`quad_layout()` and the other direction aligns discrete variables, following
+columns will be added:
+
+  - `.extra_panel`: Provides the panel information for the column (left or
+    right annotation) or row (top or bottom annotation).
+  - `.extra_index`: The index information for the column (left or right
+    annotation) or row (top or bottom annotation).
+
+This is useful if you want to create summary plot using another axis panel
+groups.
+
+```{r fig.dim = c(5, 10)}
+set.seed(1234)
+ggheatmap(small_mat) +
+    anno_right() +
+    align_kmeans(2) +
+    anno_top(size = 0.5) +
+    ggfree() +
+    geom_boxplot(aes(.extra_panel, value, fill = .extra_panel)) +
+    scale_fill_brewer(palette = "Dark2", name = "row groups") +
+    theme_no_axes("x")
+```
+
+This approach replicates the functionality of
+[ComplexHeatmap::anno_summary()](https://jokergoo.github.io/ComplexHeatmap-reference/book/heatmap-annotations.html#summary-annotation),
+but is versatile enough to be used with any heatmap, not just single-column or
+single-row heatmaps.
 
 ## `ggwrap()` and `inset()`
 The `ggwrap()` function allows you to wrap objects that can be converted into a
@@ -201,24 +222,21 @@ ggheatmap(small_mat) +
     )
 ```
 
-## `align_link()` and `align_range()`
-It would be helpful if we can add an annotation plot for the selected observations, `align_link()` and `align_range()` can be used to do this. 
+## `ggmark()`
+It would be helpful if we can add an annotation plot for the selected observations, 
+`ggmark()` can be used to do this. 
 
- - `align_line`: Annotates a list of discrete observations. These observations
- will be connected to the panel by a line.
- - `align_range`: Annotates a list of continuous observation ranges. The ranges
- will be connected to the panel by a polygon.
+`ggmark` accepts `mark` argument, which should be a `mark_draw()` object to
+define how to draw the links. Currently, two internal functions `mark_line()`,
+`mark_tetragon()` can be used to quickly draw line and quadrilateral links used
+to connect the selected observations and the plot panel.
 
-`align_line` accepts `lines` argument, which should be a list of observations,
-Each element of the list will be represented by a facet panel. While `align_range`
-accepts `ranges` argument, which should be a list of the range.
+By default, `ggmark()` will connect all observations and split them based on the
+groups defined in the layout. The data underlying the ggplot object created by
+`ggmark()` is similar to that of `ggalign()` (@sec-ggalign), but it does not
+include the `.x`/`.y` and `.discrete_x`/`.discrete_y` columns.
 
-By default, `align_line()` will connect all observations and split them based on
-the groups defined in the layout. The data underlying the ggplot object created
-by `align_line()` is similar to that of `ggalign()` (@sec-ggalign), but it does
-not include the `.x`/`.y` and `.discrete_x`/`.discrete_y` columns. Instead, the
-data will be filtered to include only the selected observations. You can use the
-`plot.margin` argument to control the length or size of the link lines or ranges.
+You can use the `plot.margin` argument to control the link size.
 
 ::: {.grid}
 
@@ -229,7 +247,7 @@ ggheatmap(small_mat) +
     theme(axis.text.x = element_text(hjust = 0, angle = -60)) +
     anno_right() +
     align_kmeans(3L) +
-    align_line() +
+    ggmark(mark_line()) +
     geom_boxplot(aes(.names, value)) +
     theme(plot.margin = margin(l = 0.1, t = 0.1, unit = "npc"))
 ```
@@ -242,7 +260,7 @@ ggheatmap(small_mat) +
     theme(axis.text.x = element_text(hjust = 0, angle = -60)) +
     anno_right() +
     align_kmeans(3L) +
-    align_range() +
+    ggmark(mark_tetragon()) +
     geom_boxplot(aes(.names, value)) +
     theme(plot.margin = margin(l = 0.1, t = 0.1, unit = "npc"))
 ```
@@ -250,11 +268,17 @@ ggheatmap(small_mat) +
 
 ::: 
 
-`align_line` and `align_range` use `facet_wrap` to define the facet, and you can
-use it to control the facet apearance (just ignore the `facets` argument). We
-prefer `facet_wrap()` here because it offers flexibility in positioning the
-strip on any side of the panel, and typically, we only want to a single
-dimension to create the annotation.
+The `mark_draw()` function in the package allows you to define linked
+observations for each panel using a list of `link()` objects, which 
+accepts two arguments:
+
+  - `link1`: An integer or character index that specifies the linked observations.
+  - `link2`: Used to link observations in the right or bottom, this should match
+  `link1`, as all plots in stack_discrete() should maintain the same ordering
+  index. If you want `link2` to inherit from `link1`, you can use the `waiver()`
+  directly (the same for `link1` argument, you can use `waiver()` to inherit
+  from `link2` argument). However, this becomes useful in `stack_cross()`, where
+  different orderings are involved, and you must specify the links explicitly.
 
 ::: {.grid}
 
@@ -265,9 +289,8 @@ ggheatmap(small_mat) +
     theme(axis.text.x = element_text(hjust = 0, angle = -60)) +
     anno_right() +
     align_kmeans(3L) +
-    align_line() +
-    geom_boxplot(aes(.names, value)) +
-    facet_wrap(vars(), scales = "free", strip.position = "right") +
+    ggmark(mark_line(link(4:6), link(1:2))) +
+    geom_boxplot(aes(.names, value, fill = .names)) +
     theme(plot.margin = margin(l = 0.1, t = 0.1, unit = "npc"))
 ```
 ::: 
@@ -279,103 +302,100 @@ ggheatmap(small_mat) +
     theme(axis.text.x = element_text(hjust = 0, angle = -60)) +
     anno_right() +
     align_kmeans(3L) +
-    align_range() +
-    geom_boxplot(aes(.names, value)) +
-    facet_wrap(vars(), scales = "free", strip.position = "right") +
-    theme(plot.margin = margin(l = 0.1, t = 0.1, unit = "npc"))
+    ggmark(mark_line(link(4:6), link(1:2))) +
+    geom_boxplot(aes(.names, value, fill = .names)) +
+    theme(plot.margin = margin(l = 0.1, r = 0.1, t = 0.1, unit = "npc"))
 ```
 ::: 
 
 :::
 
-You can further customize link lines and ranges using `theme()`:
-
- - Link lines can be customized using the `plot.ggalign_lines` theme element
- with `element_line()`.
- - Link ranges can be customized using the `plot.ggalign_ranges` theme element
- with `element_polygon()`.
-
-The drawing order by default is from bottom to the top and from the left to the
-right, and use the ordering specified in `lines` or `ranges`. Both can accept
-integer or character index of the original data.
-
-::: {.grid}
-
-::: {.g-col-6}
-```{r}
-set.seed(123)
-ggheatmap(small_mat) +
-    theme(axis.text.x = element_text(hjust = 0, angle = -60)) +
-    anno_right() +
-    align_kmeans(3L) +
-    align_line(lines = list(4:6, 1:2)) +
-    geom_boxplot(aes(.names, value, fill = .names)) +
-    facet_wrap(vars(), scales = "free", strip.position = "right") +
-    theme(
-        plot.margin = margin(l = 0.1, t = 0.1, unit = "npc"),
-        plot.ggalign_lines = element_line(color = c("red", "blue"))
-    )
-```
-::: 
-
-::: {.g-col-6}
-```{r}
-set.seed(123)
-ggheatmap(small_mat) +
-    theme(axis.text.x = element_text(hjust = 0, angle = -60)) +
-    anno_right() +
-    align_kmeans(3L) +
-    align_range(ranges = list(paste0("row", 1:2), paste0("row", 4:6))) +
-    geom_boxplot(aes(.names, value, fill = .names)) +
-    facet_wrap(vars(), scales = "free", strip.position = "right") +
-    theme(
-        plot.margin = margin(l = 0.1, t = 0.1, unit = "npc"),
-        plot.ggalign_ranges = element_polygon(fill = scales::alpha(c("red", "blue"),0.5))
-    )
-```
-::: 
-
-:::
-
-In addition, you can use ordered integer indices by wrapping them with `I()`.
-Since the usage is the same for both `align_link()` and `align_range()`, I'll only
-provide an example using `align_link()` and `align_range()`.
-```{r}
-set.seed(123)
-ggheatmap(small_mat) +
-    theme(axis.text.x = element_text(hjust = 0, angle = -60)) +
-    anno_right() +
-    align_kmeans(3L) +
-    align_range(ranges = list(I(4:6), I(1:2))) +
-    geom_boxplot(aes(.names, value, fill = .names)) +
-    facet_wrap(vars(), scales = "free", strip.position = "right") +
-    theme(
-        plot.margin = margin(l = 0.1, t = 0.1, unit = "npc"),
-        plot.ggalign_ranges = element_polygon(fill = scales::alpha(c("red", "blue"),0.5))
-    )
-```
-
-You can also add links on both side. For a horizontal `stack_layout()`, you can
-add links to the left and right sides, and for a vertical `stack_layout()`, you
-can add links to the top and bottom. By default, `stack_layout()` adds links to
-both sides, while `quad_layout()` adds links to only one position. However, you
-can control this behavior using the position argument.
-
+You can also use `waiver()` to inherit links from the other argument:
 ```{r}
 stack_alignh(small_mat) +
     align_dendro(aes(color = branch), k = 3L) +
     scale_x_reverse(expand = expansion()) +
     theme(plot.margin = margin()) +
-    align_line(lines = list(I(4:6), I(1:2))) +
+    ggmark(mark_line(link(4:6, waiver()), link(1:2, waiver()))) +
     geom_boxplot(aes(.names, value, fill = .names)) +
-    facet_wrap(vars(), scales = "free", strip.position = "top") +
-    theme(
-        plot.margin = margin(l = 0.1, t = 0.1, r = 0.1, b = 0.1, unit = "npc"),
-        plot.ggalign_lines = element_line(color = c("red", "blue"))
-    ) +
+    theme(plot.margin = margin(l = 0.1, t = 0.1, r = 0.1, b = 0.1, unit = "npc")) +
     align_dendro(aes(color = branch), k = 3L) +
     scale_x_continuous(expand = expansion()) +
     theme(plot.margin = margin())
+```
+
+In addition, you can use ordered integer indices by wrapping them with `I()`.
+```{r}
+set.seed(123)
+ggheatmap(small_mat) +
+    theme(axis.text.x = element_text(hjust = 0, angle = -60)) +
+    anno_right() +
+    align_kmeans(3L) +
+    ggmark(mark_tetragon(link(I(4:6)), link(I(1:2)))) +
+    geom_boxplot(aes(.names, value, fill = .names)) +
+    theme(plot.margin = margin(l = 0.1, t = 0.1, unit = "npc"))
+```
+
+You can further customize link lines and quadrilateral using `element` argument:
+
+ - Link lines can be customized using the `element_line()`.
+ - Link ranges can be customized using the `element_polygon()`.
+
+::: {.grid}
+
+::: {.g-col-6}
+```{r}
+set.seed(123)
+ggheatmap(small_mat) +
+    theme(axis.text.x = element_text(hjust = 0, angle = -60)) +
+    anno_right() +
+    align_kmeans(3L) +
+    ggmark(
+        mark_line(link(4:6), link(1:2), 
+            element =  element_line(color = c("red", "blue"))
+        )
+    ) +
+    geom_boxplot(aes(.names, value, fill = .names)) +
+    theme(plot.margin = margin(l = 0.1, t = 0.1, unit = "npc"))
+```
+::: 
+
+::: {.g-col-6}
+```{r}
+set.seed(123)
+ggheatmap(small_mat) +
+    theme(axis.text.x = element_text(hjust = 0, angle = -60)) +
+    anno_right() +
+    align_kmeans(3L) +
+    ggmark(
+        mark_tetragon(link(4:6), link(1:2), 
+            element =  element_polygon(fill = c("red", "blue"), alpha = 0.5)
+        )
+    ) +
+    geom_boxplot(aes(.names, value, fill = .names)) +
+    facet_wrap(vars(), scales = "free", strip.position = "right") +
+    theme(plot.margin = margin(l = 0.1, t = 0.1, unit = "npc"))
+```
+::: 
+
+::: 
+
+By default, `ggmark()` uses `facet_wrap` to define the facet, and you can use it
+to control the facet apearance (just ignore the `facets` argument). We prefer
+`facet_wrap()` here because it offers flexibility in positioning the strip on
+any side of the panel, and typically, we only want to a single dimension to
+create the annotation.
+
+```{r}
+set.seed(123)
+ggheatmap(small_mat) +
+    theme(axis.text.x = element_text(hjust = 0, angle = -60)) +
+    anno_right() +
+    align_kmeans(3L) +
+    ggmark(mark_line()) +
+    geom_boxplot(aes(.names, value)) +
+    facet_wrap(vars(), scales = "free", strip.position = "right") +
+    theme(plot.margin = margin(l = 0.1, t = 0.1, unit = "npc"))
 ```
 
 ## `align_dendro()` {#sec-align-dendro}
@@ -426,7 +446,7 @@ data with `ggalign_attr()`. The `edge` data is stored in the edge field of
 ```{r}
 ggheatmap(small_mat) +
     anno_top() +
-    align_dendro() +
+    align_dendro(plot_dendrogram = FALSE) +
     geom_segment(
         aes(x = .data$x, y = .data$y, xend = .data$xend, yend = .data$yend),
         data = function(x) ggalign_attr(x, "edge")
