@@ -39,23 +39,16 @@ ggside() +
 ```
 
 ## introduction
-Depending on whether you want to align observations in the `horizontal` or `vertical`
-direction, there are four main types of `quad_layout()`:
+Depending on whether you want to align discrete or continuous variables in the
+`horizontal` and `vertical` direction, there are four main types of
+`quad_layout()`:
 
-| Alignment of Observations     | horizontal | vertical | Data Format |
-| ----------------------------- | ---------- | -------- | ----------- |
-| `quad_free()`/`ggside()`      | ❌         | ❌       | data frame  |
-| `quad_alignh()`               | ✅         | ❌       | matrix      |
-| `quad_alignv()`               | ❌         | ✅       | matrix      |
-| `quad_alignb()`/`ggheatmap()` | ✅         | ✅       | matrix      |
-
-When the layout requires alignment of observations, we typically use a matrix,
-regardless of whether alignment is needed in one or two directions.
-
- - For data frame, the input will be automatically converted using
- `fortify_data_frame()` if needed.
- - For matrix, the input will be automatically converted using
- `fortify_matrix()` if required.
+| Alignment of Observations       | horizontal | vertical   | Data Format |
+| ------------------------------- | ---------- | ---------- | ----------- |
+| `quad_continuous()`/`ggside()`  | continuous | continuous | data frame  |
+| `quad_layout(xlim = ...)`       | discrete   | continuous | matrix      |
+| `quad_layout(ylim = ...)`       | continuous | discrete   | matrix      |
+| `quad_discrete()`/`ggheatmap()` | discrete   | discrete   | matrix      |
 
 ## Annotations
 Annotation is typically handled using a `stack_layout()`. Depending on whether
@@ -63,17 +56,17 @@ you want to align observations in the specified direction, different
 `stack_layout()` are compatible (@sec-heatmap-layout-add-stack-layout). Below is
 a table outlining the compatibility of various layout types for annotations:
 
-| Annotations                   | left and right                   | top and bottom                   |
-| ----------------------------- | -------------------------------- | -------------------------------- |
-| `quad_free()`/`ggside()`      | `stack_freeh()`                  | `stack_freev()`                  |
-| `quad_alignh()`               | `stack_freeh()`/`stack_alignh()` | `stack_freev()`                  |
-| `quad_alignv()`               | `stack_freeh()`                  | `stack_freev()`/`stack_alignv()` |
-| `quad_alignb()`/`ggheatmap()` | `stack_freeh()`/`stack_alignh()` | `stack_freev()`/`stack_alignv()` |
+| Annotations                                                          | left and right       | top and bottom       |
+| -------------------------------------------------------------------- | -------------------- | -------------------- |
+| `quad_continuous()`/`ggside()`/`quad_layout(xlim = ..., ylim = ...)` | `stack_continuous()` | `stack_continuous()` |
+| `quad_layout(xlim = ...)`                                            | `stack_discrete()`   | `stack_continuous()` |
+| `quad_layout(ylim = ...)`                                            | `stack_continuous()` | `stack_discrete()`   |
+| `quad_discrete()`/`ggheatmap()`                                      | `stack_discrete()`   | `stack_discrete()`   |
 
-## `quad_alignb()`
-`quad_alignb()` aligns observations in both horizontal and vertical directions. It
-serves as the base version of `ggheatmap()`/`heatmap_layout()` and does not
-automatically add default layers or mappings.
+## `quad_discrete()`
+`quad_discrete()` aligns discrete variables in both horizontal and vertical
+directions. It serves as the base version of `ggheatmap()`/`heatmap_layout()`
+and does not automatically add default layers or mappings.
 
 The underlying `ggplot` data of the main plot is the same with
 `ggheatmap()`/`heatmap_layout()` (@sec-heatmap-layout-main-plot), it is
@@ -81,37 +74,40 @@ recommended to use `.y`, or `.discrete_y` as the `y` mapping and use `.x` or
 `.discrete_x` as the `x` mapping in the main plot.
 
 ```{r}
-quad_alignb(small_mat, aes(.x, .y)) +
+quad_discrete(small_mat, aes(.x, .y)) +
     geom_tile(aes(fill = value)) +
     scale_fill_viridis_c()
 ```
 
-## `quad_alignh()`/`quad_alignv()`
-`quad_alignh()` aligns observations horizontally, while `quad_alignv()` aligns
-observations vertically.
+## `quad_layout()`
+This function arranges plots around the quad-sides of a main plot, aligning both
+horizontal and vertical axes, and can handle either discrete or continuous
+variables.
 
-The underlying `ggplot` data is the same with `ggheatmap()`/`heatmap_layout()`,
-it is recommended to use `.y`, or `.discrete_y` as the `y` mapping in the main
-plot for `quad_alignh()` but use `.x` or `.discrete_x` as the `x` mapping in
-the main plot for `quad_alignv()`.
+ - If `xlim` is provided, a continuous variable will be required and aligned in
+ the vertical direction. Otherwise, a discrete variable will be required and
+ aligned.
+ - If `ylim` is provided, a continuous variable will be required and aligned in
+ the horizontal direction. Otherwise, a discrete variable will be required and
+ aligned.
 
 ::: {.grid}
 
 ::: {.g-col-6}
 ```{r}
-quad_alignh(small_mat) +
+quad_layout(small_mat, xlim = NULL) +
     geom_boxplot(aes(value, .discrete_y, fill = .row_names)) +
     scale_fill_brewer(palette = "Dark2") +
-    layout_title("quad_alignh()")
+    layout_title("quad_layout(xlim = ...)")
 ```
 :::
 
 ::: {.g-col-6}
 ```{r}
-quad_alignv(small_mat) +
+quad_layout(small_mat, ylim = NULL) +
     geom_boxplot(aes(.discrete_x, value, fill = .column_names)) +
     scale_fill_brewer(palette = "Dark2") +
-    layout_title("quad_alignv()")
+    layout_title("quad_layout(ylim = ...)")
 ```
 :::
 
@@ -119,23 +115,23 @@ quad_alignv(small_mat) +
 
 As discussed in @sec-heatmap-layout-annotations, `quad_anno()` will always
 attempt to initialize a `stack_layout()` with the same alignment as the current
-direction. For top and bottom annotations in `quad_alignh()`, and left and right
-annotations in `quad_alignv()`, `quad_anno()` will not initialize the annotation
-due to inconsistent data types.
+direction. For top and bottom annotations in `quad_layout(xlim = ...)`, and left
+and right annotations in `quad_layout(ylim = NULL)`, `quad_anno()` will not
+initialize the annotation due to inconsistent data types.
 
 ```{r}
-quadh <- quad_alignh(small_mat) +
+quadh <- quad_layout(small_mat, xlim = NULL) +
     anno_top()
-quadv <- quad_alignv(small_mat) +
+quadv <- quad_layout(small_mat, ylim = NULL) +
     anno_left()
 ```
 
 Manual adding of a `stack_layout()` is required in such cases, you can set
 `initialize = FALSE` to prevent the warning message.
 ```{r}
-quadh <- quad_alignh(small_mat) +
+quadh <- quad_layout(small_mat, xlim = NULL) +
     anno_top(initialize = FALSE)
-quadv <- quad_alignv(small_mat) +
+quadv <- quad_layout(small_mat, ylim = NULL) +
     anno_left(initialize = FALSE)
 ```
 
@@ -144,7 +140,7 @@ quadv <- quad_alignv(small_mat) +
 ::: {.g-col-6}
 ```{r}
 quadh +
-    stack_freev(mpg) +
+    stack_continuous("v", mpg) +
     # add a plot in the top annotation
     ggfree(mapping = aes(displ, hwy, colour = class)) +
     geom_point(aes(displ, hwy, colour = class)) +
@@ -158,8 +154,8 @@ quadh +
 ::: {.g-col-6}
 ```{r}
 quadv +
-    stack_freeh(data = mpg) +
-    # add a plot in the top annotation
+    stack_continuous("h", mpg) +
+    # add a plot in the left annotation
     ggfree(mapping = aes(displ, hwy, colour = class)) +
     geom_point(aes(displ, hwy, colour = class)) +
     quad_active() +
@@ -168,7 +164,6 @@ quadv +
     layout_title("quad_alignv()")
 ```
 ::: 
-
 ::: 
 
 Alternatively, you can set `initialize = TRUE`, which will initialize the
@@ -179,7 +174,7 @@ each plot within the annotation.
 
 ::: {.g-col-6}
 ```{r}
-quad_alignh(small_mat) +
+quad_layout(small_mat, xlim = NULL) +
     geom_boxplot(aes(value, .discrete_y, fill = .row_names)) +
     scale_fill_brewer(palette = "Dark2") +
     anno_top(initialize = TRUE) +
@@ -191,7 +186,7 @@ quad_alignh(small_mat) +
 
 ::: {.g-col-6}
 ```{r}
-quad_alignv(small_mat) +
+quad_layout(small_mat, ylim = NULL) +
     geom_boxplot(aes(.discrete_x, value, fill = .column_names)) +
     scale_fill_brewer(palette = "Dark2") +
     anno_left(initialize = TRUE) +
@@ -203,11 +198,12 @@ quad_alignv(small_mat) +
 
 :::
 
-## `quad_free()`
-`quad_free()` does not align observations and is functionally equivalent to the
-[ggside](https://cran.r-project.org/package=ggside) package. For convenience,
-`ggside()` is provided as an alias for `quad_free()`. This layout is particularly
-useful for adding metadata or summary graphics along a continuous axis.
+## `quad_continuous()`
+`quad_continuous()` align continuous variables and is functionally equivalent to
+the [ggside](https://cran.r-project.org/package=ggside) package. For
+convenience, `ggside()` is provided as an alias for `quad_continuous()`. This
+layout is particularly useful for adding metadata or summary graphics along a
+continuous axis.
 
 ```{r}
 ggside(mpg, aes(displ, hwy, colour = class)) +
