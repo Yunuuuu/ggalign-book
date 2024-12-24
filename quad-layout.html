@@ -301,9 +301,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">6.1</span> introduction</a></li>
   <li><a href="#annotations" id="toc-annotations" class="nav-link" data-scroll-target="#annotations"><span class="header-section-number">6.2</span> Annotations</a></li>
-  <li><a href="#quad_alignb" id="toc-quad_alignb" class="nav-link" data-scroll-target="#quad_alignb"><span class="header-section-number">6.3</span> <code>quad_alignb()</code></a></li>
-  <li><a href="#quad_alignhquad_alignv" id="toc-quad_alignhquad_alignv" class="nav-link" data-scroll-target="#quad_alignhquad_alignv"><span class="header-section-number">6.4</span> <code>quad_alignh()</code>/<code>quad_alignv()</code></a></li>
-  <li><a href="#quad_free" id="toc-quad_free" class="nav-link" data-scroll-target="#quad_free"><span class="header-section-number">6.5</span> <code>quad_free()</code></a></li>
+  <li><a href="#quad_discrete" id="toc-quad_discrete" class="nav-link" data-scroll-target="#quad_discrete"><span class="header-section-number">6.3</span> <code>quad_discrete()</code></a></li>
+  <li><a href="#quad_layout" id="toc-quad_layout" class="nav-link" data-scroll-target="#quad_layout"><span class="header-section-number">6.4</span> <code>quad_layout()</code></a></li>
+  <li><a href="#quad_continuous" id="toc-quad_continuous" class="nav-link" data-scroll-target="#quad_continuous"><span class="header-section-number">6.5</span> <code>quad_continuous()</code></a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/Yunuuuu/ggalign-book/edit/main/quad-layout.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/Yunuuuu/ggalign-book/blob/main/quad-layout.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li><li><a href="https://github.com/Yunuuuu/ggalign-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -351,8 +351,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <section id="introduction" class="level2" data-number="6.1">
 <h2 data-number="6.1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">6.1</span> introduction</h2>
-<p>Depending on whether you want to align observations in the <code>horizontal</code> or <code>vertical</code> direction, there are four main types of <code>quad_layout()</code>:</p>
+<p>Depending on whether you want to align discrete or continuous variables in the <code>horizontal</code> and <code>vertical</code> direction, there are four main types of <code>quad_layout()</code>:</p>
 <table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 17%">
+</colgroup>
 <thead>
 <tr class="header">
 <th>Alignment of Observations</th>
@@ -363,45 +369,40 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </thead>
 <tbody>
 <tr class="odd">
-<td><code>quad_free()</code>/<code>ggside()</code></td>
-<td>❌</td>
-<td>❌</td>
+<td><code>quad_continuous()</code>/<code>ggside()</code></td>
+<td>continuous</td>
+<td>continuous</td>
 <td>data frame</td>
 </tr>
 <tr class="even">
-<td><code>quad_alignh()</code></td>
-<td>✅</td>
-<td>❌</td>
+<td><code>quad_layout(xlim = ...)</code></td>
+<td>discrete</td>
+<td>continuous</td>
 <td>matrix</td>
 </tr>
 <tr class="odd">
-<td><code>quad_alignv()</code></td>
-<td>❌</td>
-<td>✅</td>
+<td><code>quad_layout(ylim = ...)</code></td>
+<td>continuous</td>
+<td>discrete</td>
 <td>matrix</td>
 </tr>
 <tr class="even">
-<td><code>quad_alignb()</code>/<code>ggheatmap()</code></td>
-<td>✅</td>
-<td>✅</td>
+<td><code>quad_discrete()</code>/<code>ggheatmap()</code></td>
+<td>discrete</td>
+<td>discrete</td>
 <td>matrix</td>
 </tr>
 </tbody>
 </table>
-<p>When the layout requires alignment of observations, we typically use a matrix, regardless of whether alignment is needed in one or two directions.</p>
-<ul>
-<li>For data frame, the input will be automatically converted using <code>fortify_data_frame()</code> if needed.</li>
-<li>For matrix, the input will be automatically converted using <code>fortify_matrix()</code> if required.</li>
-</ul>
 </section>
 <section id="annotations" class="level2" data-number="6.2">
 <h2 data-number="6.2" class="anchored" data-anchor-id="annotations"><span class="header-section-number">6.2</span> Annotations</h2>
 <p>Annotation is typically handled using a <code>stack_layout()</code>. Depending on whether you want to align observations in the specified direction, different <code>stack_layout()</code> are compatible (<a href="heatmap-layout.html#sec-heatmap-layout-add-stack-layout" class="quarto-xref"><span>Section 3.5</span></a>). Below is a table outlining the compatibility of various layout types for annotations:</p>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 31%">
-<col style="width: 34%">
-<col style="width: 34%">
+<col style="width: 62%">
+<col style="width: 18%">
+<col style="width: 18%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -412,34 +413,34 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </thead>
 <tbody>
 <tr class="odd">
-<td><code>quad_free()</code>/<code>ggside()</code></td>
-<td><code>stack_freeh()</code></td>
-<td><code>stack_freev()</code></td>
+<td><code>quad_continuous()</code>/<code>ggside()</code>/<code>quad_layout(xlim = ..., ylim = ...)</code></td>
+<td><code>stack_continuous()</code></td>
+<td><code>stack_continuous()</code></td>
 </tr>
 <tr class="even">
-<td><code>quad_alignh()</code></td>
-<td><code>stack_freeh()</code>/<code>stack_alignh()</code></td>
-<td><code>stack_freev()</code></td>
+<td><code>quad_layout(xlim = ...)</code></td>
+<td><code>stack_discrete()</code></td>
+<td><code>stack_continuous()</code></td>
 </tr>
 <tr class="odd">
-<td><code>quad_alignv()</code></td>
-<td><code>stack_freeh()</code></td>
-<td><code>stack_freev()</code>/<code>stack_alignv()</code></td>
+<td><code>quad_layout(ylim = ...)</code></td>
+<td><code>stack_continuous()</code></td>
+<td><code>stack_discrete()</code></td>
 </tr>
 <tr class="even">
-<td><code>quad_alignb()</code>/<code>ggheatmap()</code></td>
-<td><code>stack_freeh()</code>/<code>stack_alignh()</code></td>
-<td><code>stack_freev()</code>/<code>stack_alignv()</code></td>
+<td><code>quad_discrete()</code>/<code>ggheatmap()</code></td>
+<td><code>stack_discrete()</code></td>
+<td><code>stack_discrete()</code></td>
 </tr>
 </tbody>
 </table>
 </section>
-<section id="quad_alignb" class="level2" data-number="6.3">
-<h2 data-number="6.3" class="anchored" data-anchor-id="quad_alignb"><span class="header-section-number">6.3</span> <code>quad_alignb()</code></h2>
-<p><code>quad_alignb()</code> aligns observations in both horizontal and vertical directions. It serves as the base version of <code>ggheatmap()</code>/<code>heatmap_layout()</code> and does not automatically add default layers or mappings.</p>
+<section id="quad_discrete" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="quad_discrete"><span class="header-section-number">6.3</span> <code>quad_discrete()</code></h2>
+<p><code>quad_discrete()</code> aligns discrete variables in both horizontal and vertical directions. It serves as the base version of <code>ggheatmap()</code>/<code>heatmap_layout()</code> and does not automatically add default layers or mappings.</p>
 <p>The underlying <code>ggplot</code> data of the main plot is the same with <code>ggheatmap()</code>/<code>heatmap_layout()</code> (<a href="heatmap-layout.html#sec-heatmap-layout-main-plot" class="quarto-xref"><span>Section 3.2</span></a>), it is recommended to use <code>.y</code>, or <code>.discrete_y</code> as the <code>y</code> mapping and use <code>.x</code> or <code>.discrete_x</code> as the <code>x</code> mapping in the main plot.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quad_alignb</span>(small_mat, <span class="fu">aes</span>(.x, .y)) <span class="sc">+</span></span>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quad_discrete</span>(small_mat, <span class="fu">aes</span>(.x, .y)) <span class="sc">+</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_tile</span>(<span class="fu">aes</span>(<span class="at">fill =</span> value)) <span class="sc">+</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_viridis_c</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
@@ -451,17 +452,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="quad_alignhquad_alignv" class="level2" data-number="6.4">
-<h2 data-number="6.4" class="anchored" data-anchor-id="quad_alignhquad_alignv"><span class="header-section-number">6.4</span> <code>quad_alignh()</code>/<code>quad_alignv()</code></h2>
-<p><code>quad_alignh()</code> aligns observations horizontally, while <code>quad_alignv()</code> aligns observations vertically.</p>
-<p>The underlying <code>ggplot</code> data is the same with <code>ggheatmap()</code>/<code>heatmap_layout()</code>, it is recommended to use <code>.y</code>, or <code>.discrete_y</code> as the <code>y</code> mapping in the main plot for <code>quad_alignh()</code> but use <code>.x</code> or <code>.discrete_x</code> as the <code>x</code> mapping in the main plot for <code>quad_alignv()</code>.</p>
+<section id="quad_layout" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="quad_layout"><span class="header-section-number">6.4</span> <code>quad_layout()</code></h2>
+<p>This function arranges plots around the quad-sides of a main plot, aligning both horizontal and vertical axes, and can handle either discrete or continuous variables.</p>
+<ul>
+<li>If <code>xlim</code> is provided, a continuous variable will be required and aligned in the vertical direction. Otherwise, a discrete variable will be required and aligned.</li>
+<li>If <code>ylim</code> is provided, a continuous variable will be required and aligned in the horizontal direction. Otherwise, a discrete variable will be required and aligned.</li>
+</ul>
 <div class="grid">
 <div class="g-col-6">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quad_alignh</span>(small_mat) <span class="sc">+</span></span>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quad_layout</span>(small_mat, <span class="at">xlim =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(value, .discrete_y, <span class="at">fill =</span> .row_names)) <span class="sc">+</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">"Dark2"</span>) <span class="sc">+</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">layout_title</span>(<span class="st">"quad_alignh()"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">layout_title</span>(<span class="st">"quad_layout(xlim = ...)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -473,10 +477,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="g-col-6">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quad_alignv</span>(small_mat) <span class="sc">+</span></span>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quad_layout</span>(small_mat, <span class="at">ylim =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(.discrete_x, value, <span class="at">fill =</span> .column_names)) <span class="sc">+</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">"Dark2"</span>) <span class="sc">+</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">layout_title</span>(<span class="st">"quad_alignv()"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">layout_title</span>(<span class="st">"quad_layout(ylim = ...)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -487,29 +491,29 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>As discussed in <a href="heatmap-layout.html#sec-heatmap-layout-annotations" class="quarto-xref"><span>Section 3.4</span></a>, <code>quad_anno()</code> will always attempt to initialize a <code>stack_layout()</code> with the same alignment as the current direction. For top and bottom annotations in <code>quad_alignh()</code>, and left and right annotations in <code>quad_alignv()</code>, <code>quad_anno()</code> will not initialize the annotation due to inconsistent data types.</p>
+<p>As discussed in <a href="heatmap-layout.html#sec-heatmap-layout-annotations" class="quarto-xref"><span>Section 3.4</span></a>, <code>quad_anno()</code> will always attempt to initialize a <code>stack_layout()</code> with the same alignment as the current direction. For top and bottom annotations in <code>quad_layout(xlim = ...)</code>, and left and right annotations in <code>quad_layout(ylim = NULL)</code>, <code>quad_anno()</code> will not initialize the annotation due to inconsistent data types.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>quadh <span class="ot">&lt;-</span> <span class="fu">quad_alignh</span>(small_mat) <span class="sc">+</span></span>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>quadh <span class="ot">&lt;-</span> <span class="fu">quad_layout</span>(small_mat, <span class="at">xlim =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">anno_top</span>()</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning: `data` in `quad_alignh()` is a double matrix, but the top annotation stack need</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning: `data` in `quad_layout()` is a double matrix, but the top annotation stack need</span></span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; a &lt;data.frame&gt;, won't initialize the top annotation stack</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>quadv <span class="ot">&lt;-</span> <span class="fu">quad_alignv</span>(small_mat) <span class="sc">+</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>quadv <span class="ot">&lt;-</span> <span class="fu">quad_layout</span>(small_mat, <span class="at">ylim =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">anno_left</span>()</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning: `data` in `quad_alignv()` is a double matrix, but the left annotation stack</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning: `data` in `quad_layout()` is a double matrix, but the left annotation stack</span></span>
 <span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; need a &lt;data.frame&gt;, won't initialize the left annotation stack</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Manual adding of a <code>stack_layout()</code> is required in such cases, you can set <code>initialize = FALSE</code> to prevent the warning message.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>quadh <span class="ot">&lt;-</span> <span class="fu">quad_alignh</span>(small_mat) <span class="sc">+</span></span>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>quadh <span class="ot">&lt;-</span> <span class="fu">quad_layout</span>(small_mat, <span class="at">xlim =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">anno_top</span>(<span class="at">initialize =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>quadv <span class="ot">&lt;-</span> <span class="fu">quad_alignv</span>(small_mat) <span class="sc">+</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>quadv <span class="ot">&lt;-</span> <span class="fu">quad_layout</span>(small_mat, <span class="at">ylim =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">anno_left</span>(<span class="at">initialize =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="grid">
 <div class="g-col-6">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>quadh <span class="sc">+</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">stack_freev</span>(mpg) <span class="sc">+</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">stack_continuous</span>(<span class="st">"v"</span>, mpg) <span class="sc">+</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># add a plot in the top annotation</span></span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggfree</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(displ, hwy, <span class="at">colour =</span> class)) <span class="sc">+</span></span>
 <span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(displ, hwy, <span class="at">colour =</span> class)) <span class="sc">+</span></span>
@@ -529,8 +533,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="g-col-6">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>quadv <span class="sc">+</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">stack_freeh</span>(<span class="at">data =</span> mpg) <span class="sc">+</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># add a plot in the top annotation</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">stack_continuous</span>(<span class="st">"h"</span>, mpg) <span class="sc">+</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># add a plot in the left annotation</span></span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggfree</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(displ, hwy, <span class="at">colour =</span> class)) <span class="sc">+</span></span>
 <span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(displ, hwy, <span class="at">colour =</span> class)) <span class="sc">+</span></span>
 <span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">quad_active</span>() <span class="sc">+</span></span>
@@ -551,7 +555,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="grid">
 <div class="g-col-6">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quad_alignh</span>(small_mat) <span class="sc">+</span></span>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quad_layout</span>(small_mat, <span class="at">xlim =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(value, .discrete_y, <span class="at">fill =</span> .row_names)) <span class="sc">+</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">"Dark2"</span>) <span class="sc">+</span></span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">anno_top</span>(<span class="at">initialize =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
@@ -569,7 +573,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="g-col-6">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quad_alignv</span>(small_mat) <span class="sc">+</span></span>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quad_layout</span>(small_mat, <span class="at">ylim =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(.discrete_x, value, <span class="at">fill =</span> .column_names)) <span class="sc">+</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">"Dark2"</span>) <span class="sc">+</span></span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">anno_left</span>(<span class="at">initialize =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
@@ -587,9 +591,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="quad_free" class="level2" data-number="6.5">
-<h2 data-number="6.5" class="anchored" data-anchor-id="quad_free"><span class="header-section-number">6.5</span> <code>quad_free()</code></h2>
-<p><code>quad_free()</code> does not align observations and is functionally equivalent to the <a href="https://cran.r-project.org/package=ggside">ggside</a> package. For convenience, <code>ggside()</code> is provided as an alias for <code>quad_free()</code>. This layout is particularly useful for adding metadata or summary graphics along a continuous axis.</p>
+<section id="quad_continuous" class="level2" data-number="6.5">
+<h2 data-number="6.5" class="anchored" data-anchor-id="quad_continuous"><span class="header-section-number">6.5</span> <code>quad_continuous()</code></h2>
+<p><code>quad_continuous()</code> align continuous variables and is functionally equivalent to the <a href="https://cran.r-project.org/package=ggside">ggside</a> package. For convenience, <code>ggside()</code> is provided as an alias for <code>quad_continuous()</code>. This layout is particularly useful for adding metadata or summary graphics along a continuous axis.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggside</span>(mpg, <span class="fu">aes</span>(displ, hwy, <span class="at">colour =</span> class)) <span class="sc">+</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>

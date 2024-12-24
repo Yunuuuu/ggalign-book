@@ -301,7 +301,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#installation" id="toc-installation" class="nav-link active" data-scroll-target="#installation"><span class="header-section-number">1.1</span> Installation</a></li>
   <li><a href="#general-design" id="toc-general-design" class="nav-link" data-scroll-target="#general-design"><span class="header-section-number">1.2</span> General design</a></li>
-  <li><a href="#getting-started" id="toc-getting-started" class="nav-link" data-scroll-target="#getting-started"><span class="header-section-number">1.3</span> Getting Started</a></li>
+  <li><a href="#sec-align-variable" id="toc-sec-align-variable" class="nav-link" data-scroll-target="#sec-align-variable"><span class="header-section-number">1.3</span> Align variables in ggplot</a></li>
+  <li><a href="#getting-started" id="toc-getting-started" class="nav-link" data-scroll-target="#getting-started"><span class="header-section-number">1.4</span> Getting Started</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/Yunuuuu/ggalign-book/edit/main/introduction.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/Yunuuuu/ggalign-book/blob/main/introduction.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li><li><a href="https://github.com/Yunuuuu/ggalign-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -348,23 +349,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="general-design" class="level2" data-number="1.2">
 <h2 data-number="1.2" class="anchored" data-anchor-id="general-design"><span class="header-section-number">1.2</span> General design</h2>
-<p>The core feature of <code>ggalign</code> lies in its integration of the <code>grammar of graphics</code> into advanced visualization through its object-oriented <code>Layout</code> system. The package provides two main <code>Layout</code> classes:</p>
+<p>The core feature of <code>ggalign</code> lies in its integration of the <code>grammar of graphics</code> into advanced visualization through its object-oriented <code>Layout</code> system. The package provides three main <code>Layout</code> classes:</p>
 <ul>
 <li>the <code>StackLayout</code> class: Put plots horizontally or vertically.</li>
 <li>the <code>QuadLayout</code> class: Arranges plots in the four quadrants (top, left, bottom, right) around a main plot. This layout is ideal for designs that require supplementary plots or annotations surrounding a central figure.</li>
+<li>the <code>CircleLayout</code> class: Positions plots in a circular arrangement.</li>
 </ul>
-<p>Both <code>Layout</code> classes support the alignment of observations (ordinal variable). Observations refer to data points or samples, allowing for consistent alignment of corresponding data across multiple plots when using the same axis values. Depending on whether you want to align observations across multiple plots within the layout, the following variants are available:</p>
+<p>Each <code>Layout</code> class supports the alignment of both discrete (ordinal) and continuous variables. Depending on the desired alignment across multiple plots within a layout, the following variants are available:</p>
 <p>For <code>StackLayout</code>:</p>
 <ul>
-<li><code>stack_align()</code>: Align the observations along the stack.</li>
-<li><code>stack_free()</code>: Does not align the observations.</li>
+<li><code>stack_discrete()</code>: Align discrete variable along the stack.</li>
+<li><code>stack_continuous()</code>: Align continuous variable along the stack.</li>
 </ul>
 <p>For <code>QuadLayout</code>:</p>
 <ul>
-<li><code>quad_free</code>/<code>ggside</code>: Never align observations.</li>
-<li><code>quad_alignh</code>: Align observations in the horizontal direction.</li>
-<li><code>quad_alignv</code>: Align observations in the vertical direction.</li>
-<li><code>quad_alignb</code>: Align observations in both horizontal and vertical directions.</li>
+<li><code>quad_continuous</code>/<code>ggside</code>: Align continuous variables in both horizontal and vertical directions.</li>
+<li><code>quad_discrete</code>: Align discrete variables in both horizontal and vertical directions.</li>
+<li><code>quad_layout</code>: Aligns discrete or continuous variables either horizontally or vertically.</li>
+</ul>
+<p>For <code>CircleLayout</code>:</p>
+<ul>
+<li><code>circle_discrete()</code>: Align discrete variable in the circle.</li>
+<li><code>circle_continuous()</code>: Align continuous variable in the circle.</li>
 </ul>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -373,43 +379,37 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </figure>
 </div>
 </section>
-<section id="getting-started" class="level2" data-number="1.3">
-<h2 data-number="1.3" class="anchored" data-anchor-id="getting-started"><span class="header-section-number">1.3</span> Getting Started</h2>
+<section id="sec-align-variable" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="sec-align-variable"><span class="header-section-number">1.3</span> Align variables in ggplot</h2>
+<p>Before introducing the package, let’s first discuss how to align axes in ggplot2. For continuous axes, alignment is straightforward because we just need to ensure that all plots have the same <code>limits</code>. This can be achieved in the <code>*_continuous()</code> function by setting the <code>limits</code> (or <code>xlim</code>/<code>ylim</code>) argument.</p>
+<p>Aligning discrete axes is more challenging because we must first ensure that the number of unique discrete values is the same across all plots, and that the ordering is consistent. In ggplot2, it’s difficult to align discrete axes, since some plots may self-ordered. This issue is compounded when working with long-formatted data frames, as we can’t directly determine the number of unique values in the aligned axes and reorder the unique value into the same ordering.</p>
+<p>To address this, the <code>ggalign</code> package typically uses matrix input for layouts that require aligning discrete axes (<code>*_discrete()</code> functions). Each row of the matrix represents a unique discrete value, and the number of rows corresponds to the total number of unique values. To ensure consistent ordering across plots, the internal just need to reorder the rows. This approach is also well-suited for functions like <code>quad_layout()</code>/<code>ggheatmap()</code>, where axes need to be aligned in both directions simultaneously, as matrices can be transposed (i.e., switching rows to columns and columns to rows). When drawing the plot, the <code>ggalign</code> package will melt the <code>matrix</code> into a long-formatted data frame. since the matrix format may not fully support all input requirements for plots, the <code>ggalign</code> package provides a function (<code>scheme_data()</code>) to transform the plot data as needed to fit your specific use case.</p>
+<p>We often refer to “observations” when discussing discrete axes. Observations typically correspond to discrete variables, such as data points or samples. In the rest of the book, I will use “observations” and “discrete variables” interchangeably. You can assume that any reference to “observations” also applies to discrete variables.</p>
+</section>
+<section id="getting-started" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="getting-started"><span class="header-section-number">1.4</span> Getting Started</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggalign)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Loading required package: ggplot2</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning: S3 method 'ggplot_add.continuous_ggalign' was declared in NAMESPACE</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; but not found</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Loading required package: ggplot2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The usage of <code>ggalign</code> is simple if you’re familiar with <code>ggplot2</code> syntax, the typical workflow includes:</p>
 <ol type="1">
-<li>Initialize the layout using:
-<ul>
-<li><code>stack_layout()</code>: Arrange Plots Horizontally or Vertically
-<ul>
-<li><code>cross_align</code>: Arrange Plots Crosswise Horizontally or Vertically</li>
-</ul></li>
-<li><code>quad_layout()</code>: Arrange Plots in the Quad-Side of a main plot
-<ul>
-<li><code>ggheatmap()</code>: Create a Complex Heatmap.</li>
-<li><code>ggoncoplot()</code>: Create <code>OncoPrint</code> Visualizations from Genetic Alteration Data</li>
-</ul></li>
-</ul></li>
+<li>Initialize the layout.</li>
 <li>Customize the layout with:
 <ul>
 <li><code>align_group()</code>: Group observations into panel with a group variable.</li>
 <li><code>align_kmeans()</code>: Group observations into panel by kmeans.</li>
 <li><code>align_order()</code>: Reorder layout observations based on statistical weights or by manually specifying the observation index.</li>
-<li><code>align_hclust()</code>: Reorder or group observations based on hierarchical clustering.</li>
 <li><code>align_reorder</code>: Reorder observations using an arbitrary statistical function</li>
+<li><code>align_hclust()</code>: Reorder or group observations based on hierarchical clustering.</li>
 </ul></li>
 <li>Adding plots with:
 <ul>
-<li><code>ggfree()</code>: Initialize a ggplot object without aligning the observations.</li>
-<li><code>ggalign()</code>: Initialize a ggplot object and align the observations.</li>
 <li><code>align_dendro()</code>: Add a dendrogram to the plot, and reorder or group observations based on hierarchical clustering.</li>
-<li><code>align_line()</code>/<code>align_range()</code>: Add a plot to annotate selected observations.</li>
+<li><code>ggalign()</code>: Initialize a ggplot object and align the axes.</li>
+<li><code>ggmark()</code>: Add a plot to annotate selected observations.</li>
 <li><code>ggcross()</code>: Initialize a ggplot object to connect two different layout crosswise</li>
+<li><code>ggfree()</code>: Initialize a ggplot object without aligning the axes.</li>
 </ul></li>
 <li>Layer additional <code>ggplot2</code> elements such as geoms, stats, or scales.</li>
 </ol>
@@ -422,9 +422,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Every <code>*_layout()</code> function accepts default data, which will be inherited by all plots within the layout.</p>
 <p>Here’s a simple example:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="annotated-cell-6"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><button class="code-annotation-anchor" data-target-cell="annotated-cell-6" data-target-annotation="1">1</button><span id="annotated-cell-6-1" class="code-annotation-target"><a href="#annotated-cell-6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stack_alignv</span>(small_mat) <span class="sc">+</span></span>
+<div class="sourceCode cell-code" id="annotated-cell-6"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><button class="code-annotation-anchor" data-target-cell="annotated-cell-6" data-target-annotation="1">1</button><span id="annotated-cell-6-1" class="code-annotation-target"><a href="#annotated-cell-6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stack_discretev</span>(small_mat) <span class="sc">+</span></span>
 <button class="code-annotation-anchor" data-target-cell="annotated-cell-6" data-target-annotation="2">2</button><span id="annotated-cell-6-2" class="code-annotation-target"><a href="#annotated-cell-6-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_dendro</span>() <span class="sc">+</span></span>
-<button class="code-annotation-anchor" data-target-cell="annotated-cell-6" data-target-annotation="3">3</button><span id="annotated-cell-6-3" class="code-annotation-target"><a href="#annotated-cell-6-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">axis.text.y =</span> <span class="fu">element_text</span>())</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-6" data-target-annotation="3">3</button><span id="annotated-cell-6-3" class="code-annotation-target"><a href="#annotated-cell-6-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>())</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-annotation">
 <dl class="code-annotation-container-hidden code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-6" data-target-annotation="1">1</dt>
@@ -437,7 +437,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </dd>
 <dt data-target-cell="annotated-cell-6" data-target-annotation="3">3</dt>
 <dd>
-<span data-code-cell="annotated-cell-6" data-code-lines="3" data-code-annotation="3">Add y-axis text.</span>
+<span data-code-cell="annotated-cell-6" data-code-lines="3" data-code-annotation="3">Add x-axis text.</span>
 </dd>
 </dl>
 </div>
@@ -449,14 +449,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>This produces a simple dendrogram. By default, <code>stack_alignv()</code> removes the axis text on the axis used for aligning observations. This is because it’s often unclear which plot should display the axis text, as typically, we want it to appear in only one plot. However, you can easily use the <code>theme()</code> function to control where the axis text appears.</p>
+<p>This function produces a simple dendrogram. The <code>stack_discretev()</code> function initializes a vertical stack and aligns discrete variables. It is simply an alias for <code>stack_discrete("v")</code>. By default, the axis text on the axis used for alignment is removed. This is because it’s often unclear which plot should display the axis text, as typically, we want it to appear in only one plot. However, you can easily use the <code>theme()</code> function to control where the axis text appears.</p>
 <p>Internally, <code>align_dendro()</code> will reorder the observations based on the dendrogram, and other plots in the layout will follow this ordering.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="annotated-cell-7"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><button class="code-annotation-anchor" data-target-cell="annotated-cell-7" data-target-annotation="1">1</button><span id="annotated-cell-7-1" class="code-annotation-target"><a href="#annotated-cell-7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stack_alignv</span>(small_mat) <span class="sc">+</span></span>
+<div class="sourceCode cell-code" id="annotated-cell-7"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><button class="code-annotation-anchor" data-target-cell="annotated-cell-7" data-target-annotation="1">1</button><span id="annotated-cell-7-1" class="code-annotation-target"><a href="#annotated-cell-7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stack_discretev</span>(small_mat) <span class="sc">+</span></span>
 <button class="code-annotation-anchor" data-target-cell="annotated-cell-7" data-target-annotation="2">2</button><span id="annotated-cell-7-2" class="code-annotation-target"><a href="#annotated-cell-7-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_dendro</span>() <span class="sc">+</span></span>
 <button class="code-annotation-anchor" data-target-cell="annotated-cell-7" data-target-annotation="3">3</button><span id="annotated-cell-7-3" class="code-annotation-target"><a href="#annotated-cell-7-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggalign</span>(<span class="at">data =</span> rowSums) <span class="sc">+</span></span>
 <button class="code-annotation-anchor" data-target-cell="annotated-cell-7" data-target-annotation="4">4</button><span id="annotated-cell-7-4" class="code-annotation-target"><a href="#annotated-cell-7-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>(<span class="fu">aes</span>(.discrete_x, value), <span class="at">stat =</span> <span class="st">"identity"</span>) <span class="sc">+</span></span>
-<button class="code-annotation-anchor" data-target-cell="annotated-cell-7" data-target-annotation="5">5</button><span id="annotated-cell-7-5" class="code-annotation-target"><a href="#annotated-cell-7-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">axis.text.y =</span> <span class="fu">element_text</span>())</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-7" data-target-annotation="5">5</button><span id="annotated-cell-7-5" class="code-annotation-target"><a href="#annotated-cell-7-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>())</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-annotation">
 <dl class="code-annotation-container-hidden code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-7" data-target-annotation="1">1</dt>
@@ -477,7 +477,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </dd>
 <dt data-target-cell="annotated-cell-7" data-target-annotation="5">5</dt>
 <dd>
-<span data-code-cell="annotated-cell-7" data-code-lines="5" data-code-annotation="5">Add y-axis text.</span>
+<span data-code-cell="annotated-cell-7" data-code-lines="5" data-code-annotation="5">Add x-axis text.</span>
 </dd>
 </dl>
 </div>
@@ -489,10 +489,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>The data in the underlying <code>ggplot</code> object of <code>ggalign()</code> function contains at least following columns (more details will be introduced in the <a href="plot-initialize.html#sec-ggalign" class="quarto-xref"><span>Section 5.1</span></a>):</p>
+<p>The data in the underlying <code>ggplot</code> object of <code>ggalign()</code> function contains following columns (more details will be introduced in the <a href="plot-initialize.html#sec-ggalign" class="quarto-xref"><span>Section 5.1</span></a>):</p>
 <ul>
 <li><code>.panel</code>: the group panel for the aligned axis. It means <code>x-axis</code> for vertical stack layout, <code>y-axis</code> for horizontal stack layout.</li>
-<li><code>.x</code>/<code>y</code> and <code>.discrete_x</code>/<code>.discrete_y</code>: an integer index of <code>x</code>/<code>y</code> coordinates and a factor of the data labels (only applicable when names exists).</li>
+<li><code>.x</code>/<code>.y</code> and <code>.discrete_x</code>/<code>.discrete_y</code>: an integer index of <code>x</code>/<code>y</code> coordinates and a factor of the data labels (only applicable when names exists).</li>
 <li><code>.names</code> and <code>.index</code>: A character names (only applicable when names exists) and an integer of index of the original data.</li>
 <li><code>value</code>: the actual value (only applicable if <code>data</code> is a <code>matrix</code> or atomic vector).</li>
 </ul>
@@ -506,7 +506,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <button class="code-annotation-anchor" data-target-cell="annotated-cell-8" data-target-annotation="3">3</button><span id="annotated-cell-8-3" class="code-annotation-target"><a href="#annotated-cell-8-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggalign</span>(<span class="at">data =</span> rowSums) <span class="sc">+</span></span>
 <button class="code-annotation-anchor" data-target-cell="annotated-cell-8" data-target-annotation="4">4</button><span id="annotated-cell-8-4" class="code-annotation-target"><a href="#annotated-cell-8-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>(<span class="fu">aes</span>(.discrete_x, value, <span class="at">fill =</span> .panel), <span class="at">stat =</span> <span class="st">"identity"</span>) <span class="sc">+</span></span>
 <button class="code-annotation-anchor" data-target-cell="annotated-cell-8" data-target-annotation="5">5</button><span id="annotated-cell-8-5" class="code-annotation-target"><a href="#annotated-cell-8-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">"Dark2"</span>, <span class="at">name =</span> <span class="st">"Group"</span>) <span class="sc">+</span></span>
-<button class="code-annotation-anchor" data-target-cell="annotated-cell-8" data-target-annotation="6">6</button><span id="annotated-cell-8-6" class="code-annotation-target"><a href="#annotated-cell-8-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">axis.text.y =</span> <span class="fu">element_text</span>())</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-8" data-target-annotation="6">6</button><span id="annotated-cell-8-6" class="code-annotation-target"><a href="#annotated-cell-8-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>())</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-annotation">
 <dl class="code-annotation-container-hidden code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-8" data-target-annotation="1">1</dt>
@@ -527,11 +527,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </dd>
 <dt data-target-cell="annotated-cell-8" data-target-annotation="5">5</dt>
 <dd>
-<span data-code-cell="annotated-cell-8" data-code-lines="5" data-code-annotation="5">Add fill mapping scale.</span>
+<span data-code-cell="annotated-cell-8" data-code-lines="5" data-code-annotation="5">Set fill scale palette.</span>
 </dd>
 <dt data-target-cell="annotated-cell-8" data-target-annotation="6">6</dt>
 <dd>
-<span data-code-cell="annotated-cell-8" data-code-lines="6" data-code-annotation="6">Add y-axis text.</span>
+<span data-code-cell="annotated-cell-8" data-code-lines="6" data-code-annotation="6">Add x-axis text.</span>
 </dd>
 </dl>
 </div>
@@ -571,7 +571,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </dd>
 <dt data-target-cell="annotated-cell-9" data-target-annotation="5">5</dt>
 <dd>
-<span data-code-cell="annotated-cell-9" data-code-lines="5" data-code-annotation="5">Add fill mapping scale.</span>
+<span data-code-cell="annotated-cell-9" data-code-lines="5" data-code-annotation="5">Set fill scale palette.</span>
 </dd>
 </dl>
 </div>
@@ -584,7 +584,51 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p><code>ggheatmap()</code> will automatically add axis text in the heatmap body, so you don’t need to manually adjust axis text visibility using <code>theme(axis.text.x = element_text())</code>/<code>theme(axis.text.y = element_text())</code>.</p>
-<p>Having explored the core principles of <code>ggalign</code>, you should now be familiar with its basic workflow. In the next chapter, we’ll introduce the <code>StackLayout</code> functionality, a powerful tool for arranging multiple plots in a stacked fashion—either horizontally or vertically—while maintaining full control over their alignment. We’ll explore how <code>stack_layout()</code> and its various functions can give you even greater flexibility in creating sophisticated layouts.</p>
+<p>We can also arrange the dendrogram in a circular layout to visualize hierarchical relationships in a more compact and aesthetically pleasing way.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="annotated-cell-10"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><button class="code-annotation-anchor" data-target-cell="annotated-cell-10" data-target-annotation="1">1</button><span id="annotated-cell-10-1" class="code-annotation-target"><a href="#annotated-cell-10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">circle_discrete</span>(small_mat, <span class="at">radial =</span> <span class="fu">coord_radial</span>(<span class="at">inner.radius =</span> <span class="fl">0.1</span>)) <span class="sc">+</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-10" data-target-annotation="2">2</button><span id="annotated-cell-10-2" class="code-annotation-target"><a href="#annotated-cell-10-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggalign</span>() <span class="sc">+</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-10" data-target-annotation="3">3</button><span id="annotated-cell-10-3" class="code-annotation-target"><a href="#annotated-cell-10-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_tile</span>(<span class="fu">aes</span>(<span class="at">y =</span> .column_index, <span class="at">fill =</span> value)) <span class="sc">+</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-10" data-target-annotation="4">4</button><span id="annotated-cell-10-4" class="code-annotation-target"><a href="#annotated-cell-10-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_viridis_c</span>() <span class="sc">+</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-10" data-target-annotation="5">5</button><span id="annotated-cell-10-5" class="code-annotation-target"><a href="#annotated-cell-10-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_dendro</span>(<span class="fu">aes</span>(<span class="at">color =</span> branch), <span class="at">k =</span> <span class="dv">3</span>L) <span class="sc">+</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-10" data-target-annotation="6">6</button><span id="annotated-cell-10-6" class="code-annotation-target"><a href="#annotated-cell-10-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_color_brewer</span>(<span class="at">palette =</span> <span class="st">"Dark2"</span>)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-hidden code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-10" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-10" data-code-lines="1" data-code-annotation="1">We initialize a circle layout and set the inner radius.</span>
+</dd>
+<dt data-target-cell="annotated-cell-10" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-10" data-code-lines="2" data-code-annotation="2">Create a new ggplot in the layout, and use data the same with the layout data.</span>
+</dd>
+<dt data-target-cell="annotated-cell-10" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-cell="annotated-cell-10" data-code-lines="3" data-code-annotation="3">Add a tile layer, the matrix input will be converted into a long formated data frame with column <code>.column_index</code> indicates the column index of the original matrix.</span>
+</dd>
+<dt data-target-cell="annotated-cell-10" data-target-annotation="4">4</dt>
+<dd>
+<span data-code-cell="annotated-cell-10" data-code-lines="4" data-code-annotation="4">Set fill scale palette.</span>
+</dd>
+<dt data-target-cell="annotated-cell-10" data-target-annotation="5">5</dt>
+<dd>
+<span data-code-cell="annotated-cell-10" data-code-lines="5" data-code-annotation="5">Reorder and group the observations based on hierarchical clustering, and add a dendrogram tree, coloring the tree by <code>branch</code>.</span>
+</dd>
+<dt data-target-cell="annotated-cell-10" data-target-annotation="6">6</dt>
+<dd>
+<span data-code-cell="annotated-cell-10" data-code-lines="6" data-code-annotation="6">Set color scale palette.</span>
+</dd>
+</dl>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="introduction_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Having explored the core principles of <code>ggalign</code>, you should now be familiar with its basic workflow. In the next chapter, we’ll introduce the <code>StackLayout</code>, a powerful tool for arranging multiple plots in a stacked fashion—either horizontally or vertically—while maintaining full control over their alignment. We’ll explore how <code>StackLayout</code> and its various functions can give you even greater flexibility in creating sophisticated layouts.</p>
 
 
 </section>

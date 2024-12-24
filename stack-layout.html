@@ -329,17 +329,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p><code>stack_layout()</code> arranges plots either horizontally or vertically. Based on whether we want to align the observations, there are two types of stack layouts:</p>
+<p><code>stack_layout()</code> arranges plots either horizontally or vertically. Based on whether we want to align the discrete or continuous variables, there are two types of stack layouts:</p>
 <ul>
-<li><code>stack_align()</code>: align the observations along the stack.</li>
-<li><code>stack_free()</code>: don’t align the observations.</li>
+<li><code>stack_discrete()</code>: Align discrete variable along the stack.</li>
+<li><code>stack_continuous()</code>: Align continuous variable along the stack.</li>
 </ul>
+<p><code>stack_layout()</code> integrates the functionalities of <code>stack_discrete()</code> and <code>stack_continuous()</code> into a single interface. The first argument for these three functions is <code>direction</code> which should be a single string indicating the direction of the stack layout, either <code>"h"</code>(<code>horizontal</code>) or <code>"v"</code>(<code>vertical</code>).</p>
 <p>Several aliases are available for convenience:</p>
 <ul>
-<li><code>stack_alignv</code>: Aligns the stack vertically (special case of <code>stack_align()</code>).</li>
-<li><code>stack_alignh</code>: Aligns the stack horizontally (special case of <code>stack_align()</code>).</li>
-<li><code>stack_freev</code>: A vertical version of <code>stack_free()</code>.</li>
-<li><code>stack_freeh</code>: A horizontal version of <code>stack_free()</code>.</li>
+<li><code>stack_discretev</code>: A special case of <code>stack_discrete</code> that sets <code>direction =  "vertical"</code>.</li>
+<li><code>stack_discreteh</code>: A special case of <code>stack_discrete</code> that sets <code>direction =  "horizontal"</code>.</li>
+<li><code>stack_continuousv()</code>: A special case of <code>stack_continuous</code> that sets <code>direction = "vertical"</code>.</li>
+<li><code>stack_continuoush()</code>: A special case of <code>stack_continuous</code> that sets <code>direction = "horizontal"</code>.</li>
 </ul>
 <!--  add the layout figure-->
 <div>
@@ -367,19 +368,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <section id="sec-stack-layout-input-data" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="sec-stack-layout-input-data"><span class="header-section-number">2.1</span> Input data</h2>
-<p>When aligning observations, we typically use a matrix, as it is easy to melt the matrix into a long-formatted data frame. Additionally, matrices are used to fit the observation concept, as they can be transposed (rows to columns, columns to rows), which is necessary for use in functions like <code>quad_layout()</code> and <code>ggheatmap()</code>, where observations may be aligned in both directions simultaneously.</p>
+<p>As discussed in <a href="introduction.html#sec-align-variable" class="quarto-xref"><span>Section 1.3</span></a>, when aligning discrete variables, we typically use a matrix. For continuous axes, we can still use the long-formatted data frame, which is the same as in ggplot2.</p>
 <ul>
-<li>For <code>stack_free()</code>, a data frame is required, and the input will be automatically converted using <code>fortify_data_frame()</code> if needed.</li>
-<li>For <code>stack_align()</code>, a matrix is required, and the input will be automatically converted using <code>fortify_matrix()</code> if needed.</li>
+<li>For <code>stack_continuous()</code>, a data frame is required, and the input will be automatically converted using <code>fortify_data_frame()</code> if needed.</li>
+<li>For <code>stack_discrete()</code>, a matrix is required, and the input will be automatically converted using <code>fortify_matrix()</code> if needed.</li>
 </ul>
 <p>By default, <code>fortify_data_frame()</code> will invoke the <code>ggplot2::fortify()</code> function for conversion. Note, for matrix, it will be converted to a long-formatted data frame which is different from the <code>ggplot2::fortify()</code>.</p>
-<p><code>stack_align()</code>/<code>stack_free()</code> will set up the layout, but no plot will be drawn until you add a plot element:</p>
+<p><code>stack_discrete()</code>/<code>stack_continuous()</code> will set up the layout, but no plot will be drawn until you add a plot element:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="annotated-cell-2"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><button class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="1">1</button><span id="annotated-cell-2-1" class="code-annotation-target"><a href="#annotated-cell-2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stack_alignh</span>(small_mat) <span class="sc">+</span></span>
+<div class="sourceCode cell-code" id="annotated-cell-2"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><button class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="1">1</button><span id="annotated-cell-2-1" class="code-annotation-target"><a href="#annotated-cell-2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stack_discretev</span>(small_mat) <span class="sc">+</span></span>
 <button class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="2">2</button><span id="annotated-cell-2-2" class="code-annotation-target"><a href="#annotated-cell-2-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">layout_annotation</span>(</span>
 <span id="annotated-cell-2-3"><a href="#annotated-cell-2-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">theme =</span> <span class="fu">theme</span>(<span class="at">plot.background =</span> <span class="fu">element_rect</span>(<span class="at">color =</span> <span class="st">"red"</span>))</span>
 <span id="annotated-cell-2-4"><a href="#annotated-cell-2-4" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="annotated-cell-2-5"><a href="#annotated-cell-2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># the same for `stack_free()`</span></span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="annotated-cell-2-5"><a href="#annotated-cell-2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># the same for `stack_continuous()`</span></span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-annotation">
 <dl class="code-annotation-container-hidden code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-2" data-target-annotation="1">1</dt>
@@ -402,20 +403,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>In this example, we use <code>layout_annotation()</code> to insert a plot background in the entire layout, it can be also used to control the theme of title, subtitle, caption (<code>layout_title()</code>), guides, margins, panel.border, panel.spacing.</p>
+<p>In this example, we use <code>layout_annotation()</code> to insert a plot background in the entire layout, it can also be used to control the theme of title, subtitle, caption (<code>layout_title()</code>), guides, margins, panel.border, panel.spacing.</p>
 </section>
 <section id="sec-stack-layout-layout-customize" class="level2" data-number="2.2">
 <h2 data-number="2.2" class="anchored" data-anchor-id="sec-stack-layout-layout-customize"><span class="header-section-number">2.2</span> Layout Customize</h2>
-<p>When we use <code>stack_align()</code>, it aligns the observations across multiple plots along the specified direction:</p>
-<ul>
-<li>For <code>stack_alignh()</code>: Alignment occurs along the horizontal direction (y-axis).</li>
-<li>For <code>stack_alignv()</code>: Alignment occurs along the vertical direction (x-axis).</li>
-</ul>
-<p>The package offers a suite of <code>align_*</code> functions designed to give you precise control over the observations. These functions enable you to reorder the observations or partition the observations into multiple groups. Instead of detailing each <code>align_*</code> function individually, we will focus on the general usage and how to combine them with <code>stack_align()</code>.</p>
+<p>When aligning discrete variables, the package offers a suite of <code>align_*</code> functions designed to give you precise control over the ordering and groups. Instead of detailing each <code>align_*</code> function individually, we will focus on the general usage and how to combine them with <code>stack_discrete()</code>.</p>
 <p>Here, we remain take <code>align_dendro()</code> as an example, it can reorder the observations, split them into groups, and can add a plot for visualization.</p>
-<p>When used for <code>stack_alignh()</code>, the observations are aligned along the <code>y-axis</code>:</p>
+<p>When used for <code>stack_discreteh()</code>, the observations are aligned along the <code>y-axis</code>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="annotated-cell-3"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><button class="code-annotation-anchor" data-target-cell="annotated-cell-3" data-target-annotation="1">1</button><span id="annotated-cell-3-1" class="code-annotation-target"><a href="#annotated-cell-3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stack_alignh</span>(small_mat) <span class="sc">+</span></span>
+<div class="sourceCode cell-code" id="annotated-cell-3"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><button class="code-annotation-anchor" data-target-cell="annotated-cell-3" data-target-annotation="1">1</button><span id="annotated-cell-3-1" class="code-annotation-target"><a href="#annotated-cell-3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stack_discreteh</span>(small_mat) <span class="sc">+</span></span>
 <button class="code-annotation-anchor" data-target-cell="annotated-cell-3" data-target-annotation="2">2</button><span id="annotated-cell-3-2" class="code-annotation-target"><a href="#annotated-cell-3-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_dendro</span>()</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-annotation">
 <dl class="code-annotation-container-hidden code-annotation-container-grid">
@@ -437,9 +433,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>When used for <code>stack_alignv()</code>, the observations are aligned along the <code>x-axis</code>:</p>
+<p>When used for <code>stack_discretev()</code>, the observations are aligned along the <code>x-axis</code>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="annotated-cell-4"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><button class="code-annotation-anchor" data-target-cell="annotated-cell-4" data-target-annotation="1">1</button><span id="annotated-cell-4-1" class="code-annotation-target"><a href="#annotated-cell-4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stack_alignv</span>(small_mat) <span class="sc">+</span></span>
+<div class="sourceCode cell-code" id="annotated-cell-4"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><button class="code-annotation-anchor" data-target-cell="annotated-cell-4" data-target-annotation="1">1</button><span id="annotated-cell-4-1" class="code-annotation-target"><a href="#annotated-cell-4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stack_discretev</span>(small_mat) <span class="sc">+</span></span>
 <button class="code-annotation-anchor" data-target-cell="annotated-cell-4" data-target-annotation="2">2</button><span id="annotated-cell-4-2" class="code-annotation-target"><a href="#annotated-cell-4-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_dendro</span>()</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-annotation">
 <dl class="code-annotation-container-hidden code-annotation-container-grid">
@@ -468,7 +464,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol>
 <p>The active plot refers to the plot that subsequent ggplot2 components will target. In this case, the active plot is the dendrogram, and any new layers added will be applied to it. For instance, we can add additional layers to visualize the dendrogram’s structure or data. The default data underlying the <code>ggplot</code> object of <code>align_dendro()</code> consists of the dendrogram node data. It is also possible to use the dendrogram’s edge data for customization, which I will introduce in <a href="plot-initialize.html#sec-align-dendro" class="quarto-xref"><span>Section 5.5</span></a>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="annotated-cell-5"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><button class="code-annotation-anchor" data-target-cell="annotated-cell-5" data-target-annotation="1">1</button><span id="annotated-cell-5-1" class="code-annotation-target"><a href="#annotated-cell-5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stack_alignh</span>(small_mat) <span class="sc">+</span></span>
+<div class="sourceCode cell-code" id="annotated-cell-5"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><button class="code-annotation-anchor" data-target-cell="annotated-cell-5" data-target-annotation="1">1</button><span id="annotated-cell-5-1" class="code-annotation-target"><a href="#annotated-cell-5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stack_discreteh</span>(small_mat) <span class="sc">+</span></span>
 <button class="code-annotation-anchor" data-target-cell="annotated-cell-5" data-target-annotation="2">2</button><span id="annotated-cell-5-2" class="code-annotation-target"><a href="#annotated-cell-5-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_dendro</span>() <span class="sc">+</span></span>
 <button class="code-annotation-anchor" data-target-cell="annotated-cell-5" data-target-annotation="3">3</button><span id="annotated-cell-5-3" class="code-annotation-target"><a href="#annotated-cell-5-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>()</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-annotation">
@@ -497,11 +493,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>The <code>active</code> argument controls whether a plot should be set as the active plot. It accepts an <code>active()</code> object with the <code>use</code> argument to specify if the plot should be active when added.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="annotated-cell-6"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><button class="code-annotation-anchor" data-target-cell="annotated-cell-6" data-target-annotation="1">1</button><span id="annotated-cell-6-1" class="code-annotation-target"><a href="#annotated-cell-6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stack_alignh</span>(small_mat) <span class="sc">+</span></span>
+<div class="sourceCode cell-code" id="annotated-cell-6"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><button class="code-annotation-anchor" data-target-cell="annotated-cell-6" data-target-annotation="1">1</button><span id="annotated-cell-6-1" class="code-annotation-target"><a href="#annotated-cell-6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stack_discreteh</span>(small_mat) <span class="sc">+</span></span>
 <button class="code-annotation-anchor" data-target-cell="annotated-cell-6" data-target-annotation="2">2</button><span id="annotated-cell-6-2" class="code-annotation-target"><a href="#annotated-cell-6-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_dendro</span>(<span class="at">active =</span> <span class="fu">active</span>(<span class="at">use =</span> <span class="cn">FALSE</span>)) <span class="sc">+</span></span>
 <button class="code-annotation-anchor" data-target-cell="annotated-cell-6" data-target-annotation="3">3</button><span id="annotated-cell-6-3" class="code-annotation-target"><a href="#annotated-cell-6-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>()</span>
-<span id="annotated-cell-6-4"><a href="#annotated-cell-6-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Error in `stack_layout_add()`:</span></span>
-<span id="annotated-cell-6-5"><a href="#annotated-cell-6-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ! Cannot add `geom_point()` to `stack_align()`</span></span>
+<span id="annotated-cell-6-4"><a href="#annotated-cell-6-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Error in `chain_layout_add()`:</span></span>
+<span id="annotated-cell-6-5"><a href="#annotated-cell-6-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ! Cannot add `geom_point()` to the horizontal `stack_discrete()`</span></span>
 <span id="annotated-cell-6-6"><a href="#annotated-cell-6-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ℹ No active plot component</span></span>
 <span id="annotated-cell-6-7"><a href="#annotated-cell-6-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ℹ Did you forget to initialize a &lt;ggplot&gt; object with `ggalign()` or</span></span>
 <span id="annotated-cell-6-8"><a href="#annotated-cell-6-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   `ggfree()`?</span></span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -525,28 +521,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Usually, you don’t need to set this manually, as the active context is automatically applied only for functions that add plot areas. You can inspect whether a <code>align_*</code> function will add a plot by print it:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">align_dendro</span>()</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; `align_dendro()` object:</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   plot: yes</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; &lt;Class: AlignDendro AlignHclust AlignDiscrete AlignProto&gt;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      plot: yes</span></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   reorder: yes</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   split: no</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     split: no</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>You might find it confusing that we mentioned <code>align_dendro()</code> will split observations into groups, while the print output shows <code>split = "no"</code>. This happens because we haven’t specified the <code>k</code>/<code>h</code> argument in <code>align_dendro()</code>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">align_dendro</span>(<span class="at">k =</span> <span class="dv">3</span>L)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; `align_dendro()` object:</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   plot: yes</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; &lt;Class: AlignDendro AlignHclust AlignDiscrete AlignProto&gt;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      plot: yes</span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   reorder: yes</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   split: yes</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     split: yes</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>You don’t need to explicitly provide <code>data</code> to <code>align_dendro()</code>. By default, it inherits data from the layout. However, you can always provide another data source, but note that this package uses the concept of <code>number of observations</code> (<code>NROW()</code>). When aligning the observations, you must ensure the number of observations is consistent across all plots.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="annotated-cell-9"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-9-1"><a href="#annotated-cell-9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<button class="code-annotation-anchor" data-target-cell="annotated-cell-9" data-target-annotation="1">1</button><span id="annotated-cell-9-2" class="code-annotation-target"><a href="#annotated-cell-9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">stack_alignh</span>(small_mat) <span class="sc">+</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-9" data-target-annotation="1">1</button><span id="annotated-cell-9-2" class="code-annotation-target"><a href="#annotated-cell-9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">stack_discreteh</span>(small_mat) <span class="sc">+</span></span>
 <button class="code-annotation-anchor" data-target-cell="annotated-cell-9" data-target-annotation="2">2</button><span id="annotated-cell-9-3" class="code-annotation-target"><a href="#annotated-cell-9-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_dendro</span>(<span class="at">data =</span> <span class="fu">matrix</span>(<span class="fu">rnorm</span>(<span class="dv">56</span>), <span class="at">nrow =</span> <span class="dv">8</span>)) <span class="sc">+</span></span>
 <button class="code-annotation-anchor" data-target-cell="annotated-cell-9" data-target-annotation="3">3</button><span id="annotated-cell-9-4" class="code-annotation-target"><a href="#annotated-cell-9-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">axis.text.y =</span> <span class="fu">element_text</span>())</span>
-<span id="annotated-cell-9-5"><a href="#annotated-cell-9-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Error in `layout()`:</span></span>
+<span id="annotated-cell-9-5"><a href="#annotated-cell-9-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Error in `setup_design()`:</span></span>
 <span id="annotated-cell-9-6"><a href="#annotated-cell-9-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ! `align_dendro(data = matrix(rnorm(56), nrow = 8))` (nobs: 8) is not</span></span>
-<span id="annotated-cell-9-7"><a href="#annotated-cell-9-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   compatible with the `stack_align()` (nobs: 7)</span></span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="annotated-cell-9-7"><a href="#annotated-cell-9-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   compatible with the the horizontal `stack_discrete()` (nobs: 7)</span></span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-annotation">
 <dl class="code-annotation-container-hidden code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-9" data-target-annotation="1">1</dt>
@@ -566,7 +562,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="cell">
 <div class="sourceCode cell-code" id="annotated-cell-10"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-10-1"><a href="#annotated-cell-10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<button class="code-annotation-anchor" data-target-cell="annotated-cell-10" data-target-annotation="1">1</button><span id="annotated-cell-10-2" class="code-annotation-target"><a href="#annotated-cell-10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">stack_alignh</span>(small_mat) <span class="sc">+</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-10" data-target-annotation="1">1</button><span id="annotated-cell-10-2" class="code-annotation-target"><a href="#annotated-cell-10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">stack_discreteh</span>(small_mat) <span class="sc">+</span></span>
 <button class="code-annotation-anchor" data-target-cell="annotated-cell-10" data-target-annotation="2">2</button><span id="annotated-cell-10-3" class="code-annotation-target"><a href="#annotated-cell-10-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_dendro</span>(<span class="at">data =</span> <span class="fu">matrix</span>(<span class="fu">rnorm</span>(<span class="dv">70</span>), <span class="at">nrow =</span> <span class="dv">7</span>)) <span class="sc">+</span></span>
 <button class="code-annotation-anchor" data-target-cell="annotated-cell-10" data-target-annotation="3">3</button><span id="annotated-cell-10-4" class="code-annotation-target"><a href="#annotated-cell-10-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">axis.text.y =</span> <span class="fu">element_text</span>())</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-annotation">
@@ -596,7 +592,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Alternatively, you can provide a function (or purrr-lambda) that will be applied to the layout’s matrix. For layouts that align observations, a matrix is always required, so the data input must be in matrix form.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="annotated-cell-11"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-11-1"><a href="#annotated-cell-11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<button class="code-annotation-anchor" data-target-cell="annotated-cell-11" data-target-annotation="1">1</button><span id="annotated-cell-11-2" class="code-annotation-target"><a href="#annotated-cell-11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">stack_alignh</span>(small_mat) <span class="sc">+</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-11" data-target-annotation="1">1</button><span id="annotated-cell-11-2" class="code-annotation-target"><a href="#annotated-cell-11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">stack_discreteh</span>(small_mat) <span class="sc">+</span></span>
 <button class="code-annotation-anchor" data-target-cell="annotated-cell-11" data-target-annotation="2">2</button><span id="annotated-cell-11-3" class="code-annotation-target"><a href="#annotated-cell-11-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_dendro</span>(<span class="at">data =</span> <span class="sc">~</span> .x[<span class="fu">sample</span>(<span class="fu">nrow</span>(.x)), ]) <span class="sc">+</span></span>
 <button class="code-annotation-anchor" data-target-cell="annotated-cell-11" data-target-annotation="3">3</button><span id="annotated-cell-11-4" class="code-annotation-target"><a href="#annotated-cell-11-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">axis.text.y =</span> <span class="fu">element_text</span>())</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-annotation">
@@ -629,13 +625,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 data-number="2.3" class="anchored" data-anchor-id="sec-stack-layout-plot-initialize"><span class="header-section-number">2.3</span> Plot initialize</h2>
 <p>There are two primary functions for adding plots:</p>
 <ul>
-<li><code>align_gg()</code>/<code>ggalign()</code>: Create a ggplot object and align with the layout.</li>
-<li><code>free_gg()</code>/<code>ggfree()</code>: Create a ggplot object without aligning.</li>
+<li><code>ggalign()</code>: Initialize a ggplot object and align the axes.</li>
+<li><code>ggfree()</code>: Initialize a ggplot object without aligning the axes.</li>
 </ul>
 <p>Both functions initialize a <code>ggplot</code> object and, by default, set the <code>active</code> plot when added to the layout.</p>
-<p>For <code>stack_align()</code>, plots can be added regardless of whether they need to align observations.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="annotated-cell-12"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><button class="code-annotation-anchor" data-target-cell="annotated-cell-12" data-target-annotation="1">1</button><span id="annotated-cell-12-1" class="code-annotation-target"><a href="#annotated-cell-12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stack_alignh</span>(small_mat) <span class="sc">+</span></span>
+<div class="sourceCode cell-code" id="annotated-cell-12"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><button class="code-annotation-anchor" data-target-cell="annotated-cell-12" data-target-annotation="1">1</button><span id="annotated-cell-12-1" class="code-annotation-target"><a href="#annotated-cell-12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stack_discreteh</span>(small_mat) <span class="sc">+</span></span>
 <button class="code-annotation-anchor" data-target-cell="annotated-cell-12" data-target-annotation="2">2</button><span id="annotated-cell-12-2" class="code-annotation-target"><a href="#annotated-cell-12-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_dendro</span>() <span class="sc">+</span></span>
 <button class="code-annotation-anchor" data-target-cell="annotated-cell-12" data-target-annotation="3">3</button><span id="annotated-cell-12-3" class="code-annotation-target"><a href="#annotated-cell-12-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggalign</span>(<span class="at">data =</span> rowSums) <span class="sc">+</span></span>
 <button class="code-annotation-anchor" data-target-cell="annotated-cell-12" data-target-annotation="4">4</button><span id="annotated-cell-12-4" class="code-annotation-target"><a href="#annotated-cell-12-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>(<span class="fu">aes</span>(value, .discrete_y), <span class="at">stat =</span> <span class="st">"identity"</span>) <span class="sc">+</span></span>
@@ -677,9 +672,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="annotated-cell-13"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><button class="code-annotation-anchor" data-target-cell="annotated-cell-13" data-target-annotation="1">1</button><span id="annotated-cell-13-1" class="code-annotation-target"><a href="#annotated-cell-13-1" aria-hidden="true" tabindex="-1"></a>my_bar <span class="ot">&lt;-</span> <span class="fu">ggalign</span>(<span class="at">data =</span> rowSums) <span class="sc">+</span></span>
 <span id="annotated-cell-13-2"><a href="#annotated-cell-13-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>(<span class="fu">aes</span>(value, .discrete_y), <span class="at">stat =</span> <span class="st">"identity"</span>) <span class="sc">+</span></span>
 <span id="annotated-cell-13-3"><a href="#annotated-cell-13-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">axis.text.y =</span> <span class="fu">element_text</span>())</span>
-<button class="code-annotation-anchor" data-target-cell="annotated-cell-13" data-target-annotation="2">2</button><span id="annotated-cell-13-4" class="code-annotation-target"><a href="#annotated-cell-13-4" aria-hidden="true" tabindex="-1"></a><span class="fu">stack_alignh</span>(small_mat) <span class="sc">+</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-13" data-target-annotation="2">2</button><span id="annotated-cell-13-4" class="code-annotation-target"><a href="#annotated-cell-13-4" aria-hidden="true" tabindex="-1"></a><span class="fu">stack_discreteh</span>(small_mat) <span class="sc">+</span></span>
 <button class="code-annotation-anchor" data-target-cell="annotated-cell-13" data-target-annotation="3">3</button><span id="annotated-cell-13-5" class="code-annotation-target"><a href="#annotated-cell-13-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_dendro</span>() <span class="sc">+</span></span>
-<span id="annotated-cell-13-6"><a href="#annotated-cell-13-6" aria-hidden="true" tabindex="-1"></a>    my_bar</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-13" data-target-annotation="4">4</button><span id="annotated-cell-13-6" class="code-annotation-target"><a href="#annotated-cell-13-6" aria-hidden="true" tabindex="-1"></a>    my_bar</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-annotation">
 <dl class="code-annotation-container-hidden code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-13" data-target-annotation="1">1</dt>
@@ -694,6 +689,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <dd>
 <span data-code-cell="annotated-cell-13" data-code-lines="5" data-code-annotation="3">reorder the observations based on the hierarchical clustering, add a dendrogram tree, and set the active plot to this plot.</span>
 </dd>
+<dt data-target-cell="annotated-cell-13" data-target-annotation="4">4</dt>
+<dd>
+<span data-code-cell="annotated-cell-13" data-code-lines="6" data-code-annotation="4">Add another bar plot to the layout.</span>
+</dd>
 </dl>
 </div>
 <div class="cell-output-display">
@@ -706,7 +705,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>The <code>active</code> argument can also control the place of the plot area to be added. It accepts an <code>active()</code> object with the <code>order</code> argument to specify the order of the plot area.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stack_alignh</span>(small_mat) <span class="sc">+</span></span>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stack_discreteh</span>(small_mat) <span class="sc">+</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_dendro</span>() <span class="sc">+</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggalign</span>(<span class="at">data =</span> rowSums, <span class="at">active =</span> <span class="fu">active</span>(<span class="at">order =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>(<span class="fu">aes</span>(value, .discrete_y), <span class="at">stat =</span> <span class="st">"identity"</span>) <span class="sc">+</span></span>
@@ -719,9 +718,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>You can also stack plots vertically using <code>stack_alignv()</code>:</p>
+<p>You can also stack plots vertically using <code>stack_discretev()</code>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stack_alignv</span>(small_mat) <span class="sc">+</span> </span>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stack_discretev</span>(small_mat) <span class="sc">+</span> </span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_dendro</span>() <span class="sc">+</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggalign</span>(<span class="at">data =</span> rowSums) <span class="sc">+</span></span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>(<span class="fu">aes</span>(.discrete_x, value), <span class="at">stat =</span> <span class="st">"identity"</span>) <span class="sc">+</span></span>
@@ -734,9 +733,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p><code>stack_align()</code> can also add plot without aligning observations. <code>free_gg()</code> focuses on layout integration without enforcing strict axis alignment. <code>ggfree()</code> is an alias for <code>free_gg</code>.</p>
+<p><code>ggfree()</code> focuses on layout integration without enforcing strict axis alignment.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stack_alignv</span>() <span class="sc">+</span></span>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stack_discretev</span>() <span class="sc">+</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggfree</span>(mpg, <span class="fu">aes</span>(displ, hwy, <span class="at">colour =</span> class)) <span class="sc">+</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggfree</span>(mpg, <span class="fu">aes</span>(displ, hwy, <span class="at">colour =</span> class)) <span class="sc">+</span></span>
@@ -752,9 +751,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>The <code>&amp;</code> operator applies the added element to all plots in the layout, similar to its functionality in the <code>patchwork</code> package.</p>
-<p>For <code>stack_free()</code>, only free plots (<code>ggfree()</code>) can be added. This layout arranges plots in one row or column without enforcing axis alignment:</p>
+<p>For <code>stack_continuous()</code>, only free plots (<code>ggfree()</code>) can be added. This layout arranges plots in one row or column without enforcing axis alignment:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stack_freev</span>(mpg) <span class="sc">+</span></span>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stack_continuousv</span>(mpg) <span class="sc">+</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggfree</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(displ, hwy, <span class="at">colour =</span> class)) <span class="sc">+</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggfree</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(displ, hwy, <span class="at">colour =</span> class)) <span class="sc">+</span></span>
@@ -775,7 +774,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 data-number="2.4" class="anchored" data-anchor-id="sec-stack-layout-plot-size"><span class="header-section-number">2.4</span> Plot Size</h2>
 <p>Both <code>ggalign()</code> and <code>ggfree()</code> functions have a <code>size</code> argument to control the relative <code>width</code> (for horizontal stack layout) or <code>height</code> (for vertical stack layout) of the plot’s panel area.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stack_freev</span>(mpg) <span class="sc">+</span></span>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stack_continuousv</span>(mpg) <span class="sc">+</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggfree</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(displ, hwy, <span class="at">colour =</span> class), <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggfree</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(displ, hwy, <span class="at">colour =</span> class), <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
@@ -792,7 +791,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>Alternatively, you can define an absolute size by using a <code>unit()</code> object:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stack_freev</span>(mpg) <span class="sc">+</span></span>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stack_continuousv</span>(mpg) <span class="sc">+</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggfree</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(displ, hwy, <span class="at">colour =</span> class), <span class="at">size =</span> <span class="fu">unit</span>(<span class="dv">1</span>, <span class="st">"cm"</span>)) <span class="sc">+</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggfree</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(displ, hwy, <span class="at">colour =</span> class)) <span class="sc">+</span></span>
@@ -816,7 +815,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><code>stack_active()</code>: An alias for <code>stack_switch()</code>, which sets <code>what = NULL</code></li>
 </ul>
 <p>The <code>stack_switch()</code> function accepts the <code>what</code> argument, which can either be the index of the plot added (based on its adding order) or the plot name specified via the <code>active()</code> object using the <code>name</code> argument.</p>
-<p>Note that the <code>what</code> argument must be explicitly named, as it is placed second in the function signature. This is because, in most cases, we don’t need to switch the active plot manually—adjusting the order of plot additions typically suffices.</p>
+<p>Note that the <code>what</code> argument must be explicitly named, as it is placed second in the function signature. This is because, in most cases, we don’t need to switch the active plot, manually—adjusting the order of plot additions typically suffices.</p>
 <div class="grid">
 <div class="g-col-6">
 <div class="cell">
@@ -858,7 +857,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>In the example, we use <code>layout_title()</code> to insert a title for the entire layout. Alternatively, you can add a title to a single plot with <code>ggtitle()</code>.</p>
-<p>By setting <code>what = NULL</code> (or alias <code>stack_active()</code>), we remove the active plot. This is particularly useful when the active plot is a nested <code>Layout</code> object, as any additions would otherwise be directed to that nested <code>Layout</code>. By removing the active plot, you can continue adding components directly to the <code>StackLayout</code>. We’ll introduce the nested layout of <code>StackLayout</code> in <a href="multiple-quad-layouts.html" class="quarto-xref"><span>Chapter 7</span></a>.</p>
+<p>By setting <code>what = NULL</code> (or alias <code>stack_active()</code>), we remove the active plot. This is particularly useful when the active plot is a nested <code>Layout</code> object, as any additions would otherwise be directed to that nested <code>Layout</code>. By removing the active plot, you can continue adding components to the <code>StackLayout</code>. We’ll introduce the nested layout of <code>StackLayout</code> in <a href="multiple-quad-layouts.html" class="quarto-xref"><span>Chapter 7</span></a>.</p>
 <p>In the next chapter, we will dive into the <code>HeatmapLayout</code>, which can take the <code>StackLayout</code> as input. Heatmap layouts offer additional features for aligning observations in both directions. Let’s move ahead and explore how heatmaps can be seamlessly integrated into your layout workflows.</p>
 
 

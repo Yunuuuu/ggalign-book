@@ -299,13 +299,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#sec-ggalign" id="toc-sec-ggalign" class="nav-link active" data-scroll-target="#sec-ggalign"><span class="header-section-number">5.1</span> <code>align_gg()</code>/<code>ggalign()</code></a>
+  <li><a href="#sec-ggalign" id="toc-sec-ggalign" class="nav-link active" data-scroll-target="#sec-ggalign"><span class="header-section-number">5.1</span> <code>ggalign()</code></a></li>
+  <li><a href="#ggfree" id="toc-ggfree" class="nav-link" data-scroll-target="#ggfree"><span class="header-section-number">5.2</span> <code>ggfree()</code></a>
   <ul class="collapse">
-  <li><a href="#cross-panel-sumamry" id="toc-cross-panel-sumamry" class="nav-link" data-scroll-target="#cross-panel-sumamry"><span class="header-section-number">5.1.1</span> Cross panel sumamry</a></li>
+  <li><a href="#cross-panel-sumamry" id="toc-cross-panel-sumamry" class="nav-link" data-scroll-target="#cross-panel-sumamry"><span class="header-section-number">5.2.1</span> Cross panel sumamry</a></li>
   </ul></li>
-  <li><a href="#free_ggggfree" id="toc-free_ggggfree" class="nav-link" data-scroll-target="#free_ggggfree"><span class="header-section-number">5.2</span> <code>free_gg()</code>/<code>ggfree()</code></a></li>
   <li><a href="#ggwrap-and-inset" id="toc-ggwrap-and-inset" class="nav-link" data-scroll-target="#ggwrap-and-inset"><span class="header-section-number">5.3</span> <code>ggwrap()</code> and <code>inset()</code></a></li>
-  <li><a href="#align_link-and-align_range" id="toc-align_link-and-align_range" class="nav-link" data-scroll-target="#align_link-and-align_range"><span class="header-section-number">5.4</span> <code>align_link()</code> and <code>align_range()</code></a></li>
+  <li><a href="#ggmark" id="toc-ggmark" class="nav-link" data-scroll-target="#ggmark"><span class="header-section-number">5.4</span> <code>ggmark()</code></a></li>
   <li><a href="#sec-align-dendro" id="toc-sec-align-dendro" class="nav-link" data-scroll-target="#sec-align-dendro"><span class="header-section-number">5.5</span> <code>align_dendro()</code></a></li>
   <li><a href="#plot-titles" id="toc-plot-titles" class="nav-link" data-scroll-target="#plot-titles"><span class="header-section-number">5.6</span> Plot titles</a></li>
   </ul>
@@ -335,48 +335,39 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <p>There are three primary functions for adding plots:</p>
 <ul>
-<li><code>align_gg()</code>/<code>ggalign()</code>: Create a ggplot object and aligns the observation.</li>
-<li><code>align_line()</code>/<code>align_range()</code>: Add a plot to annotate the selected observations.</li>
-<li><code>free_gg()</code>/<code>ggfree()</code>: Create a ggplot object without aligning the observation.</li>
+<li><code>ggalign()</code>: Create a ggplot object and aligns the axes.</li>
+<li><code>ggmark()</code>: Add a plot to annotate selected observations.</li>
+<li><code>ggfree()</code>: Create a ggplot object without alignment.</li>
 <li><code>align_dendro()</code>: Create a ggplot object of dendrogram tree, and align the observation. In addition, it can reorder and group the observations.</li>
 </ul>
-<p><code>ggalign()</code> and <code>ggfree()</code> are aliases for <code>align_gg()</code> and <code>free_gg()</code>, respectively. All three functions will set the active plot when added to the layout.</p>
-<p>Both <code>ggalign()</code> and <code>align_dendro()</code> can only be used with a <code>stack_layout()</code> that aligns observations (<code>stack_align()</code>), whereas <code>ggfree()</code> can be added to a <code>stack_layout()</code> that does not align the observations (<code>stack_free()</code>).</p>
+<p>All these functions will set the active plot when added to the layout.</p>
+<p>Both <code>ggmark()</code> and <code>align_dendro()</code> can only for discrete variables.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggalign)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Loading required package: ggplot2</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning: S3 method 'ggplot_add.continuous_ggalign' was declared in NAMESPACE</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; but not found</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>small_mat <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">rnorm</span>(<span class="dv">56</span>), <span class="at">nrow =</span> <span class="dv">7</span>)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(small_mat) <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"row"</span>, <span class="fu">seq_len</span>(<span class="fu">nrow</span>(small_mat)))</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(small_mat) <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"column"</span>, <span class="fu">seq_len</span>(<span class="fu">ncol</span>(small_mat)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>small_mat <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">rnorm</span>(<span class="dv">56</span>), <span class="at">nrow =</span> <span class="dv">7</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(small_mat) <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"row"</span>, <span class="fu">seq_len</span>(<span class="fu">nrow</span>(small_mat)))</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(small_mat) <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"column"</span>, <span class="fu">seq_len</span>(<span class="fu">ncol</span>(small_mat)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <section id="sec-ggalign" class="level2" data-number="5.1">
-<h2 data-number="5.1" class="anchored" data-anchor-id="sec-ggalign"><span class="header-section-number">5.1</span> <code>align_gg()</code>/<code>ggalign()</code></h2>
-<p><code>ggalign()</code> is similar to <code>ggplot</code> in that it initializes a <code>ggplot</code> data and <code>mapping</code>. <code>ggalign()</code> allowing you to provide data in various formats, including matrices, data frames, or simple vectors. By default, it will inherit from the layout. If a function, it will apply with the layout matrix.</p>
-<p><code>ggalign()</code> always applies a default mapping for the axis of the data index in the layout. This mapping is <code>aes(y = .data$.y)</code> for horizontal stacking (including left and right quad layout annotation) and <code>aes(x = .data$.x)</code> for vertical stacking (including top and bottom quad layout annotation).</p>
-<p>The data in the underlying <code>ggplot</code> object will contain following columns:</p>
+<h2 data-number="5.1" class="anchored" data-anchor-id="sec-ggalign"><span class="header-section-number">5.1</span> <code>ggalign()</code></h2>
+<p><code>ggalign</code> is the package name but it’s also a function in the package. <code>ggalign()</code> is similar to <code>ggplot</code> in that it initializes a <code>ggplot</code> data and <code>mapping</code>. <code>ggalign()</code> allowing you to provide data in various formats, including matrices, data frames, or simple vectors. By default, it will inherit from the layout. If a function, it will apply with the layout data.</p>
+<p>The underlying plot data will be created using <code>fortify_data_frame()</code>, which, By default, calls <code>ggplot2::fortify()</code> to build the data frame. Additional methods have been added for atomic vector and matrix. For atomic vector, it will convert it to a data frame with following columns:</p>
 <ul>
-<li><p><code>.panel</code>: the panel for the aligned axis. It means <code>x-axis</code> for vertical stack layout (including top and bottom annotation), <code>y-axis</code> for horizontal stack layout (including left and right annotation).</p></li>
-<li><p><code>.x</code>/<code>y</code> and <code>.discrete_x</code>/<code>.discrete_y</code>: an integer index of <code>x</code>/<code>y</code> coordinates and a factor of the data labels (only applicable when names exists).</p></li>
-<li><p><code>.names</code> (<code>vec_names()</code>) and <code>.index</code> (<code>NROW()</code>): a character names (only applicable when names exists) and an integer of index of the original data.</p></li>
-<li><p><code>.row_names</code> and <code>.row_index</code>: the row names and an integer of row index of the original matrix (only applicable if <code>data</code> is a <code>matrix</code>).</p></li>
-<li><p><code>.column_names</code> and <code>.column_index</code>: the column names and column index of the original matrix (only applicable if <code>data</code> is a <code>matrix</code>).</p></li>
-<li><p><code>value</code>: the actual value (only applicable if <code>data</code> is a <code>matrix</code> or atomic vector).</p></li>
+<li><code>.names</code>: the names for the vector (only applicable if names exist).</li>
+<li><code>value</code>: the actual value of the vector.</li>
 </ul>
-<blockquote class="blockquote">
-<p>It is recommended to use <code>.x</code>/<code>.y</code>, or <code>.discrete_x</code>/<code>.discrete_y</code> as the <code>x</code>/<code>y</code> mapping.</p>
-</blockquote>
-<p>Almost all functions that add plots will generate data containing two key columns: <code>.panel</code> and <code>.index</code>.</p>
+<p>When <code>data</code> is a matrix, it will automatically be transformed into a long-form data frame, where each row represents a unique combination of matrix indices and their corresponding values. The resulting data frame will contain the following columns:</p>
 <ul>
-<li><code>.panel</code>: used to create ggplot2 facets.</li>
-<li><code>.index</code>: serves to match the data across different layers or datasets. It is useful for aligning observations or linking different data sources. You can use <code>.index</code> to merge data and create a new data frame, using method provided in <a href="schemes.html#sec-scheme-data" class="quarto-xref"><span>Section 9.2</span></a>.</li>
+<li><code>.row_names</code> and <code>.row_index</code>: the row names (only applicable when names exist) and an integer representing the row index of the original matrix.</li>
+<li><code>.column_names</code> and <code>.column_index</code>: the column names (only applicable when names exist) and column index of the original matrix.</li>
+<li><code>value</code>: the actual value.</li>
 </ul>
-<p>Additionally, if names are provided, the <code>.names</code> column will also be created</p>
+<p>When alignning continuous variables, <code>ggalign()</code> will apply the <code>limits</code> set by the layout when drawing.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggheatmap</span>(small_mat) <span class="sc">+</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">anno_top</span>() <span class="sc">+</span></span>
@@ -391,14 +382,29 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>In the case where the input data is already a data frame, following columns (<code>.panel</code>, <code>.index</code>, <code>.names</code>, <code>.x</code>/<code>.y</code>, <code>.discrete_x</code>/<code>.discrete_y</code>) are added to the data frame. Note, <code>NROW(data)</code> must match the <code>number of observations</code> along the axis used for alignment.</p>
+<p>When aligning discrete variables, <code>ggalign()</code> always applies a default mapping for the axis of the data index in the layout. Specifically, This mapping is <code>aes(y = .data$.y)</code> for horizontal stack (including left and right annotation) and <code>aes(x = .data$.x)</code> for vertical stack (including top and bottom annotation).</p>
+<p>The following columns will be added to the data frame to align discrete variables:</p>
+<ul>
+<li><code>.panel</code>: The panel for the aligned axis. Refers to the <code>x-axis</code> for vertical <code>stack_layout()</code> (including top and bottom annotations), and the <code>y-axis</code> for horizontal <code>stack_layout()</code> (including left and right annotations).</li>
+<li><code>.names</code> ([<code>vec_names()</code>][vctrs::vec_names]) and <code>.index</code> ([<code>vec_size()</code>][vctrs::vec_size()]/[<code>NROW()</code>]): Character names (if available) and the integer index of the original data.</li>
+<li><code>.x</code>/<code>.y</code> and <code>.discrete_x</code>/<code>.discrete_y</code>: Integer indices for <code>x</code>/<code>y</code> coordinates, and a factor of the data labels (only applicable when names exist).</li>
+</ul>
+<blockquote class="blockquote">
+<p>It is recommended to use <code>.x</code>/<code>.y</code>, or <code>.discrete_x</code>/<code>.discrete_y</code> as the <code>x</code>/<code>y</code> mapping.</p>
+</blockquote>
+<p>When aligning discrete variables, almost all functions that add plots will generate data containing two key columns:</p>
+<ul>
+<li><code>.panel</code>: used to create ggplot2 facets.</li>
+<li><code>.index</code>: serves to match the data. It is useful for aligning observations or linking different data sources. You can use <code>.index</code> to merge data and create a new data frame, using method provided in <a href="schemes.html#sec-scheme-data" class="quarto-xref"><span>Section 9.2</span></a>.</li>
+</ul>
+<p>Additionally, if names exist, the <code>.names</code> column will also be created.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>my_df <span class="ot">&lt;-</span> mtcars[<span class="fu">seq_len</span>(<span class="fu">ncol</span>(small_mat)), ]</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggheatmap</span>(small_mat) <span class="sc">+</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">anno_top</span>() <span class="sc">+</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggalign</span>(<span class="at">data =</span> my_df) <span class="sc">+</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y =</span> cyl))</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; → heatmap built with `geom_tile()`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stack_continuous</span>(<span class="st">"v"</span>, mtcars, <span class="at">limits =</span> <span class="fu">continuous_limits</span>(<span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">4</span>))) <span class="sc">+</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggalign</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(wt, mpg)) <span class="sc">+</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggalign</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(wt, mpg)) <span class="sc">+</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -407,15 +413,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>You may wonder if the strict data requirements will prevent us from preparing the data for plotting. Don’t worry! In <a href="schemes.html#sec-scheme-data" class="quarto-xref"><span>Section 9.2</span></a>, I’ll introduce powerful way to prepare data for your plots.</p>
-<p>If <code>data = NULL</code>, the data in the underlying <code>ggplot</code> object contains following columns: <code>.panel</code>, <code>.index</code>, <code>.names</code>, <code>.x</code>/<code>.y</code>, <code>.discrete_x</code>/<code>.discrete_y</code>.</p>
-<p>You can use it to integrate additional elements, such as block annotation or customized panel title, into your layout.</p>
+<p>When aligning discrete variables, ensure that the number of rows in the data matches the number of observations along the axis used for alignment:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggheatmap</span>(small_mat) <span class="sc">+</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">anno_top</span>(<span class="at">size =</span> <span class="fu">unit</span>(<span class="dv">1</span>, <span class="st">"cm"</span>)) <span class="sc">+</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_kmeans</span>(<span class="at">centers =</span> <span class="dv">3</span>L) <span class="sc">+</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggalign</span>(<span class="at">data =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_tile</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="dv">1</span>L, <span class="at">fill =</span> .panel, <span class="at">color =</span> .panel))</span>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>my_df <span class="ot">&lt;-</span> mtcars[<span class="fu">seq_len</span>(<span class="fu">ncol</span>(small_mat)), ]</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggheatmap</span>(small_mat) <span class="sc">+</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">anno_top</span>() <span class="sc">+</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggalign</span>(<span class="at">data =</span> my_df) <span class="sc">+</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y =</span> cyl))</span>
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; → heatmap built with `geom_tile()`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
@@ -425,34 +429,29 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<section id="cross-panel-sumamry" class="level3" data-number="5.1.1">
-<h3 data-number="5.1.1" class="anchored" data-anchor-id="cross-panel-sumamry"><span class="header-section-number">5.1.1</span> Cross panel sumamry</h3>
-<p>When used in a <code>quad_layout()</code>, and the data is inherited from the <code>quad_layout()</code>, a special column <code>.extra_panel</code> will be added if applicable, which is the panel information for column (for left or right annotation) or row (for top or bottom annotation). This is useful if you want to create summary plot using another axis panel groups. In such cases, it’s often necessary to disable the automatic setting of limits (<code>limits = FALSE</code> in <code>ggalign()</code>).</p>
+<p>If <code>data = NULL</code>, the data in the underlying <code>ggplot</code> object only contains following columns: <code>.panel</code>, <code>.index</code>, <code>.names</code>, <code>.x</code>/<code>.y</code>, <code>.discrete_x</code>/<code>.discrete_y</code>. You can use it to integrate additional elements, such as block annotation or customized panel title, into your layout.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggheatmap</span>(small_mat) <span class="sc">+</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">anno_right</span>() <span class="sc">+</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_kmeans</span>(<span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">anno_top</span>(<span class="at">size =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggalign</span>(<span class="at">limits =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(.extra_panel, value, <span class="at">fill =</span> .extra_panel)) <span class="sc">+</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">"Dark2"</span>, <span class="at">name =</span> <span class="st">"row groups"</span>)</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; → heatmap built with `geom_tile()`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggheatmap</span>(small_mat) <span class="sc">+</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">anno_top</span>(<span class="at">size =</span> <span class="fu">unit</span>(<span class="dv">1</span>, <span class="st">"cm"</span>)) <span class="sc">+</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_kmeans</span>(<span class="at">centers =</span> <span class="dv">3</span>L) <span class="sc">+</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggalign</span>(<span class="at">data =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_tile</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="dv">1</span>L, <span class="at">fill =</span> .panel, <span class="at">color =</span> .panel)) <span class="sc">+</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_no_axes</span>(<span class="st">"y"</span>)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; → heatmap built with `geom_tile()`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="plot-initialize_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="480"></p>
+<p><img src="plot-initialize_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
-<p>This approach replicates the functionality of <a href="https://jokergoo.github.io/ComplexHeatmap-reference/book/heatmap-annotations.html#summary-annotation">ComplexHeatmap::anno_summary()</a>, but is versatile enough to be used with any heatmap, not just single-column or single-row heatmaps.</p>
+<p>The function <code>theme_no_axes()</code> can be used to quickly remove axis text and titles from the plot.</p>
 </section>
-</section>
-<section id="free_ggggfree" class="level2" data-number="5.2">
-<h2 data-number="5.2" class="anchored" data-anchor-id="free_ggggfree"><span class="header-section-number">5.2</span> <code>free_gg()</code>/<code>ggfree()</code></h2>
-<p>The <code>ggfree()</code> function allows you to incorporate a ggplot object into your layout. Unlike <code>align_gg()</code>, which aligns every axis value precisely, <code>free_gg()</code> focuses on layout integration without enforcing strict axis alignment.</p>
-<p>Internally, the function uses <code>fortify_data_frame()</code> to transform the input into a data frame. For matrices, it converts them into a long-formatted data frame. Note that <code>ggfree()</code> does not provide a default aesthetic mapping, which contrasts with <code>ggalign()</code>. You will need to manually provide the default mappings.</p>
+<section id="ggfree" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="ggfree"><span class="header-section-number">5.2</span> <code>ggfree()</code></h2>
+<p>The <code>ggfree()</code> function allows you to incorporate a ggplot object into your layout. Unlike <code>ggalign()</code>, which aligns every axis value precisely, <code>ggfree()</code> focuses on layout integration without enforcing strict axis alignment.</p>
+<p>Internally, the function also uses <code>fortify_data_frame()</code> to transform the input into a data frame.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggheatmap</span>(small_mat) <span class="sc">+</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">anno_top</span>() <span class="sc">+</span></span>
@@ -467,6 +466,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
+<p>Since <code>ggfree()</code> may use axes that are not aligned with the primary plot’s axes, the axis titles will not be removed automatically. If you want to remove the axis titles, you must do so manually by customizing the theme.</p>
 <p>Alternatively, you can directly input the ggplot object.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggheatmap</span>(small_mat) <span class="sc">+</span></span>
@@ -497,38 +497,46 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
+<section id="cross-panel-sumamry" class="level3" data-number="5.2.1">
+<h3 data-number="5.2.1" class="anchored" data-anchor-id="cross-panel-sumamry"><span class="header-section-number">5.2.1</span> Cross panel sumamry</h3>
+<p>When used in <code>quad_layout()</code>/<code>ggheatmap()</code>, if the data is inherited from the <code>quad_layout()</code> and the other direction aligns discrete variables, following columns will be added:</p>
+<ul>
+<li><code>.extra_panel</code>: Provides the panel information for the column (left or right annotation) or row (top or bottom annotation).</li>
+<li><code>.extra_index</code>: The index information for the column (left or right annotation) or row (top or bottom annotation).</li>
+</ul>
+<p>This is useful if you want to create summary plot using another axis panel groups.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggheatmap</span>(small_mat) <span class="sc">+</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">anno_right</span>() <span class="sc">+</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_kmeans</span>(<span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">anno_top</span>(<span class="at">size =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggfree</span>() <span class="sc">+</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(.extra_panel, value, <span class="at">fill =</span> .extra_panel)) <span class="sc">+</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">"Dark2"</span>, <span class="at">name =</span> <span class="st">"row groups"</span>) <span class="sc">+</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_no_axes</span>(<span class="st">"x"</span>)</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; → heatmap built with `geom_tile()`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="plot-initialize_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="480"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>This approach replicates the functionality of <a href="https://jokergoo.github.io/ComplexHeatmap-reference/book/heatmap-annotations.html#summary-annotation">ComplexHeatmap::anno_summary()</a>, but is versatile enough to be used with any heatmap, not just single-column or single-row heatmaps.</p>
+</section>
 </section>
 <section id="ggwrap-and-inset" class="level2" data-number="5.3">
 <h2 data-number="5.3" class="anchored" data-anchor-id="ggwrap-and-inset"><span class="header-section-number">5.3</span> <code>ggwrap()</code> and <code>inset()</code></h2>
 <p>The <code>ggwrap()</code> function allows you to wrap objects that can be converted into a grob, turning them into a <code>ggplot</code> for plotting. Further you can still add ggplot elements like title, subtitle, tag, caption, and geoms using the same approach as with normal ggplots (using <code>ggtitle()</code>, <code>labs()</code>, <code>geom_*()</code>) as well as styling using <code>theme()</code>. This enables you to pass these wrapped objects into <code>ggfree()</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(grid)</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggheatmap</span>(small_mat) <span class="sc">+</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">anno_top</span>() <span class="sc">+</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># `ggwrap()` will create a `ggplot` object, we use `ggfree` to add it into the layout</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggfree</span>(<span class="at">data =</span> <span class="fu">ggwrap</span>(<span class="fu">rectGrob</span>(<span class="at">gp =</span> <span class="fu">gpar</span>(<span class="at">fill =</span> <span class="st">"goldenrod"</span>)), <span class="at">align =</span> <span class="st">"full"</span>))</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; → heatmap built with `geom_tile()`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="plot-initialize_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>You can also integrate base plots, <code>pheatmap</code>, <code>ComplexHeatmap</code>, e.g.</p>
-<p>Additionally, you can add any graphics as a inset to a ggplot using the <code>inset()</code> function. Like <code>ggwrap()</code>, <code>inset()</code> can accept any object that can be converted to a grob.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggheatmap</span>(small_mat) <span class="sc">+</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">anno_top</span>() <span class="sc">+</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggfree</span>(<span class="at">data =</span> <span class="fu">ggwrap</span>(<span class="fu">rectGrob</span>(<span class="at">gp =</span> <span class="fu">gpar</span>(<span class="at">fill =</span> <span class="st">"goldenrod"</span>)), <span class="at">align =</span> <span class="st">"full"</span>)) <span class="sc">+</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># we can then add any inset grobs (the same as ggwrap, it can take any objects</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># which can be converted to a `grob`)</span></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">inset</span>(<span class="fu">rectGrob</span>(<span class="at">gp =</span> <span class="fu">gpar</span>(<span class="at">fill =</span> <span class="st">"steelblue"</span>)), <span class="at">align =</span> <span class="st">"panel"</span>) <span class="sc">+</span></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">inset</span>(<span class="fu">textGrob</span>(<span class="st">"Here are some text"</span>, <span class="at">gp =</span> <span class="fu">gpar</span>(<span class="at">color =</span> <span class="st">"black"</span>)),</span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">align =</span> <span class="st">"panel"</span></span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; → heatmap built with `geom_tile()`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(grid)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggheatmap</span>(small_mat) <span class="sc">+</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">anno_top</span>() <span class="sc">+</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># `ggwrap()` will create a `ggplot` object, we use `ggfree` to add it into the layout</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggfree</span>(<span class="at">data =</span> <span class="fu">ggwrap</span>(<span class="fu">rectGrob</span>(<span class="at">gp =</span> <span class="fu">gpar</span>(<span class="at">fill =</span> <span class="st">"goldenrod"</span>)), <span class="at">align =</span> <span class="st">"full"</span>))</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; → heatmap built with `geom_tile()`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -537,28 +545,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-</section>
-<section id="align_link-and-align_range" class="level2" data-number="5.4">
-<h2 data-number="5.4" class="anchored" data-anchor-id="align_link-and-align_range"><span class="header-section-number">5.4</span> <code>align_link()</code> and <code>align_range()</code></h2>
-<p>It would be helpful if we can add an annotation plot for the selected observations, <code>align_link()</code> and <code>align_range()</code> can be used to do this.</p>
-<ul>
-<li><code>align_line</code>: Annotates a list of discrete observations. These observations will be connected to the panel by a line.</li>
-<li><code>align_range</code>: Annotates a list of continuous observation ranges. The ranges will be connected to the panel by a polygon.</li>
-</ul>
-<p><code>align_line</code> accepts <code>lines</code> argument, which should be a list of observations, Each element of the list will be represented by a facet panel. While <code>align_range</code> accepts <code>ranges</code> argument, which should be a list of the range.</p>
-<p>By default, <code>align_line()</code> will connect all observations and split them based on the groups defined in the layout. The data underlying the ggplot object created by <code>align_line()</code> is similar to that of <code>ggalign()</code> (<a href="#sec-ggalign" class="quarto-xref"><span>Section 5.1</span></a>), but it does not include the <code>.x</code>/<code>.y</code> and <code>.discrete_x</code>/<code>.discrete_y</code> columns. Instead, the data will be filtered to include only the selected observations. You can use the <code>plot.margin</code> argument to control the length or size of the link lines or ranges.</p>
-<div class="grid">
-<div class="g-col-6">
+<p>You can also integrate base plots, <code>pheatmap</code>, <code>ComplexHeatmap</code>, e.g.</p>
+<p>Additionally, you can add any graphics as a inset to a ggplot using the <code>inset()</code> function. Like <code>ggwrap()</code>, <code>inset()</code> can accept any object that can be converted to a grob.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggheatmap</span>(small_mat) <span class="sc">+</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="dv">0</span>, <span class="at">angle =</span> <span class="sc">-</span><span class="dv">60</span>)) <span class="sc">+</span></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">anno_right</span>() <span class="sc">+</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_kmeans</span>(<span class="dv">3</span>L) <span class="sc">+</span></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_line</span>() <span class="sc">+</span></span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(.names, value)) <span class="sc">+</span></span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">plot.margin =</span> <span class="fu">margin</span>(<span class="at">l =</span> <span class="fl">0.1</span>, <span class="at">t =</span> <span class="fl">0.1</span>, <span class="at">unit =</span> <span class="st">"npc"</span>))</span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; → heatmap built with `geom_tile()`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggheatmap</span>(small_mat) <span class="sc">+</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">anno_top</span>() <span class="sc">+</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggfree</span>(<span class="at">data =</span> <span class="fu">ggwrap</span>(<span class="fu">rectGrob</span>(<span class="at">gp =</span> <span class="fu">gpar</span>(<span class="at">fill =</span> <span class="st">"goldenrod"</span>)), <span class="at">align =</span> <span class="st">"full"</span>)) <span class="sc">+</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># we can then add any inset grobs (the same as ggwrap, it can take any objects</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># which can be converted to a `grob`)</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">inset</span>(<span class="fu">rectGrob</span>(<span class="at">gp =</span> <span class="fu">gpar</span>(<span class="at">fill =</span> <span class="st">"steelblue"</span>)), <span class="at">align =</span> <span class="st">"panel"</span>) <span class="sc">+</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">inset</span>(<span class="fu">textGrob</span>(<span class="st">"Here are some text"</span>, <span class="at">gp =</span> <span class="fu">gpar</span>(<span class="at">color =</span> <span class="st">"black"</span>)),</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">align =</span> <span class="st">"panel"</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; → heatmap built with `geom_tile()`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -567,7 +566,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-</div>
+</section>
+<section id="ggmark" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="ggmark"><span class="header-section-number">5.4</span> <code>ggmark()</code></h2>
+<p>It would be helpful if we can add an annotation plot for the selected observations, <code>ggmark()</code> can be used to do this.</p>
+<p><code>ggmark</code> accepts <code>mark</code> argument, which should be a <code>mark_draw()</code> object to define how to draw the links. Currently, two internal functions <code>mark_line()</code>, <code>mark_tetragon()</code> can be used to quickly draw line and quadrilateral links used to connect the selected observations and the plot panel.</p>
+<p>By default, <code>ggmark()</code> will connect all observations and split them based on the groups defined in the layout. The data underlying the ggplot object created by <code>ggmark()</code> is similar to that of <code>ggalign()</code> (<a href="#sec-ggalign" class="quarto-xref"><span>Section 5.1</span></a>), but it does not include the <code>.x</code>/<code>.y</code> and <code>.discrete_x</code>/<code>.discrete_y</code> columns.</p>
+<p>You can use the <code>plot.margin</code> argument to control the link size.</p>
+<div class="grid">
 <div class="g-col-6">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
@@ -575,7 +581,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="dv">0</span>, <span class="at">angle =</span> <span class="sc">-</span><span class="dv">60</span>)) <span class="sc">+</span></span>
 <span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">anno_right</span>() <span class="sc">+</span></span>
 <span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_kmeans</span>(<span class="dv">3</span>L) <span class="sc">+</span></span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_range</span>() <span class="sc">+</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggmark</span>(<span class="fu">mark_line</span>()) <span class="sc">+</span></span>
 <span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(.names, value)) <span class="sc">+</span></span>
 <span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">plot.margin =</span> <span class="fu">margin</span>(<span class="at">l =</span> <span class="fl">0.1</span>, <span class="at">t =</span> <span class="fl">0.1</span>, <span class="at">unit =</span> <span class="st">"npc"</span>))</span>
 <span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; → heatmap built with `geom_tile()`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -588,9 +594,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-</div>
-<p><code>align_line</code> and <code>align_range</code> use <code>facet_wrap</code> to define the facet, and you can use it to control the facet apearance (just ignore the <code>facets</code> argument). We prefer <code>facet_wrap()</code> here because it offers flexibility in positioning the strip on any side of the panel, and typically, we only want to a single dimension to create the annotation.</p>
-<div class="grid">
 <div class="g-col-6">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
@@ -598,11 +601,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="dv">0</span>, <span class="at">angle =</span> <span class="sc">-</span><span class="dv">60</span>)) <span class="sc">+</span></span>
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">anno_right</span>() <span class="sc">+</span></span>
 <span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_kmeans</span>(<span class="dv">3</span>L) <span class="sc">+</span></span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_line</span>() <span class="sc">+</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggmark</span>(<span class="fu">mark_tetragon</span>()) <span class="sc">+</span></span>
 <span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(.names, value)) <span class="sc">+</span></span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(), <span class="at">scales =</span> <span class="st">"free"</span>, <span class="at">strip.position =</span> <span class="st">"right"</span>) <span class="sc">+</span></span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">plot.margin =</span> <span class="fu">margin</span>(<span class="at">l =</span> <span class="fl">0.1</span>, <span class="at">t =</span> <span class="fl">0.1</span>, <span class="at">unit =</span> <span class="st">"npc"</span>))</span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; → heatmap built with `geom_tile()`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">plot.margin =</span> <span class="fu">margin</span>(<span class="at">l =</span> <span class="fl">0.1</span>, <span class="at">t =</span> <span class="fl">0.1</span>, <span class="at">unit =</span> <span class="st">"npc"</span>))</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; → heatmap built with `geom_tile()`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -612,6 +614,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
+</div>
+<p>The <code>mark_draw()</code> function in the package allows you to define linked observations for each panel using a list of <code>link()</code> objects, which accepts two arguments:</p>
+<ul>
+<li><code>link1</code>: An integer or character index that specifies the linked observations.</li>
+<li><code>link2</code>: Used to link observations in the right or bottom, this should match <code>link1</code>, as all plots in stack_discrete() should maintain the same ordering index. If you want <code>link2</code> to inherit from <code>link1</code>, you can use the <code>waiver()</code> directly (the same for <code>link1</code> argument, you can use <code>waiver()</code> to inherit from <code>link2</code> argument). However, this becomes useful in <code>stack_cross()</code>, where different orderings are involved, and you must specify the links explicitly.</li>
+</ul>
+<div class="grid">
 <div class="g-col-6">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
@@ -619,11 +628,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="dv">0</span>, <span class="at">angle =</span> <span class="sc">-</span><span class="dv">60</span>)) <span class="sc">+</span></span>
 <span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">anno_right</span>() <span class="sc">+</span></span>
 <span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_kmeans</span>(<span class="dv">3</span>L) <span class="sc">+</span></span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_range</span>() <span class="sc">+</span></span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(.names, value)) <span class="sc">+</span></span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(), <span class="at">scales =</span> <span class="st">"free"</span>, <span class="at">strip.position =</span> <span class="st">"right"</span>) <span class="sc">+</span></span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">plot.margin =</span> <span class="fu">margin</span>(<span class="at">l =</span> <span class="fl">0.1</span>, <span class="at">t =</span> <span class="fl">0.1</span>, <span class="at">unit =</span> <span class="st">"npc"</span>))</span>
-<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; → heatmap built with `geom_tile()`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggmark</span>(<span class="fu">mark_line</span>(<span class="fu">link</span>(<span class="dv">4</span><span class="sc">:</span><span class="dv">6</span>), <span class="fu">link</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>))) <span class="sc">+</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(.names, value, <span class="at">fill =</span> .names)) <span class="sc">+</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">plot.margin =</span> <span class="fu">margin</span>(<span class="at">l =</span> <span class="fl">0.1</span>, <span class="at">t =</span> <span class="fl">0.1</span>, <span class="at">unit =</span> <span class="st">"npc"</span>))</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; → heatmap built with `geom_tile()`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -633,14 +641,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-</div>
-<p>You can further customize link lines and ranges using <code>theme()</code>:</p>
-<ul>
-<li>Link lines can be customized using the <code>plot.ggalign_lines</code> theme element with <code>element_line()</code>.</li>
-<li>Link ranges can be customized using the <code>plot.ggalign_ranges</code> theme element with <code>element_polygon()</code>.</li>
-</ul>
-<p>The drawing order by default is from bottom to the top and from the left to the right, and use the ordering specified in <code>lines</code> or <code>ranges</code>. Both can accept integer or character index of the original data.</p>
-<div class="grid">
 <div class="g-col-6">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
@@ -648,14 +648,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="dv">0</span>, <span class="at">angle =</span> <span class="sc">-</span><span class="dv">60</span>)) <span class="sc">+</span></span>
 <span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">anno_right</span>() <span class="sc">+</span></span>
 <span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_kmeans</span>(<span class="dv">3</span>L) <span class="sc">+</span></span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_line</span>(<span class="at">lines =</span> <span class="fu">list</span>(<span class="dv">4</span><span class="sc">:</span><span class="dv">6</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>)) <span class="sc">+</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggmark</span>(<span class="fu">mark_line</span>(<span class="fu">link</span>(<span class="dv">4</span><span class="sc">:</span><span class="dv">6</span>), <span class="fu">link</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>))) <span class="sc">+</span></span>
 <span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(.names, value, <span class="at">fill =</span> .names)) <span class="sc">+</span></span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(), <span class="at">scales =</span> <span class="st">"free"</span>, <span class="at">strip.position =</span> <span class="st">"right"</span>) <span class="sc">+</span></span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(</span>
-<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.margin =</span> <span class="fu">margin</span>(<span class="at">l =</span> <span class="fl">0.1</span>, <span class="at">t =</span> <span class="fl">0.1</span>, <span class="at">unit =</span> <span class="st">"npc"</span>),</span>
-<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.ggalign_lines =</span> <span class="fu">element_line</span>(<span class="at">color =</span> <span class="fu">c</span>(<span class="st">"red"</span>, <span class="st">"blue"</span>))</span>
-<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; → heatmap built with `geom_tile()`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">plot.margin =</span> <span class="fu">margin</span>(<span class="at">l =</span> <span class="fl">0.1</span>, <span class="at">r =</span> <span class="fl">0.1</span>, <span class="at">t =</span> <span class="fl">0.1</span>, <span class="at">unit =</span> <span class="st">"npc"</span>))</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; → heatmap built with `geom_tile()`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -665,21 +661,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<div class="g-col-6">
+</div>
+<p>You can also use <code>waiver()</code> to inherit links from the other argument:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggheatmap</span>(small_mat) <span class="sc">+</span></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="dv">0</span>, <span class="at">angle =</span> <span class="sc">-</span><span class="dv">60</span>)) <span class="sc">+</span></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">anno_right</span>() <span class="sc">+</span></span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_kmeans</span>(<span class="dv">3</span>L) <span class="sc">+</span></span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_range</span>(<span class="at">ranges =</span> <span class="fu">list</span>(<span class="fu">paste0</span>(<span class="st">"row"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>), <span class="fu">paste0</span>(<span class="st">"row"</span>, <span class="dv">4</span><span class="sc">:</span><span class="dv">6</span>))) <span class="sc">+</span></span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(.names, value, <span class="at">fill =</span> .names)) <span class="sc">+</span></span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(), <span class="at">scales =</span> <span class="st">"free"</span>, <span class="at">strip.position =</span> <span class="st">"right"</span>) <span class="sc">+</span></span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(</span>
-<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.margin =</span> <span class="fu">margin</span>(<span class="at">l =</span> <span class="fl">0.1</span>, <span class="at">t =</span> <span class="fl">0.1</span>, <span class="at">unit =</span> <span class="st">"npc"</span>),</span>
-<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.ggalign_ranges =</span> <span class="fu">element_polygon</span>(<span class="at">fill =</span> scales<span class="sc">::</span><span class="fu">alpha</span>(<span class="fu">c</span>(<span class="st">"red"</span>, <span class="st">"blue"</span>),<span class="fl">0.5</span>))</span>
-<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; → heatmap built with `geom_tile()`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stack_alignh</span>(small_mat) <span class="sc">+</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_dendro</span>(<span class="fu">aes</span>(<span class="at">color =</span> branch), <span class="at">k =</span> <span class="dv">3</span>L) <span class="sc">+</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_reverse</span>(<span class="at">expand =</span> <span class="fu">expansion</span>()) <span class="sc">+</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">plot.margin =</span> <span class="fu">margin</span>()) <span class="sc">+</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggmark</span>(<span class="fu">mark_line</span>(<span class="fu">link</span>(<span class="dv">4</span><span class="sc">:</span><span class="dv">6</span>, <span class="fu">waiver</span>()), <span class="fu">link</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, <span class="fu">waiver</span>()))) <span class="sc">+</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(.names, value, <span class="at">fill =</span> .names)) <span class="sc">+</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">plot.margin =</span> <span class="fu">margin</span>(<span class="at">l =</span> <span class="fl">0.1</span>, <span class="at">t =</span> <span class="fl">0.1</span>, <span class="at">r =</span> <span class="fl">0.1</span>, <span class="at">b =</span> <span class="fl">0.1</span>, <span class="at">unit =</span> <span class="st">"npc"</span>)) <span class="sc">+</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_dendro</span>(<span class="fu">aes</span>(<span class="at">color =</span> branch), <span class="at">k =</span> <span class="dv">3</span>L) <span class="sc">+</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_continuous</span>(<span class="at">expand =</span> <span class="fu">expansion</span>()) <span class="sc">+</span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">plot.margin =</span> <span class="fu">margin</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -688,23 +682,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-</div>
-</div>
-<p>In addition, you can use ordered integer indices by wrapping them with <code>I()</code>. Since the usage is the same for both <code>align_link()</code> and <code>align_range()</code>, I’ll only provide an example using <code>align_link()</code> and <code>align_range()</code>.</p>
+<p>In addition, you can use ordered integer indices by wrapping them with <code>I()</code>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggheatmap</span>(small_mat) <span class="sc">+</span></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="dv">0</span>, <span class="at">angle =</span> <span class="sc">-</span><span class="dv">60</span>)) <span class="sc">+</span></span>
 <span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">anno_right</span>() <span class="sc">+</span></span>
 <span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_kmeans</span>(<span class="dv">3</span>L) <span class="sc">+</span></span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_range</span>(<span class="at">ranges =</span> <span class="fu">list</span>(<span class="fu">I</span>(<span class="dv">4</span><span class="sc">:</span><span class="dv">6</span>), <span class="fu">I</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>))) <span class="sc">+</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggmark</span>(<span class="fu">mark_tetragon</span>(<span class="fu">link</span>(<span class="fu">I</span>(<span class="dv">4</span><span class="sc">:</span><span class="dv">6</span>)), <span class="fu">link</span>(<span class="fu">I</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>)))) <span class="sc">+</span></span>
 <span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(.names, value, <span class="at">fill =</span> .names)) <span class="sc">+</span></span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(), <span class="at">scales =</span> <span class="st">"free"</span>, <span class="at">strip.position =</span> <span class="st">"right"</span>) <span class="sc">+</span></span>
-<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(</span>
-<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.margin =</span> <span class="fu">margin</span>(<span class="at">l =</span> <span class="fl">0.1</span>, <span class="at">t =</span> <span class="fl">0.1</span>, <span class="at">unit =</span> <span class="st">"npc"</span>),</span>
-<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.ggalign_ranges =</span> <span class="fu">element_polygon</span>(<span class="at">fill =</span> scales<span class="sc">::</span><span class="fu">alpha</span>(<span class="fu">c</span>(<span class="st">"red"</span>, <span class="st">"blue"</span>),<span class="fl">0.5</span>))</span>
-<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; → heatmap built with `geom_tile()`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">plot.margin =</span> <span class="fu">margin</span>(<span class="at">l =</span> <span class="fl">0.1</span>, <span class="at">t =</span> <span class="fl">0.1</span>, <span class="at">unit =</span> <span class="st">"npc"</span>))</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; → heatmap built with `geom_tile()`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -713,26 +701,78 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>You can also add links on both side. For a horizontal <code>stack_layout()</code>, you can add links to the left and right sides, and for a vertical <code>stack_layout()</code>, you can add links to the top and bottom. By default, <code>stack_layout()</code> adds links to both sides, while <code>quad_layout()</code> adds links to only one position. However, you can control this behavior using the position argument.</p>
+<p>You can further customize link lines and quadrilateral using <code>element</code> argument:</p>
+<ul>
+<li>Link lines can be customized using the <code>element_line()</code>.</li>
+<li>Link ranges can be customized using the <code>element_polygon()</code>.</li>
+</ul>
+<div class="grid">
+<div class="g-col-6">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stack_alignh</span>(small_mat) <span class="sc">+</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_dendro</span>(<span class="fu">aes</span>(<span class="at">color =</span> branch), <span class="at">k =</span> <span class="dv">3</span>L) <span class="sc">+</span></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_reverse</span>(<span class="at">expand =</span> <span class="fu">expansion</span>()) <span class="sc">+</span></span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">plot.margin =</span> <span class="fu">margin</span>()) <span class="sc">+</span></span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_line</span>(<span class="at">lines =</span> <span class="fu">list</span>(<span class="fu">I</span>(<span class="dv">4</span><span class="sc">:</span><span class="dv">6</span>), <span class="fu">I</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>))) <span class="sc">+</span></span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(.names, value, <span class="at">fill =</span> .names)) <span class="sc">+</span></span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(), <span class="at">scales =</span> <span class="st">"free"</span>, <span class="at">strip.position =</span> <span class="st">"top"</span>) <span class="sc">+</span></span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(</span>
-<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.margin =</span> <span class="fu">margin</span>(<span class="at">l =</span> <span class="fl">0.1</span>, <span class="at">t =</span> <span class="fl">0.1</span>, <span class="at">r =</span> <span class="fl">0.1</span>, <span class="at">b =</span> <span class="fl">0.1</span>, <span class="at">unit =</span> <span class="st">"npc"</span>),</span>
-<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.ggalign_lines =</span> <span class="fu">element_line</span>(<span class="at">color =</span> <span class="fu">c</span>(<span class="st">"red"</span>, <span class="st">"blue"</span>))</span>
-<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
-<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_dendro</span>(<span class="fu">aes</span>(<span class="at">color =</span> branch), <span class="at">k =</span> <span class="dv">3</span>L) <span class="sc">+</span></span>
-<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_continuous</span>(<span class="at">expand =</span> <span class="fu">expansion</span>()) <span class="sc">+</span></span>
-<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">plot.margin =</span> <span class="fu">margin</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggheatmap</span>(small_mat) <span class="sc">+</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="dv">0</span>, <span class="at">angle =</span> <span class="sc">-</span><span class="dv">60</span>)) <span class="sc">+</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">anno_right</span>() <span class="sc">+</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_kmeans</span>(<span class="dv">3</span>L) <span class="sc">+</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggmark</span>(</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>        <span class="fu">mark_line</span>(<span class="fu">link</span>(<span class="dv">4</span><span class="sc">:</span><span class="dv">6</span>), <span class="fu">link</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>), </span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>            <span class="at">element =</span>  <span class="fu">element_line</span>(<span class="at">color =</span> <span class="fu">c</span>(<span class="st">"red"</span>, <span class="st">"blue"</span>))</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(.names, value, <span class="at">fill =</span> .names)) <span class="sc">+</span></span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">plot.margin =</span> <span class="fu">margin</span>(<span class="at">l =</span> <span class="fl">0.1</span>, <span class="at">t =</span> <span class="fl">0.1</span>, <span class="at">unit =</span> <span class="st">"npc"</span>))</span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; → heatmap built with `geom_tile()`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
 <p><img src="plot-initialize_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div class="g-col-6">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggheatmap</span>(small_mat) <span class="sc">+</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="dv">0</span>, <span class="at">angle =</span> <span class="sc">-</span><span class="dv">60</span>)) <span class="sc">+</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">anno_right</span>() <span class="sc">+</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_kmeans</span>(<span class="dv">3</span>L) <span class="sc">+</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggmark</span>(</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>        <span class="fu">mark_tetragon</span>(<span class="fu">link</span>(<span class="dv">4</span><span class="sc">:</span><span class="dv">6</span>), <span class="fu">link</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>), </span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>            <span class="at">element =</span>  <span class="fu">element_polygon</span>(<span class="at">fill =</span> <span class="fu">c</span>(<span class="st">"red"</span>, <span class="st">"blue"</span>), <span class="at">alpha =</span> <span class="fl">0.5</span>)</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(.names, value, <span class="at">fill =</span> .names)) <span class="sc">+</span></span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(), <span class="at">scales =</span> <span class="st">"free"</span>, <span class="at">strip.position =</span> <span class="st">"right"</span>) <span class="sc">+</span></span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">plot.margin =</span> <span class="fu">margin</span>(<span class="at">l =</span> <span class="fl">0.1</span>, <span class="at">t =</span> <span class="fl">0.1</span>, <span class="at">unit =</span> <span class="st">"npc"</span>))</span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; → heatmap built with `geom_tile()`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="plot-initialize_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>By default, <code>ggmark()</code> uses <code>facet_wrap</code> to define the facet, and you can use it to control the facet apearance (just ignore the <code>facets</code> argument). We prefer <code>facet_wrap()</code> here because it offers flexibility in positioning the strip on any side of the panel, and typically, we only want to a single dimension to create the annotation.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggheatmap</span>(small_mat) <span class="sc">+</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="dv">0</span>, <span class="at">angle =</span> <span class="sc">-</span><span class="dv">60</span>)) <span class="sc">+</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">anno_right</span>() <span class="sc">+</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_kmeans</span>(<span class="dv">3</span>L) <span class="sc">+</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggmark</span>(<span class="fu">mark_line</span>()) <span class="sc">+</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(.names, value)) <span class="sc">+</span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(), <span class="at">scales =</span> <span class="st">"free"</span>, <span class="at">strip.position =</span> <span class="st">"right"</span>) <span class="sc">+</span></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">plot.margin =</span> <span class="fu">margin</span>(<span class="at">l =</span> <span class="fl">0.1</span>, <span class="at">t =</span> <span class="fl">0.1</span>, <span class="at">unit =</span> <span class="st">"npc"</span>))</span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; → heatmap built with `geom_tile()`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="plot-initialize_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -754,42 +794,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p>By default, <code>plot_dendrogram</code> is set to <code>TRUE</code>, meaning a <code>geom_segment()</code> layer will be added using the dendrogram edge data when drawing. Note that this layer is always added to the first.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggheatmap</span>(small_mat) <span class="sc">+</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">anno_top</span>() <span class="sc">+</span></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_dendro</span>()</span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; → heatmap built with `geom_tile()`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="plot-initialize_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>You can choose between two dendrogram types: <code>"rectangle"</code> (default) and <code>"triangle"</code>. However, if there are any groups in the stack, <code>"rectangle"</code> will be used.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggheatmap</span>(small_mat) <span class="sc">+</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">anno_top</span>() <span class="sc">+</span></span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_dendro</span>(<span class="at">type =</span> <span class="st">"triangle"</span>)</span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; → heatmap built with `geom_tile()`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="plot-initialize_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>You can also manually add the dendrogram tree using the edge data by setting <code>plot_dendrogram = FALSE</code>. In this case, you can access the dendrogram <code>edge</code> data with <code>ggalign_attr()</code>. The <code>edge</code> data is stored in the edge field of <code>ggalign_attr()</code>:</p>
-<div class="cell">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggheatmap</span>(small_mat) <span class="sc">+</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">anno_top</span>() <span class="sc">+</span></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_dendro</span>() <span class="sc">+</span></span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_segment</span>(</span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>        <span class="fu">aes</span>(<span class="at">x =</span> .data<span class="sc">$</span>x, <span class="at">y =</span> .data<span class="sc">$</span>y, <span class="at">xend =</span> .data<span class="sc">$</span>xend, <span class="at">yend =</span> .data<span class="sc">$</span>yend),</span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">data =</span> <span class="cf">function</span>(x) <span class="fu">ggalign_attr</span>(x, <span class="st">"edge"</span>)</span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; → heatmap built with `geom_tile()`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_dendro</span>()</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; → heatmap built with `geom_tile()`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -798,13 +806,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>When there are multiple groups, a <code>branch</code> column will be available. This can be used to color the nodes or edges based on the group source.</p>
+<p>You can choose between two dendrogram types: <code>"rectangle"</code> (default) and <code>"triangle"</code>. However, if there are any groups in the stack, <code>"rectangle"</code> will be used.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggheatmap</span>(small_mat) <span class="sc">+</span></span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">anno_top</span>() <span class="sc">+</span></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_dendro</span>(<span class="fu">aes</span>(<span class="at">color =</span> branch), <span class="at">k =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> branch))</span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; → heatmap built with `geom_tile()`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_dendro</span>(<span class="at">type =</span> <span class="st">"triangle"</span>)</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; → heatmap built with `geom_tile()`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -813,14 +820,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p><code>align_dendro()</code> will draw dendrogram tree in each group when previous group exists.</p>
+<p>You can also manually add the dendrogram tree using the edge data by setting <code>plot_dendrogram = FALSE</code>. In this case, you can access the dendrogram <code>edge</code> data with <code>ggalign_attr()</code>. The <code>edge</code> data is stored in the edge field of <code>ggalign_attr()</code>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggheatmap</span>(small_mat) <span class="sc">+</span></span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">anno_top</span>() <span class="sc">+</span></span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_kmeans</span>(<span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_dendro</span>(<span class="fu">aes</span>(<span class="at">color =</span> branch))</span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; → heatmap built with `geom_tile()`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggheatmap</span>(small_mat) <span class="sc">+</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">anno_top</span>() <span class="sc">+</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_dendro</span>(<span class="at">plot_dendrogram =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_segment</span>(</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>        <span class="fu">aes</span>(<span class="at">x =</span> .data<span class="sc">$</span>x, <span class="at">y =</span> .data<span class="sc">$</span>y, <span class="at">xend =</span> .data<span class="sc">$</span>xend, <span class="at">yend =</span> .data<span class="sc">$</span>yend),</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">data =</span> <span class="cf">function</span>(x) <span class="fu">ggalign_attr</span>(x, <span class="st">"edge"</span>)</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; → heatmap built with `geom_tile()`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -829,12 +838,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>You can merge the sub-tree by settting <code>merge_dendrogram = TRUE</code>.</p>
+<p>When there are multiple groups, a <code>branch</code> column will be available. This can be used to color the nodes or edges based on the group source.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggheatmap</span>(small_mat) <span class="sc">+</span></span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">anno_top</span>() <span class="sc">+</span></span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_kmeans</span>(<span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_dendro</span>(<span class="fu">aes</span>(<span class="at">color =</span> branch), <span class="at">merge_dendrogram =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_dendro</span>(<span class="fu">aes</span>(<span class="at">color =</span> branch), <span class="at">k =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> branch))</span>
 <span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; → heatmap built with `geom_tile()`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
@@ -844,25 +853,56 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
+<p><code>align_dendro()</code> will draw dendrogram tree in each group when previous group exists.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggheatmap</span>(small_mat) <span class="sc">+</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">anno_top</span>() <span class="sc">+</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_kmeans</span>(<span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_dendro</span>(<span class="fu">aes</span>(<span class="at">color =</span> branch))</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; → heatmap built with `geom_tile()`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="plot-initialize_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>You can merge the sub-tree by settting <code>merge_dendrogram = TRUE</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggheatmap</span>(small_mat) <span class="sc">+</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">anno_top</span>() <span class="sc">+</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_kmeans</span>(<span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_dendro</span>(<span class="fu">aes</span>(<span class="at">color =</span> branch), <span class="at">merge_dendrogram =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; → heatmap built with `geom_tile()`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="plot-initialize_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
 </section>
 <section id="plot-titles" class="level2" data-number="5.6">
 <h2 data-number="5.6" class="anchored" data-anchor-id="plot-titles"><span class="header-section-number">5.6</span> Plot titles</h2>
 <p><code>ggplot2</code> only allow add titles in the top or add caption in the bottom. we extends this capability, allowing you to place titles around any border of the plot using the <code>patch_titles()</code> function.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggheatmap</span>(small_mat) <span class="sc">+</span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">anno_top</span>() <span class="sc">+</span></span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_dendro</span>(<span class="fu">aes</span>(<span class="at">color =</span> branch), <span class="at">k =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">patch_titles</span>(</span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">top =</span> <span class="st">"top patch title"</span>,</span>
-<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">left =</span> <span class="st">"left patch title"</span>, </span>
-<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">bottom =</span> <span class="st">"bottom patch title"</span>,</span>
-<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">right =</span> <span class="st">"right patch title"</span></span>
-<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; → heatmap built with `geom_tile()`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggheatmap</span>(small_mat) <span class="sc">+</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">anno_top</span>() <span class="sc">+</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_dendro</span>(<span class="fu">aes</span>(<span class="at">color =</span> branch), <span class="at">k =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">patch_titles</span>(</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">top =</span> <span class="st">"top patch title"</span>,</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">left =</span> <span class="st">"left patch title"</span>, </span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">bottom =</span> <span class="st">"bottom patch title"</span>,</span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">right =</span> <span class="st">"right patch title"</span></span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; → heatmap built with `geom_tile()`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="plot-initialize_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="plot-initialize_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -873,24 +913,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><code>plot.patch_title.position</code>/<code>plot.patch_title.position.*</code>: Determines the alignment of the patch titles. By default, <code>plot.patch_title.position</code> inherit from <code>plot.title.position</code>, and settings for each border will inherit from <code>plot.patch_title</code>. The value <code>"panel"</code> aligns the patch titles with the plot panels. Setting this to <code>"plot"</code> aligns the patch title with the entire plot (excluding margins and plot tags).</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggheatmap</span>(small_mat) <span class="sc">+</span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">anno_top</span>() <span class="sc">+</span></span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_dendro</span>(<span class="fu">aes</span>(<span class="at">color =</span> branch), <span class="at">k =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">patch_titles</span>(</span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">top =</span> <span class="st">"top patch title"</span>,</span>
-<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">left =</span> <span class="st">"left patch title"</span>, </span>
-<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">bottom =</span> <span class="st">"bottom patch title"</span>,</span>
-<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">right =</span> <span class="st">"right patch title"</span></span>
-<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
-<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(</span>
-<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.patch_title.position =</span> <span class="st">"plot"</span>,</span>
-<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.patch_title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="dv">0</span>)</span>
-<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; → heatmap built with `geom_tile()`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggheatmap</span>(small_mat) <span class="sc">+</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">anno_top</span>() <span class="sc">+</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_dendro</span>(<span class="fu">aes</span>(<span class="at">color =</span> branch), <span class="at">k =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">patch_titles</span>(</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">top =</span> <span class="st">"top patch title"</span>,</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">left =</span> <span class="st">"left patch title"</span>, </span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">bottom =</span> <span class="st">"bottom patch title"</span>,</span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">right =</span> <span class="st">"right patch title"</span></span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(</span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.patch_title.position =</span> <span class="st">"plot"</span>,</span>
+<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.patch_title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="dv">0</span>)</span>
+<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; → heatmap built with `geom_tile()`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="plot-initialize_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="plot-initialize_files/figure-html/unnamed-chunk-27-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
