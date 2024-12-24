@@ -55,7 +55,7 @@ heat3 <- ggheatmap(expr$type, width = unit(2, "cm")) +
     # add barplot in the top annotation, and remove the spaces in the y-axis
     anno_top() -
     scheme_align(free_spaces = "lr") +
-    ggalign(limits = FALSE) +
+    ggalign() +
     geom_bar(
         aes(.extra_panel, fill = factor(value)),
         position = position_fill()
