@@ -1,10 +1,7 @@
 # Difference with ggplot2
-`ggalign` focuses on aligning observations across multiple plots. While it
-builds on the `ggplot2` framework, there are key differences in how scales,
-facets, and coordinates are handled. This vignette highlights these syntax
-differences. 
-
-The following syntax applies to the axes used to align observations.
+`ggalign` focuses on aligning axes across multiple plots. While it builds on the
+`ggplot2` framework, there are key differences in how scales, facets, and
+coordinates are handled. This vignette highlights these syntax differences. 
 
 ```{r setup}
 #| echo: false
@@ -16,21 +13,17 @@ rownames(small_mat) <- paste0("row", seq_len(nrow(small_mat)))
 colnames(small_mat) <- paste0("column", seq_len(ncol(small_mat)))
 ```
 
-## Axes used for alignment
-Axes used for alignment in `ggalign` refer to:
-- x-axis in vertical stack layouts
-
-- x-axis in horizontal stack layouts
-
-- x- and y- axes in the `quad_layout()` main plot
-
-`ggalign` introduces special syntax and handling for these axes, differing from
-the default behavior in `ggplot2`. These adjustments ensure that observations
-are properly aligned and operations are user-friendly. 
 
 ## Position Scales
 To better fit the alignment-based layout, `ggalign` introduces adjustments to
 `breaks`, `labels`, and `expand` arguments. 
+
+For `discrete` values, `ggalign` introduces special syntax and handling for these
+axes, differing from the default behavior in `ggplot2`. These adjustments ensure
+that observations are properly aligned and operations are user-friendly. 
+
+The following syntax applies to the axes used to align observations (discrete
+values).
 
 ### breaks
 `breaks` and `labels` are typically handled similarly to discrete scales, as we
@@ -173,20 +166,6 @@ ggheatmap(small_mat) +
     scale_x_continuous(breaks = c(5, 3), labels = I(c("a", "b")))
 ```
 
-### expand
-By default, we utilize zero expansion for the aligned axis. This is typically
-the desired setting. If you wish to introduce expansion, you must manually
-adjust it and apply it to each plot to ensure proper axis alignment.
-```{r}
-ggheatmap(small_mat) +
-    scale_x_continuous(expand = expansion(mult = 0.1)) +
-    anno_top() +
-    align_dendro(aes(color = branch), k = 3L) +
-    scale_x_continuous(expand = expansion(mult = 0.1))
-```
-
-You can utilize `ggh4x::facetted_pos_scales()` to set scales for each panel.
-
 ## theme
 Although ggplot2 does not officially support vectorized input for theme
 elements, we can still utilize it. `ggalign` extends this feature, allowing
@@ -227,8 +206,3 @@ ggheatmap(small_mat) +
     anno_top() +
     align_kmeans(centers = 3L)
 ```
-
-## Coords
-Currently, only cartesian coordinate can be used to align axis well.
-Internally, the limits will always be set to the number of observations, with an
-additional range expansion of `0.5` added on both ends. 
