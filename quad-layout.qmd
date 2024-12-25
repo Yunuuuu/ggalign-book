@@ -60,7 +60,7 @@ a table outlining the compatibility of various layout types for annotations:
 
 | Annotations                     | left and right       | top and bottom       |
 | ------------------------------- | -------------------- | -------------------- |
-| `quad_continuous()`/`ggside()`/ | `stack_continuous()` | `stack_continuous()` |
+| `quad_continuous()`/`ggside()`  | `stack_continuous()` | `stack_continuous()` |
 | `quad_layout(xlim = ...)`       | `stack_discrete()`   | `stack_continuous()` |
 | `quad_layout(ylim = ...)`       | `stack_continuous()` | `stack_discrete()`   |
 | `quad_discrete()`/`ggheatmap()` | `stack_discrete()`   | `stack_discrete()`   |
