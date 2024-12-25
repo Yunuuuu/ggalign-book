@@ -337,13 +337,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><code>circle_discrete()</code>: Align discrete variable along the circle.</li>
 <li><code>circle_continuous()</code>: Align continuous variable along the circle.</li>
 </ul>
+<div class="cell">
+<div class="cell-output-display">
 <div>
-
-</div>
-<div class="cell quarto-layout-panel" data-layout-ncol="2">
-<div class="quarto-layout-row">
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p><img src="circle-layout_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid" width="672"></p>
+<figure class="figure">
+<p><img src="circle-layout_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
 </div>
 </div>
 </div>
@@ -431,7 +430,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="spacing" class="level2" data-number="8.2">
 <h2 data-number="8.2" class="anchored" data-anchor-id="spacing"><span class="header-section-number">8.2</span> spacing</h2>
-<p>The spacing between plot tracks in <code>circle_layout()</code> is controlled by the scale expansion and the <code>panel.spacing.r</code> parameter. The <code>panel.spacing.r</code> parameter sets the spacing between the individual plot panels (tracks) within the circle layout. Increasing this value will add more space between the tracks. Specifically, the <code>panel.spacing.r</code> of the outer plot determines the spacing between it and the inner plot(s). By modifying this value, you can control the overall visual separation between tracks.</p>
+<p>The spacing between plot tracks in <code>circle_layout()</code> is controlled by the scale expansion and the <code>panel.spacing.r</code> parameter. The <code>panel.spacing.r</code> parameter sets the spacing between the individual plot panels (tracks) within the circle layout. Increasing this value will add more space between the tracks. Specifically, the <code>panel.spacing.r</code> of the outer plot determines the spacing between it and the inner plot. By modifying this value, you can control the overall visual separation between tracks.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">circle_discrete</span>(small_mat, <span class="at">radial =</span> <span class="fu">coord_radial</span>(<span class="at">inner.radius =</span> <span class="fl">0.1</span>)) <span class="sc">+</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># add a single tile for each group</span></span>
@@ -460,7 +459,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>The <code>no_expansion()</code> function is used to remove expansion around specific borders. It accepts a string with one or more of the following values: <code>"t"</code> (top), <code>"l"</code> (left), <code>"b"</code> (bottom), <code>"r"</code> (right), <code>"x"</code> (both left and right), and “y” (both bottom and top).</p>
+<p>The <code>no_expansion()</code> function is used to remove expansion around specific borders. It accepts a string with one or more of the following values: <code>"t"</code> (top), <code>"l"</code> (left), <code>"b"</code> (bottom), <code>"r"</code> (right), <code>"x"</code> (both left and right), and <code>"y"</code> (both bottom and top).</p>
 <p>Now we have explored all the <code>Layout</code> defined in the package, next, we will build on these concepts and explore even more advanced strategies for integrating elements across multiple plots or annotations in a layout.</p>
 
 
