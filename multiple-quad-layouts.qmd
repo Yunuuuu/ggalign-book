@@ -14,7 +14,9 @@ colnames(small_mat) <- paste0("column", seq_len(ncol(small_mat)))
 > note: when `stack_layout()` contains a nested `quad_layout()`, it cannot be used
 within the annotation of another `quad_layout()`. 
 
-Here is a summarized table showing which `quad_layout()` can be used with each `stack_layout()`:
+## Add `quad_layout()` to `stack_layout()`
+Here is a summarized table showing which `quad_layout()` can be used with each
+`stack_layout()`:
 
 |                                 | `stack_discreteh()` | `stack_discretev()` | `stack_continuoush()` | `stack_continuousv()` |
 | ------------------------------- | ------------------- | ------------------- | --------------------- | --------------------- |
@@ -23,16 +25,12 @@ Here is a summarized table showing which `quad_layout()` can be used with each `
 | `quad_layout(ylim = ...)`       | ❌                  | ✅                  | ✅                    | ❌                    |
 | `quad_discrete()`/`ggheatmap()` | ✅                  | ✅                  | ❌                    | ❌                    |
 
-## `stack_discrete()`
-As discussed in @sec-stack-layout-plot-initialize, `stack_discrete()` can accept
-plots regardless of whether alignment of observations is required. 
+As long as the alignment is consistent across both `stack_layout()` and
+`quad_layout()`, you can directly add `quad_layout()`.
 
 ```{r}
 stack_discreteh(small_mat) +
-    ggheatmap() +
-    theme(axis.text.x = element_text(hjust = -60, angle = -90)) +
-    ggheatmap() +
-    theme(axis.text.x = element_text(hjust = -60, angle = -90))
+    ggheatmap()
 ```
 
 When `ggheatmap()`/`quad_layout()` is added to a `stack_layout()`, it will also
@@ -51,12 +49,22 @@ stack_discretev(small_mat) +
 
 The data of `ggheatmap()`/`quad_layout()` can inherit from the `stack_layout()`,
 but the data format must match. Otherwise, you will need to manually provide the
-data. 
+data.
 
-When `ggheatmap()`/`quad_layout()` is added to a vertical `stack_discrete()`,
+```{r}
+quad_continuousv_plot <- quad_layout(small_mat, xlim = NULL) +
+    geom_boxplot(aes(value, .discrete_y, fill = .row_names)) +
+    scale_fill_brewer(palette = "Dark2")
+# `stack_continuous()` need a data frame
+stack_continuousv() +
+    quad_continuousv_plot +
+    quad_continuousv_plot
+```
+
+When `ggheatmap()`/`quad_layout()` is added to a vertical `stack_layout()`,
 the inherited matrix is transposed before use. This is because the columns of
 `ggheatmap()`/`quad_layout()` must match the number of observations in
-`stack_discrete()`.
+`stack_layout()`.
 ```{r}
 stack_discretev(small_mat) +
     ggheatmap() +
@@ -64,8 +72,7 @@ stack_discretev(small_mat) +
 ```
 
 `stack_discrete()` ensures that all plots aligned along the stack have the same
-ordering index or groups for the observations.
-
+ordering index or groups.
 
 We can customize the layout in the `stack_discrete()` directly, or in
 `quad_layout()`. As introduced in @sec-stack-layout-active-plot, you can easily
@@ -101,20 +108,6 @@ stack_discretev(small_mat) +
 
 When applied to a `stack_layout()`, the orientation of the dendrogram may need
 to be manually adjusted.
-
-## `stack_continuous()`
-However, `stack_continuous()` is designed to only accept plots that are not aligned
-along the axis (@sec-stack-layout-plot-initialize). Below is a table summarizing
-which `quad_layout()` are compatible with `stack_continuous()`:
-
-```{r}
-alignh_quad_plot <- quad_alignh(small_mat) +
-    geom_boxplot(aes(value, .discrete_y, fill = .row_names)) +
-    scale_fill_brewer(palette = "Dark2")
-stack_continuousv() +
-    alignh_quad_plot +
-    alignh_quad_plot
-```
 
 ## Control sizes
 A numeric or a unit object of length 3 should be provided in
@@ -170,5 +163,8 @@ stack_discretev(small_mat) +
     theme(axis.text.x = element_text(angle = -60, hjust = 0))
 ```
 
-Next, we will build on these concepts and explore even more advanced strategies
-for integrating elements across multiple plots or annotations in a layout.
+Now that you've learned how to combine `quad_layout()` and `stack_layout()` in
+various configurations, you're ready to explore a new, exciting way to organize
+and visualize your data: the circle layout. This layout offers a unique, radial
+perspective that can be particularly useful for visualizing hierarchical data or
+creating visually engaging plots.

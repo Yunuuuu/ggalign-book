@@ -50,21 +50,34 @@ For `StackLayout`:
  - `stack_discrete()`: Align discrete variable along the stack.
  - `stack_continuous()`: Align continuous variable along the stack.
 
+`stack_layout()` integrates the functionalities of `stack_discrete()` and
+`stack_continuous()` into a single interface. For simplicity, throughout this
+book, I will refer to both variants as `quad_layout()`.
+
 For `QuadLayout`: 
 
  - `quad_continuous`/`ggside`: Align continuous variables in both horizontal and vertical directions. 
  - `quad_discrete`: Align discrete variables in both horizontal and vertical directions. 
  - `quad_layout`: Aligns discrete or continuous variables either horizontally or vertically.
 
+The functions `quad_continuous()` and `quad_discrete()` are specialized versions
+of `quad_layout()` (@sec-quad-layout-quad-layout): `quad_continuous()` sets both
+`xlim` and `ylim` arguments, while `quad_discrete()` does not set `xlim` or
+`ylim`. For simplicity, throughout this book, I will refer to all of the
+variants as `quad_layout()`.
+
 For `CircleLayout`:
 
  - `circle_discrete()`: Align discrete variable in the circle.
  - `circle_continuous()`: Align continuous variable in the circle.
 
+`circle_layout()` integrates the functionalities of `circle_discrete()` and
+`circle_continuous()` into a single interface. For simplicity, throughout this
+book, I will refer to both variants as `circle_layout()`.
+
 ![General design of ggalign](general-design.png)
 
-
-## Align variables in ggplot {#sec-align-variable}
+## Align axes in ggplot {#sec-align-axes}
 Before introducing the package, let's first discuss how to align axes in
 ggplot2. For continuous axes, alignment is straightforward because we just need
 to ensure that all plots have the same `limits`. This can be achieved in the
@@ -74,21 +87,21 @@ Aligning discrete axes is more challenging because we must first ensure that the
 number of unique discrete values is the same across all plots, and that the
 ordering is consistent. In ggplot2, it’s difficult to align discrete axes, since
 some plots may self-ordered. This issue is compounded when working with
-long-formatted data frames, as we can't directly determine the number of unique
-values in the aligned axes and reorder the unique value into the same ordering.
+long-formatted data frames, which is required by ggplot2.
 
 To address this, the `ggalign` package typically uses matrix input for layouts
 that require aligning discrete axes (`*_discrete()` functions). Each row of the
-matrix represents a unique discrete value, and the number of rows corresponds to
-the total number of unique values. To ensure consistent ordering across plots,
-the internal just need to reorder the rows. This approach is also well-suited
-for functions like `quad_layout()`/`ggheatmap()`, where axes need to be aligned
-in both directions simultaneously, as matrices can be transposed (i.e.,
-switching rows to columns and columns to rows). When drawing the plot, the
-`ggalign` package will melt the `matrix` into a long-formatted data frame. since
-the matrix format may not fully support all input requirements for plots, the
-`ggalign` package provides a function (`scheme_data()`) to transform the plot
-data as needed to fit your specific use case.
+matrix represents a unique discrete value (observation), and the number of rows
+corresponds to the total number of unique values (number of observations). To
+ensure consistent ordering across plots, the internal just need to reorder the
+rows. This approach is also well-suited for functions like
+`quad_layout()`/`ggheatmap()`, where axes need to be aligned in both directions
+simultaneously, as matrices can be transposed (i.e., switching rows to columns
+and columns to rows). When drawing the plot, the `ggalign` package will melt the
+`matrix` into a long-formatted data frame. You may worry about that the matrix
+format may not fully support all input requirements for plots, the `ggalign`
+package provides a function (`scheme_data()`) to transform the plot data as
+needed to fit your specific use case.
 
 We often refer to "observations" when discussing discrete axes. Observations
 typically correspond to discrete variables, such as data points or samples. In

@@ -53,7 +53,7 @@ is an alias for `heatmap_layout()`.
 ```
 
 ## input data
-As mentioned in @sec-align-variable, we typically require a matrix for the
+As mentioned in @sec-align-axes, we typically require a matrix for the
 `Layout` which need align discrete variables. Internally, `fortify_matrix()`
 will be used to process the data. You can provide a numeric or character vector,
 a data frame, or any other data type that can be converted into a matrix using
