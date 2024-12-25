@@ -177,8 +177,13 @@ groups.
 ```{r fig.dim = c(5, 10)}
 set.seed(1234)
 ggheatmap(small_mat) +
+    theme(axis.text.x = element_text(angle = -60, hjust = 0)) +
+
+    # in the right annotation
     anno_right() +
     align_kmeans(2) +
+
+    # in the top annotation
     anno_top(size = 0.5) +
     ggfree() +
     geom_boxplot(aes(.extra_panel, value, fill = .extra_panel)) +
