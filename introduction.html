@@ -301,7 +301,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#installation" id="toc-installation" class="nav-link active" data-scroll-target="#installation"><span class="header-section-number">1.1</span> Installation</a></li>
   <li><a href="#general-design" id="toc-general-design" class="nav-link" data-scroll-target="#general-design"><span class="header-section-number">1.2</span> General design</a></li>
-  <li><a href="#sec-align-variable" id="toc-sec-align-variable" class="nav-link" data-scroll-target="#sec-align-variable"><span class="header-section-number">1.3</span> Align variables in ggplot</a></li>
+  <li><a href="#sec-align-axes" id="toc-sec-align-axes" class="nav-link" data-scroll-target="#sec-align-axes"><span class="header-section-number">1.3</span> Align axes in ggplot</a></li>
   <li><a href="#getting-started" id="toc-getting-started" class="nav-link" data-scroll-target="#getting-started"><span class="header-section-number">1.4</span> Getting Started</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/Yunuuuu/ggalign-book/edit/main/introduction.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/Yunuuuu/ggalign-book/blob/main/introduction.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li><li><a href="https://github.com/Yunuuuu/ggalign-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
@@ -361,17 +361,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><code>stack_discrete()</code>: Align discrete variable along the stack.</li>
 <li><code>stack_continuous()</code>: Align continuous variable along the stack.</li>
 </ul>
+<p><code>stack_layout()</code> integrates the functionalities of <code>stack_discrete()</code> and <code>stack_continuous()</code> into a single interface. For simplicity, throughout this book, I will refer to both variants as <code>quad_layout()</code>.</p>
 <p>For <code>QuadLayout</code>:</p>
 <ul>
 <li><code>quad_continuous</code>/<code>ggside</code>: Align continuous variables in both horizontal and vertical directions.</li>
 <li><code>quad_discrete</code>: Align discrete variables in both horizontal and vertical directions.</li>
 <li><code>quad_layout</code>: Aligns discrete or continuous variables either horizontally or vertically.</li>
 </ul>
+<p>The functions <code>quad_continuous()</code> and <code>quad_discrete()</code> are specialized versions of <code>quad_layout()</code> (<a href="quad-layout.html#sec-quad-layout-quad-layout" class="quarto-xref"><span>Section 6.5</span></a>): <code>quad_continuous()</code> sets both <code>xlim</code> and <code>ylim</code> arguments, while <code>quad_discrete()</code> does not set <code>xlim</code> or <code>ylim</code>. For simplicity, throughout this book, I will refer to all of the variants as <code>quad_layout()</code>.</p>
 <p>For <code>CircleLayout</code>:</p>
 <ul>
 <li><code>circle_discrete()</code>: Align discrete variable in the circle.</li>
 <li><code>circle_continuous()</code>: Align continuous variable in the circle.</li>
 </ul>
+<p><code>circle_layout()</code> integrates the functionalities of <code>circle_discrete()</code> and <code>circle_continuous()</code> into a single interface. For simplicity, throughout this book, I will refer to both variants as <code>circle_layout()</code>.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="general-design.png" class="img-fluid figure-img"></p>
@@ -379,11 +382,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </figure>
 </div>
 </section>
-<section id="sec-align-variable" class="level2" data-number="1.3">
-<h2 data-number="1.3" class="anchored" data-anchor-id="sec-align-variable"><span class="header-section-number">1.3</span> Align variables in ggplot</h2>
+<section id="sec-align-axes" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="sec-align-axes"><span class="header-section-number">1.3</span> Align axes in ggplot</h2>
 <p>Before introducing the package, let’s first discuss how to align axes in ggplot2. For continuous axes, alignment is straightforward because we just need to ensure that all plots have the same <code>limits</code>. This can be achieved in the <code>*_continuous()</code> function by setting the <code>limits</code> (or <code>xlim</code>/<code>ylim</code>) argument.</p>
-<p>Aligning discrete axes is more challenging because we must first ensure that the number of unique discrete values is the same across all plots, and that the ordering is consistent. In ggplot2, it’s difficult to align discrete axes, since some plots may self-ordered. This issue is compounded when working with long-formatted data frames, as we can’t directly determine the number of unique values in the aligned axes and reorder the unique value into the same ordering.</p>
-<p>To address this, the <code>ggalign</code> package typically uses matrix input for layouts that require aligning discrete axes (<code>*_discrete()</code> functions). Each row of the matrix represents a unique discrete value, and the number of rows corresponds to the total number of unique values. To ensure consistent ordering across plots, the internal just need to reorder the rows. This approach is also well-suited for functions like <code>quad_layout()</code>/<code>ggheatmap()</code>, where axes need to be aligned in both directions simultaneously, as matrices can be transposed (i.e., switching rows to columns and columns to rows). When drawing the plot, the <code>ggalign</code> package will melt the <code>matrix</code> into a long-formatted data frame. since the matrix format may not fully support all input requirements for plots, the <code>ggalign</code> package provides a function (<code>scheme_data()</code>) to transform the plot data as needed to fit your specific use case.</p>
+<p>Aligning discrete axes is more challenging because we must first ensure that the number of unique discrete values is the same across all plots, and that the ordering is consistent. In ggplot2, it’s difficult to align discrete axes, since some plots may self-ordered. This issue is compounded when working with long-formatted data frames, which is required by ggplot2.</p>
+<p>To address this, the <code>ggalign</code> package typically uses matrix input for layouts that require aligning discrete axes (<code>*_discrete()</code> functions). Each row of the matrix represents a unique discrete value (observation), and the number of rows corresponds to the total number of unique values (number of observations). To ensure consistent ordering across plots, the internal just need to reorder the rows. This approach is also well-suited for functions like <code>quad_layout()</code>/<code>ggheatmap()</code>, where axes need to be aligned in both directions simultaneously, as matrices can be transposed (i.e., switching rows to columns and columns to rows). When drawing the plot, the <code>ggalign</code> package will melt the <code>matrix</code> into a long-formatted data frame. You may worry about that the matrix format may not fully support all input requirements for plots, the <code>ggalign</code> package provides a function (<code>scheme_data()</code>) to transform the plot data as needed to fit your specific use case.</p>
 <p>We often refer to “observations” when discussing discrete axes. Observations typically correspond to discrete variables, such as data points or samples. In the rest of the book, I will use “observations” and “discrete variables” interchangeably. You can assume that any reference to “observations” also applies to discrete variables.</p>
 </section>
 <section id="getting-started" class="level2" data-number="1.4">

@@ -342,7 +342,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><code>stack_continuousv()</code>: A special case of <code>stack_continuous</code> that sets <code>direction = "vertical"</code>.</li>
 <li><code>stack_continuoush()</code>: A special case of <code>stack_continuous</code> that sets <code>direction = "horizontal"</code>.</li>
 </ul>
-<!--  add the layout figure-->
 <div>
 
 </div>
@@ -368,7 +367,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <section id="sec-stack-layout-input-data" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="sec-stack-layout-input-data"><span class="header-section-number">2.1</span> Input data</h2>
-<p>As discussed in <a href="introduction.html#sec-align-variable" class="quarto-xref"><span>Section 1.3</span></a>, when aligning discrete variables, we typically use a matrix. For continuous axes, we can still use the long-formatted data frame, which is the same as in ggplot2.</p>
+<p>As discussed in <a href="introduction.html#sec-align-axes" class="quarto-xref"><span>Section 1.3</span></a>, when aligning discrete variables, we typically use a matrix. For continuous axes, we can still use the long-formatted data frame, which is the same as in ggplot2.</p>
 <ul>
 <li>For <code>stack_continuous()</code>, a data frame is required, and the input will be automatically converted using <code>fortify_data_frame()</code> if needed.</li>
 <li>For <code>stack_discrete()</code>, a matrix is required, and the input will be automatically converted using <code>fortify_matrix()</code> if needed.</li>
