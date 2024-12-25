@@ -278,12 +278,12 @@ observations for each panel using a list of `link()` objects, which
 accepts two arguments:
 
   - `link1`: An integer or character index that specifies the linked observations.
-  - `link2`: Used to link observations in the right or bottom, this should match
-  `link1`, as all plots in stack_discrete() should maintain the same ordering
-  index. If you want `link2` to inherit from `link1`, you can use the `waiver()`
-  directly (the same for `link1` argument, you can use `waiver()` to inherit
-  from `link2` argument). However, this becomes useful in `stack_cross()`, where
-  different orderings are involved, and you must specify the links explicitly.
+  - `link2`: Used to link observations in the right or bottom, you can use
+  `waiver()` to inherit from `link1` (the same for `link1` argument, you can use
+  `waiver()` to inherit from `link2` argument). This should match `link1`, as
+  all plots in `stack_discrete()` should maintain the same ordering index.
+  However, this becomes useful in `stack_cross()`, where different orderings are
+  involved, and you must specify the link explicitly.
 
 ::: {.grid}
 
