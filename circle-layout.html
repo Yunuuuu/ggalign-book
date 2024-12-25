@@ -6,10 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Yun Peng">
-<meta name="dcterms.date" content="2024-11-24">
 
-<title>ggalign: Bridging the Grammar of Graphics and Complex layout</title>
+<title>8&nbsp; circle layout – ggalign: Bridging the Grammar of Graphics and Complex layout</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -32,7 +64,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./introduction.html" rel="next">
+<link href="./operator.html" rel="next">
+<link href="./multiple-quad-layouts.html" rel="prev">
 <link href="./cover.jpg" rel="icon" type="image/jpeg">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -83,7 +116,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Preface</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./introduction.html">Basics</a></li><li class="breadcrumb-item"><a href="./circle-layout.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">circle layout</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -118,7 +151,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Preface</span></a>
   </div>
 </li>
@@ -175,7 +208,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./circle-layout.html" class="sidebar-item-text sidebar-link">
+  <a href="./circle-layout.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">circle layout</span></span></a>
   </div>
 </li>
@@ -272,35 +305,24 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#preface" id="toc-preface" class="nav-link active" data-scroll-target="#preface">Preface</a></li>
+  <li><a href="#radial" id="toc-radial" class="nav-link active" data-scroll-target="#radial"><span class="header-section-number">8.1</span> radial</a></li>
+  <li><a href="#spacing" id="toc-spacing" class="nav-link" data-scroll-target="#spacing"><span class="header-section-number">8.2</span> spacing</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/Yunuuuu/ggalign-book/edit/main/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/Yunuuuu/ggalign-book/blob/main/index.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li><li><a href="https://github.com/Yunuuuu/ggalign-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/Yunuuuu/ggalign-book/edit/main/circle-layout.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/Yunuuuu/ggalign-book/blob/main/circle-layout.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li><li><a href="https://github.com/Yunuuuu/ggalign-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./introduction.html">Basics</a></li><li class="breadcrumb-item"><a href="./circle-layout.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">circle layout</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">ggalign: Bridging the Grammar of Graphics and Complex layout</h1>
+<h1 class="title"><span id="sec-circle-layout" class="quarto-section-identifier"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">circle layout</span></span></h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Yun Peng </p>
-          </div>
-  </div>
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">November 24, 2024</p>
-    </div>
-  </div>
   
     
   </div>
@@ -310,16 +332,136 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<p><code>circle_layout()</code> arranges plots in a circular, each plot will occupy one circle track. Based on whether we want to align the discrete or continuous variables, there are two types of circle layouts:</p>
+<ul>
+<li><code>circle_discrete()</code>: Align discrete variable along the circle.</li>
+<li><code>circle_continuous()</code>: Align continuous variable along the circle.</li>
+</ul>
+<div>
 
-<section id="preface" class="level1 unnumbered">
-<h1 class="unnumbered">Preface</h1><p><img src="cover.png" title="ggalign: Bridging the Grammar of Graphics and Complex layout" class="quarto-cover-image img-fluid"></p>
-<p>Welcome to <a href="https://github.com/Yunuuuu/ggalign"><code>ggalign</code></a> documents. Examples in the book are generated under version <code>0.0.5.9000</code>.</p>
-<p>In the world of data visualization, aligning multiple plots in a coherent and organized layout is often a challenging task, especially when dealing with complex datasets that require precise alignment across rows, columns, and even within plot elements. While existing tools provide some solutions, they often fall short in offering the flexibility, control, and simplicity that users need to create intricate and beautiful plots. This is where <code>ggalign</code> comes in.</p>
-<p>The <code>ggalign</code> package, built on top of the powerful ggplot2 framework, is designed to solve this very problem. It offers a suite of functions specifically crafted for aligning and organizing plots with minimal effort. Whether you need to align observations based on statistical measures, group plots by categorical factors, or fine-tune the layout to match the precise needs of your data, <code>ggalign</code> gives you the tools you need to create polished, publication-ready visualizations.</p>
-<p>This book serves as both an introduction to the <code>ggalign</code> package and a comprehensive guide to mastering its features. Whether you’re a beginner or an experienced user of ggplot2, you’ll find detailed explanations, step-by-step tutorials, and real-world examples to help you leverage the full potential of <code>ggalign</code> in your work.</p>
-<p>Throughout this book, we will cover everything from basic concepts to advanced layout customizations, focusing on key functions like <code>stack_layout()</code>, <code>align_*</code> series (including <code>align_group()</code>, <code>align_order()</code>, and <code>align_hclust()</code>), and how to combine them with other ggplot2 layers to create aligned plots. Additionally, you’ll learn how to adapt <code>ggalign</code> for different data types and scenarios, allowing you to develop flexible, dynamic visualizations tailored to your specific needs.</p>
-<p>By the end of this book, you will be equipped to use <code>ggalign</code> effectively in your own projects, whether for scientific research, data analysis, or any other field where data visualization is key. Our goal is to provide you with the knowledge and confidence to tackle complex visualization challenges and transform your datasets into clear, impactful, and visually appealing plots.</p>
-<p>Thank you for choosing <code>ggalign</code>. We hope this book will inspire you to explore the endless possibilities that come with aligned data visualization.</p>
+</div>
+<div class="cell quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="circle-layout_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggalign)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>small_mat <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">rnorm</span>(<span class="dv">56</span>), <span class="at">nrow =</span> <span class="dv">7</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(small_mat) <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"row"</span>, <span class="fu">seq_len</span>(<span class="fu">nrow</span>(small_mat)))</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(small_mat) <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"column"</span>, <span class="fu">seq_len</span>(<span class="fu">ncol</span>(small_mat)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<section id="radial" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="radial"><span class="header-section-number">8.1</span> radial</h2>
+<p>the core argument of <code>circle_layout()</code> is <code>radial</code>, which should be a <code>coord_radial()</code> object that defines the global parameters for <code>coord_radial()</code> across all plots in the layout. The parameters <code>start</code>, <code>end</code>, <code>direction</code>, and <code>expand</code> will be inherited and applied uniformly to all plots within the layout. The parameters <code>theta</code> and <code>r.axis.inside</code> will always be ignored and will be set to “x” and <code>TRUE</code>, respectively, for all plots.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">circle_discrete</span>(small_mat, <span class="at">radial =</span> <span class="fu">coord_radial</span>(<span class="at">end =</span> pi <span class="sc">/</span> <span class="dv">2</span>, <span class="at">expand =</span> <span class="cn">FALSE</span>)) <span class="sc">+</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggalign</span>() <span class="sc">+</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_tile</span>(<span class="fu">aes</span>(<span class="at">y =</span> .column_index, <span class="at">fill =</span> value)) <span class="sc">+</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_viridis_c</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="circle-layout_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>In essence, you can think of <code>circle_layout()</code> as a radial version of <code>stack_vertical()</code>. When rendered, <code>circle_layout()</code> uses <code>coord_radial()</code> to arrange each plot along a circular track. The <code>radial</code> argument in <code>circle_layout()</code> controls the overall inner radius. Plots are added from the outermost to the innermost position.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">circle_discrete</span>(small_mat, <span class="at">radial =</span> <span class="fu">coord_radial</span>(<span class="at">inner.radius =</span> <span class="fl">0.1</span>)) <span class="sc">+</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggalign</span>() <span class="sc">+</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_tile</span>(<span class="fu">aes</span>(<span class="at">y =</span> .column_index, <span class="at">fill =</span> value)) <span class="sc">+</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_viridis_c</span>() <span class="sc">+</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_dendro</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="circle-layout_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The <code>size</code> of each plot within the circle can be adjusted using the <code>size</code> argument (<a href="stack-layout.html#sec-stack-layout-plot-size" class="quarto-xref"><span>Section 2.4</span></a>). However, it’s important to note that <code>circle_layout()</code> only supports relative <code>size</code> adjustments, meaning all size values are interpreted relative to one another, even for <code>unit</code> objects. By default, all plots have a relative size of <code>1</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">circle_discrete</span>(small_mat, <span class="at">radial =</span> <span class="fu">coord_radial</span>(<span class="at">inner.radius =</span> <span class="fl">0.1</span>)) <span class="sc">+</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggalign</span>() <span class="sc">+</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_tile</span>(<span class="fu">aes</span>(<span class="at">y =</span> .column_index, <span class="at">fill =</span> value)) <span class="sc">+</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_viridis_c</span>() <span class="sc">+</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_dendro</span>(<span class="at">size =</span> <span class="fl">0.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="circle-layout_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Although <code>circle_layout()</code> does not currently support splitting observations into different facets, you can still indicate different groups visually. For instance, you can add a tile to represent each group. If you’re using a dendrogram, you can color the branches to indicate different groups.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">circle_discrete</span>(small_mat, <span class="at">radial =</span> <span class="fu">coord_radial</span>(<span class="at">inner.radius =</span> <span class="fl">0.1</span>)) <span class="sc">+</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># add a single tile for each group</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggalign</span>(<span class="cn">NULL</span>, <span class="at">size =</span> <span class="fl">0.1</span>) <span class="sc">+</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_tile</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="dv">1</span>L, <span class="at">fill =</span> .panel)) <span class="sc">+</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_no_axes</span>(<span class="st">"y"</span>) <span class="sc">+</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">"Dark2"</span>, <span class="at">guide =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># add a heatmap</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggalign</span>() <span class="sc">+</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_tile</span>(<span class="fu">aes</span>(<span class="at">y =</span> .column_index, <span class="at">fill =</span> value)) <span class="sc">+</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_viridis_c</span>() <span class="sc">+</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># add a dendrogram</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_dendro</span>(<span class="fu">aes</span>(<span class="at">color =</span> branch), <span class="at">k =</span> <span class="dv">3</span>L, <span class="at">size =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_color_brewer</span>(<span class="at">palette =</span> <span class="st">"Dark2"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="circle-layout_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="spacing" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="spacing"><span class="header-section-number">8.2</span> spacing</h2>
+<p>The spacing between plot tracks in <code>circle_layout()</code> is controlled by the scale expansion and the <code>panel.spacing.r</code> parameter. The <code>panel.spacing.r</code> parameter sets the spacing between the individual plot panels (tracks) within the circle layout. Increasing this value will add more space between the tracks. Specifically, the <code>panel.spacing.r</code> of the outer plot determines the spacing between it and the inner plot(s). By modifying this value, you can control the overall visual separation between tracks.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">circle_discrete</span>(small_mat, <span class="at">radial =</span> <span class="fu">coord_radial</span>(<span class="at">inner.radius =</span> <span class="fl">0.1</span>)) <span class="sc">+</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># add a single tile for each group</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggalign</span>(<span class="cn">NULL</span>, <span class="at">size =</span> <span class="fl">0.1</span>) <span class="sc">+</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_tile</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="dv">1</span>L, <span class="at">fill =</span> .panel)) <span class="sc">+</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">"Dark2"</span>, <span class="at">guide =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">no_expansion</span>(<span class="st">"y"</span>) <span class="sc">+</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">panel.spacing.r =</span> <span class="fu">unit</span>(<span class="dv">0</span>, <span class="st">"mm"</span>)) <span class="sc">+</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># add a heatmap</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggalign</span>() <span class="sc">+</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_tile</span>(<span class="fu">aes</span>(<span class="at">y =</span> .column_index, <span class="at">fill =</span> value)) <span class="sc">+</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_viridis_c</span>() <span class="sc">+</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">no_expansion</span>(<span class="st">"y"</span>) <span class="sc">+</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">panel.spacing.r =</span> <span class="fu">unit</span>(<span class="dv">0</span>, <span class="st">"mm"</span>)) <span class="sc">+</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    <span class="co"># add a dendrogram</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_dendro</span>(<span class="fu">aes</span>(<span class="at">color =</span> branch), <span class="at">k =</span> <span class="dv">3</span>L, <span class="at">size =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">no_expansion</span>(<span class="st">"y"</span>) <span class="sc">+</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_color_brewer</span>(<span class="at">palette =</span> <span class="st">"Dark2"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="circle-layout_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The <code>no_expansion()</code> function is used to remove expansion around specific borders. It accepts a string with one or more of the following values: <code>"t"</code> (top), <code>"l"</code> (left), <code>"b"</code> (bottom), <code>"r"</code> (right), <code>"x"</code> (both left and right), and “y” (both bottom and top).</p>
+<p>Now we have explored all the <code>Layout</code> defined in the package, next, we will build on these concepts and explore even more advanced strategies for integrating elements across multiple plots or annotations in a layout.</p>
 
 
 </section>
@@ -783,10 +925,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="./multiple-quad-layouts.html" class="pagination-link" aria-label="A list of `quad_layout()`">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">A list of <code>quad_layout()</code></span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./introduction.html" class="pagination-link" aria-label="Introduction">
-        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./operator.html" class="pagination-link" aria-label="Operators">
+        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Operators</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -795,4 +940,4 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/Yunuuuu/ggalign-book/edit/main/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/Yunuuuu/ggalign-book/blob/main/index.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li><li><a href="https://github.com/Yunuuuu/ggalign-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/Yunuuuu/ggalign-book/edit/main/circle-layout.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/Yunuuuu/ggalign-book/blob/main/circle-layout.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li><li><a href="https://github.com/Yunuuuu/ggalign-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
