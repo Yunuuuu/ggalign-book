@@ -131,7 +131,7 @@ circle_discrete(small_mat, radial = coord_radial(inner.radius = 0.1)) +
 The `no_expansion()` function is used to remove expansion around specific
 borders. It accepts a string with one or more of the following values: `"t"`
 (top), `"l"` (left), `"b"` (bottom), `"r"` (right), `"x"` (both left and right),
-and "y" (both bottom and top).
+and `"y"` (both bottom and top).
 
 Now we have explored all the `Layout` defined in the package, next, we will
 build on these concepts and explore even more advanced strategies for
