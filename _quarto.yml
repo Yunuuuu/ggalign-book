@@ -26,6 +26,7 @@ book:
         - plot-initialize.qmd
         - quad-layout.qmd
         - multiple-quad-layouts.qmd
+        - circle-layout.qmd
         - operator.qmd
         - schemes.qmd
         - difference-with-ggplot2.qmd
