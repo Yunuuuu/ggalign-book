@@ -2,10 +2,10 @@
 
 In `ggalign`, operators are used to manage and manipulate the plot elements in
 various layouts. These operators help you build complex visualizations by
-adding, modifying, or removing elements across multiple plots or annotations in
-a layout. You may be familiar with the `+` and `&` operators, this section will
-expand on their usage, as well as introduce the subtraction operator (`-`) and how
-to apply it in different contexts.
+adding, or modifying elements across multiple plots in a layout. You may be
+familiar with the `+` and `&` operators, this section will expand on their
+usage, as well as introduce the subtraction operator (`-`) and how to apply it
+in different contexts.
 
   1. Addition Operator (`+`): Adds elements to the active plot in the active
   layout.
