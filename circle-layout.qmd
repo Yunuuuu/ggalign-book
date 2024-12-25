@@ -104,7 +104,7 @@ expansion and the `panel.spacing.r` parameter. The `panel.spacing.r` parameter
 sets the spacing between the individual plot panels (tracks) within the circle
 layout. Increasing this value will add more space between the tracks.
 Specifically, the `panel.spacing.r` of the outer plot determines the spacing
-between it and the inner plot(s). By modifying this value, you can control the
+between it and the inner plot. By modifying this value, you can control the
 overall visual separation between tracks.
 ```{r}
 circle_discrete(small_mat, radial = coord_radial(inner.radius = 0.1)) +
