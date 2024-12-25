@@ -305,16 +305,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#axes-used-for-alignment" id="toc-axes-used-for-alignment" class="nav-link active" data-scroll-target="#axes-used-for-alignment"><span class="header-section-number">11.1</span> Axes used for alignment</a></li>
-  <li><a href="#position-scales" id="toc-position-scales" class="nav-link" data-scroll-target="#position-scales"><span class="header-section-number">11.2</span> Position Scales</a>
+  <li><a href="#position-scales" id="toc-position-scales" class="nav-link active" data-scroll-target="#position-scales"><span class="header-section-number">11.1</span> Position Scales</a>
   <ul class="collapse">
-  <li><a href="#breaks" id="toc-breaks" class="nav-link" data-scroll-target="#breaks"><span class="header-section-number">11.2.1</span> breaks</a></li>
-  <li><a href="#labels" id="toc-labels" class="nav-link" data-scroll-target="#labels"><span class="header-section-number">11.2.2</span> labels</a></li>
-  <li><a href="#expand" id="toc-expand" class="nav-link" data-scroll-target="#expand"><span class="header-section-number">11.2.3</span> expand</a></li>
+  <li><a href="#breaks" id="toc-breaks" class="nav-link" data-scroll-target="#breaks"><span class="header-section-number">11.1.1</span> breaks</a></li>
+  <li><a href="#labels" id="toc-labels" class="nav-link" data-scroll-target="#labels"><span class="header-section-number">11.1.2</span> labels</a></li>
   </ul></li>
-  <li><a href="#theme" id="toc-theme" class="nav-link" data-scroll-target="#theme"><span class="header-section-number">11.3</span> theme</a></li>
-  <li><a href="#facets" id="toc-facets" class="nav-link" data-scroll-target="#facets"><span class="header-section-number">11.4</span> Facets</a></li>
-  <li><a href="#coords" id="toc-coords" class="nav-link" data-scroll-target="#coords"><span class="header-section-number">11.5</span> Coords</a></li>
+  <li><a href="#theme" id="toc-theme" class="nav-link" data-scroll-target="#theme"><span class="header-section-number">11.2</span> theme</a></li>
+  <li><a href="#facets" id="toc-facets" class="nav-link" data-scroll-target="#facets"><span class="header-section-number">11.3</span> Facets</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/Yunuuuu/ggalign-book/edit/main/difference-with-ggplot2.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/Yunuuuu/ggalign-book/blob/main/difference-with-ggplot2.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li><li><a href="https://github.com/Yunuuuu/ggalign-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -340,22 +337,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p><code>ggalign</code> focuses on aligning observations across multiple plots. While it builds on the <code>ggplot2</code> framework, there are key differences in how scales, facets, and coordinates are handled. This vignette highlights these syntax differences.</p>
-<p>The following syntax applies to the axes used to align observations.</p>
-<section id="axes-used-for-alignment" class="level2" data-number="11.1">
-<h2 data-number="11.1" class="anchored" data-anchor-id="axes-used-for-alignment"><span class="header-section-number">11.1</span> Axes used for alignment</h2>
-<p>Axes used for alignment in <code>ggalign</code> refer to: - x-axis in vertical stack layouts</p>
-<ul>
-<li><p>x-axis in horizontal stack layouts</p></li>
-<li><p>x- and y- axes in the <code>quad_layout()</code> main plot</p></li>
-</ul>
-<p><code>ggalign</code> introduces special syntax and handling for these axes, differing from the default behavior in <code>ggplot2</code>. These adjustments ensure that observations are properly aligned and operations are user-friendly.</p>
-</section>
-<section id="position-scales" class="level2" data-number="11.2">
-<h2 data-number="11.2" class="anchored" data-anchor-id="position-scales"><span class="header-section-number">11.2</span> Position Scales</h2>
+<p><code>ggalign</code> focuses on aligning axes across multiple plots. While it builds on the <code>ggplot2</code> framework, there are key differences in how scales, facets, and coordinates are handled. This vignette highlights these syntax differences.</p>
+<section id="position-scales" class="level2" data-number="11.1">
+<h2 data-number="11.1" class="anchored" data-anchor-id="position-scales"><span class="header-section-number">11.1</span> Position Scales</h2>
 <p>To better fit the alignment-based layout, <code>ggalign</code> introduces adjustments to <code>breaks</code>, <code>labels</code>, and <code>expand</code> arguments.</p>
-<section id="breaks" class="level3" data-number="11.2.1">
-<h3 data-number="11.2.1" class="anchored" data-anchor-id="breaks"><span class="header-section-number">11.2.1</span> breaks</h3>
+<p>For <code>discrete</code> values, <code>ggalign</code> introduces special syntax and handling for these axes, differing from the default behavior in <code>ggplot2</code>. These adjustments ensure that observations are properly aligned and operations are user-friendly.</p>
+<p>The following syntax applies to the axes used to align observations (discrete values).</p>
+<section id="breaks" class="level3" data-number="11.1.1">
+<h3 data-number="11.1.1" class="anchored" data-anchor-id="breaks"><span class="header-section-number">11.1.1</span> breaks</h3>
 <p><code>breaks</code> and <code>labels</code> are typically handled similarly to discrete scales, as we focus on aligning observations (which should be regarded as discrete variables); no matter what you use is continuous scale or discrete scale.</p>
 <p><code>breaks</code> should be one of:</p>
 <pre><code>- `NULL` for no breaks
@@ -489,8 +478,8 @@ returns breaks as output. Also accepts rlang lambda function notation. </code></
 </div>
 </div>
 </section>
-<section id="labels" class="level3" data-number="11.2.2">
-<h3 data-number="11.2.2" class="anchored" data-anchor-id="labels"><span class="header-section-number">11.2.2</span> labels</h3>
+<section id="labels" class="level3" data-number="11.1.2">
+<h3 data-number="11.1.2" class="anchored" data-anchor-id="labels"><span class="header-section-number">11.1.2</span> labels</h3>
 <p><code>labels</code> should be one of:</p>
 <pre><code>- `NULL` for no labels
 
@@ -590,16 +579,28 @@ function.</code></pre>
 </div>
 </div>
 </section>
-<section id="expand" class="level3" data-number="11.2.3">
-<h3 data-number="11.2.3" class="anchored" data-anchor-id="expand"><span class="header-section-number">11.2.3</span> expand</h3>
-<p>By default, we utilize zero expansion for the aligned axis. This is typically the desired setting. If you wish to introduce expansion, you must manually adjust it and apply it to each plot to ensure proper axis alignment.</p>
+</section>
+<section id="theme" class="level2" data-number="11.2">
+<h2 data-number="11.2" class="anchored" data-anchor-id="theme"><span class="header-section-number">11.2</span> theme</h2>
+<p>Although ggplot2 does not officially support vectorized input for theme elements, we can still utilize it. <code>ggalign</code> extends this feature, allowing theme elements to be vectorized and applied across panels.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggheatmap</span>(small_mat) <span class="sc">+</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_continuous</span>(<span class="at">expand =</span> <span class="fu">expansion</span>(<span class="at">mult =</span> <span class="fl">0.1</span>)) <span class="sc">+</span></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">anno_top</span>() <span class="sc">+</span></span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_dendro</span>(<span class="fu">aes</span>(<span class="at">color =</span> branch), <span class="at">k =</span> <span class="dv">3</span>L) <span class="sc">+</span></span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_continuous</span>(<span class="at">expand =</span> <span class="fu">expansion</span>(<span class="at">mult =</span> <span class="fl">0.1</span>))</span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; → heatmap built with `geom_tile()`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">colour =</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">"red"</span>, <span class="dv">4</span>), <span class="fu">rep</span>(<span class="st">"blue"</span>, <span class="dv">5</span>))</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>        ),</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.ticks.x =</span> <span class="fu">element_line</span>(</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">colour =</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">"red"</span>, <span class="dv">4</span>), <span class="fu">rep</span>(<span class="st">"blue"</span>, <span class="dv">5</span>))</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>        ),</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.ticks.length.x =</span> <span class="fu">unit</span>(<span class="fu">rep</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">4</span>), <span class="at">times =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">5</span>)), <span class="st">"mm"</span>)</span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">anno_top</span>() <span class="sc">+</span></span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_dendro</span>(<span class="fu">aes</span>(<span class="at">color =</span> branch), <span class="at">k =</span> <span class="dv">3</span>L) <span class="sc">+</span></span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_y_continuous</span>(<span class="at">expand =</span> <span class="fu">expansion</span>()) <span class="sc">&amp;</span></span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">plot.margin =</span> <span class="fu">margin</span>())</span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning: Vectorized input to `element_text()` is not officially supported.</span></span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ℹ Results may be unexpected or may change in future versions of ggplot2.</span></span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; → heatmap built with `geom_tile()`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -608,30 +609,18 @@ function.</code></pre>
 </div>
 </div>
 </div>
-<p>You can utilize <code>ggh4x::facetted_pos_scales()</code> to set scales for each panel.</p>
 </section>
-</section>
-<section id="theme" class="level2" data-number="11.3">
-<h2 data-number="11.3" class="anchored" data-anchor-id="theme"><span class="header-section-number">11.3</span> theme</h2>
-<p>Although ggplot2 does not officially support vectorized input for theme elements, we can still utilize it. <code>ggalign</code> extends this feature, allowing theme elements to be vectorized and applied across panels.</p>
+<section id="facets" class="level2" data-number="11.3">
+<h2 data-number="11.3" class="anchored" data-anchor-id="facets"><span class="header-section-number">11.3</span> Facets</h2>
+<p>When working with facets, manual configuration of the panel using the <code>facet_*()</code> functions is not possible since the internal structure will use <code>facet_grid()</code> to set the row/column groups defined by <code>align_*()</code> functions. However, you can still use <code>facet_grid()</code> or <code>facet_null()</code> (if no panel) to control other arguments except aligned panels (<code>rows</code> in horizontal stack layout or <code>cols</code> in vertical stack layout, or both <code>rows</code> and <code>cols</code> in heatmap body).</p>
+<p>A common use case is to modify the panel strip text. The default theme (<code>theme_ggalign()</code>) will always remove the panel strip text, you can override this behaviour with <code>theme(strip.text = element_text())</code> to add the panel title in the plot area.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggheatmap</span>(small_mat) <span class="sc">+</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(</span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">colour =</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">"red"</span>, <span class="dv">4</span>), <span class="fu">rep</span>(<span class="st">"blue"</span>, <span class="dv">5</span>))</span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>        ),</span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.ticks.x =</span> <span class="fu">element_line</span>(</span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">colour =</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">"red"</span>, <span class="dv">4</span>), <span class="fu">rep</span>(<span class="st">"blue"</span>, <span class="dv">5</span>))</span>
-<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>        ),</span>
-<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.ticks.length.x =</span> <span class="fu">unit</span>(<span class="fu">rep</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">4</span>), <span class="at">times =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">5</span>)), <span class="st">"mm"</span>)</span>
-<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
-<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">anno_top</span>() <span class="sc">+</span></span>
-<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_dendro</span>(<span class="fu">aes</span>(<span class="at">color =</span> branch), <span class="at">k =</span> <span class="dv">3</span>L) <span class="sc">+</span></span>
-<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_y_continuous</span>(<span class="at">expand =</span> <span class="fu">expansion</span>()) <span class="sc">&amp;</span></span>
-<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">plot.margin =</span> <span class="fu">margin</span>())</span>
-<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning: Vectorized input to `element_text()` is not officially supported.</span></span>
-<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ℹ Results may be unexpected or may change in future versions of ggplot2.</span></span>
-<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; → heatmap built with `geom_tile()`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_grid</span>(<span class="at">labeller =</span> <span class="fu">labeller</span>(<span class="at">.column_panel =</span> <span class="cf">function</span>(x) letters[<span class="fu">as.integer</span>(x)])) <span class="sc">+</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">strip.text =</span> <span class="fu">element_text</span>()) <span class="sc">+</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">anno_top</span>() <span class="sc">+</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_kmeans</span>(<span class="at">centers =</span> <span class="dv">3</span>L)</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; → heatmap built with `geom_tile()`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -640,30 +629,6 @@ function.</code></pre>
 </div>
 </div>
 </div>
-</section>
-<section id="facets" class="level2" data-number="11.4">
-<h2 data-number="11.4" class="anchored" data-anchor-id="facets"><span class="header-section-number">11.4</span> Facets</h2>
-<p>When working with facets, manual configuration of the panel using the <code>facet_*()</code> functions is not possible since the internal structure will use <code>facet_grid()</code> to set the row/column groups defined by <code>align_*()</code> functions. However, you can still use <code>facet_grid()</code> or <code>facet_null()</code> (if no panel) to control other arguments except aligned panels (<code>rows</code> in horizontal stack layout or <code>cols</code> in vertical stack layout, or both <code>rows</code> and <code>cols</code> in heatmap body).</p>
-<p>A common use case is to modify the panel strip text. The default theme (<code>theme_ggalign()</code>) will always remove the panel strip text, you can override this behaviour with <code>theme(strip.text = element_text())</code> to add the panel title in the plot area.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggheatmap</span>(small_mat) <span class="sc">+</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_grid</span>(<span class="at">labeller =</span> <span class="fu">labeller</span>(<span class="at">.column_panel =</span> <span class="cf">function</span>(x) letters[<span class="fu">as.integer</span>(x)])) <span class="sc">+</span></span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">strip.text =</span> <span class="fu">element_text</span>()) <span class="sc">+</span></span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">anno_top</span>() <span class="sc">+</span></span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_kmeans</span>(<span class="at">centers =</span> <span class="dv">3</span>L)</span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; → heatmap built with `geom_tile()`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="difference-with-ggplot2_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="coords" class="level2" data-number="11.5">
-<h2 data-number="11.5" class="anchored" data-anchor-id="coords"><span class="header-section-number">11.5</span> Coords</h2>
-<p>Currently, only cartesian coordinate can be used to align axis well. Internally, the limits will always be set to the number of observations, with an additional range expansion of <code>0.5</code> added on both ends.</p>
 
 
 </section>
