@@ -18,7 +18,6 @@ colnames(small_mat) <- paste0("column", seq_len(ncol(small_mat)))
 
 ```{r}
 #| echo: false
-#| layout-ncol: 2
 set.seed(123)
 circle_continuous(mpg, radial = coord_radial(inner.radius = 0.1)) +
     lapply(seq_len(3L), function(i) {
