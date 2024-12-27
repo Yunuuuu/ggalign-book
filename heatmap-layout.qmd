@@ -26,7 +26,7 @@ ggside() +
         c(
             list(quad_anno(side, initialize = TRUE)),
             lapply(seq_len(3L), function(i) {
-                ggfree() +
+                ggalign() +
                     ggtitle(sprintf("Plot %s", i)) +
                     theme(panel.background = element_rect(fill = scales::alpha("red", 0.5)))
             }),

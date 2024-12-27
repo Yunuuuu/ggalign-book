@@ -112,13 +112,13 @@ ggside(mpg, aes(displ, hwy, colour = class)) -
     # set default theme for the top annotation
     scheme_theme(theme_no_axes("tb")) +
     # add a plot in the top annotation
-    ggfree() +
+    ggalign() +
     geom_density(aes(displ, y = after_stat(density), colour = class), position = "stack") +
     anno_right(size = 0.3) -
     # set default theme for the right annotation
     scheme_theme(theme_no_axes("lr")) +
     # add a plot in the right annotation
-    ggfree() +
+    ggalign() +
     geom_density(aes(x = after_stat(density), hwy, colour = class),
         position = "stack"
     ) +

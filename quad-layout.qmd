@@ -19,7 +19,7 @@ ggside() +
         c(
             list(quad_anno(side, initialize = TRUE)),
             lapply(seq_len(3L), function(i) {
-                ggfree() +
+                ggalign() +
                     ggtitle(sprintf("Plot %s", i)) +
                     theme(panel.background = element_rect(fill = scales::alpha("red", 0.5)))
             }),
@@ -94,12 +94,12 @@ ggside(mpg, aes(displ, hwy, colour = class)) +
     # initialize top annotation
     anno_top(size = 0.3) +
     # add a plot in the top annotation
-    ggfree() +
+    ggalign() +
     geom_density(aes(displ, y = after_stat(density), colour = class), position = "stack") +
     # initialize right annotation
     anno_right(size = 0.3) +
     # add a plot in the right annotation
-    ggfree() +
+    ggalign() +
     geom_density(aes(x = after_stat(density), hwy, colour = class),
         position = "stack"
     ) &
@@ -115,13 +115,13 @@ ggside(i2, aes(Sepal.Width, Sepal.Length, color = Species)) +
     geom_point(size = 2) +
     facet_grid(Species ~ Species2) +
     anno_top(size = 0.3) +
-    ggfree() +
+    ggalign() +
     geom_density(aes(Sepal.Width, y = after_stat(density), colour = Species),
         position = "stack"
     ) +
     facet_grid(cols = vars(Species2)) +
     anno_right(size = 0.3) +
-    ggfree() +
+    ggalign() +
     geom_density(aes(x = after_stat(density), Sepal.Length, colour = Species),
         position = "stack"
     ) +
@@ -200,7 +200,7 @@ quadv <- quad_layout(small_mat, ylim = NULL) +
 quadh +
     stack_continuous("v", mpg) +
     # add a plot in the top annotation
-    ggfree(mapping = aes(displ, hwy, colour = class)) +
+    ggalign(mapping = aes(displ, hwy, colour = class)) +
     geom_point(aes(displ, hwy, colour = class)) +
     quad_active() +
     geom_boxplot(aes(value, .discrete_y, fill = .row_names)) +
@@ -214,7 +214,7 @@ quadh +
 quadv +
     stack_continuous("h", mpg) +
     # add a plot in the left annotation
-    ggfree(mapping = aes(displ, hwy, colour = class)) +
+    ggalign(mapping = aes(displ, hwy, colour = class)) +
     geom_point(aes(displ, hwy, colour = class)) +
     quad_active() +
     geom_boxplot(aes(.discrete_x, value, fill = .column_names)) +
@@ -236,7 +236,7 @@ quad_layout(small_mat, xlim = NULL) +
     geom_boxplot(aes(value, .discrete_y, fill = .row_names)) +
     scale_fill_brewer(palette = "Dark2") +
     anno_top(initialize = TRUE) +
-    ggfree(data = mpg, aes(displ, hwy, colour = class)) +
+    ggalign(data = mpg, aes(displ, hwy, colour = class)) +
     geom_point(aes(displ, hwy, colour = class))+
     layout_title("quad_alignh()")
 ```
@@ -248,7 +248,7 @@ quad_layout(small_mat, ylim = NULL) +
     geom_boxplot(aes(.discrete_x, value, fill = .column_names)) +
     scale_fill_brewer(palette = "Dark2") +
     anno_left(initialize = TRUE) +
-    ggfree(data = mpg, aes(displ, hwy, colour = class)) +
+    ggalign(data = mpg, aes(displ, hwy, colour = class)) +
     geom_point(aes(displ, hwy, colour = class))+
     layout_title("quad_alignv()")
 ```
