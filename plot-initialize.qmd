@@ -141,7 +141,7 @@ ggheatmap(small_mat) +
 
 Since `ggfree()` may use axes that are not aligned with the primary plot's axes,
 the axis titles will not be removed automatically. If you want to remove the
-axis titles, you must do so manually by customizing the theme.
+axis titles, you must do so manually.
 
 Alternatively, you can directly input the ggplot object.
 ```{r}
