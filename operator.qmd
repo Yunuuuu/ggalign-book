@@ -33,7 +33,8 @@ active context in the `stack_layout()` is `quad_layout()`, this `quad_layout()`
 is treated as the active layout, and the `+` operator will add elements to it,
 following the same principles as in `quad_layout()`. Otherwise, the
 `stack_layout()` itself is treated as the active layout, and the `+` operator
-will add elements directly to this plot.
+will add elements directly to this plot. `circle_layout()` is the same with
+`stack_layout()`, but it won't contain any nested layout.
 
 ```{r}
 stack_alignh(small_mat) +

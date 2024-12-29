@@ -1,5 +1,5 @@
 # Schemes {#sec-schemes}
-Schemes control the actions of plots within the layout. These schemes can be
+Schemes control the actions of plots within the layout and can be
 applied either globally to the layout or individually to specific
 plots.
 
