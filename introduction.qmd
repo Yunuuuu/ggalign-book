@@ -52,7 +52,7 @@ For `StackLayout`:
 
 `stack_layout()` integrates the functionalities of `stack_discrete()` and
 `stack_continuous()` into a single interface. For simplicity, throughout this
-book, I will refer to both variants as `quad_layout()`.
+book, I will refer to both variants as `stack_layout()`.
 
 For `QuadLayout`: 
 
