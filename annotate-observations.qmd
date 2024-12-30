@@ -262,6 +262,23 @@ ggheatmap(small_mat) +
     theme(plot.margin = margin(l = 0.1, t = 0.1, unit = "npc"))
 ```
 
+For `stack_layout()`, we usually don't need to specify the observations for hand2,
+since it should match hand1. This is because all plots in stack_discrete()
+should maintain the same ordering index. However, specifying hand2 becomes
+useful in `stack_cross()`, where different orderings are involved.
+```{r}
+stack_discreteh(small_mat) +
+    align_dendro(aes(color = branch), k = 3L) +
+    scale_x_reverse(expand = expansion()) +
+    theme(plot.margin = margin()) +
+    ggmark(mark_line(4:6 ~ waiver(), 1:2 ~ waiver())) +
+    geom_boxplot(aes(.names, value, fill = .names)) +
+    theme(plot.margin = margin(l = 0.1, t = 0.1, r = 0.1, b = 0.1, unit = "npc")) +
+    align_dendro(aes(color = branch), k = 3L) +
+    scale_x_continuous(expand = expansion()) +
+    theme(plot.margin = margin())
+```
+
 Now, let's move on to the next chapter, where we will introduce `quad_layout()`
 in full. While we've already introduced `ggheatmap()`—a specialized version of
 `quad_layout()`—most of the operations discussed in @sec-heatmap-layout can also
