@@ -371,7 +371,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><code>+</code>: adds elements to the active plot in the active layout.</p>
 </blockquote>
 <p>The <code>+</code> operator is straightforward and should be used as needed.</p>
-<p>In <code>stack_layout()</code>, a nested layout will only occur if you pass a <code>quad_layout()</code> into <code>stack_layout()</code> (<a href="multiple-quad-layouts.html" class="quarto-xref"><span>Chapter 8</span></a>). If the active context in the <code>stack_layout()</code> is <code>quad_layout()</code>, this <code>quad_layout()</code> is treated as the active layout, and the <code>+</code> operator will add elements to it, following the same principles as in <code>quad_layout()</code>. Otherwise, the <code>stack_layout()</code> itself is treated as the active layout, and the <code>+</code> operator will add elements directly to this plot. <code>circle_layout()</code> is the same with <code>stack_layout()</code>, but it won’t contain any nested layout.</p>
+<p>In <code>stack_layout()</code>, a nested layout will only occur if you pass a <code>quad_layout()</code> into <code>stack_layout()</code> (<a href="multiple-quad-layouts.html" class="quarto-xref"><span>Chapter 8</span></a>). If the active context in the <code>stack_layout()</code> is <code>quad_layout()</code>, this <code>quad_layout()</code> is treated as the active layout, and the <code>+</code> operator will add elements to it, following the same principles as in <code>quad_layout()</code>. Otherwise, the <code>stack_layout()</code> itself is treated as the active layout, and the <code>+</code> operator will add elements directly to this plot.</p>
+<p><code>circle_layout()</code> works similarly to <code>stack_layout()</code>, but it does not support nested layouts. Therefore, the active layout in <code>circle_layout()</code> will always be the <code>circle_layout()</code> itself.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stack_alignh</span>(small_mat) <span class="sc">+</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_dendro</span>() <span class="sc">+</span></span>
@@ -512,7 +513,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="with_quad" class="level2" data-number="10.4">
 <h2 data-number="10.4" class="anchored" data-anchor-id="with_quad"><span class="header-section-number">10.4</span> <code>with_quad()</code></h2>
-<p>The <code>with_quad()</code> function adjusts the context in which elements are applied in <code>ggheatmap()</code>/<code>quad_layout()</code>. It allows you to control how objects such as themes, scales, and other plot modifications are applied to specific annotation stacks or the main plot, without changing the currently active context.</p>
+<p>The <code>with_quad()</code> function adjusts the context in which elements are applied in <code>ggheatmap()</code>/<code>quad_layout()</code>. It allows you to control how objects such as themes, scales, and other plot elements are applied to specific annotation stacks or the main plot, without changing the currently active context.</p>
 <p>This function accepts three arguments:</p>
 <ol type="1">
 <li><strong>x</strong>: An object which can be added to the plot.</li>

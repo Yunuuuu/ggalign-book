@@ -667,6 +667,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
+<p>For <code>stack_layout()</code>, we usually don’t need to specify the observations for hand2, since it should match hand1. This is because all plots in stack_discrete() should maintain the same ordering index. However, specifying hand2 becomes useful in <code>stack_cross()</code>, where different orderings are involved.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stack_discreteh</span>(small_mat) <span class="sc">+</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_dendro</span>(<span class="fu">aes</span>(<span class="at">color =</span> branch), <span class="at">k =</span> <span class="dv">3</span>L) <span class="sc">+</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_reverse</span>(<span class="at">expand =</span> <span class="fu">expansion</span>()) <span class="sc">+</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">plot.margin =</span> <span class="fu">margin</span>()) <span class="sc">+</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggmark</span>(<span class="fu">mark_line</span>(<span class="dv">4</span><span class="sc">:</span><span class="dv">6</span> <span class="sc">~</span> <span class="fu">waiver</span>(), <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span> <span class="sc">~</span> <span class="fu">waiver</span>())) <span class="sc">+</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(.names, value, <span class="at">fill =</span> .names)) <span class="sc">+</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">plot.margin =</span> <span class="fu">margin</span>(<span class="at">l =</span> <span class="fl">0.1</span>, <span class="at">t =</span> <span class="fl">0.1</span>, <span class="at">r =</span> <span class="fl">0.1</span>, <span class="at">b =</span> <span class="fl">0.1</span>, <span class="at">unit =</span> <span class="st">"npc"</span>)) <span class="sc">+</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_dendro</span>(<span class="fu">aes</span>(<span class="at">color =</span> branch), <span class="at">k =</span> <span class="dv">3</span>L) <span class="sc">+</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_continuous</span>(<span class="at">expand =</span> <span class="fu">expansion</span>()) <span class="sc">+</span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">plot.margin =</span> <span class="fu">margin</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="annotate-observations_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
 <p>Now, let’s move on to the next chapter, where we will introduce <code>quad_layout()</code> in full. While we’ve already introduced <code>ggheatmap()</code>—a specialized version of <code>quad_layout()</code>—most of the operations discussed in <a href="heatmap-layout.html" class="quarto-xref"><span>Chapter 3</span></a> can also be applied to <code>quad_layout()</code>. In the next section, we’ll delve into <code>quad_layout()</code> and explore its full functionality.</p>
 
 
