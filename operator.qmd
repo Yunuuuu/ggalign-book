@@ -33,8 +33,11 @@ active context in the `stack_layout()` is `quad_layout()`, this `quad_layout()`
 is treated as the active layout, and the `+` operator will add elements to it,
 following the same principles as in `quad_layout()`. Otherwise, the
 `stack_layout()` itself is treated as the active layout, and the `+` operator
-will add elements directly to this plot. `circle_layout()` is the same with
-`stack_layout()`, but it won't contain any nested layout.
+will add elements directly to this plot. 
+
+`circle_layout()` works similarly to `stack_layout()`, but it does not support
+nested layouts. Therefore, the active layout in `circle_layout()` will always be
+the `circle_layout()` itself.
 
 ```{r}
 stack_alignh(small_mat) +
@@ -120,7 +123,7 @@ ggheatmap(small_mat) +
     scale_color_brewer(palette = "Dark2")
 ```
 
-### `stack_layout()`
+### `stack_layout()` 
 For `stack_layout()`, if the active layout is the `stack_layout()` itself, `-`
 applies the elements to all plots in the layout except the nested
 `ggheatmap()`/`quad_layout()`.
@@ -149,7 +152,7 @@ Want apply elements for plots in both `stack_layout()` and the nested
 ## `with_quad()`
 The `with_quad()` function adjusts the context in which elements are applied in
 `ggheatmap()`/`quad_layout()`. It allows you to control how objects such as
-themes, scales, and other plot modifications are applied to specific annotation
+themes, scales, and other plot elements are applied to specific annotation
 stacks or the main plot, without changing the currently active context.
 
 This function accepts three arguments:
