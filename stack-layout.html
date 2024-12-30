@@ -196,44 +196,50 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./annotate-observations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Annotate observations</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./quad-layout.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">quad-layout</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">quad-layout</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./multiple-quad-layouts.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">A list of <code>quad_layout()</code></span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">A list of <code>quad_layout()</code></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./circle-layout.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">circle layout</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">circle layout</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./operator.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Operators</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Operators</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./schemes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Schemes</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Schemes</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./difference-with-ggplot2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Difference with ggplot2</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Difference with ggplot2</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./plot-composer.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Plot Composer</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Plot Composer</span></span></a>
   </div>
 </li>
       </ul>
@@ -250,7 +256,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./oncoplot.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">ggoncoplot</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">ggoncoplot</span></span></a>
   </div>
 </li>
       </ul>
@@ -267,7 +273,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./complete-examples.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Complete examples</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Complete examples</span></span></a>
   </div>
 </li>
       </ul>
@@ -284,13 +290,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./complexheatmap-single-heatmap.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">A Single Heatmap</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">A Single Heatmap</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./complexheatmap-more-examples.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">More examples</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">More examples</span></span></a>
   </div>
 </li>
       </ul>
@@ -467,7 +473,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>reorder the observations.</li>
 <li>set the active plot to the dendrogram.</li>
 </ol>
-<p>The active plot refers to the plot that subsequent ggplot2 components will target. In this case, the active plot is the dendrogram, and any new layers added will be applied to it. For instance, we can add additional layers to visualize the dendrogram’s structure or data. The default data underlying the <code>ggplot</code> object of <code>align_dendro()</code> consists of the dendrogram node data. It is also possible to use the dendrogram’s edge data for customization, which I will introduce in <a href="plot-initialize.html#sec-align-dendro" class="quarto-xref"><span>Section 5.5</span></a>.</p>
+<p>The active plot refers to the plot that subsequent ggplot2 components will target. In this case, the active plot is the dendrogram, and any new layers added will be applied to it. For instance, we can add additional layers to visualize the dendrogram’s structure or data. The default data underlying the <code>ggplot</code> object of <code>align_dendro()</code> consists of the dendrogram node data. It is also possible to use the dendrogram’s edge data for customization, which I will introduce in <a href="plot-initialize.html#sec-align-dendro" class="quarto-xref"><span>Section 5.4</span></a>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="annotated-cell-5"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><button class="code-annotation-anchor" data-target-cell="annotated-cell-5" data-target-annotation="1">1</button><span id="annotated-cell-5-1" class="code-annotation-target"><a href="#annotated-cell-5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stack_discreteh</span>(small_mat) <span class="sc">+</span></span>
 <button class="code-annotation-anchor" data-target-cell="annotated-cell-5" data-target-annotation="2">2</button><span id="annotated-cell-5-2" class="code-annotation-target"><a href="#annotated-cell-5-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_dendro</span>() <span class="sc">+</span></span>
@@ -526,7 +532,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Usually, you don’t need to set this manually, as the active context is automatically applied only for functions that add plot areas. You can inspect whether a <code>align_*</code> function will add a plot by print it:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">align_dendro</span>()</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; &lt;Class: AlignDendro AlignHclust AlignDiscrete AlignProto&gt;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; &lt;Class: AlignDendro AlignHclust Align AlignProto&gt;</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      plot: yes</span></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   reorder: yes</span></span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     split: no</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -534,7 +540,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>You might find it confusing that we mentioned <code>align_dendro()</code> will split observations into groups, while the print output shows <code>split = "no"</code>. This happens because we haven’t specified the <code>k</code>/<code>h</code> argument in <code>align_dendro()</code>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">align_dendro</span>(<span class="at">k =</span> <span class="dv">3</span>L)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; &lt;Class: AlignDendro AlignHclust AlignDiscrete AlignProto&gt;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; &lt;Class: AlignDendro AlignHclust Align AlignProto&gt;</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      plot: yes</span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   reorder: yes</span></span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     split: yes</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -545,7 +551,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <button class="code-annotation-anchor" data-target-cell="annotated-cell-9" data-target-annotation="1">1</button><span id="annotated-cell-9-2" class="code-annotation-target"><a href="#annotated-cell-9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">stack_discreteh</span>(small_mat) <span class="sc">+</span></span>
 <button class="code-annotation-anchor" data-target-cell="annotated-cell-9" data-target-annotation="2">2</button><span id="annotated-cell-9-3" class="code-annotation-target"><a href="#annotated-cell-9-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_dendro</span>(<span class="at">data =</span> <span class="fu">matrix</span>(<span class="fu">rnorm</span>(<span class="dv">56</span>), <span class="at">nrow =</span> <span class="dv">8</span>)) <span class="sc">+</span></span>
 <button class="code-annotation-anchor" data-target-cell="annotated-cell-9" data-target-annotation="3">3</button><span id="annotated-cell-9-4" class="code-annotation-target"><a href="#annotated-cell-9-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">axis.text.y =</span> <span class="fu">element_text</span>())</span>
-<span id="annotated-cell-9-5"><a href="#annotated-cell-9-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Error in `setup_design()`:</span></span>
+<span id="annotated-cell-9-5"><a href="#annotated-cell-9-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Error in `interact_layout()`:</span></span>
 <span id="annotated-cell-9-6"><a href="#annotated-cell-9-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ! `align_dendro()` (nobs: 8) is not compatible with the the horizontal</span></span>
 <span id="annotated-cell-9-7"><a href="#annotated-cell-9-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   `stack_discrete()` (nobs: 7)</span></span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-annotation">
@@ -862,7 +868,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>In the example, we use <code>layout_title()</code> to insert a title for the entire layout. Alternatively, you can add a title to a single plot with <code>ggtitle()</code>.</p>
-<p>By setting <code>what = NULL</code> (or alias <code>stack_active()</code>), we remove the active plot. This is particularly useful when the active plot is a nested <code>Layout</code> object, as any additions would otherwise be directed to that nested <code>Layout</code>. By removing the active plot, you can continue adding components to the <code>StackLayout</code>. We’ll introduce the nested layout of <code>StackLayout</code> in <a href="multiple-quad-layouts.html" class="quarto-xref"><span>Chapter 7</span></a>.</p>
+<p>By setting <code>what = NULL</code> (or alias <code>stack_active()</code>), we remove the active plot. This is particularly useful when the active plot is a nested <code>Layout</code> object, as any additions would otherwise be directed to that nested <code>Layout</code>. By removing the active plot, you can continue adding components to the <code>StackLayout</code>. We’ll introduce the nested layout of <code>StackLayout</code> in <a href="multiple-quad-layouts.html" class="quarto-xref"><span>Chapter 8</span></a>.</p>
 <p>In the next chapter, we will dive into the <code>HeatmapLayout</code>, which can take the <code>StackLayout</code> as input. Heatmap layouts offer additional features for aligning observations in both directions. Let’s move ahead and explore how heatmaps can be seamlessly integrated into your layout workflows.</p>
 
 
