@@ -354,8 +354,6 @@ ggheatmap(small_mat) +
     )
 ```
 
-Now, let's move on to the next chapter, where we will introduce `quad_layout()`
-in full. While we've already introduced `ggheatmap()`—a specialized version of
-`quad_layout()`—most of the operations discussed in @sec-heatmap-layout can also
-be applied to `quad_layout()`. In the next section, we'll delve into
-`quad_layout()` and explore its full functionality.
+Now that you know the general approach to adding a plot, it would be useful to
+explore how to add annotation plots for specific observations. Let's move on to
+the next chapter.

@@ -24,6 +24,7 @@ book:
         - heatmap-layout.qmd
         - layout-customize.qmd
         - plot-initialize.qmd
+        - annotate-observations.qmd
         - quad-layout.qmd
         - multiple-quad-layouts.qmd
         - circle-layout.qmd
