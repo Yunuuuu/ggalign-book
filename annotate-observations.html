@@ -577,7 +577,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_kmeans</span>(<span class="dv">3</span>L) <span class="sc">+</span></span>
 <span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggmark</span>(</span>
 <span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>        <span class="fu">mark_line</span>(<span class="dv">4</span><span class="sc">:</span><span class="dv">6</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, </span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>            <span class="at">element =</span>  <span class="fu">element_line</span>(<span class="at">color =</span> <span class="fu">c</span>(<span class="st">"red"</span>, <span class="st">"blue"</span>))</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>            <span class="at">.element =</span>  <span class="fu">element_line</span>(<span class="at">color =</span> <span class="fu">c</span>(<span class="st">"red"</span>, <span class="st">"blue"</span>))</span>
 <span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>        )</span>
 <span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
 <span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(.names, value, <span class="at">fill =</span> .names)) <span class="sc">+</span></span>
@@ -602,7 +602,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_kmeans</span>(<span class="dv">3</span>L) <span class="sc">+</span></span>
 <span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggmark</span>(</span>
 <span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>        <span class="fu">mark_tetragon</span>(<span class="dv">4</span><span class="sc">:</span><span class="dv">6</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, </span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>            <span class="at">element =</span>  <span class="fu">element_polygon</span>(<span class="at">fill =</span> <span class="fu">c</span>(<span class="st">"red"</span>, <span class="st">"blue"</span>), <span class="at">alpha =</span> <span class="fl">0.5</span>)</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>            <span class="at">.element =</span>  <span class="fu">element_polygon</span>(<span class="at">fill =</span> <span class="fu">c</span>(<span class="st">"red"</span>, <span class="st">"blue"</span>), <span class="at">alpha =</span> <span class="fl">0.5</span>)</span>
 <span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>        )</span>
 <span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
 <span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(.names, value, <span class="at">fill =</span> .names)) <span class="sc">+</span></span>
@@ -628,7 +628,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_kmeans</span>(<span class="dv">3</span>L) <span class="sc">+</span></span>
 <span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggmark</span>(</span>
 <span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>        <span class="fu">mark_line</span>(<span class="dv">4</span><span class="sc">:</span><span class="dv">6</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, </span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>            <span class="at">element =</span>  <span class="fu">I</span>(<span class="fu">element_line</span>(<span class="at">color =</span> <span class="fu">c</span>(<span class="st">"red"</span>, <span class="st">"blue"</span>)))</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>            <span class="at">.element =</span>  <span class="fu">I</span>(<span class="fu">element_line</span>(<span class="at">color =</span> <span class="fu">c</span>(<span class="st">"red"</span>, <span class="st">"blue"</span>)))</span>
 <span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>        )</span>
 <span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
 <span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(.names, value, <span class="at">fill =</span> .names)) <span class="sc">+</span></span>
@@ -652,7 +652,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_kmeans</span>(<span class="dv">3</span>L) <span class="sc">+</span></span>
 <span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggmark</span>(</span>
 <span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>        <span class="fu">mark_tetragon</span>(<span class="dv">4</span><span class="sc">:</span><span class="dv">6</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, </span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>            <span class="at">element =</span>  <span class="fu">I</span>(<span class="fu">element_polygon</span>(<span class="at">fill =</span> <span class="fu">c</span>(<span class="st">"red"</span>, <span class="st">"blue"</span>), <span class="at">alpha =</span> <span class="fl">0.5</span>))</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>            <span class="at">.element =</span>  <span class="fu">I</span>(<span class="fu">element_polygon</span>(<span class="at">fill =</span> <span class="fu">c</span>(<span class="st">"red"</span>, <span class="st">"blue"</span>), <span class="at">alpha =</span> <span class="fl">0.5</span>))</span>
 <span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>        )</span>
 <span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
 <span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(.names, value, <span class="at">fill =</span> .names)) <span class="sc">+</span></span>
