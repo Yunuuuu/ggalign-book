@@ -192,7 +192,7 @@ ggheatmap(small_mat) +
     align_kmeans(3L) +
     ggmark(
         mark_line(4:6, 1:2, 
-            element =  element_line(color = c("red", "blue"))
+            .element =  element_line(color = c("red", "blue"))
         )
     ) +
     geom_boxplot(aes(.names, value, fill = .names)) +
@@ -210,7 +210,7 @@ ggheatmap(small_mat) +
     align_kmeans(3L) +
     ggmark(
         mark_tetragon(4:6, 1:2, 
-            element =  element_polygon(fill = c("red", "blue"), alpha = 0.5)
+            .element =  element_polygon(fill = c("red", "blue"), alpha = 0.5)
         )
     ) +
     geom_boxplot(aes(.names, value, fill = .names)) +
@@ -233,7 +233,7 @@ ggheatmap(small_mat) +
     align_kmeans(3L) +
     ggmark(
         mark_line(4:6, 1:2, 
-            element =  I(element_line(color = c("red", "blue")))
+            .element =  I(element_line(color = c("red", "blue")))
         )
     ) +
     geom_boxplot(aes(.names, value, fill = .names)) +
@@ -254,7 +254,7 @@ ggheatmap(small_mat) +
     align_kmeans(3L) +
     ggmark(
         mark_tetragon(4:6, 1:2, 
-            element =  I(element_polygon(fill = c("red", "blue"), alpha = 0.5))
+            .element =  I(element_polygon(fill = c("red", "blue"), alpha = 0.5))
         )
     ) +
     geom_boxplot(aes(.names, value, fill = .names)) +
