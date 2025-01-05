@@ -14,13 +14,13 @@ direction of the stack layout, either `"h"`(`horizontal`) or `"v"`(`vertical`).
 Several aliases are available for convenience:
 
  - `stack_discretev`: A special case of `stack_discrete` that sets `direction =
- "vertical"`.
+ "v"`.
  - `stack_discreteh`: A special case of `stack_discrete` that sets `direction =
- "horizontal"`.
+ "h"`.
  - `stack_continuousv()`: A special case of `stack_continuous` that sets
- `direction = "vertical"`.
+ `direction = "v"`.
  - `stack_continuoush()`: A special case of `stack_continuous` that sets
- `direction = "horizontal"`.
+ `direction = "h"`.
 
 ```{r setup}
 #| echo: false

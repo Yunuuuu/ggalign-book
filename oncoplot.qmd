@@ -155,7 +155,7 @@ with `geom_subtile()` is more effective. This function subdivides each cell into
 smaller rectangles, allowing the distinct alterations to be clearly displayed.
 ```{r}
 ggoncoplot(laml, n_top = 20, collapse_vars = FALSE, filling = FALSE) +
-    geom_subtile(aes(fill = value), direction = "vertical") +
+    geom_subtile(aes(fill = value), direction = "v") +
     scale_fill_brewer(palette = "Dark2", na.translate = FALSE) +
     theme_no_axes("x")
 ```
@@ -169,7 +169,7 @@ ggoncoplot(laml, n_top = 20, collapse_vars = FALSE, filling = FALSE) +
         # we apply the parent layout `scheme_data()` first (`inherit = TRUE`),
         # which will split the alteration string and unnested the columns.
     }, inherit = TRUE) +
-    geom_subtile(aes(fill = value), direction = "vertical") +
+    geom_subtile(aes(fill = value), direction = "v") +
     scale_fill_brewer(palette = "Dark2", na.translate = FALSE) +
     theme_no_axes("x")
 ```
@@ -277,7 +277,7 @@ an example of how to extract the sample summary data (e.g., TMB) using
 `ggalign_attr()` and add it to the top annotation of an oncoplot:
 ```{r}
 ggoncoplot(laml, n_top = 20, collapse_vars = FALSE, filling = FALSE) +
-    geom_subtile(aes(fill = value), direction = "vertical") +
+    geom_subtile(aes(fill = value), direction = "v") +
     theme_no_axes("x") +
     anno_top(size = 0.2) +
     ggalign(data = function(data) {
@@ -298,7 +298,7 @@ We can draw the example from
 
 ```{r}
 ggoncoplot(laml, n_top = 20, collapse_vars = FALSE, filling = FALSE) +
-    geom_subtile(aes(fill = value), direction = "vertical") +
+    geom_subtile(aes(fill = value), direction = "v") +
     theme_no_axes("x") +
     # since legends from geom_tile (oncoPrint body) and `geom_bar`
     # is different, though both looks like the same, the internal
