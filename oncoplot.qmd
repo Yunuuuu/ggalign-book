@@ -174,12 +174,12 @@ ggoncoplot(laml, n_top = 20, collapse_vars = FALSE, filling = FALSE) +
     theme_no_axes("x")
 ```
 
-### geom_draw()
+### geom_draw2()
 `geom_subtile()` often suffices for most scenarios. However, if you require a
-strategy similar to that of `ComplexHeatmap`, consider using `geom_draw()`,
+strategy similar to that of `ComplexHeatmap`, consider using `geom_draw2()`,
 which offers greater flexibility for complex customizations.
 
-Key Features of `geom_draw()`:
+Key Features of `geom_draw2()`:
 
  - Custom Drawing Logic: Accepts a `draw` aesthetic, allowing each cell to be
  rendered as a specific graphical object (`grob`). 
@@ -195,7 +195,7 @@ Key Features of `geom_draw()`:
 :) Sorry, I cannot deal with a pretty example for this, but the function
 provided in `values` argument of `scale_draw_manual` operates similarly to
 `alter_fun` in ComplexHeatmap. Currently, `geom_subtile()` performs well enough
-for most cases, making `geom_draw()` somewhat cumbersome to use. Managing
+for most cases, making `geom_draw2()` somewhat cumbersome to use. Managing
 alteration types, especially in the case of overlapping alterations, requires
 meticulous design to ensure that the visual elements do not interfere with each
 other.
@@ -248,11 +248,11 @@ draw_mapping <- list(
 #| layout-ncol: 2
 value <- sample(letters, 5L)
 ggplot(data.frame(value = value, y = seq_len(5))) +
-    geom_draw(aes(x = 1, y = y, draw = value, fill = value)) +
+    geom_draw2(aes(x = 1, y = y, draw = value, fill = value)) +
     scale_draw_manual(values = draw_mapping) +
     scale_fill_brewer(palette = "Dark2")
 ggplot(data.frame(value = c(value, value[5L]), y = c(1, 2, 3, 1, 2, 3))) +
-    geom_draw(aes(x = 1, y = y, draw = value, fill = value)) +
+    geom_draw2(aes(x = 1, y = y, draw = value, fill = value)) +
     scale_draw_manual(values = draw_mapping) +
     scale_fill_brewer(palette = "Dark2")
 ```
