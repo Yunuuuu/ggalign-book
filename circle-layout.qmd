@@ -56,10 +56,10 @@ arrange each plot along a circular track. The `radial` argument in
 outermost to the innermost position.
 ```{r}
 circle_discrete(small_mat, radial = coord_radial(inner.radius = 0.1)) +
+    align_dendro() +
     ggalign() +
     geom_tile(aes(y = .column_index, fill = value)) +
-    scale_fill_viridis_c() +
-    align_dendro()
+    scale_fill_viridis_c()
 ```
 
 The `size` of each plot within the circle can be adjusted using the `size`
@@ -69,10 +69,10 @@ values are interpreted relative to one another, even for `unit` objects. By
 default, all plots have a relative size of `1`.
 ```{r}
 circle_discrete(small_mat, radial = coord_radial(inner.radius = 0.1)) +
+    align_dendro(size = 0.5) +
     ggalign() +
     geom_tile(aes(y = .column_index, fill = value)) +
-    scale_fill_viridis_c() +
-    align_dendro(size = 0.5)
+    scale_fill_viridis_c()
 ```
 
 Although `circle_layout()` does not currently support splitting observations
@@ -81,50 +81,53 @@ instance, you can add a tile to represent each group. If you're using a
 dendrogram, you can color the branches to indicate different groups.
 ```{r}
 circle_discrete(small_mat, radial = coord_radial(inner.radius = 0.1)) +
+
+    # add a dendrogram
+    align_dendro(aes(color = branch), k = 3L, size = 0.5) +
+    scale_color_brewer(palette = "Dark2") +
+
+    # add a heatmap
+    ggalign() +
+    geom_tile(aes(y = .column_index, fill = value)) +
+    scale_fill_viridis_c() +
+
     # add a single tile for each group
     ggalign(NULL, size = 0.1) +
     geom_tile(aes(y = 1L, fill = .panel)) +
     theme_no_axes("y") +
-    scale_fill_brewer(palette = "Dark2", guide = "none") +
+    scale_fill_brewer(palette = "Dark2", guide = "none")
+```
+
+## spacing
+The spacing between plot tracks in `circle_layout()` is controlled
+`panel.spacing.r` parameter. The `panel.spacing.r` parameter sets the spacing
+between the individual plot panels (tracks) within the circle layout. Increasing
+this value will add more space between the tracks. Specifically, the
+`panel.spacing.r` of the outer plot determines the spacing between it and the
+inner plot. By modifying this value, you can control the overall visual
+separation between tracks. Note, you should also remove the scale expansion if you 
+remove all spaces.
+```{r}
+circle_discrete(small_mat, radial = coord_radial(inner.radius = 0.1)) +
+
+    # add a dendrogram
+    align_dendro(aes(color = branch), k = 3L, size = 0.5) +
+    no_expansion("y") +
+    scale_color_brewer(palette = "Dark2") +
 
     # add a heatmap
     ggalign() +
     geom_tile(aes(y = .column_index, fill = value)) +
     scale_fill_viridis_c() +
+    no_expansion("y") +
+    theme(panel.spacing.r = unit(0, "mm")) +
 
-    # add a dendrogram
-    align_dendro(aes(color = branch), k = 3L, size = 0.5) +
-    scale_color_brewer(palette = "Dark2")
-```
-
-## spacing
-The spacing between plot tracks in `circle_layout()` is controlled by the scale
-expansion and the `panel.spacing.r` parameter. The `panel.spacing.r` parameter
-sets the spacing between the individual plot panels (tracks) within the circle
-layout. Increasing this value will add more space between the tracks.
-Specifically, the `panel.spacing.r` of the outer plot determines the spacing
-between it and the inner plot. By modifying this value, you can control the
-overall visual separation between tracks.
-```{r}
-circle_discrete(small_mat, radial = coord_radial(inner.radius = 0.1)) +
     # add a single tile for each group
     ggalign(NULL, size = 0.1) +
     geom_tile(aes(y = 1L, fill = .panel)) +
     scale_fill_brewer(palette = "Dark2", guide = "none") +
     no_expansion("y") +
-    theme(panel.spacing.r = unit(0, "mm")) +
-
-    # add a heatmap
-    ggalign() +
-    geom_tile(aes(y = .column_index, fill = value)) +
-    scale_fill_viridis_c() +
-    no_expansion("y") +
-    theme(panel.spacing.r = unit(0, "mm")) +
-
-    # add a dendrogram
-    align_dendro(aes(color = branch), k = 3L, size = 0.5) +
-    no_expansion("y") +
-    scale_color_brewer(palette = "Dark2")
+    theme(panel.spacing.r = unit(0, "mm"))
 ```
 
 The `no_expansion()` function is used to remove expansion around specific
