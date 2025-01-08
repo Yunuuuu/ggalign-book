@@ -381,10 +381,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>In essence, you can think of <code>circle_layout()</code> as a radial version of <code>stack_vertical()</code>. When rendered, <code>circle_layout()</code> uses <code>coord_radial()</code> to arrange each plot along a circular track. The <code>radial</code> argument in <code>circle_layout()</code> controls the overall inner radius. Plots are added from the outermost to the innermost position.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">circle_discrete</span>(small_mat, <span class="at">radial =</span> <span class="fu">coord_radial</span>(<span class="at">inner.radius =</span> <span class="fl">0.1</span>)) <span class="sc">+</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggalign</span>() <span class="sc">+</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_tile</span>(<span class="fu">aes</span>(<span class="at">y =</span> .column_index, <span class="at">fill =</span> value)) <span class="sc">+</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_viridis_c</span>() <span class="sc">+</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_dendro</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_dendro</span>() <span class="sc">+</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggalign</span>() <span class="sc">+</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_tile</span>(<span class="fu">aes</span>(<span class="at">y =</span> .column_index, <span class="at">fill =</span> value)) <span class="sc">+</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_viridis_c</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -396,10 +396,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The <code>size</code> of each plot within the circle can be adjusted using the <code>size</code> argument (<a href="stack-layout.html#sec-stack-layout-plot-size" class="quarto-xref"><span>Section 2.4</span></a>). However, it’s important to note that <code>circle_layout()</code> only supports relative <code>size</code> adjustments, meaning all size values are interpreted relative to one another, even for <code>unit</code> objects. By default, all plots have a relative size of <code>1</code>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">circle_discrete</span>(small_mat, <span class="at">radial =</span> <span class="fu">coord_radial</span>(<span class="at">inner.radius =</span> <span class="fl">0.1</span>)) <span class="sc">+</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggalign</span>() <span class="sc">+</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_tile</span>(<span class="fu">aes</span>(<span class="at">y =</span> .column_index, <span class="at">fill =</span> value)) <span class="sc">+</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_viridis_c</span>() <span class="sc">+</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_dendro</span>(<span class="at">size =</span> <span class="fl">0.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_dendro</span>(<span class="at">size =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggalign</span>() <span class="sc">+</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_tile</span>(<span class="fu">aes</span>(<span class="at">y =</span> .column_index, <span class="at">fill =</span> value)) <span class="sc">+</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_viridis_c</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -411,20 +411,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Although <code>circle_layout()</code> does not currently support splitting observations into different facets, you can still indicate different groups visually. For instance, you can add a tile to represent each group. If you’re using a dendrogram, you can color the branches to indicate different groups.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">circle_discrete</span>(small_mat, <span class="at">radial =</span> <span class="fu">coord_radial</span>(<span class="at">inner.radius =</span> <span class="fl">0.1</span>)) <span class="sc">+</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># add a single tile for each group</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggalign</span>(<span class="cn">NULL</span>, <span class="at">size =</span> <span class="fl">0.1</span>) <span class="sc">+</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_tile</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="dv">1</span>L, <span class="at">fill =</span> .panel)) <span class="sc">+</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_no_axes</span>(<span class="st">"y"</span>) <span class="sc">+</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">"Dark2"</span>, <span class="at">guide =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># add a heatmap</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggalign</span>() <span class="sc">+</span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_tile</span>(<span class="fu">aes</span>(<span class="at">y =</span> .column_index, <span class="at">fill =</span> value)) <span class="sc">+</span></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_viridis_c</span>() <span class="sc">+</span></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># add a dendrogram</span></span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_dendro</span>(<span class="fu">aes</span>(<span class="at">color =</span> branch), <span class="at">k =</span> <span class="dv">3</span>L, <span class="at">size =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_color_brewer</span>(<span class="at">palette =</span> <span class="st">"Dark2"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># add a dendrogram</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_dendro</span>(<span class="fu">aes</span>(<span class="at">color =</span> branch), <span class="at">k =</span> <span class="dv">3</span>L, <span class="at">size =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_color_brewer</span>(<span class="at">palette =</span> <span class="st">"Dark2"</span>) <span class="sc">+</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># add a heatmap</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggalign</span>() <span class="sc">+</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_tile</span>(<span class="fu">aes</span>(<span class="at">y =</span> .column_index, <span class="at">fill =</span> value)) <span class="sc">+</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_viridis_c</span>() <span class="sc">+</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># add a single tile for each group</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggalign</span>(<span class="cn">NULL</span>, <span class="at">size =</span> <span class="fl">0.1</span>) <span class="sc">+</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_tile</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="dv">1</span>L, <span class="at">fill =</span> .panel)) <span class="sc">+</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_no_axes</span>(<span class="st">"y"</span>) <span class="sc">+</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">"Dark2"</span>, <span class="at">guide =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -436,27 +437,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="spacing" class="level2" data-number="9.2">
 <h2 data-number="9.2" class="anchored" data-anchor-id="spacing"><span class="header-section-number">9.2</span> spacing</h2>
-<p>The spacing between plot tracks in <code>circle_layout()</code> is controlled by the scale expansion and the <code>panel.spacing.r</code> parameter. The <code>panel.spacing.r</code> parameter sets the spacing between the individual plot panels (tracks) within the circle layout. Increasing this value will add more space between the tracks. Specifically, the <code>panel.spacing.r</code> of the outer plot determines the spacing between it and the inner plot. By modifying this value, you can control the overall visual separation between tracks.</p>
+<p>The spacing between plot tracks in <code>circle_layout()</code> is controlled <code>panel.spacing.r</code> parameter. The <code>panel.spacing.r</code> parameter sets the spacing between the individual plot panels (tracks) within the circle layout. Increasing this value will add more space between the tracks. Specifically, the <code>panel.spacing.r</code> of the outer plot determines the spacing between it and the inner plot. By modifying this value, you can control the overall visual separation between tracks. Note, you should also remove the scale expansion if you remove all spaces.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">circle_discrete</span>(small_mat, <span class="at">radial =</span> <span class="fu">coord_radial</span>(<span class="at">inner.radius =</span> <span class="fl">0.1</span>)) <span class="sc">+</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># add a single tile for each group</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggalign</span>(<span class="cn">NULL</span>, <span class="at">size =</span> <span class="fl">0.1</span>) <span class="sc">+</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_tile</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="dv">1</span>L, <span class="at">fill =</span> .panel)) <span class="sc">+</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">"Dark2"</span>, <span class="at">guide =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">no_expansion</span>(<span class="st">"y"</span>) <span class="sc">+</span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">panel.spacing.r =</span> <span class="fu">unit</span>(<span class="dv">0</span>, <span class="st">"mm"</span>)) <span class="sc">+</span></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># add a heatmap</span></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggalign</span>() <span class="sc">+</span></span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_tile</span>(<span class="fu">aes</span>(<span class="at">y =</span> .column_index, <span class="at">fill =</span> value)) <span class="sc">+</span></span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_viridis_c</span>() <span class="sc">+</span></span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">no_expansion</span>(<span class="st">"y"</span>) <span class="sc">+</span></span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">panel.spacing.r =</span> <span class="fu">unit</span>(<span class="dv">0</span>, <span class="st">"mm"</span>)) <span class="sc">+</span></span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    <span class="co"># add a dendrogram</span></span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_dendro</span>(<span class="fu">aes</span>(<span class="at">color =</span> branch), <span class="at">k =</span> <span class="dv">3</span>L, <span class="at">size =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
-<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">no_expansion</span>(<span class="st">"y"</span>) <span class="sc">+</span></span>
-<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_color_brewer</span>(<span class="at">palette =</span> <span class="st">"Dark2"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># add a dendrogram</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_dendro</span>(<span class="fu">aes</span>(<span class="at">color =</span> branch), <span class="at">k =</span> <span class="dv">3</span>L, <span class="at">size =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">no_expansion</span>(<span class="st">"y"</span>) <span class="sc">+</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_color_brewer</span>(<span class="at">palette =</span> <span class="st">"Dark2"</span>) <span class="sc">+</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># add a heatmap</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggalign</span>() <span class="sc">+</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_tile</span>(<span class="fu">aes</span>(<span class="at">y =</span> .column_index, <span class="at">fill =</span> value)) <span class="sc">+</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_viridis_c</span>() <span class="sc">+</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">no_expansion</span>(<span class="st">"y"</span>) <span class="sc">+</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">panel.spacing.r =</span> <span class="fu">unit</span>(<span class="dv">0</span>, <span class="st">"mm"</span>)) <span class="sc">+</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># add a single tile for each group</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggalign</span>(<span class="cn">NULL</span>, <span class="at">size =</span> <span class="fl">0.1</span>) <span class="sc">+</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_tile</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="dv">1</span>L, <span class="at">fill =</span> .panel)) <span class="sc">+</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">"Dark2"</span>, <span class="at">guide =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">no_expansion</span>(<span class="st">"y"</span>) <span class="sc">+</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">panel.spacing.r =</span> <span class="fu">unit</span>(<span class="dv">0</span>, <span class="st">"mm"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
