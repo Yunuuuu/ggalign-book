@@ -318,7 +318,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#specialized-geoms" id="toc-specialized-geoms" class="nav-link" data-scroll-target="#specialized-geoms"><span class="header-section-number">14.5</span> Specialized Geoms</a>
   <ul class="collapse">
   <li><a href="#geom_subtile" id="toc-geom_subtile" class="nav-link" data-scroll-target="#geom_subtile"><span class="header-section-number">14.5.1</span> geom_subtile()</a></li>
-  <li><a href="#geom_draw2" id="toc-geom_draw2" class="nav-link" data-scroll-target="#geom_draw2"><span class="header-section-number">14.5.2</span> geom_draw2()</a></li>
+  <li><a href="#geom_gshape" id="toc-geom_gshape" class="nav-link" data-scroll-target="#geom_gshape"><span class="header-section-number">14.5.2</span> geom_gshape()</a></li>
   </ul></li>
   <li><a href="#ggalign-attributes" id="toc-ggalign-attributes" class="nav-link" data-scroll-target="#ggalign-attributes"><span class="header-section-number">14.6</span> ggalign attributes</a></li>
   <li><a href="#integration-with-gistic-results-from-maftools" id="toc-integration-with-gistic-results-from-maftools" class="nav-link" data-scroll-target="#integration-with-gistic-results-from-maftools"><span class="header-section-number">14.7</span> Integration with GISTIC results from maftools</a></li>
@@ -568,19 +568,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="geom_draw2" class="level3" data-number="14.5.2">
-<h3 data-number="14.5.2" class="anchored" data-anchor-id="geom_draw2"><span class="header-section-number">14.5.2</span> geom_draw2()</h3>
-<p><code>geom_subtile()</code> often suffices for most scenarios. However, if you require a strategy similar to that of <code>ComplexHeatmap</code>, consider using <code>geom_draw2()</code>, which offers greater flexibility for complex customizations.</p>
-<p>Key Features of <code>geom_draw2()</code>:</p>
+<section id="geom_gshape" class="level3" data-number="14.5.2">
+<h3 data-number="14.5.2" class="anchored" data-anchor-id="geom_gshape"><span class="header-section-number">14.5.2</span> geom_gshape()</h3>
+<p><code>geom_subtile()</code> often suffices for most scenarios. However, if you require a strategy similar to that of <code>ComplexHeatmap</code>, consider using <code>geom_gshape()</code>, which offers greater flexibility for complex customizations.</p>
+<p>Key Features of <code>geom_gshape()</code>:</p>
 <ul>
-<li>Custom Drawing Logic: Accepts a <code>draw</code> aesthetic, allowing each cell to be rendered as a specific graphical object (<code>grob</code>).</li>
-<li>Manual Scaling: Requires <code>scale_draw_manual()</code> to map <code>draw</code> values to corresponding drawing functions.</li>
-<li>Flexible Aesthetic Mapping: Functions mapped through <code>scale_draw_manual()</code> can utilize any number of ggplot2 aesthetics and output custom graphical objects (<code>grob</code>). Beyond the <code>x</code>, <code>y</code>, <code>xmin</code>, <code>xmax</code>, <code>width</code>, and <code>height</code> aesthetics, you may want to rely solely on mapped aesthetics (<code>aes()</code>). Unmapped aesthetics will default to ggplot2’s behavior, which might not produce the desired outcome. And always use <code>native</code> unit.</li>
+<li>Custom Drawing Logic: Accepts a <code>gshape</code> aesthetic, allowing each cell to be rendered as a specific graphical object (<code>grob</code>).</li>
+<li>Flexible Aesthetic Mapping: You must provide the manual scaling <code>scale_gshape_manual()</code> to map <code>gshape</code> values to corresponding drawing functions. Functions mapped through <code>scale_gshape_manual()</code> can utilize any number of ggplot2 aesthetics and output custom graphical objects (<code>grob</code>).</li>
 </ul>
-<p>:) Sorry, I cannot deal with a pretty example for this, but the function provided in <code>values</code> argument of <code>scale_draw_manual</code> operates similarly to <code>alter_fun</code> in ComplexHeatmap. Currently, <code>geom_subtile()</code> performs well enough for most cases, making <code>geom_draw2()</code> somewhat cumbersome to use. Managing alteration types, especially in the case of overlapping alterations, requires meticulous design to ensure that the visual elements do not interfere with each other.</p>
+<p>The function provided in <code>values</code> argument of <code>scale_gshape_manual()</code> operates similarly to <code>alter_fun</code> in ComplexHeatmap. Currently, <code>geom_subtile()</code> performs well enough for most cases, making <code>geom_gshape()</code> somewhat cumbersome to use. Managing alteration types, especially in the case of overlapping alterations, requires meticulous design to ensure that the visual elements do not interfere with each other.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(grid)</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>draw_mapping <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>gshape_mapping <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">function</span>(x, y, width, height, fill) {</span>
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>        <span class="fu">rectGrob</span>(x, y,</span>
 <span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">width =</span> width, <span class="at">height =</span> height,</span>
@@ -624,12 +623,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>value <span class="ot">&lt;-</span> <span class="fu">sample</span>(letters, <span class="dv">5</span>L)</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">data.frame</span>(<span class="at">value =</span> value, <span class="at">y =</span> <span class="fu">seq_len</span>(<span class="dv">5</span>))) <span class="sc">+</span></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_draw2</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="dv">1</span>, <span class="at">y =</span> y, <span class="at">draw =</span> value, <span class="at">fill =</span> value)) <span class="sc">+</span></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_draw_manual</span>(<span class="at">values =</span> draw_mapping) <span class="sc">+</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_gshape</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="dv">1</span>, <span class="at">y =</span> y, <span class="at">gshape =</span> value, <span class="at">fill =</span> value)) <span class="sc">+</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_gshape_manual</span>(<span class="at">values =</span> gshape_mapping) <span class="sc">+</span></span>
 <span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">"Dark2"</span>)</span>
 <span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">data.frame</span>(<span class="at">value =</span> <span class="fu">c</span>(value, value[<span class="dv">5</span>L]), <span class="at">y =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>))) <span class="sc">+</span></span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_draw2</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="dv">1</span>, <span class="at">y =</span> y, <span class="at">draw =</span> value, <span class="at">fill =</span> value)) <span class="sc">+</span></span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_draw_manual</span>(<span class="at">values =</span> draw_mapping) <span class="sc">+</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_gshape</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="dv">1</span>, <span class="at">y =</span> y, <span class="at">gshape =</span> value, <span class="at">fill =</span> value)) <span class="sc">+</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_gshape_manual</span>(<span class="at">values =</span> gshape_mapping) <span class="sc">+</span></span>
 <span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">"Dark2"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell quarto-layout-panel" data-layout-ncol="2">
 <div class="quarto-layout-row">
