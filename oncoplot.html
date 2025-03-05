@@ -412,7 +412,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>The function automatically reorders rows and columns based on alteration frequency. Disable this with <code>reorder_row = FALSE</code> and <code>reorder_column = FALSE</code>.</p>
-<p>You can further customize layouts using methods from <code>vignette("layout-customize")</code>.</p>
+<p>You can further customize layouts using methods from <a href="layout-customize.html" class="quarto-xref"><span>Chapter 4</span></a>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggoncoplot</span>(mat,</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">map_width =</span> <span class="fu">c</span>(<span class="at">snv =</span> <span class="fl">0.5</span>), <span class="at">map_height =</span> <span class="fu">c</span>(<span class="at">indel =</span> <span class="fl">0.9</span>),</span>
@@ -430,7 +430,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="advanced-data-handling" class="level2" data-number="14.3">
 <h2 data-number="14.3" class="anchored" data-anchor-id="advanced-data-handling"><span class="header-section-number">14.3</span> Advanced Data Handling</h2>
-<p><code>ggoncoplot()</code> is built on <code>ggheatmap()</code> with a default <code>scheme_data()</code> (see <code>vignette("plot-options")</code> for details), which splits alterations into separate entries for visualization. (See <code>ggplot2 specification</code> section in <code>ggheatmap()</code> for the input data of <code>scheme_data()</code>):</p>
+<p><code>ggoncoplot()</code> is built on <code>ggheatmap()</code> with a default <code>scheme_data()</code> (see <a href="schemes.html" class="quarto-xref"><span>Chapter 11</span></a> for details), which splits alterations into separate entries for visualization. (See <code>ggplot2 specification</code> section in <code>ggheatmap()</code> for the input data of <code>scheme_data()</code>):</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>pdata <span class="ot">&lt;-</span> <span class="cf">function</span>(data) {</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    tidyr<span class="sc">::</span><span class="fu">separate_longer_delim</span>(data,</span>
