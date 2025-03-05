@@ -1,4 +1,4 @@
-# Layout customize
+# Layout customize {#sec-layout-customize}
 For layouts that can align observations, the package provides a suite of
 `align_*` functions designed to give you precise control over the observations.
 These functions allow you to reorder observations or partition them into

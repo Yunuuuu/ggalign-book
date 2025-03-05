@@ -95,7 +95,7 @@ In this example, we use `layout_annotation()` to insert a plot background in the
 entire layout, it can also be used to control the theme of title,
 subtitle, caption (`layout_title()`), guides, margins, panel.border, panel.spacing.
 
-## Layout Customize {#sec-stack-layout-layout-customize}
+## Customizing the Layout {#sec-stack-layout-layout-customize}
 When aligning discrete variables, the package offers a suite of `align_*`
 functions designed to give you precise control over the ordering and groups.
 Instead of detailing each `align_*` function individually, we will focus on the

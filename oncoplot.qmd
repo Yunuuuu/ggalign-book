@@ -53,7 +53,7 @@ The function automatically reorders rows and columns based on alteration
 frequency. Disable this with `reorder_row = FALSE` and `reorder_column = FALSE`.
 
 You can further customize layouts using methods from
-`vignette("layout-customize")`.
+@sec-layout-customize.
 ```{r}
 ggoncoplot(mat,
     map_width = c(snv = 0.5), map_height = c(indel = 0.9),
@@ -64,7 +64,7 @@ ggoncoplot(mat,
 
 ## Advanced Data Handling
 `ggoncoplot()` is built on `ggheatmap()` with a default `scheme_data()` (see
-`vignette("plot-options")` for details), which splits alterations into separate
+@sec-schemes for details), which splits alterations into separate
 entries for visualization. (See `ggplot2 specification` section in `ggheatmap()`
 for the input data of `scheme_data()`):
 ```{r eval=rlang::is_installed("tidyr")}

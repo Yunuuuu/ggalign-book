@@ -1,7 +1,7 @@
 # Difference with ggplot2
 `ggalign` focuses on aligning axes across multiple plots. While it builds on the
 `ggplot2` framework, there are key differences in how scales, facets, and
-coordinates are handled. This vignette highlights these syntax differences. 
+coordinates are handled. This chapter highlights these syntax differences. 
 
 ```{r setup}
 #| echo: false
