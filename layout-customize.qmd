@@ -10,7 +10,7 @@ Currently, there are four key `align_*` functions available for layout customiza
 - **`align_kmeans`**: Group observations by k-means clustering results.
 - **`align_order`**: Reorder layout observations based on statistical weights
  or allows for manual reordering based on user-defined ordering index.
-- **`align_reorder`**: Reorder observations using an arbitrary statistical function.
+- **`align_order2`**: Reorder observations using an arbitrary statistical function.
 - **`align_hclust`**: Reorder or group observations based on hierarchical clustering.
 
 Note that these functions do not add plot areas and set the active context,
@@ -271,8 +271,8 @@ ggheatmap(small_mat) +
     align_hclust(k = 2L)
 ```
 
-## `align_reorder()`
-The `align_reorder()` function enables the reordering of observations based on a
+## `align_order2()`
+The `align_order2()` function enables the reordering of observations based on a
 specified statistical function. This function accepts a data argument and
 computes a statistic that determines the new ordering of the observations. The
 resulting order is extracted using the `order2()` function.
@@ -282,13 +282,13 @@ like this:
 ```{r}
 ggheatmap(small_mat) +
     anno_left() +
-    align_reorder(hclust2)
+    align_order2(hclust2)
 ```
 
 Here, `hclust2()` is a special function used by `align_hclust()` to calculate
 the distance matrix and perform hierarchical clustering. 
 
-In addition to hierarchical clustering, the `align_reorder()` function can also
+In addition to hierarchical clustering, the `align_order2()` function can also
 handle objects from the
 [seriation](https://CRAN.R-project.org/package=seriation) package. For
 example, you can use the `seriate()` function with a method like `"BEA_TSP"` to
@@ -296,7 +296,7 @@ reorder the observations based on a specific seriation algorithm:
 ```{r}
 ggheatmap(small_mat) +
     anno_left() +
-    align_reorder(seriation::seriate, method = "BEA_TSP", data = abs)
+    align_order2(seriation::seriate, method = "BEA_TSP", data = abs)
 ```
 
 This approach gives you the flexibility to apply different statistical or

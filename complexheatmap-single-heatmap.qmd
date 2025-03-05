@@ -354,7 +354,7 @@ ggheatmap(mat) +
 ```
 
 ## Seriation
-`align_reorder()` can directly take the `seriate()` function as the input and
+`align_order2()` can directly take the `seriate()` function as the input and
 extract the ordering information.
 ```{r eval=rlang::is_installed("seriation")}
 mat2 <- max(mat) - mat
@@ -362,9 +362,9 @@ ggheatmap(mat2) +
     scale_fill_gradient2(low = "blue", high = "red", midpoint = 2L) +
     theme(axis.text.x = element_text(angle = -60, hjust = 0)) +
     anno_right(size = unit(20, "mm")) +
-    align_reorder(seriation::seriate, method = "BEA_TSP") +
+    align_order2(seriation::seriate, method = "BEA_TSP") +
     anno_top(size = unit(15, "mm")) +
-    align_reorder(seriation::seriate, method = "BEA_TSP") &
+    align_order2(seriation::seriate, method = "BEA_TSP") &
     theme(plot.margin = margin())
 ```
 

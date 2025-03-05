@@ -1,10 +1,13 @@
 # Introduction
 
-`ggalign` extends `ggplot2` by providing advanced tools for aligning and
-organizing multiple plots, particularly those that automatically reorder
-observations, such as dendrogram. It offers fine control over layout adjustment
-and plot annotations, enabling you to create complex visualizations while
-leveraging the familiar grammar of `ggplot2`.
+The `ggalign` package extends `ggplot2` to simplify the creation of complex,
+multi-plot visualizations, especially for biomedical research. Built on the
+familiar grammar of graphics, it provides intuitive tools to align and organize
+plots—such as heatmaps, dendrograms, or circular layouts—while handling
+intricate relationships in multi-omics data, like genomics or microbiomes.
+Whether you need to stack plots, arrange them around a central figure, or link
+diverse datasets (e.g., genes to pathways), `ggalign` offers flexibility and
+precision with minimal effort.
 
 ## Installation
 
@@ -31,19 +34,17 @@ remotes::install_github("Yunuuuu/ggalign")
 ```
 
 ## General design
-The core feature of `ggalign` lies in its integration of the `grammar of
-graphics` into advanced visualization through its object-oriented `Layout`
-system. The package provides three main `Layout` classes:
+`ggalign` simplifies advanced visualization through its object-oriented `Layout`
+system, integrated with `ggplot2`'s grammar of graphics. It offers three main
+layout types.
 
- - the `StackLayout` class: Put plots horizontally or vertically.
- - the `QuadLayout` class: Arranges plots in the four quadrants (top, left,
- bottom, right) around a main plot. This layout is ideal for designs that
- require supplementary plots or annotations surrounding a central figure.
- - the `CircleLayout` class: Positions plots in a circular arrangement.
+ - `StackLayout`: Stacks plots horizontally or vertically.
+ - `QuadLayout`: Arranges plots in four quadrants (top, left, bottom, right)
+ around a central plot.
+ - the `CircleLayout`: Positions plots in a circular pattern.
 
-Each `Layout` class supports the alignment of both discrete (ordinal) and
-continuous variables. Depending on the desired alignment across multiple plots
-within a layout, the following variants are available:
+Each layout supports both discrete (e.g., categories) and continuous (e.g.,
+measurements) data, with flexible functions:
 
 For `StackLayout`:
 
@@ -56,15 +57,14 @@ book, I will refer to both variants as `stack_layout()`.
 
 For `QuadLayout`: 
 
- - `quad_continuous`/`ggside`: Align continuous variables in both horizontal and vertical directions. 
- - `quad_discrete`: Align discrete variables in both horizontal and vertical directions. 
- - `quad_layout`: Aligns discrete or continuous variables either horizontally or vertically.
+ - `quad_continuous()`/`ggside()`: Align continuous variables in both horizontal and vertical directions. 
+ - `quad_discrete()`: Align discrete variables in both horizontal and vertical directions. 
 
-The functions `quad_continuous()` and `quad_discrete()` are specialized versions
-of `quad_layout()` (@sec-quad-layout-quad-layout): `quad_continuous()` sets both
-`xlim` and `ylim` arguments, while `quad_discrete()` does not set `xlim` or
-`ylim`. For simplicity, throughout this book, I will refer to all of the
-variants as `quad_layout()`.
+`quad_layout()` aligns either discrete or continuous variables, horizontally or
+vertically. The functions `quad_continuous()` and `quad_discrete()` are
+specialized versions of `quad_layout()` (@sec-quad-layout-quad-layout). For
+simplicity, throughout this book, I will refer to all of the variants as
+`quad_layout()`.
 
 For `CircleLayout`:
 
@@ -122,7 +122,7 @@ typical workflow includes:
       - `align_group()`: Group observations into panel with a group variable.
       - `align_kmeans()`: Group observations into panel by kmeans.
       - `align_order()`: Reorder layout observations based on statistical weights or by manually specifying the observation index.
-      - `align_reorder`: Reorder observations using an arbitrary statistical function
+      - `align_order2`: Reorder observations using an arbitrary statistical function
       - `align_hclust()`: Reorder or group observations based on hierarchical clustering.
   3. Adding plots with:
       - `align_dendro()`: Add a dendrogram to the plot, and reorder or group observations based on hierarchical clustering.
@@ -196,12 +196,12 @@ following columns (more details will be introduced in the [@sec-ggalign]):
 
 `align_dendro()` can also split the observations into groups. 
 ```{r}
-stack_alignv(small_mat) +                                             # <1>
-    align_dendro(k = 3) +                                             # <2>
-    ggalign(data = rowSums) +                                         # <3>
+stack_alignv(small_mat) +                                                  # <1>
+    align_dendro(k = 3) +                                                  # <2>
+    ggalign(data = rowSums) +                                              # <3>
     geom_bar(aes(.discrete_x, value, fill = .panel), stat = "identity") +  # <4>
-    scale_fill_brewer(palette = "Dark2", name = "Group") +            # <5>
-    theme(axis.text.x = element_text())                               # <6>
+    scale_fill_brewer(palette = "Dark2", name = "Group") +                 # <5>
+    theme(axis.text.x = element_text())                                    # <6>
 ```
   1. We initialize a vertical stack.
   2. Reorder and group the observations based on hierarchical clustering, and
