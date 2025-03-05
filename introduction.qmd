@@ -34,14 +34,14 @@ remotes::install_github("Yunuuuu/ggalign")
 ```
 
 ## General design
-`ggalign` simplifies advanced visualization through its object-oriented `Layout`
-system, integrated with `ggplot2`'s grammar of graphics. It offers three main
-layout types.
+`ggalign` streamlines advanced visualizations with an object-oriented `Layout`
+system that integrates seamlessly with `ggplot2`. It provides three core layout
+types:
 
  - `StackLayout`: Stacks plots horizontally or vertically.
  - `QuadLayout`: Arranges plots in four quadrants (top, left, bottom, right)
  around a central plot.
- - the `CircleLayout`: Positions plots in a circular pattern.
+ - `CircleLayout`: Positions plots in a circular pattern.
 
 Each layout supports both discrete (e.g., categories) and continuous (e.g.,
 measurements) data, with flexible functions:
@@ -52,8 +52,7 @@ For `StackLayout`:
  - `stack_continuous()`: Align continuous variable along the stack.
 
 `stack_layout()` integrates the functionalities of `stack_discrete()` and
-`stack_continuous()` into a single interface. For simplicity, throughout this
-book, I will refer to both variants as `stack_layout()`.
+`stack_continuous()` into a single interface.
 
 For `QuadLayout`: 
 
@@ -62,9 +61,7 @@ For `QuadLayout`:
 
 `quad_layout()` aligns either discrete or continuous variables, horizontally or
 vertically. The functions `quad_continuous()` and `quad_discrete()` are
-specialized versions of `quad_layout()` (@sec-quad-layout-quad-layout). For
-simplicity, throughout this book, I will refer to all of the variants as
-`quad_layout()`.
+specialized versions of `quad_layout()` (@sec-quad-layout-quad-layout).
 
 For `CircleLayout`:
 
@@ -72,42 +69,34 @@ For `CircleLayout`:
  - `circle_continuous()`: Align continuous variable in the circle.
 
 `circle_layout()` integrates the functionalities of `circle_discrete()` and
-`circle_continuous()` into a single interface. For simplicity, throughout this
-book, I will refer to both variants as `circle_layout()`.
+`circle_continuous()` into a single interface.
+
+> Note: For simplicity, this book uses `stack_layout()`, `quad_layout()`, and
+`circle_layout()` to refer to their respective layout variants.
 
 ![General design of ggalign](general-design.png)
 
-## Align axes in ggplot {#sec-align-axes}
-Before introducing the package, let's first discuss how to align axes in
-ggplot2. For continuous axes, alignment is straightforward because we just need
-to ensure that all plots have the same `limits`. This can be achieved in the
-`*_continuous()` function by setting the `limits` (or `xlim`/`ylim`) argument.
+## Align axes in ggplot2 {#sec-align-axes}
+Before exploring `ggalign`, let’s cover axis alignment in `ggplot2`. For
+continuous axes, it’s simple: set the same limits using the `limits` (or
+`xlim`/`ylim`) argument in `*_continuous()` functions.
 
-Aligning discrete axes is more challenging because we must first ensure that the
-number of unique discrete values is the same across all plots, and that the
-ordering is consistent. In ggplot2, it’s difficult to align discrete axes, since
-some plots may self-ordered. This issue is compounded when working with
-long-formatted data frames, which is required by ggplot2.
+Discrete axes are trickier. You need the same number of unique values and
+consistent ordering across plots. In `ggplot2`, this can be tough with long-form
+data frames, as plots may reorder data automatically. `ggalign` solves this by
+using `matrix` inputs for layouts aligning discrete axes (e.g., `*_discrete()`
+functions). Each matrix row represents a unique discrete value (an
+"observation"), and the number of rows defines the total unique values.
+Reordering rows ensures consistent alignment across plots. This is especially
+handy for functions like `quad_layout()` or `ggheatmap()`, where axes align in
+both directions—matrices transpose easily.
 
-To address this, the `ggalign` package typically uses matrix input for layouts
-that require aligning discrete axes (`*_discrete()` functions). Each row of the
-matrix represents a unique discrete value (observation), and the number of rows
-corresponds to the total number of unique values (number of observations). To
-ensure consistent ordering across plots, the internal just need to reorder the
-rows. This approach is also well-suited for functions like
-`quad_layout()`/`ggheatmap()`, where axes need to be aligned in both directions
-simultaneously, as matrices can be transposed (i.e., switching rows to columns
-and columns to rows). When drawing the plot, the `ggalign` package will melt the
-`matrix` into a long-formatted data frame. You may worry about that the matrix
-format may not fully support all input requirements for plots, the `ggalign`
-package provides a function (`scheme_data()`) to transform the plot data as
-needed to fit your specific use case.
+When rendering, `ggalign` converts the matrix into a long-form data frame. If the
+matrix format doesn’t fit your plot’s needs, use `scheme_data()` to transform the
+data for the plot.
 
-We often refer to "observations" when discussing discrete axes. Observations
-typically correspond to discrete variables, such as data points or samples. In
-the rest of the book, I will use "observations" and "discrete variables"
-interchangeably. You can assume that any reference to "observations" also
-applies to discrete variables.
+> Terminology: `"Observations"` and `"discrete variables"` are interchangeable
+here. Any mention of `"observations"` applies to discrete variables too.
 
 ## Getting Started
 ```{r}
@@ -132,6 +121,7 @@ typical workflow includes:
       - `ggfree()`: Initialize a ggplot object without aligning the axes.
   4. Layer additional `ggplot2` elements such as geoms, stats, or scales.
 
+Let’s create a sample matrix:
 ```{r}
 set.seed(123)
 small_mat <- matrix(rnorm(56), nrow = 7)
@@ -139,8 +129,8 @@ rownames(small_mat) <- paste0("row", seq_len(nrow(small_mat)))
 colnames(small_mat) <- paste0("column", seq_len(ncol(small_mat)))
 ```
 
-Every `*_layout()` function accepts default data, which will be inherited by all
-plots within the layout.
+Each `*_layout()` function accepts default data, inherited by all plots in the
+layout.
 
 Here's a simple example:
 ```{r}
