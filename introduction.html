@@ -340,7 +340,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p><code>ggalign</code> extends <code>ggplot2</code> by providing advanced tools for aligning and organizing multiple plots, particularly those that automatically reorder observations, such as dendrogram. It offers fine control over layout adjustment and plot annotations, enabling you to create complex visualizations while leveraging the familiar grammar of <code>ggplot2</code>.</p>
+<p>The <code>ggalign</code> package extends <code>ggplot2</code> to simplify the creation of complex, multi-plot visualizations, especially for biomedical research. Built on the familiar grammar of graphics, it provides intuitive tools to align and organize plots—such as heatmaps, dendrograms, or circular layouts—while handling intricate relationships in multi-omics data, like genomics or microbiomes. Whether you need to stack plots, arrange them around a central figure, or link diverse datasets (e.g., genes to pathways), <code>ggalign</code> offers flexibility and precision with minimal effort.</p>
 <section id="installation" class="level2" data-number="1.1">
 <h2 data-number="1.1" class="anchored" data-anchor-id="installation"><span class="header-section-number">1.1</span> Installation</h2>
 <p>You can install <code>ggalign</code> from <code>CRAN</code> using:</p>
@@ -361,13 +361,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="general-design" class="level2" data-number="1.2">
 <h2 data-number="1.2" class="anchored" data-anchor-id="general-design"><span class="header-section-number">1.2</span> General design</h2>
-<p>The core feature of <code>ggalign</code> lies in its integration of the <code>grammar of graphics</code> into advanced visualization through its object-oriented <code>Layout</code> system. The package provides three main <code>Layout</code> classes:</p>
+<p><code>ggalign</code> simplifies advanced visualization through its object-oriented <code>Layout</code> system, integrated with <code>ggplot2</code>’s grammar of graphics. It offers three main layout types.</p>
 <ul>
-<li>the <code>StackLayout</code> class: Put plots horizontally or vertically.</li>
-<li>the <code>QuadLayout</code> class: Arranges plots in the four quadrants (top, left, bottom, right) around a main plot. This layout is ideal for designs that require supplementary plots or annotations surrounding a central figure.</li>
-<li>the <code>CircleLayout</code> class: Positions plots in a circular arrangement.</li>
+<li><code>StackLayout</code>: Stacks plots horizontally or vertically.</li>
+<li><code>QuadLayout</code>: Arranges plots in four quadrants (top, left, bottom, right) around a central plot.</li>
+<li>the <code>CircleLayout</code>: Positions plots in a circular pattern.</li>
 </ul>
-<p>Each <code>Layout</code> class supports the alignment of both discrete (ordinal) and continuous variables. Depending on the desired alignment across multiple plots within a layout, the following variants are available:</p>
+<p>Each layout supports both discrete (e.g., categories) and continuous (e.g., measurements) data, with flexible functions:</p>
 <p>For <code>StackLayout</code>:</p>
 <ul>
 <li><code>stack_discrete()</code>: Align discrete variable along the stack.</li>
@@ -376,11 +376,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><code>stack_layout()</code> integrates the functionalities of <code>stack_discrete()</code> and <code>stack_continuous()</code> into a single interface. For simplicity, throughout this book, I will refer to both variants as <code>stack_layout()</code>.</p>
 <p>For <code>QuadLayout</code>:</p>
 <ul>
-<li><code>quad_continuous</code>/<code>ggside</code>: Align continuous variables in both horizontal and vertical directions.</li>
-<li><code>quad_discrete</code>: Align discrete variables in both horizontal and vertical directions.</li>
-<li><code>quad_layout</code>: Aligns discrete or continuous variables either horizontally or vertically.</li>
+<li><code>quad_continuous()</code>/<code>ggside()</code>: Align continuous variables in both horizontal and vertical directions.</li>
+<li><code>quad_discrete()</code>: Align discrete variables in both horizontal and vertical directions.</li>
 </ul>
-<p>The functions <code>quad_continuous()</code> and <code>quad_discrete()</code> are specialized versions of <code>quad_layout()</code> (<a href="quad-layout.html#sec-quad-layout-quad-layout" class="quarto-xref"><span>Section 7.5</span></a>): <code>quad_continuous()</code> sets both <code>xlim</code> and <code>ylim</code> arguments, while <code>quad_discrete()</code> does not set <code>xlim</code> or <code>ylim</code>. For simplicity, throughout this book, I will refer to all of the variants as <code>quad_layout()</code>.</p>
+<p><code>quad_layout()</code> aligns either discrete or continuous variables, horizontally or vertically. The functions <code>quad_continuous()</code> and <code>quad_discrete()</code> are specialized versions of <code>quad_layout()</code> (<a href="quad-layout.html#sec-quad-layout-quad-layout" class="quarto-xref"><span>Section 7.5</span></a>). For simplicity, throughout this book, I will refer to all of the variants as <code>quad_layout()</code>.</p>
 <p>For <code>CircleLayout</code>:</p>
 <ul>
 <li><code>circle_discrete()</code>: Align discrete variable in the circle.</li>
@@ -415,7 +414,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><code>align_group()</code>: Group observations into panel with a group variable.</li>
 <li><code>align_kmeans()</code>: Group observations into panel by kmeans.</li>
 <li><code>align_order()</code>: Reorder layout observations based on statistical weights or by manually specifying the observation index.</li>
-<li><code>align_reorder</code>: Reorder observations using an arbitrary statistical function</li>
+<li><code>align_order2</code>: Reorder observations using an arbitrary statistical function</li>
 <li><code>align_hclust()</code>: Reorder or group observations based on hierarchical clustering.</li>
 </ul></li>
 <li>Adding plots with:

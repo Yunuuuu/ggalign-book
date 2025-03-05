@@ -315,7 +315,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#align_kmeans" id="toc-align_kmeans" class="nav-link" data-scroll-target="#align_kmeans"><span class="header-section-number">4.2</span> <code>align_kmeans()</code></a></li>
   <li><a href="#align_order" id="toc-align_order" class="nav-link" data-scroll-target="#align_order"><span class="header-section-number">4.3</span> <code>align_order()</code></a></li>
   <li><a href="#sec-align_hclust" id="toc-sec-align_hclust" class="nav-link" data-scroll-target="#sec-align_hclust"><span class="header-section-number">4.4</span> <code>align_hclust()</code></a></li>
-  <li><a href="#align_reorder" id="toc-align_reorder" class="nav-link" data-scroll-target="#align_reorder"><span class="header-section-number">4.5</span> <code>align_reorder()</code></a></li>
+  <li><a href="#align_order2" id="toc-align_order2" class="nav-link" data-scroll-target="#align_order2"><span class="header-section-number">4.5</span> <code>align_order2()</code></a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/Yunuuuu/ggalign-book/edit/main/layout-customize.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/Yunuuuu/ggalign-book/blob/main/layout-customize.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li><li><a href="https://github.com/Yunuuuu/ggalign-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -347,7 +347,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong><code>align_group</code></strong>: Group and align plots based on categorical factors.</li>
 <li><strong><code>align_kmeans</code></strong>: Group observations by k-means clustering results.</li>
 <li><strong><code>align_order</code></strong>: Reorder layout observations based on statistical weights or allows for manual reordering based on user-defined ordering index.</li>
-<li><strong><code>align_reorder</code></strong>: Reorder observations using an arbitrary statistical function.</li>
+<li><strong><code>align_order2</code></strong>: Reorder observations using an arbitrary statistical function.</li>
 <li><strong><code>align_hclust</code></strong>: Reorder or group observations based on hierarchical clustering.</li>
 </ul>
 <p>Note that these functions do not add plot areas and set the active context, meaning you cannot incorporate <code>ggplot2</code> elements directly into these objects. You can inspect the behavior of any <code>align_*</code> function by printing it.</p>
@@ -673,14 +673,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   the top annotation `stack_discrete()`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="align_reorder" class="level2" data-number="4.5">
-<h2 data-number="4.5" class="anchored" data-anchor-id="align_reorder"><span class="header-section-number">4.5</span> <code>align_reorder()</code></h2>
-<p>The <code>align_reorder()</code> function enables the reordering of observations based on a specified statistical function. This function accepts a data argument and computes a statistic that determines the new ordering of the observations. The resulting order is extracted using the <code>order2()</code> function.</p>
+<section id="align_order2" class="level2" data-number="4.5">
+<h2 data-number="4.5" class="anchored" data-anchor-id="align_order2"><span class="header-section-number">4.5</span> <code>align_order2()</code></h2>
+<p>The <code>align_order2()</code> function enables the reordering of observations based on a specified statistical function. This function accepts a data argument and computes a statistic that determines the new ordering of the observations. The resulting order is extracted using the <code>order2()</code> function.</p>
 <p>Foe example, you can also use hierarchical clustering to reorder the observations like this:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggheatmap</span>(small_mat) <span class="sc">+</span></span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">anno_left</span>() <span class="sc">+</span></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_reorder</span>(hclust2)</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_order2</span>(hclust2)</span>
 <span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; → heatmap built with `geom_tile()`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
@@ -691,11 +691,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Here, <code>hclust2()</code> is a special function used by <code>align_hclust()</code> to calculate the distance matrix and perform hierarchical clustering.</p>
-<p>In addition to hierarchical clustering, the <code>align_reorder()</code> function can also handle objects from the <a href="https://CRAN.R-project.org/package=seriation">seriation</a> package. For example, you can use the <code>seriate()</code> function with a method like <code>"BEA_TSP"</code> to reorder the observations based on a specific seriation algorithm:</p>
+<p>In addition to hierarchical clustering, the <code>align_order2()</code> function can also handle objects from the <a href="https://CRAN.R-project.org/package=seriation">seriation</a> package. For example, you can use the <code>seriate()</code> function with a method like <code>"BEA_TSP"</code> to reorder the observations based on a specific seriation algorithm:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggheatmap</span>(small_mat) <span class="sc">+</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">anno_left</span>() <span class="sc">+</span></span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_reorder</span>(seriation<span class="sc">::</span>seriate, <span class="at">method =</span> <span class="st">"BEA_TSP"</span>, <span class="at">data =</span> abs)</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_order2</span>(seriation<span class="sc">::</span>seriate, <span class="at">method =</span> <span class="st">"BEA_TSP"</span>, <span class="at">data =</span> abs)</span>
 <span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; → heatmap built with `geom_tile()`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
