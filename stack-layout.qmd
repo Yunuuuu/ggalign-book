@@ -279,31 +279,84 @@ stack_discretev(small_mat) +
     theme(axis.text.y = element_text()) 
 ```
 
+For `stack_continuous()`, no special action is taken except ensuring consistent
+axis limits across all plots. You can manually control limits using
+`continuous_limits()`:
+
+::: {.grid}
+
+::: {.g-col-6}
+```{r}
+stack_continuousv(mpg) +
+    ggalign(mapping = aes(displ, hwy, colour = class)) +
+    geom_point(size = 2) +
+    ggalign(mapping = aes(displ, hwy, colour = class)) +
+    geom_point(size = 2) &
+    scale_color_brewer(palette = "Dark2") &
+    theme(
+        panel.background = element_rect(fill = NA, color = "black"),
+        axis.text.x = element_text()
+    )
+```
+:::
+
+::: {.g-col-6}
+```{r}
+stack_continuousv(mpg) +
+    continuous_limits(c(3, 6)) +
+    ggalign(mapping = aes(displ, hwy, colour = class)) +
+    geom_point(size = 2) +
+    ggalign(mapping = aes(displ, hwy, colour = class)) +
+    geom_point(size = 2) &
+    scale_color_brewer(palette = "Dark2") &
+    theme(
+        panel.background = element_rect(fill = NA, color = "black"),
+        axis.text.x = element_text()
+    )
+```
+:::
+
+:::
+
+The `&` operator applies the added element to all plots in the layout, similar to
+its functionality in the `patchwork` package.
+
 `ggfree()` focuses on layout integration without enforcing strict axis alignment.
+
+::: {.grid}
+
+::: {.g-col-6}
 ```{r}
 stack_discretev() +
     ggfree(mpg, aes(displ, hwy, colour = class)) +
     geom_point(size = 2) +
     ggfree(mpg, aes(displ, hwy, colour = class)) +
     geom_point(size = 2) &
-    scale_color_brewer(palette = "Dark2") &
-    theme_bw()
+    scale_color_brewer(palette = "Dark2")  &
+    theme(
+        panel.background = element_rect(fill = NA, color = "black"),
+        axis.text.x = element_text()
+    )
 ```
+:::
 
-The `&` operator applies the added element to all plots in the layout, similar to
-its functionality in the `patchwork` package.
-
-For `stack_continuous()`, only free plots (`ggfree()`) can be added. This layout
-arranges plots in one row or column without enforcing axis alignment:
+::: {.g-col-6}
 ```{r}
 stack_continuousv(mpg) +
+    continuous_limits(c(3, 6)) +
     ggfree(mapping = aes(displ, hwy, colour = class)) +
     geom_point(size = 2) +
     ggfree(mapping = aes(displ, hwy, colour = class)) +
     geom_point(size = 2) &
     scale_color_brewer(palette = "Dark2") &
-    theme_bw()
+    theme(
+        panel.background = element_rect(fill = NA, color = "black"),
+        axis.text.x = element_text()
+    )
 ```
+:::
+
+:::
 
 By default, `ggfree()` will also inherit data from the layout and call
 `fortify_data_frame()` to convert the data to a data frame. So, note that if the
