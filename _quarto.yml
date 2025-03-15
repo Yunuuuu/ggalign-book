@@ -13,6 +13,17 @@ book:
   repo-url: https://github.com/Yunuuuu/ggalign-book
   repo-branch: main
   repo-actions: ["source", "edit", "issue"]
+  code-links:
+    - text: ggalign repo
+      icon: code-square
+      href: https://github.com/Yunuuuu/ggalign
+  other-links:
+    - text: ggalign reference
+      icon: journal-text
+      href: https://yunuuuu.github.io/ggalign
+    - text: ggalign manuscript
+      icon: layout-text-sidebar-reverse
+      href: https://www.biorxiv.org/content/10.1101/2025.02.06.636847v1
   reader-mode: true
   twitter-card: true
   chapters:
