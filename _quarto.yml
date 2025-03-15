@@ -12,8 +12,9 @@ book:
   favicon: cover.png
   repo-url: https://github.com/Yunuuuu/ggalign-book
   repo-branch: main
-  repo-actions: ["edit", "source", "issue"]
+  repo-actions: ["source", "edit", "issue"]
   reader-mode: true
+  twitter-card: true
   chapters:
     - index.qmd
 
