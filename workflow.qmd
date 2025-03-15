@@ -1,0 +1,154 @@
+## General Workflows
+```{r}
+library(ggalign)
+```
+
+The usage of `ggalign` is simple if you're familiar with `ggplot2` syntax, the
+typical workflow includes: 
+
+  1. Initialize the layout.
+  2. Customize the layout with:
+      - `align_group()`: Group observations into panel with a group variable.
+      - `align_kmeans()`: Group observations into panel by kmeans.
+      - `align_order()`: Reorder layout observations based on statistical weights or by manually specifying the observation index.
+      - `align_order2`: Reorder observations using an arbitrary statistical function
+      - `align_hclust()`: Reorder or group observations based on hierarchical clustering.
+  3. Adding plots with:
+      - `align_dendro()`: Add a dendrogram to the plot, and reorder or group observations based on hierarchical clustering.
+      - `ggalign()`: Initialize a ggplot object and align the axes.
+      - `ggmark()`: Add a plot to annotate selected observations.
+      - `ggcross()`: Initialize a ggplot object to connect two different layout crosswise
+      - `ggfree()`: Initialize a ggplot object without aligning the axes.
+  4. Layer additional `ggplot2` elements such as geoms, stats, or scales.
+
+Let’s create a sample matrix:
+```{r}
+set.seed(123)
+small_mat <- matrix(rnorm(56), nrow = 7)
+rownames(small_mat) <- paste0("row", seq_len(nrow(small_mat)))
+colnames(small_mat) <- paste0("column", seq_len(ncol(small_mat)))
+```
+
+Each `*_layout()` function accepts default data, inherited by all plots in the
+layout.
+
+Here's a simple example:
+```{r}
+stack_discretev(small_mat) +               # <1>
+    align_dendro() +                       # <2>
+    theme(axis.text.x = element_text())    # <3>
+```
+  1. We initialize a vertical stack.
+  2. Reorder the observations based on hierarchical clustering and add a
+  dendrogram tree.
+  3. Add x-axis text.
+
+This function produces a simple dendrogram. The `stack_discretev()` function
+initializes a vertical stack and aligns discrete variables. It is simply an
+alias for `stack_discrete("v")`. By default, the axis text on the axis used for
+alignment is removed. This is because it's often unclear which plot should
+display the axis text, as typically, we want it to appear in only one plot.
+However, you can easily use the `theme()` function to control where the axis
+text appears.
+
+Internally, `align_dendro()` will reorder the observations based on the
+dendrogram, and other plots in the layout will follow this ordering.
+
+```{r}
+stack_discretev(small_mat) +                                # <1>
+    align_dendro() +                                        # <2>
+    ggalign(data = rowSums) +                               # <3>
+    geom_bar(aes(.discrete_x, value), stat = "identity") +  # <4>
+    theme(axis.text.x = element_text())                     # <5>
+```
+  1. We initialize a vertical stack.
+  2. Reorder the observations based on hierarchical clustering and add a
+  dendrogram tree.
+  3. Create a new ggplot in the layout, and use data based on the sum of the
+  layout data.
+  4. Add a bar layer.
+  5. Add x-axis text.
+
+The data in the underlying `ggplot` object of `ggalign()` function contains
+following columns (more details will be introduced in the [@sec-ggalign]):
+
+ - `.panel`: the group panel for the aligned axis. It means `x-axis` for
+ vertical stack layout, `y-axis` for horizontal stack layout.
+ - `.x`/`.y` and `.discrete_x`/`.discrete_y`: an integer index of `x`/`y`
+   coordinates and a factor of the data labels (only applicable when names
+   exists).
+ - `.names` and `.index`: A character names (only applicable when names exists)
+ and an integer of index of the original data.
+ - `value`: the actual value (only applicable if `data` is a `matrix` or
+   atomic vector).
+
+>It is recommended to use `.x`/`.y`, or `.discrete_x`/`.discrete_y` as the `x`/`y` mapping.
+
+`align_dendro()` can also split the observations into groups. 
+```{r}
+stack_alignv(small_mat) +                                                  # <1>
+    align_dendro(k = 3) +                                                  # <2>
+    ggalign(data = rowSums) +                                              # <3>
+    geom_bar(aes(.discrete_x, value, fill = .panel), stat = "identity") +  # <4>
+    scale_fill_brewer(palette = "Dark2", name = "Group") +                 # <5>
+    theme(axis.text.x = element_text())                                    # <6>
+```
+  1. We initialize a vertical stack.
+  2. Reorder and group the observations based on hierarchical clustering, and
+  add a dendrogram tree.
+  3. Create a new ggplot in the layout, and use data based on the sum of the
+  layout data.
+  4. Add a bar layer.
+  5. Set fill scale palette.
+  6. Add x-axis text.
+
+One common visualization associated with the dendrogram is the heatmap. You can
+use `ggheatmap()` to initialize a heatmap layout. When grouping the observations
+using `align_dendro(k = 3)`, a special column named `branch` is added, which you
+can use to color the dendrogram tree.
+
+```{r}
+ggheatmap(small_mat) +                                          # <1>
+    theme(axis.text.x = element_text(angle = -60, hjust = 0)) + # <2>
+    anno_left() +                                               # <3>
+    align_dendro(aes(color = branch), k = 3) +                  # <4>
+    scale_fill_brewer(palette = "Dark2")                        # <5>
+```
+  1. We initialize a heatmap layout.
+  2. adjust the x-axis label theme element.
+  3. we initialize an annotation in the left side of the heatmap body, and set
+  it as the active context, in this way, all following addition will be directed
+  to the left annotation.
+  4. Reorder and group the observations based on hierarchical clustering, and
+  add a dendrogram tree, coloring the tree by `branch`.
+  5. Set fill scale palette.
+
+`ggheatmap()` will automatically add axis text in the heatmap body, so you don't
+need to manually adjust axis text visibility using
+`theme(axis.text.x = element_text())`/`theme(axis.text.y = element_text())`.
+
+We can also arrange the dendrogram in a circular layout to visualize
+hierarchical relationships in a more compact and aesthetically pleasing way.
+```{r}
+circle_discrete(small_mat, radial = coord_radial(inner.radius = 0.1)) + # <1>
+    ggalign() +                                                         # <2>
+    geom_tile(aes(y = .column_index, fill = value)) +                   # <3>
+    scale_fill_viridis_c() +                                            # <4>
+    align_dendro(aes(color = branch), k = 3L) +                         # <5>
+    scale_color_brewer(palette = "Dark2")                               # <6>
+```
+  1. We initialize a circle layout and set the inner radius.
+  2. Create a new ggplot in the layout, and use data the same with the layout data.
+  3. Add a tile layer, the matrix input will be converted into a long formated data
+  frame with column `.column_index` indicates the column index of the original matrix.
+  4. Set fill scale palette.
+  5. Reorder and group the observations based on hierarchical clustering, and
+  add a dendrogram tree, coloring the tree by `branch`.
+  6. Set color scale palette.
+
+Having explored the core principles of `ggalign`, you should now be familiar
+with its basic workflow. In the next chapter, we'll introduce the `StackLayout`,
+a powerful tool for arranging multiple plots in a stacked fashion—either
+horizontally or vertically—while maintaining full control over their alignment.
+We'll explore how `StackLayout` and its various functions can give you even
+greater flexibility in creating sophisticated layouts.

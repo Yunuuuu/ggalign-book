@@ -17,9 +17,13 @@ book:
   chapters:
     - index.qmd
 
+    - part: "Getting Started"
+      chapters: 
+        - introduction.qmd
+        - workflow.qmd
+
     - part: "Basics"
       chapters:
-        - introduction.qmd
         - stack-layout.qmd
         - heatmap-layout.qmd
         - layout-customize.qmd
