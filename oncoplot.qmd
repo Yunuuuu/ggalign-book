@@ -219,7 +219,7 @@ an example of how to extract the sample summary data (e.g., TMB) using
 `ggalign_attr()` and add it to the top annotation of an oncoplot:
 ```{r}
 ggoncoplot(laml, n_top = 20, collapse_vars = FALSE, filling = FALSE) +
-    geom_subtile(aes(fill = value), direction = "v") +
+    geom_subtile(aes(fill = value), ncol = 1) +
     theme_no_axes("x") +
     anno_top(size = 0.2) +
     ggalign(data = function(data) {
@@ -240,7 +240,7 @@ We can draw the example from
 
 ```{r}
 ggoncoplot(laml, n_top = 20, collapse_vars = FALSE, filling = FALSE) +
-    geom_subtile(aes(fill = value), direction = "v") +
+    geom_subtile(aes(fill = value), ncol = 1) +
     theme_no_axes("x") +
     # since legends from geom_tile (oncoPrint body) and `geom_bar`
     # is different, though both looks like the same, the internal
