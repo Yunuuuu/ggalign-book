@@ -21,6 +21,8 @@ typical workflow includes:
       - `ggfree()`: Initialize a ggplot object without aligning the axes.
   4. Layer additional `ggplot2` elements such as geoms, stats, or scales.
 
+![Overview of the ggalign workflow](workflow.png)
+
 Let’s create a sample matrix:
 ```{r}
 set.seed(123)

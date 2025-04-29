@@ -74,7 +74,7 @@ For `CircleLayout`:
 > Note: For simplicity, this book uses `stack_layout()`, `quad_layout()`, and
 `circle_layout()` to refer to their respective layout variants.
 
-![General design of ggalign](general-design.png)
+![General design of ggalign](design.png)
 
 ## Align axes in ggplot2 {#sec-align-axes}
 Before exploring `ggalign`, let’s cover axis alignment in `ggplot2`. For
