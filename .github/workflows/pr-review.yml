@@ -34,8 +34,6 @@ jobs:
           use-public-rspm: true
 
       - uses: r-lib/actions/setup-r-dependencies@v2
-        with:
-          extra-packages: any::quarto
 
       - name: Get the new quarto files
         id: new-qmd-files
@@ -50,14 +48,20 @@ jobs:
         env:
           QMD_FILES: ${{ steps.new-qmd-files.outputs.all_changed_files }}
         run: |
-          Rscript -e 'args <- commandArgs(TRUE);
-            if (!dir.exists("_QMD_RENDER_REVIEW")) dir.create("_QMD_RENDER_REVIEW");
-            ofile <- function(file) sprint("_QMD_RENDER_REVIEW/%s.html", tools::file_path_sans_ext(basename(file)));
-            for (f in args) if (file.exists(f)) quarto::quarto_render(f, output_format = "html", output_file = ofile(f))' \
-            ${QMD_FILES[*]}
+          mkdir -p _QMD_RENDER_REVIEW
+          mkdir -p _QMD_RENDER_WORING_DIR
+          for file in ${QMD_FILES}; do
+            myfile=$(basename "$file")
+            myname="${myfile%.*}" # remove file extension
+            mkdir -p "_QMD_RENDER_REVIEW/$myname"
+            cp "$file" "_QMD_RENDER_WORKING_DIR/$file"
+            echo "Rendering $file"
+            quarto render "_QMD_RENDER_WORKING_DIR/$file" --execute-dir .
+            mv _QMD_RENDER_WORKING_DIR/* "_QMD_RENDER_REVIEW/$myname/"
+          done
 
       - name: Upload Quarto artifacts
         uses: actions/upload-artifact@v4
         with:
-          path: _QMD_RENDER_REVIEW/*.html
+          path: _QMD_RENDER_REVIEW
           if-no-files-found: "ignore"
