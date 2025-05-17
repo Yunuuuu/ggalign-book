@@ -50,7 +50,7 @@ jobs:
           QUARTO_PROFILE: preview
 
       - name: Upload Quarto artifacts
-        if: ${{ github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master' }}
+        if: ${{ github.event_name == 'pull_request' || github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master' }}
         uses: actions/upload-pages-artifact@v3
         with:
           path: "_book"
