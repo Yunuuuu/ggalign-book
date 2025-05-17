@@ -49,14 +49,14 @@ jobs:
           QMD_FILES: ${{ steps.new-qmd-files.outputs.all_changed_files }}
         run: |
           mkdir -p _QMD_RENDER_REVIEW
-          mkdir -p _QMD_RENDER_WORING_DIR
+          mkdir -p _QMD_RENDER_WORKING_DIR
           for file in ${QMD_FILES}; do
             myfile=$(basename "$file")
             myname="${myfile%.*}" # remove file extension
             mkdir -p "_QMD_RENDER_REVIEW/$myname"
-            cp "$file" "_QMD_RENDER_WORKING_DIR/$file"
+            cp "$file" "_QMD_RENDER_WORKING_DIR/$myfile"
             echo "Rendering $file"
-            quarto render "_QMD_RENDER_WORKING_DIR/$file" --execute-dir .
+            quarto render "_QMD_RENDER_WORKING_DIR/$myfile" --execute-dir .
             mv _QMD_RENDER_WORKING_DIR/* "_QMD_RENDER_REVIEW/$myname/"
           done
 
