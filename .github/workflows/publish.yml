@@ -1,8 +1,8 @@
 on:
   push:
-    branches: main
+    branches: [main, master]
   pull_request:
-    branches: main
+    branches: [main, master]
   # to be able to trigger a manual build
   workflow_dispatch:
   schedule:
@@ -42,12 +42,12 @@ jobs:
         uses: quarto-dev/quarto-actions/render@v2
         env:
           QUARTO_PROFILE: preview
-        with:
-          to: pdf
 
-      - name: Render and Publish
+      - name: Publish
+        if: github.event_name != 'pull_request'
         uses: quarto-dev/quarto-actions/publish@v2
         with:
           target: gh-pages
+          render: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
