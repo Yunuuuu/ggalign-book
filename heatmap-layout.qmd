@@ -30,16 +30,16 @@ ggside() +
                     ggtitle(sprintf("Plot %s", i)) +
                     theme(panel.background = element_rect(fill = scales::alpha("red", 0.5)))
             }),
-            list(layout_annotation(theme = theme(
+            list(layout_theme(
                 plot.background = element_rect(color = "red", linewidth = unit(3, "cm"))
-            )))
+            ))
         )
     }) +
     quad_active() +
     ggtitle("Main Plot") +
     theme(panel.background = element_rect(fill = scales::alpha("red", 0.5))) +
     layout_title("QuadLayout") +
-    layout_annotation(theme = theme(plot.title = element_text(size = 20)))
+    layout_theme(plot.title = element_text(size = 20))
 ```
 
 `heatmap_layout()` simplifies the creation of heatmap plots by integrating
@@ -53,7 +53,7 @@ is an alias for `heatmap_layout()`.
 ```
 
 ## input data
-As mentioned in @sec-align-axes, we typically require a matrix for the
+As mentioned in @sec-input-data, we typically require a matrix for the
 `Layout` which need align discrete variables. Internally, `fortify_matrix()`
 will be used to process the data. You can provide a numeric or character vector,
 a data frame, or any other data type that can be converted into a matrix using

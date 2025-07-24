@@ -26,7 +26,7 @@ circle_continuous(mpg, radial = coord_radial(inner.radius = 0.1)) +
             theme_no_axes("y")
     }) +
     layout_title("circle_layout()") +
-    layout_annotation(theme = theme(plot.title = element_text(size = 20)))
+    layout_theme(plot.title = element_text(size = 20))
 ```
 
 ```{r setup}

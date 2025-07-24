@@ -33,7 +33,7 @@ book:
     - part: "Getting Started"
       chapters: 
         - introduction.qmd
-        - workflow.qmd
+        - getting-started.qmd
 
     - part: "Basics"
       chapters:

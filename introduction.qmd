@@ -1,13 +1,15 @@
 # Introduction
 
-The `ggalign` package extends `ggplot2` to simplify the creation of complex,
-multi-plot visualizations, especially for biomedical research. Built on the
-familiar grammar of graphics, it provides intuitive tools to align and organize
-plots—such as heatmaps, dendrograms, or circular layouts—while handling
-intricate relationships in multi-omics data, like genomics or microbiomes.
-Whether you need to stack plots, arrange them around a central figure, or link
-diverse datasets (e.g., genes to pathways), `ggalign` offers flexibility and
-precision with minimal effort.
+The `ggalign` package provides an integrative framework for composable
+visualization, enabling the construction of complex multi-plot layouts—including
+insets, circular arrangements, and multi-panel compositions. Built on the
+grammar of graphics, it introduces intuitive tools to align, stack, and nest
+plots, making it easy to link related views, overlay clustering results, or
+highlight shared patterns.
+
+Designed for high-dimensional data contexts such as genomics, transcriptomics,
+and microbiome studies, `ggalign` simplifies the creation of richly annotated,
+publication-ready figures from diverse visual components.
 
 ## Installation
 
@@ -34,9 +36,8 @@ remotes::install_github("Yunuuuu/ggalign")
 ```
 
 ## General design
-`ggalign` streamlines advanced visualizations with an object-oriented `Layout`
-system that integrates seamlessly with `ggplot2`. It provides three core layout
-types:
+At the heart of `ggalign` is an object-oriented `Layout` system that integrates
+seamlessly with `ggplot2`. It provides three core layout types:
 
  - `StackLayout`: Stacks plots horizontally or vertically.
  - `QuadLayout`: Arranges plots in four quadrants (top, left, bottom, right)
@@ -44,56 +45,28 @@ types:
  - `CircleLayout`: Positions plots in a circular pattern.
 
 Each layout supports both discrete (e.g., categories) and continuous (e.g.,
-measurements) data, with flexible functions:
+numerical) data, and includes specialized alignment functions:
 
 For `StackLayout`:
 
  - `stack_discrete()`: Align discrete variable along the stack.
  - `stack_continuous()`: Align continuous variable along the stack.
-
-`stack_layout()` integrates the functionalities of `stack_discrete()` and
-`stack_continuous()` into a single interface.
+ - `stack_layout()`: A unified interface that handles both discrete and continuous data.
 
 For `QuadLayout`: 
 
  - `quad_continuous()`/`ggside()`: Align continuous variables in both horizontal and vertical directions. 
- - `quad_discrete()`: Align discrete variables in both horizontal and vertical directions. 
-
-`quad_layout()` aligns either discrete or continuous variables, horizontally or
-vertically. The functions `quad_continuous()` and `quad_discrete()` are
-specialized versions of `quad_layout()` (@sec-quad-layout-quad-layout).
+ - `quad_discrete()`: Align discrete variables in both horizontal and vertical directions.
+ - `quad_layout()`: A general function that adapts to both data types and directions.
 
 For `CircleLayout`:
 
  - `circle_discrete()`: Align discrete variable in the circle.
  - `circle_continuous()`: Align continuous variable in the circle.
+ - `circle_layout()`: A unified interface for both cases.
 
-`circle_layout()` integrates the functionalities of `circle_discrete()` and
-`circle_continuous()` into a single interface.
-
-> Note: For simplicity, this book uses `stack_layout()`, `quad_layout()`, and
-`circle_layout()` to refer to their respective layout variants.
+> Note: Throughout this book, we refer to the main layout
+functions—`stack_layout()`, `quad_layout()`, and `circle_layout()`—as the
+primary interfaces, even when using their specialized variants.
 
 ![General design of ggalign](design.png)
-
-## Align axes in ggplot2 {#sec-align-axes}
-Before exploring `ggalign`, let’s cover axis alignment in `ggplot2`. For
-continuous axes, it’s simple: set the same limits using the `limits` (or
-`xlim`/`ylim`) argument in `*_continuous()` functions.
-
-Discrete axes are trickier. You need the same number of unique values and
-consistent ordering across plots. In `ggplot2`, this can be tough with long-form
-data frames, as plots may reorder data automatically. `ggalign` solves this by
-using `matrix` inputs for layouts aligning discrete axes (e.g., `*_discrete()`
-functions). Each matrix row represents a unique discrete value (an
-"observation"), and the number of rows defines the total unique values.
-Reordering rows ensures consistent alignment across plots. This is especially
-handy for functions like `quad_layout()` or `ggheatmap()`, where axes align in
-both directions—matrices transpose easily.
-
-When rendering, `ggalign` converts the matrix into a long-form data frame. If the
-matrix format doesn’t fit your plot’s needs, use `scheme_data()` to transform the
-data for the plot.
-
-> Terminology: `"Observations"` and `"discrete variables"` are interchangeable
-here. Any mention of `"observations"` applies to discrete variables too.
