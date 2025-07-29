@@ -1,0 +1,193 @@
+# Fine-Grained Alignment Control
+
+The `ggalign` package provides six `free_` functions that give you precise
+control over plot alignment behavior by selectively disabling alignment
+constraints for specific plot elements in `align_plots()`. 
+
+- `free_align()` - Disables panel alignment for specified axes.
+- `free_space()` - Removes space constraints when aligning.
+- `free_border()` - Attaches border elements (like axis titles) to the panel but
+    keeps their size. 
+- `free_lab()` - Similar to `free_border()`, but only applies to axis labels and
+    titles.
+- `free_vp()` - Customizes viewport placement.
+- `free_guide()` - Overrides `guides` collection behavior
+
+```{r setup}
+#| code-fold: true
+library(ggalign)
+```
+
+## Position String Notation
+
+Most `free_` functions use a consistent `"tlbr"` notation system where
+each letter represents a side of the plot:
+
+- `t`: top
+- `l`: left  
+- `b`: bottom
+- `r`: right
+
+First, we create some example plots:
+```{r}
+# A simple scatter plot
+p_simple <- ggplot(mtcars) +
+    geom_point(aes(mpg, disp))
+
+# Create a plot with long axis labels that causes alignment issues
+p_wide_labels <- ggplot(mtcars) +
+    geom_bar(aes(y = factor(gear), fill = factor(gear))) +
+    scale_y_discrete(
+        name = NULL,
+        labels = c(
+            "3 gears are often enough",
+            "But, you know, 4 is a nice number",
+            "I would def go with 5 gears in a modern car"
+        )
+    )
+```
+
+## `free_align()`
+
+By default, `align_plots()` aligns plot panels so axes match. This can cause
+excessive spacing when plots differ in axis label lengths. `free_align()` disables
+panel alignment on specified sides.
+
+```{r}
+# Problem: When combined, it looks bad due to forced alignment
+align_plots(p_simple, p_wide_labels, ncol = 1L)
+```
+
+```{r}
+# Solution: Use free_align to prevent panel alignment
+align_plots(p_simple, free_align(p_wide_labels), ncol = 1L)
+```
+
+```{r}
+# Partial solution: Free only the left side to maintain right alignment
+align_plots(p_simple, free_align(p_wide_labels, axes = "l"), ncol = 1L)
+```
+
+## `free_space()` - Space Constraint Removal
+
+`free_space()` removes the allocated space for plot elements when aligning. This
+is particularly useful for removing padding introduced by long axis labels or
+titles.
+
+```{r}
+align_plots(p_simple, free_space(p_wide_labels, spaces = "l"), ncol = 1L)
+```
+
+While it may not appear impactful on its own, `free_space()` is often essential
+when used together with `free_border()`.
+
+## `free_border()`
+`free_border()` attaches borders (e.g., axis titles, tick marks) directly to the
+plot panel. This keeps them visually close to the panel during alignment.
+```{r}
+align_plots(free_border(p_simple, borders = "l"), p_wide_labels, ncol = 1L)
+```
+
+However, `free_border()` does not remove the space these components occupy. This
+means that, although the border (e.g., axis title) follows the plot panel more
+tightly in `p_simple`, the space reserved for it still exists. During alignment,
+this space is added to `p_wide_labels`, potentially adding unnecessary spaces.
+
+To fully eliminate the size contribution of the border, we often combine
+`free_border()` with `free_space()`:
+
+```{r}
+align_plots(
+    free_space(free_border(p_simple, borders = "l"), spaces = "l"),
+    p_wide_labels,
+    ncol = 1L
+)
+```
+
+This removes the reserved size on the left side (spaces = "l"), ensuring clean,
+panel-based alignment without extra padding.
+
+## `free_lab()`
+
+`free_lab()` is similar to `free_border()`, but only attaches axis titles and tick
+labels, not full borders. It’s mainly included for completeness; in most cases,
+combining `free_border()` and `free_space()` is sufficient.
+
+## `free_vp()`
+
+The `free_vp()` function allows you to customize the grid viewport when aligning
+plots, giving you precise control over plot positioning and sizing. This is
+useful for precisely placing plots when alignment alone is insufficient.
+
+```{r}
+p1 <- ggplot(mtcars) +
+    geom_point(aes(mpg, disp))
+p2 <- ggplot(mtcars) +
+    geom_boxplot(aes(gear, disp, group = gear))
+```
+
+::: {.grid}
+
+::: {.g-col-6}
+```{r}
+# Blank line at the beginning to keep height consistent
+
+
+align_plots(p1, p2, ncol = 2L)
+```
+:::
+
+::: {.g-col-6}
+```{r}
+align_plots(p1, 
+    free_vp(p2, height = unit(0.8, "npc"), just = "bottom", y = 0), 
+    ncol = 2L
+)
+```
+::: 
+
+:::
+
+## free_guide
+The `free_guide()` function allows you to override the `guides` argument for a
+single plot.
+```{r}
+p_right <- ggplot(mtcars) +
+    geom_point(aes(hp, wt, colour = mpg)) +
+    patch_titles("right") +
+    labs(color = "right")
+p_top <- p_right +
+    patch_titles("top") +
+    scale_color_continuous(
+        name = "top",
+        guide = guide_colorbar(position = "top")
+    )
+p_left <- p_right +
+    patch_titles("left") +
+    scale_color_continuous(
+        name = "left",
+        guide = guide_colorbar(position = "left")
+    )
+p_bottom <- p_right +
+    patch_titles("bottom") +
+    scale_color_continuous(
+        name = "bottom",
+        guide = guide_colorbar(position = "bottom")
+    )
+align_plots(
+    free_guide(p_right, NULL),
+    free_guide(p_bottom, NULL),
+    free_guide(p_top, NULL),
+    free_guide(p_left, NULL),
+    guides = "tlbr"
+)
+```
+
+You can also specify which guide positions to be collected for individual plots.
+```{r}
+align_plots(
+    free_guide(p_right, "r"),
+    free_guide(p_bottom, "b"),
+    free_guide(p_top, "t"),
+    free_guide(p_left, "l")
+)

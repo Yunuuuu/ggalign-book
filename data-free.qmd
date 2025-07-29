@@ -1,0 +1,33 @@
+# Data-Free Composition {#sec-data-free}
+
+This chapter introduces one of the core features of the `ggalign` package:
+data-free composition. Data-free composition forms the structural foundation for
+building complex, multi-panel visual layouts. Unlike data-aware composition, it
+does not align plots based on shared data values. Instead, it focuses purely on
+the visual arrangement of plots—making it ideal for combining independently
+generated figures.
+
+If you're familiar with tools like patchwork or cowplot, you'll find some
+similarities. However, `ggalign` extends these ideas with finer control over
+alignment, spacing, and `guide`/`legend` collection, allowing you to construct
+more precise and expressive layouts.
+
+## What Is Data-Free Composition for?
+Use data-free composition when you want to:
+
+* Visually compare results from different models or datasets.
+
+* Combine summary, diagnostic, and metadata plots in figure panels.
+
+* Annotate plots with separate diagrams, legends, or auxiliary views.
+
+* Create layout templates that work across a variety of inputs.
+
+This approach gives you full spatial control while preserving each plot’s
+independence. Because there's no need to reconcile axes, or scales, it’s
+straightforward and versatile for many common multi-plot needs.
+
+## What Will You Learn?
+This chapter is divided into sections, each addressing a specific graphical
+challenge. This is not an exhaustive or exclusive categorization but rather a
+practical guide to help you navigate common tasks in data-free plot composition.

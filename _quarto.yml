@@ -30,28 +30,29 @@ book:
   chapters:
     - index.qmd
 
-    - part: "Getting Started"
+    - part: "Welcome"
       chapters: 
         - introduction.qmd
         - getting-started.qmd
 
-    - part: "Basics"
+    - part: data-free.qmd
+      chapters:
+        - plot-composer.qmd
+        - free.qmd
+
+    - part: data-aware.qmd
       chapters:
         - stack-layout.qmd
         - heatmap-layout.qmd
-        - layout-customize.qmd
-        - plot-initialize.qmd
-        - annotate-observations.qmd
         - quad-layout.qmd
+        - layout-customize.qmd
+        - initialize-plot.qmd
+        - annotate-observations.qmd
         - multiple-quad-layouts.qmd
         - circle-layout.qmd
         - operator.qmd
         - schemes.qmd
         - difference-with-ggplot2.qmd
-        - plot-composer.qmd
-
-    - part: "Advanced"
-      chapters:
         - oncoplot.qmd
 
     - part: "Cases"
@@ -75,5 +76,7 @@ format:
     theme: cosmo
     code-link: true
     code-annotations: hover
+    mermaid:
+      theme: default
   pdf:
     documentclass: scrreprt

@@ -1,4 +1,4 @@
-# Plot initialize
+# Initialize Plot
 There are following primary functions for adding plots: 
 
   - `ggalign()`: Create a ggplot object and aligns the axes.

@@ -1,15 +1,18 @@
 # Introduction
 
-The `ggalign` package provides an integrative framework for composable
-visualization, enabling the construction of complex multi-plot layouts—including
-insets, circular arrangements, and multi-panel compositions. Built on the
-grammar of graphics, it introduces intuitive tools to align, stack, and nest
-plots, making it easy to link related views, overlay clustering results, or
-highlight shared patterns.
+The `ggalign` package provides a flexible and powerful framework for composable
+visualization, making it easy to build complex multi-plot layouts—such as
+insets, multi-panel views, and circular compositions.
 
-Designed for high-dimensional data contexts such as genomics, transcriptomics,
-and microbiome studies, `ggalign` simplifies the creation of richly annotated,
-publication-ready figures from diverse visual components.
+Built on top of the grammar of graphics, `ggalign` introduces intuitive tools to
+align, stack, and nest plots in a way that preserves relationships between data
+sources—ideal for visualizing shared patterns, clustering results, or
+coordinated subplots.
+
+Designed for high-dimensional data common in fields like genomics,
+transcriptomics, and microbiome research, `ggalign` helps you create
+publication-ready figures by composing diverse plots into cohesive, structured
+layouts.
 
 ## Installation
 
@@ -35,38 +38,73 @@ or from [GitHub](https://github.com/Yunuuuu/ggalign) with:
 remotes::install_github("Yunuuuu/ggalign")
 ```
 
-## General design
-At the heart of `ggalign` is an object-oriented `Layout` system that integrates
-seamlessly with `ggplot2`. It provides three core layout types:
+## Plot Composition
 
- - `StackLayout`: Stacks plots horizontally or vertically.
- - `QuadLayout`: Arranges plots in four quadrants (top, left, bottom, right)
- around a central plot.
- - `CircleLayout`: Positions plots in a circular pattern.
+`ggalign` supports two core paradigms for plot composition, depending on how the
+data is shared or separated between plots.
 
-Each layout supports both discrete (e.g., categories) and continuous (e.g.,
-numerical) data, and includes specialized alignment functions:
+### Data-Free Composition: Simple Plot Arrangement
 
-For `StackLayout`:
+Data-free composition represents traditional plot arrangement where independent
+plots are spatially arranged without data relationships. This approach is
+similar to what packages like `patchwork` or `cowplot` provide.
 
- - `stack_discrete()`: Align discrete variable along the stack.
- - `stack_continuous()`: Align continuous variable along the stack.
- - `stack_layout()`: A unified interface that handles both discrete and continuous data.
+```{mermaid}
+graph LR
+    P1["Plot A<br/>Independent data"]
+    P2["Plot B<br/>Independent data"] 
+    P3["Plot C<br/>Independent data"]
+    ARRANGE["align_plots()<br/>Spatial arrangement"]
+    OUTPUT1["Final Layout<br/>No data connection"]
 
-For `QuadLayout`: 
+    P1 --> ARRANGE
+    P2 --> ARRANGE  
+    P3 --> ARRANGE
+    ARRANGE --> OUTPUT1
 
- - `quad_continuous()`/`ggside()`: Align continuous variables in both horizontal and vertical directions. 
- - `quad_discrete()`: Align discrete variables in both horizontal and vertical directions.
- - `quad_layout()`: A general function that adapts to both data types and directions.
+    style P1 fill:#d0e6f7,stroke:#1f78b4,stroke-width:2px,color:#0b3d91
+    style P2 fill:#f0f4c3,stroke:#c0ca33,stroke-width:2px,color:#616515
+    style P3 fill:#ffe0b2,stroke:#fb8c00,stroke-width:2px,color:#663c00
+    style ARRANGE fill:#dcedc8,stroke:#689f38,stroke-width:2px,color:#33691e
+    style OUTPUT1 fill:#c8e6c9,stroke:#388e3c,stroke-width:2px,color:#2e7d32
+```
 
-For `CircleLayout`:
+**Characteristics:**
 
- - `circle_discrete()`: Align discrete variable in the circle.
- - `circle_continuous()`: Align continuous variable in the circle.
- - `circle_layout()`: A unified interface for both cases.
+- Each plot uses independent data sources
+- No shared observations between plots (maybe)
+- Suitable for combining unrelated visualizations
 
-> Note: Throughout this book, we refer to the main layout
-functions—`stack_layout()`, `quad_layout()`, and `circle_layout()`—as the
-primary interfaces, even when using their specialized variants.
+### Data-Aware Composition: Integrated Data Visualization
 
-![General design of ggalign](design.png)
+Data-aware composition is `ggalign`'s core innovation, where multiple plots share
+common observations and maintain consistent data alignment across all
+visualizations.
+
+```{mermaid}
+graph TB
+    SHARED["Shared Data<br/>Common observations"]
+    LAYOUT["Layout System<br/>quad_layout()<br/>stack_layout()<br/>circle_layout()"]
+    ALIGN["Layout Customization<br/>Data-Level Ordering and Grouping"]
+    PLOTS["Coordinated Plots<br/>Automatic observation sync"]
+    OUTPUT2["Integrated Visualization<br/>Guaranteed alignment"]
+    
+    SHARED --> LAYOUT
+    LAYOUT --> ALIGN
+    LAYOUT --> PLOTS
+    ALIGN --> OUTPUT2
+    PLOTS --> OUTPUT2
+
+    style SHARED fill:#d0e6f7,stroke:#1f78b4,stroke-width:2px,color:#0b3d91
+    style LAYOUT fill:#f0f4c3,stroke:#c0ca33,stroke-width:2px,color:#616515
+    style ALIGN fill:#ffe0b2,stroke:#fb8c00,stroke-width:2px,color:#663c00
+    style PLOTS fill:#dcedc8,stroke:#689f38,stroke-width:2px,color:#33691e
+    style OUTPUT2 fill:#c8e6c9,stroke:#388e3c,stroke-width:2px,color:#2e7d32
+```
+
+**Key Features:**
+
+- **Observation Consistency**: Data points from same observations aligned across all plots
+- **Automatic Synchronization**: No manual coordinate management required
+- **Complex Relationships**: Supports one-to-many, many-to-many, and crosswise data relationships
+- **Specialized Layouts**: Purpose-built layouts for specific data types

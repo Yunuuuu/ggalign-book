@@ -11,40 +11,24 @@ version <- ggalign:::code_quote(
 Welcome to [`ggalign`](https://github.com/Yunuuuu/ggalign) documents. Examples
 in the book are generated under version `r version`.
 
-In the world of data visualization, aligning multiple plots in a coherent and
-organized layout is often a challenging task, especially when dealing with
-complex datasets that require precise alignment across rows, columns, and even
-within plot elements. While existing tools provide some solutions, they often
-fall short in offering the flexibility, control, and simplicity that users need
-to create intricate and beautiful plots. This is where `ggalign` comes in.
+As biomedical and multi-omics research generate increasingly complex and layered
+datasets, effective data visualization becomes essential for interpretation,
+communication, and discovery. Researchers often need to compare groups, track
+trends across samples, or highlight structures across various biological
+hierarchies — all of which demand precisely aligned plots.
 
-The `ggalign` package, built on top of the powerful ggplot2 framework, is
-designed to solve this very problem. It offers a suite of functions specifically
-crafted for aligning and organizing plots with minimal effort. Whether you need
-to align observations based on statistical measures, group plots by categorical
-factors, or fine-tune the layout to match the precise needs of your data,
-`ggalign` gives you the tools you need to create polished, publication-ready
-visualizations.
+However, arranging multiple plots in a consistent and interpretable layout
+remains a tedious task. Existing tools offer partial solutions but often lack
+the flexibility needed for nuanced biological visualizations.
 
-This book serves as both an introduction to the `ggalign` package and a
-comprehensive guide to mastering its features. Whether you're a beginner or an
-experienced user of ggplot2, you'll find detailed explanations, step-by-step
-tutorials, and real-world examples to help you leverage the full potential of
-`ggalign` in your work.
+`ggalign` is built to address these challenges. Based on the grammar of graphics
+from `ggplot2`, it simplifies the alignment of plots across samples, features,
+conditions, or clusters — helping you produce clean, publication-ready figures.
 
-Throughout this book, we will cover everything from basic concepts to advanced
-layout customizations, focusing on key functions like `stack_layout()`,
-`align_*` series (including `align_group()`, `align_order()`, and
-`align_hclust()`), and how to combine them with other ggplot2 layers to create
-aligned plots. Additionally, you'll learn how to adapt `ggalign` for different
-data types and scenarios, allowing you to develop flexible, dynamic
-visualizations tailored to your specific needs.
-
-By the end of this book, you will be equipped to use `ggalign` effectively in your
-own projects, whether for scientific research, data analysis, or any other field
-where data visualization is key. Our goal is to provide you with the knowledge
-and confidence to tackle complex visualization challenges and transform your
-datasets into clear, impactful, and visually appealing plots.
+This guide introduces the key concepts and functions of `ggalign` through
+practical examples. Whether you're visualizing gene expression patterns,
+comparing cell clusters, or organizing panels across experiments, `ggalign`
+helps you build structured and reproducible visual narratives from your data.
 
 Thank you for choosing `ggalign`. We hope this book will inspire you to explore
 the endless possibilities that come with aligned data visualization.
