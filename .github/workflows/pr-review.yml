@@ -43,20 +43,6 @@ jobs:
             **.Qmd
             **.qmd
 
-      # The Check Chromium step appears necessary to avoid a crash/hang when rendering PDFs
-      # https://github.com/quarto-dev/quarto-actions/issues/45#issuecomment-1562599451
-      - name: Check chromium
-        if: ${{ runner.os == 'Linux' }}
-        run: |
-          CHROMIUM_PATH=$(which chromium-browser)
-          if [ -x "$CHROMIUM_PATH" ]; then
-            echo $CHROMIUM_PATH
-            "$CHROMIUM_PATH" --headless --no-sandbox --disable-gpu --renderer-process-limit=1 https://www.chromestatus.com || echo "Headless run failed"
-          else
-            echo "No Chromium executable found"
-          fi
-        shell: bash
-
       - name: Render the new quarto files
         if: steps.new-qmd-files.outputs.any_changed == 'true'
         env:
@@ -70,7 +56,7 @@ jobs:
             mkdir -p "_QMD_RENDER_REVIEW/$myname"
             cp "$file" "_QMD_RENDER_WORKING_DIR/$myfile"
             echo "Rendering $file"
-            quarto render "_QMD_RENDER_WORKING_DIR/$myfile" --execute-dir .
+            quarto render "_QMD_RENDER_WORKING_DIR/$myfile" --to html --execute-dir .
             mv _QMD_RENDER_WORKING_DIR/* "_QMD_RENDER_REVIEW/$myname/"
           done
 
