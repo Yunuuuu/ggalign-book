@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>19&nbsp; More examples – ggalign: Bridging the Grammar of Graphics and Complex layout</title>
+<title>4&nbsp; Fine-Grained Alignment Control – ggalign: Bridging the Grammar of Graphics and Complex layout</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -65,7 +65,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./complexheatmap-single-heatmap.html" rel="prev">
+<link href="./data-aware.html" rel="next">
+<link href="./plot-composer.html" rel="prev">
 <link href="./cover.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -106,9 +107,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
 
-<meta name="twitter:title" content="19&nbsp; More examples – ggalign: Bridging the Grammar of Graphics and Complex layout">
+<meta name="twitter:title" content="4&nbsp; Fine-Grained Alignment Control – ggalign: Bridging the Grammar of Graphics and Complex layout">
 <meta name="twitter:description" content="">
-<meta name="twitter:image" content="complexheatmap-more-examples_files/figure-html/unnamed-chunk-1-1.png">
+<meta name="twitter:image" content="free_files/figure-html/unnamed-chunk-2-1.png">
 <meta name="twitter:card" content="summary_large_image">
 </head>
 
@@ -121,7 +122,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./complexheatmap.html">ComplexHeatmap</a></li><li class="breadcrumb-item"><a href="./complexheatmap-more-examples.html"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">More examples</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data-free.html">Data-Free Composition</a></li><li class="breadcrumb-item"><a href="./free.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Fine-Grained Alignment Control</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -200,7 +201,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./free.html" class="sidebar-item-text sidebar-link">
+  <a href="./free.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Fine-Grained Alignment Control</span></span></a>
   </div>
 </li>
@@ -323,7 +324,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./complexheatmap-more-examples.html" class="sidebar-item-text sidebar-link active">
+  <a href="./complexheatmap-more-examples.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">More examples</span></span></a>
   </div>
 </li>
@@ -339,17 +340,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#add-more-information-for-gene-expression-matrix" id="toc-add-more-information-for-gene-expression-matrix" class="nav-link active" data-scroll-target="#add-more-information-for-gene-expression-matrix"><span class="header-section-number">19.1</span> Add more information for gene expression matrix</a></li>
-  <li><a href="#the-measles-vaccine-heatmap" id="toc-the-measles-vaccine-heatmap" class="nav-link" data-scroll-target="#the-measles-vaccine-heatmap"><span class="header-section-number">19.2</span> The measles vaccine heatmap</a></li>
+  <li><a href="#position-string-notation" id="toc-position-string-notation" class="nav-link active" data-scroll-target="#position-string-notation"><span class="header-section-number">4.1</span> Position String Notation</a></li>
+  <li><a href="#free_align" id="toc-free_align" class="nav-link" data-scroll-target="#free_align"><span class="header-section-number">4.2</span> <code>free_align()</code></a></li>
+  <li><a href="#free_space---space-constraint-removal" id="toc-free_space---space-constraint-removal" class="nav-link" data-scroll-target="#free_space---space-constraint-removal"><span class="header-section-number">4.3</span> <code>free_space()</code> - Space Constraint Removal</a></li>
+  <li><a href="#free_border" id="toc-free_border" class="nav-link" data-scroll-target="#free_border"><span class="header-section-number">4.4</span> <code>free_border()</code></a></li>
+  <li><a href="#free_lab" id="toc-free_lab" class="nav-link" data-scroll-target="#free_lab"><span class="header-section-number">4.5</span> <code>free_lab()</code></a></li>
+  <li><a href="#free_vp" id="toc-free_vp" class="nav-link" data-scroll-target="#free_vp"><span class="header-section-number">4.6</span> <code>free_vp()</code></a></li>
+  <li><a href="#free_guide" id="toc-free_guide" class="nav-link" data-scroll-target="#free_guide"><span class="header-section-number">4.7</span> free_guide</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/Yunuuuu/ggalign-book/blob/main/complexheatmap-more-examples.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/Yunuuuu/ggalign-book/edit/main/complexheatmap-more-examples.qmd" class="toc-action"><i class="bi empty"></i>Edit this page</a></li><li><a href="https://github.com/Yunuuuu/ggalign-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="quarto-other-links"><h2>Other Links</h2><ul><li><a href="https://yunuuuu.github.io/ggalign"><i class="bi bi-journal-text"></i>ggalign reference</a></li><li><a href="https://yunuuuu.github.io/ggalign-gallery"><i class="bi bi-journal-text"></i>ggalign gallery</a></li><li><a href="https://www.biorxiv.org/content/10.1101/2025.02.06.636847v1"><i class="bi bi-layout-text-sidebar-reverse"></i>ggalign manuscript</a></li></ul></div><div class="quarto-code-links"><h2>Code Links</h2><ul><li><a href="https://github.com/Yunuuuu/ggalign"><i class="bi bi-code-square"></i>ggalign repo</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/Yunuuuu/ggalign-book/blob/main/free.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/Yunuuuu/ggalign-book/edit/main/free.qmd" class="toc-action"><i class="bi empty"></i>Edit this page</a></li><li><a href="https://github.com/Yunuuuu/ggalign-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="quarto-other-links"><h2>Other Links</h2><ul><li><a href="https://yunuuuu.github.io/ggalign"><i class="bi bi-journal-text"></i>ggalign reference</a></li><li><a href="https://yunuuuu.github.io/ggalign-gallery"><i class="bi bi-journal-text"></i>ggalign gallery</a></li><li><a href="https://www.biorxiv.org/content/10.1101/2025.02.06.636847v1"><i class="bi bi-layout-text-sidebar-reverse"></i>ggalign manuscript</a></li></ul></div><div class="quarto-code-links"><h2>Code Links</h2><ul><li><a href="https://github.com/Yunuuuu/ggalign"><i class="bi bi-code-square"></i>ggalign repo</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./complexheatmap.html">ComplexHeatmap</a></li><li class="breadcrumb-item"><a href="./complexheatmap-more-examples.html"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">More examples</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data-free.html">Data-Free Composition</a></li><li class="breadcrumb-item"><a href="./free.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Fine-Grained Alignment Control</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">More examples</span></h1>
+<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Fine-Grained Alignment Control</span></h1>
 </div>
 
 
@@ -366,6 +372,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
+<p>The <code>ggalign</code> package provides six <code>free_</code> functions that give you precise control over plot alignment behavior by selectively disabling alignment constraints for specific plot elements in <code>align_plots()</code>.</p>
+<ul>
+<li><code>free_align()</code> - Disables panel alignment for specified axes.</li>
+<li><code>free_space()</code> - Removes space constraints when aligning.</li>
+<li><code>free_border()</code> - Attaches border elements (like axis titles) to the panel but keeps their size.</li>
+<li><code>free_lab()</code> - Similar to <code>free_border()</code>, but only applies to axis labels and titles.</li>
+<li><code>free_vp()</code> - Customizes viewport placement.</li>
+<li><code>free_guide()</code> - Overrides <code>guides</code> collection behavior</li>
+</ul>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
@@ -378,141 +393,206 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     element_polygon</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<p>In this section, we’ll use <code>ggalign</code> to draw all the heatmap in <a href="https://jokergoo.github.io/ComplexHeatmap-reference/book/more-examples.html" class="uri">https://jokergoo.github.io/ComplexHeatmap-reference/book/more-examples.html</a>.</p>
-<section id="add-more-information-for-gene-expression-matrix" class="level2" data-number="19.1">
-<h2 data-number="19.1" class="anchored" data-anchor-id="add-more-information-for-gene-expression-matrix"><span class="header-section-number">19.1</span> Add more information for gene expression matrix</h2>
+<section id="position-string-notation" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="position-string-notation"><span class="header-section-number">4.1</span> Position String Notation</h2>
+<p>Most <code>free_</code> functions use a consistent <code>"tlbr"</code> notation system where each letter represents a side of the plot:</p>
+<ul>
+<li><code>t</code>: top</li>
+<li><code>l</code>: left<br>
+</li>
+<li><code>b</code>: bottom</li>
+<li><code>r</code>: right</li>
+</ul>
+<p>First, let’s create some example plots:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>expr <span class="ot">&lt;-</span> <span class="fu">read_example</span>(<span class="st">"gene_expression.rds"</span>)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>mat <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(expr[, <span class="fu">grep</span>(<span class="st">"cell"</span>, <span class="fu">colnames</span>(expr))])</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>base_mean <span class="ot">&lt;-</span> <span class="fu">rowMeans</span>(mat)</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>mat_scaled <span class="ot">&lt;-</span> <span class="fu">t</span>(<span class="fu">apply</span>(mat, <span class="dv">1</span>, scale))</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>type <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">"s</span><span class="sc">\\</span><span class="st">d+_"</span>, <span class="st">""</span>, <span class="fu">colnames</span>(mat))</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>heat1 <span class="ot">&lt;-</span> <span class="fu">ggheatmap</span>(mat_scaled) <span class="sc">-</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scheme_align</span>(<span class="at">free_spaces =</span> <span class="st">"l"</span>) <span class="sc">+</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_viridis_c</span>(<span class="at">option =</span> <span class="st">"magma"</span>) <span class="sc">+</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># add dendrogram for this heatmap</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">anno_top</span>() <span class="sc">+</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_dendro</span>() <span class="sc">+</span></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># add a block for the heatmap column</span></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggalign</span>(<span class="at">data =</span> type, <span class="at">size =</span> <span class="fu">unit</span>(<span class="dv">1</span>, <span class="st">"cm"</span>)) <span class="sc">+</span></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_tile</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="dv">1</span>, <span class="at">fill =</span> <span class="fu">factor</span>(value))) <span class="sc">+</span></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> <span class="cn">NULL</span>, <span class="at">name =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_brewer</span>(</span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>        <span class="at">palette =</span> <span class="st">"Set1"</span>, <span class="at">name =</span> <span class="st">"type"</span>,</span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>        <span class="at">guide =</span> <span class="fu">guide_legend</span>(<span class="at">position =</span> <span class="st">"top"</span>)</span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>heat2 <span class="ot">&lt;-</span> <span class="fu">ggheatmap</span>(base_mean, <span class="at">width =</span> <span class="fu">unit</span>(<span class="dv">2</span>, <span class="st">"cm"</span>)) <span class="sc">+</span></span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_continuous</span>(<span class="at">name =</span> <span class="st">"base mean"</span>, <span class="at">breaks =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_gradientn</span>(<span class="at">colours =</span> <span class="fu">c</span>(<span class="st">"#2600D1FF"</span>, <span class="st">"white"</span>, <span class="st">"#EE3F3FFF"</span>)) <span class="sc">+</span></span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>    <span class="co"># set the active context of the heatmap to the top</span></span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>    <span class="co"># and set the size of the top stack</span></span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>    <span class="fu">anno_top</span>(<span class="at">size =</span> <span class="fu">unit</span>(<span class="dv">4</span>, <span class="st">"cm"</span>)) <span class="sc">+</span></span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>    <span class="co"># add box plot in the heatmap top</span></span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggalign</span>() <span class="sc">+</span></span>
-<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> value, <span class="at">fill =</span> <span class="fu">factor</span>(.extra_panel))) <span class="sc">+</span></span>
-<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_continuous</span>(<span class="at">expand =</span> <span class="fu">expansion</span>(), <span class="at">breaks =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
-<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_brewer</span>(</span>
-<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>        <span class="at">palette =</span> <span class="st">"Dark2"</span>, <span class="at">name =</span> <span class="st">"base mean"</span>,</span>
-<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>        <span class="at">guide =</span> <span class="fu">guide_legend</span>(<span class="at">position =</span> <span class="st">"top"</span>)</span>
-<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
-<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">axis.title.y =</span> <span class="fu">element_blank</span>())</span>
-<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>heat3 <span class="ot">&lt;-</span> <span class="fu">ggheatmap</span>(expr<span class="sc">$</span>type, <span class="at">width =</span> <span class="fu">unit</span>(<span class="dv">2</span>, <span class="st">"cm"</span>)) <span class="sc">+</span></span>
-<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">"Set3"</span>, <span class="at">name =</span> <span class="st">"gene type"</span>) <span class="sc">+</span></span>
-<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="cn">NULL</span>, <span class="at">name =</span> <span class="st">"gene type"</span>) <span class="sc">+</span></span>
-<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>    <span class="co"># add barplot in the top annotation, and remove the spaces in the y-axis</span></span>
-<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>    <span class="fu">anno_top</span>() <span class="sc">-</span></span>
-<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scheme_align</span>(<span class="at">free_spaces =</span> <span class="st">"lr"</span>) <span class="sc">+</span></span>
-<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggalign</span>() <span class="sc">+</span></span>
-<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>(</span>
-<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>        <span class="fu">aes</span>(.extra_panel, <span class="at">fill =</span> <span class="fu">factor</span>(value)),</span>
-<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>        <span class="at">position =</span> <span class="fu">position_fill</span>()</span>
-<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
-<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_y_continuous</span>(<span class="at">expand =</span> <span class="fu">expansion</span>()) <span class="sc">+</span></span>
-<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">"Set3"</span>, <span class="at">name =</span> <span class="st">"gene type"</span>, <span class="at">guide =</span> <span class="st">"none"</span>) <span class="sc">-</span></span>
-<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scheme_theme</span>(<span class="at">plot.margin =</span> <span class="fu">margin</span>())</span>
-<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a><span class="fu">stack_alignh</span>(mat_scaled) <span class="sc">+</span></span>
-<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a>    <span class="fu">stack_active</span>(<span class="at">sizes =</span> <span class="fu">c</span>(<span class="fl">0.2</span>, <span class="dv">1</span>, <span class="dv">1</span>)) <span class="sc">+</span></span>
-<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a>    <span class="co"># group stack rows into 5 groups</span></span>
-<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_kmeans</span>(<span class="at">centers =</span> <span class="dv">5</span>L) <span class="sc">+</span></span>
-<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a>    <span class="co"># add a block plot for each group in the stack</span></span>
-<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggalign</span>(<span class="at">size =</span> <span class="fu">unit</span>(<span class="dv">1</span>, <span class="st">"cm"</span>), <span class="at">data =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
-<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_tile</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="dv">1</span>, <span class="at">fill =</span> <span class="fu">factor</span>(.panel))) <span class="sc">+</span></span>
-<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">"Dark2"</span>, <span class="at">name =</span> <span class="st">"Kmeans group"</span>) <span class="sc">+</span></span>
-<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="cn">NULL</span>, <span class="at">name =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
-<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a>    <span class="co"># add a heatmap plot in the stack</span></span>
-<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a>    heat1 <span class="sc">+</span></span>
-<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a>    <span class="co"># add another heatmap in the stack</span></span>
-<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a>    heat2 <span class="sc">+</span></span>
-<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a>    <span class="co"># we move into the stack layout</span></span>
-<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a>    <span class="fu">stack_active</span>() <span class="sc">+</span></span>
-<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a>    <span class="co"># add a point plot</span></span>
-<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggalign</span>(<span class="at">data =</span> expr<span class="sc">$</span>length, <span class="at">size =</span> <span class="fu">unit</span>(<span class="dv">2</span>, <span class="st">"cm"</span>)) <span class="sc">+</span></span>
-<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> value)) <span class="sc">+</span></span>
-<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"length"</span>) <span class="sc">+</span></span>
-<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(</span>
-<span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.border =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="cn">NA</span>),</span>
-<span id="cb2-76"><a href="#cb2-76" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="sc">-</span><span class="dv">60</span>, <span class="at">hjust =</span> <span class="dv">0</span>)</span>
-<span id="cb2-77"><a href="#cb2-77" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
-<span id="cb2-78"><a href="#cb2-78" aria-hidden="true" tabindex="-1"></a>    <span class="co"># add another heatmap</span></span>
-<span id="cb2-79"><a href="#cb2-79" aria-hidden="true" tabindex="-1"></a>    heat3 <span class="sc">&amp;</span></span>
-<span id="cb2-80"><a href="#cb2-80" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(</span>
-<span id="cb2-81"><a href="#cb2-81" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.background =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb2-82"><a href="#cb2-82" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.background =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb2-83"><a href="#cb2-83" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.background =</span> <span class="fu">element_blank</span>()</span>
-<span id="cb2-84"><a href="#cb2-84" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb2-85"><a href="#cb2-85" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; → heatmap built with `geom_tile()`</span></span>
-<span id="cb2-86"><a href="#cb2-86" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; → heatmap built with `geom_tile()`</span></span>
-<span id="cb2-87"><a href="#cb2-87" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; → heatmap built with `geom_tile()`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># A simple scatter plot</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>p_simple <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(mtcars) <span class="sc">+</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(mpg, disp))</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a plot with long axis labels that causes alignment issues</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>p_wide_labels <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(mtcars) <span class="sc">+</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">factor</span>(gear), <span class="at">fill =</span> <span class="fu">factor</span>(gear))) <span class="sc">+</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_y_discrete</span>(</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">name =</span> <span class="cn">NULL</span>,</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">labels =</span> <span class="fu">c</span>(</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>            <span class="st">"3 gears are often enough"</span>,</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>            <span class="st">"But, you know, 4 is a nice number"</span>,</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>            <span class="st">"I would def go with 5 gears in a modern car"</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="free_align" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="free_align"><span class="header-section-number">4.2</span> <code>free_align()</code></h2>
+<p>By default, <code>align_plots()</code> aligns plot panels so axes match. This can cause excessive spacing when plots differ in axis label lengths. <code>free_align()</code> disables panel alignment on specified sides.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Problem: When combined, it looks bad due to forced alignment</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">align_plots</span>(p_simple, p_wide_labels, <span class="at">ncol =</span> <span class="dv">1</span>L)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="complexheatmap-more-examples_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="1152"></p>
+<p><img src="free_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Solution: Use free_align to prevent panel alignment</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">align_plots</span>(p_simple, <span class="fu">free_align</span>(p_wide_labels), <span class="at">ncol =</span> <span class="dv">1</span>L)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="free_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Partial solution: Free only the left side to maintain right alignment</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">align_plots</span>(p_simple, <span class="fu">free_align</span>(p_wide_labels, <span class="at">axes =</span> <span class="st">"l"</span>), <span class="at">ncol =</span> <span class="dv">1</span>L)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="free_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
 </section>
-<section id="the-measles-vaccine-heatmap" class="level2" data-number="19.2">
-<h2 data-number="19.2" class="anchored" data-anchor-id="the-measles-vaccine-heatmap"><span class="header-section-number">19.2</span> The measles vaccine heatmap</h2>
+<section id="free_space---space-constraint-removal" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="free_space---space-constraint-removal"><span class="header-section-number">4.3</span> <code>free_space()</code> - Space Constraint Removal</h2>
+<p><code>free_space()</code> removes the allocated space for plot elements when aligning. This is particularly useful for removing padding introduced by long axis labels or titles.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>mat <span class="ot">&lt;-</span> <span class="fu">read_example</span>(<span class="st">"measles.rds"</span>)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggheatmap</span>(mat, <span class="at">filling =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_tile</span>(<span class="fu">aes</span>(<span class="at">fill =</span> value), <span class="at">color =</span> <span class="st">"white"</span>) <span class="sc">+</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_gradientn</span>(</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">colours =</span> <span class="fu">c</span>(<span class="st">"white"</span>, <span class="st">"cornflowerblue"</span>, <span class="st">"yellow"</span>, <span class="st">"red"</span>),</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">values =</span> scales<span class="sc">::</span><span class="fu">rescale</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">800</span>, <span class="dv">1000</span>, <span class="dv">127000</span>), <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>))</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="sc">-</span><span class="dv">60</span>, <span class="at">hjust =</span> <span class="dv">0</span>)) <span class="sc">+</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">anno_right</span>() <span class="sc">+</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_dendro</span>(<span class="at">plot_dendrogram =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">anno_top</span>(<span class="at">size =</span> <span class="fu">unit</span>(<span class="dv">2</span>, <span class="st">"cm"</span>)) <span class="sc">+</span></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggalign</span>(<span class="at">data =</span> rowSums) <span class="sc">+</span></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">y =</span> value), <span class="at">fill =</span> <span class="st">"#FFE200"</span>, <span class="at">stat =</span> <span class="st">"identity"</span>) <span class="sc">+</span></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_y_continuous</span>(<span class="at">expand =</span> <span class="fu">expansion</span>()) <span class="sc">+</span></span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggtitle</span>(<span class="st">"Measles cases in US states 1930-2001</span><span class="sc">\n</span><span class="st">Vaccine introduced 1961"</span>) <span class="sc">+</span></span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>)) <span class="sc">+</span></span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">anno_right</span>(<span class="at">size =</span> <span class="fu">unit</span>(<span class="dv">2</span>, <span class="st">"cm"</span>)) <span class="sc">+</span></span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggalign</span>(<span class="at">data =</span> rowSums) <span class="sc">+</span></span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> value),</span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>        <span class="at">fill =</span> <span class="st">"#FFE200"</span>, <span class="at">stat =</span> <span class="st">"identity"</span>,</span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>        <span class="at">orientation =</span> <span class="st">"y"</span></span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_continuous</span>(<span class="at">expand =</span> <span class="fu">expansion</span>()) <span class="sc">+</span></span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="sc">-</span><span class="dv">60</span>, <span class="at">hjust =</span> <span class="dv">0</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">align_plots</span>(p_simple, <span class="fu">free_space</span>(p_wide_labels, <span class="at">spaces =</span> <span class="st">"l"</span>), <span class="at">ncol =</span> <span class="dv">1</span>L)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="complexheatmap-more-examples_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="1152"></p>
+<p><img src="free_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
+<p>While it may not appear impactful on its own, <code>free_space()</code> is often essential when used together with <code>free_border()</code>.</p>
+</section>
+<section id="free_border" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="free_border"><span class="header-section-number">4.4</span> <code>free_border()</code></h2>
+<p><code>free_border()</code> attaches borders (e.g., axis titles, tick marks) directly to the plot panel. This keeps them visually close to the panel during alignment.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">align_plots</span>(<span class="fu">free_border</span>(p_simple, <span class="at">borders =</span> <span class="st">"l"</span>), p_wide_labels, <span class="at">ncol =</span> <span class="dv">1</span>L)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="free_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>However, <code>free_border()</code> does not remove the space these components occupy. This means that, although the border (e.g., axis title) follows the plot panel more tightly in <code>p_simple</code>, the space reserved for it still exists. During alignment, this space is added to <code>p_wide_labels</code>, potentially adding unnecessary spaces.</p>
+<p>To fully eliminate the size contribution of the border, we often combine <code>free_border()</code> with <code>free_space()</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">align_plots</span>(</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">free_space</span>(<span class="fu">free_border</span>(p_simple, <span class="at">borders =</span> <span class="st">"l"</span>), <span class="at">spaces =</span> <span class="st">"l"</span>),</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    p_wide_labels,</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">ncol =</span> <span class="dv">1</span>L</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="free_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>This removes the reserved size on the left side (spaces = “l”), ensuring clean, panel-based alignment without extra padding.</p>
+</section>
+<section id="free_lab" class="level2" data-number="4.5">
+<h2 data-number="4.5" class="anchored" data-anchor-id="free_lab"><span class="header-section-number">4.5</span> <code>free_lab()</code></h2>
+<p><code>free_lab()</code> is similar to <code>free_border()</code>, but only attaches axis titles and tick labels, not full borders. It’s mainly included for completeness; in most cases, combining <code>free_border()</code> and <code>free_space()</code> is sufficient.</p>
+</section>
+<section id="free_vp" class="level2" data-number="4.6">
+<h2 data-number="4.6" class="anchored" data-anchor-id="free_vp"><span class="header-section-number">4.6</span> <code>free_vp()</code></h2>
+<p>The <code>free_vp()</code> function allows you to customize the grid viewport when aligning plots, giving you precise control over plot positioning and sizing. This is useful for precisely placing plots when alignment alone is insufficient.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(mtcars) <span class="sc">+</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(mpg, disp))</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(mtcars) <span class="sc">+</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(gear, disp, <span class="at">group =</span> gear))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="grid">
+<div class="g-col-6">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Blank line at the beginning to keep height consistent</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="fu">align_plots</span>(p1, p2, <span class="at">ncol =</span> <span class="dv">2</span>L)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="free_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div class="g-col-6">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">align_plots</span>(p1, </span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">free_vp</span>(p2, <span class="at">height =</span> <span class="fu">unit</span>(<span class="fl">0.8</span>, <span class="st">"npc"</span>), <span class="at">just =</span> <span class="st">"bottom"</span>, <span class="at">y =</span> <span class="dv">0</span>), </span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">ncol =</span> <span class="dv">2</span>L</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="free_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="free_guide" class="level2" data-number="4.7">
+<h2 data-number="4.7" class="anchored" data-anchor-id="free_guide"><span class="header-section-number">4.7</span> free_guide</h2>
+<p>The <code>free_guide()</code> function allows you to override the <code>guides</code> argument for a single plot.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>p_right <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(mtcars) <span class="sc">+</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(hp, wt, <span class="at">colour =</span> mpg)) <span class="sc">+</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">patch_titles</span>(<span class="st">"right"</span>) <span class="sc">+</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">color =</span> <span class="st">"right"</span>)</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>p_top <span class="ot">&lt;-</span> p_right <span class="sc">+</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">patch_titles</span>(<span class="st">"top"</span>) <span class="sc">+</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_color_continuous</span>(</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">name =</span> <span class="st">"top"</span>,</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">guide =</span> <span class="fu">guide_colorbar</span>(<span class="at">position =</span> <span class="st">"top"</span>)</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>p_left <span class="ot">&lt;-</span> p_right <span class="sc">+</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">patch_titles</span>(<span class="st">"left"</span>) <span class="sc">+</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_color_continuous</span>(</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>        <span class="at">name =</span> <span class="st">"left"</span>,</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>        <span class="at">guide =</span> <span class="fu">guide_colorbar</span>(<span class="at">position =</span> <span class="st">"left"</span>)</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>p_bottom <span class="ot">&lt;-</span> p_right <span class="sc">+</span></span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">patch_titles</span>(<span class="st">"bottom"</span>) <span class="sc">+</span></span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_color_continuous</span>(</span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>        <span class="at">name =</span> <span class="st">"bottom"</span>,</span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>        <span class="at">guide =</span> <span class="fu">guide_colorbar</span>(<span class="at">position =</span> <span class="st">"bottom"</span>)</span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a><span class="fu">align_plots</span>(</span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>    <span class="fu">free_guide</span>(p_right, <span class="cn">NULL</span>),</span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>    <span class="fu">free_guide</span>(p_bottom, <span class="cn">NULL</span>),</span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>    <span class="fu">free_guide</span>(p_top, <span class="cn">NULL</span>),</span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a>    <span class="fu">free_guide</span>(p_left, <span class="cn">NULL</span>),</span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">guides =</span> <span class="st">"tlbr"</span></span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="free_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>You can also specify which guide positions to be collected for individual plots. align_plots( free_guide(p_right, “r”), free_guide(p_bottom, “b”), free_guide(p_top, “t”), free_guide(p_left, “l”) )</p>
 
 
 </section>
@@ -958,11 +1038,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./complexheatmap-single-heatmap.html" class="pagination-link" aria-label="A Single Heatmap">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">A Single Heatmap</span></span>
+      <a href="./plot-composer.html" class="pagination-link" aria-label="Plot Composer">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Plot Composer</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="./data-aware.html" class="pagination-link" aria-label="Data-Aware Composition">
+        <span class="nav-page-text">Data-Aware Composition</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->
@@ -970,4 +1053,4 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/Yunuuuu/ggalign-book/blob/main/complexheatmap-more-examples.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/Yunuuuu/ggalign-book/edit/main/complexheatmap-more-examples.qmd" class="toc-action"><i class="bi empty"></i>Edit this page</a></li><li><a href="https://github.com/Yunuuuu/ggalign-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/Yunuuuu/ggalign-book/blob/main/free.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/Yunuuuu/ggalign-book/edit/main/free.qmd" class="toc-action"><i class="bi empty"></i>Edit this page</a></li><li><a href="https://github.com/Yunuuuu/ggalign-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>19&nbsp; More examples – ggalign: Bridging the Grammar of Graphics and Complex layout</title>
+<title>Data-Aware Composition – ggalign: Bridging the Grammar of Graphics and Complex layout</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,41 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -65,7 +30,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./complexheatmap-single-heatmap.html" rel="prev">
+<link href="./stack-layout.html" rel="next">
+<link href="./free.html" rel="prev">
 <link href="./cover.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -106,9 +72,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
 
-<meta name="twitter:title" content="19&nbsp; More examples – ggalign: Bridging the Grammar of Graphics and Complex layout">
+<meta name="twitter:title" content="Data-Aware Composition – ggalign: Bridging the Grammar of Graphics and Complex layout">
 <meta name="twitter:description" content="">
-<meta name="twitter:image" content="complexheatmap-more-examples_files/figure-html/unnamed-chunk-1-1.png">
+<meta name="twitter:image" content="design.png">
 <meta name="twitter:card" content="summary_large_image">
 </head>
 
@@ -121,7 +87,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./complexheatmap.html">ComplexHeatmap</a></li><li class="breadcrumb-item"><a href="./complexheatmap-more-examples.html"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">More examples</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data-aware.html">Data-Aware Composition</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -208,7 +174,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./data-aware.html" class="sidebar-item-text sidebar-link">
+            <a href="./data-aware.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Data-Aware Composition</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -323,7 +289,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./complexheatmap-more-examples.html" class="sidebar-item-text sidebar-link active">
+  <a href="./complexheatmap-more-examples.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">More examples</span></span></a>
   </div>
 </li>
@@ -339,17 +305,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#add-more-information-for-gene-expression-matrix" id="toc-add-more-information-for-gene-expression-matrix" class="nav-link active" data-scroll-target="#add-more-information-for-gene-expression-matrix"><span class="header-section-number">19.1</span> Add more information for gene expression matrix</a></li>
-  <li><a href="#the-measles-vaccine-heatmap" id="toc-the-measles-vaccine-heatmap" class="nav-link" data-scroll-target="#the-measles-vaccine-heatmap"><span class="header-section-number">19.2</span> The measles vaccine heatmap</a></li>
+  <li><a href="#layout-system" id="toc-layout-system" class="nav-link active" data-scroll-target="#layout-system">Layout System</a></li>
+  <li><a href="#overview-of-supporting-systems" id="toc-overview-of-supporting-systems" class="nav-link" data-scroll-target="#overview-of-supporting-systems">Overview of Supporting Systems</a></li>
+  <li><a href="#sec-input-data" id="toc-sec-input-data" class="nav-link" data-scroll-target="#sec-input-data">Input data</a></li>
+  <li><a href="#what-will-you-learn" id="toc-what-will-you-learn" class="nav-link" data-scroll-target="#what-will-you-learn">What Will You Learn?</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/Yunuuuu/ggalign-book/blob/main/complexheatmap-more-examples.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/Yunuuuu/ggalign-book/edit/main/complexheatmap-more-examples.qmd" class="toc-action"><i class="bi empty"></i>Edit this page</a></li><li><a href="https://github.com/Yunuuuu/ggalign-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="quarto-other-links"><h2>Other Links</h2><ul><li><a href="https://yunuuuu.github.io/ggalign"><i class="bi bi-journal-text"></i>ggalign reference</a></li><li><a href="https://yunuuuu.github.io/ggalign-gallery"><i class="bi bi-journal-text"></i>ggalign gallery</a></li><li><a href="https://www.biorxiv.org/content/10.1101/2025.02.06.636847v1"><i class="bi bi-layout-text-sidebar-reverse"></i>ggalign manuscript</a></li></ul></div><div class="quarto-code-links"><h2>Code Links</h2><ul><li><a href="https://github.com/Yunuuuu/ggalign"><i class="bi bi-code-square"></i>ggalign repo</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/Yunuuuu/ggalign-book/blob/main/data-aware.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/Yunuuuu/ggalign-book/edit/main/data-aware.qmd" class="toc-action"><i class="bi empty"></i>Edit this page</a></li><li><a href="https://github.com/Yunuuuu/ggalign-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="quarto-other-links"><h2>Other Links</h2><ul><li><a href="https://yunuuuu.github.io/ggalign"><i class="bi bi-journal-text"></i>ggalign reference</a></li><li><a href="https://yunuuuu.github.io/ggalign-gallery"><i class="bi bi-journal-text"></i>ggalign gallery</a></li><li><a href="https://www.biorxiv.org/content/10.1101/2025.02.06.636847v1"><i class="bi bi-layout-text-sidebar-reverse"></i>ggalign manuscript</a></li></ul></div><div class="quarto-code-links"><h2>Code Links</h2><ul><li><a href="https://github.com/Yunuuuu/ggalign"><i class="bi bi-code-square"></i>ggalign repo</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./complexheatmap.html">ComplexHeatmap</a></li><li class="breadcrumb-item"><a href="./complexheatmap-more-examples.html"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">More examples</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">More examples</span></h1>
+<h1 class="title"><span id="sec-data-aware" class="quarto-section-identifier">Data-Aware Composition</span></h1>
 </div>
 
 
@@ -366,153 +334,108 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggalign)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Loading required package: ggplot2</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Attaching package: 'ggalign'</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; The following object is masked from 'package:ggplot2':</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     element_polygon</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-<p>In this section, we’ll use <code>ggalign</code> to draw all the heatmap in <a href="https://jokergoo.github.io/ComplexHeatmap-reference/book/more-examples.html" class="uri">https://jokergoo.github.io/ComplexHeatmap-reference/book/more-examples.html</a>.</p>
-<section id="add-more-information-for-gene-expression-matrix" class="level2" data-number="19.1">
-<h2 data-number="19.1" class="anchored" data-anchor-id="add-more-information-for-gene-expression-matrix"><span class="header-section-number">19.1</span> Add more information for gene expression matrix</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>expr <span class="ot">&lt;-</span> <span class="fu">read_example</span>(<span class="st">"gene_expression.rds"</span>)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>mat <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(expr[, <span class="fu">grep</span>(<span class="st">"cell"</span>, <span class="fu">colnames</span>(expr))])</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>base_mean <span class="ot">&lt;-</span> <span class="fu">rowMeans</span>(mat)</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>mat_scaled <span class="ot">&lt;-</span> <span class="fu">t</span>(<span class="fu">apply</span>(mat, <span class="dv">1</span>, scale))</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>type <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">"s</span><span class="sc">\\</span><span class="st">d+_"</span>, <span class="st">""</span>, <span class="fu">colnames</span>(mat))</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>heat1 <span class="ot">&lt;-</span> <span class="fu">ggheatmap</span>(mat_scaled) <span class="sc">-</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scheme_align</span>(<span class="at">free_spaces =</span> <span class="st">"l"</span>) <span class="sc">+</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_viridis_c</span>(<span class="at">option =</span> <span class="st">"magma"</span>) <span class="sc">+</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># add dendrogram for this heatmap</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">anno_top</span>() <span class="sc">+</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_dendro</span>() <span class="sc">+</span></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># add a block for the heatmap column</span></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggalign</span>(<span class="at">data =</span> type, <span class="at">size =</span> <span class="fu">unit</span>(<span class="dv">1</span>, <span class="st">"cm"</span>)) <span class="sc">+</span></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_tile</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="dv">1</span>, <span class="at">fill =</span> <span class="fu">factor</span>(value))) <span class="sc">+</span></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> <span class="cn">NULL</span>, <span class="at">name =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_brewer</span>(</span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>        <span class="at">palette =</span> <span class="st">"Set1"</span>, <span class="at">name =</span> <span class="st">"type"</span>,</span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>        <span class="at">guide =</span> <span class="fu">guide_legend</span>(<span class="at">position =</span> <span class="st">"top"</span>)</span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>heat2 <span class="ot">&lt;-</span> <span class="fu">ggheatmap</span>(base_mean, <span class="at">width =</span> <span class="fu">unit</span>(<span class="dv">2</span>, <span class="st">"cm"</span>)) <span class="sc">+</span></span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_continuous</span>(<span class="at">name =</span> <span class="st">"base mean"</span>, <span class="at">breaks =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_gradientn</span>(<span class="at">colours =</span> <span class="fu">c</span>(<span class="st">"#2600D1FF"</span>, <span class="st">"white"</span>, <span class="st">"#EE3F3FFF"</span>)) <span class="sc">+</span></span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>    <span class="co"># set the active context of the heatmap to the top</span></span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>    <span class="co"># and set the size of the top stack</span></span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>    <span class="fu">anno_top</span>(<span class="at">size =</span> <span class="fu">unit</span>(<span class="dv">4</span>, <span class="st">"cm"</span>)) <span class="sc">+</span></span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>    <span class="co"># add box plot in the heatmap top</span></span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggalign</span>() <span class="sc">+</span></span>
-<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> value, <span class="at">fill =</span> <span class="fu">factor</span>(.extra_panel))) <span class="sc">+</span></span>
-<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_continuous</span>(<span class="at">expand =</span> <span class="fu">expansion</span>(), <span class="at">breaks =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
-<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_brewer</span>(</span>
-<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>        <span class="at">palette =</span> <span class="st">"Dark2"</span>, <span class="at">name =</span> <span class="st">"base mean"</span>,</span>
-<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>        <span class="at">guide =</span> <span class="fu">guide_legend</span>(<span class="at">position =</span> <span class="st">"top"</span>)</span>
-<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
-<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">axis.title.y =</span> <span class="fu">element_blank</span>())</span>
-<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>heat3 <span class="ot">&lt;-</span> <span class="fu">ggheatmap</span>(expr<span class="sc">$</span>type, <span class="at">width =</span> <span class="fu">unit</span>(<span class="dv">2</span>, <span class="st">"cm"</span>)) <span class="sc">+</span></span>
-<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">"Set3"</span>, <span class="at">name =</span> <span class="st">"gene type"</span>) <span class="sc">+</span></span>
-<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="cn">NULL</span>, <span class="at">name =</span> <span class="st">"gene type"</span>) <span class="sc">+</span></span>
-<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>    <span class="co"># add barplot in the top annotation, and remove the spaces in the y-axis</span></span>
-<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>    <span class="fu">anno_top</span>() <span class="sc">-</span></span>
-<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scheme_align</span>(<span class="at">free_spaces =</span> <span class="st">"lr"</span>) <span class="sc">+</span></span>
-<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggalign</span>() <span class="sc">+</span></span>
-<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>(</span>
-<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>        <span class="fu">aes</span>(.extra_panel, <span class="at">fill =</span> <span class="fu">factor</span>(value)),</span>
-<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>        <span class="at">position =</span> <span class="fu">position_fill</span>()</span>
-<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
-<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_y_continuous</span>(<span class="at">expand =</span> <span class="fu">expansion</span>()) <span class="sc">+</span></span>
-<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">"Set3"</span>, <span class="at">name =</span> <span class="st">"gene type"</span>, <span class="at">guide =</span> <span class="st">"none"</span>) <span class="sc">-</span></span>
-<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scheme_theme</span>(<span class="at">plot.margin =</span> <span class="fu">margin</span>())</span>
-<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a><span class="fu">stack_alignh</span>(mat_scaled) <span class="sc">+</span></span>
-<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a>    <span class="fu">stack_active</span>(<span class="at">sizes =</span> <span class="fu">c</span>(<span class="fl">0.2</span>, <span class="dv">1</span>, <span class="dv">1</span>)) <span class="sc">+</span></span>
-<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a>    <span class="co"># group stack rows into 5 groups</span></span>
-<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_kmeans</span>(<span class="at">centers =</span> <span class="dv">5</span>L) <span class="sc">+</span></span>
-<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a>    <span class="co"># add a block plot for each group in the stack</span></span>
-<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggalign</span>(<span class="at">size =</span> <span class="fu">unit</span>(<span class="dv">1</span>, <span class="st">"cm"</span>), <span class="at">data =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
-<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_tile</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="dv">1</span>, <span class="at">fill =</span> <span class="fu">factor</span>(.panel))) <span class="sc">+</span></span>
-<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">"Dark2"</span>, <span class="at">name =</span> <span class="st">"Kmeans group"</span>) <span class="sc">+</span></span>
-<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="cn">NULL</span>, <span class="at">name =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
-<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a>    <span class="co"># add a heatmap plot in the stack</span></span>
-<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a>    heat1 <span class="sc">+</span></span>
-<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a>    <span class="co"># add another heatmap in the stack</span></span>
-<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a>    heat2 <span class="sc">+</span></span>
-<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a>    <span class="co"># we move into the stack layout</span></span>
-<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a>    <span class="fu">stack_active</span>() <span class="sc">+</span></span>
-<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a>    <span class="co"># add a point plot</span></span>
-<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggalign</span>(<span class="at">data =</span> expr<span class="sc">$</span>length, <span class="at">size =</span> <span class="fu">unit</span>(<span class="dv">2</span>, <span class="st">"cm"</span>)) <span class="sc">+</span></span>
-<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> value)) <span class="sc">+</span></span>
-<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"length"</span>) <span class="sc">+</span></span>
-<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(</span>
-<span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.border =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="cn">NA</span>),</span>
-<span id="cb2-76"><a href="#cb2-76" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="sc">-</span><span class="dv">60</span>, <span class="at">hjust =</span> <span class="dv">0</span>)</span>
-<span id="cb2-77"><a href="#cb2-77" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
-<span id="cb2-78"><a href="#cb2-78" aria-hidden="true" tabindex="-1"></a>    <span class="co"># add another heatmap</span></span>
-<span id="cb2-79"><a href="#cb2-79" aria-hidden="true" tabindex="-1"></a>    heat3 <span class="sc">&amp;</span></span>
-<span id="cb2-80"><a href="#cb2-80" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(</span>
-<span id="cb2-81"><a href="#cb2-81" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.background =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb2-82"><a href="#cb2-82" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.background =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb2-83"><a href="#cb2-83" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.background =</span> <span class="fu">element_blank</span>()</span>
-<span id="cb2-84"><a href="#cb2-84" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb2-85"><a href="#cb2-85" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; → heatmap built with `geom_tile()`</span></span>
-<span id="cb2-86"><a href="#cb2-86" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; → heatmap built with `geom_tile()`</span></span>
-<span id="cb2-87"><a href="#cb2-87" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; → heatmap built with `geom_tile()`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
+<p>This part introduces another core feature of the ggalign package: data-aware composition. Unlike data-free composition, which focuses solely on the visual arrangement of plots without considering shared data values, data-aware composition aligns plots based on common data characteristics—such as shared axis scales or categorical factors. This enables precise alignment of related plots where data correspondence matters.</p>
+<p><code>ggalign</code> simplifies data-aware alignment in ggplot2, handling common tasks such as sorting, grouping, or clustering observations before composition.</p>
+<div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="complexheatmap-more-examples_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="1152"></p>
+<p><img src="design.png" class="img-fluid figure-img"></p>
+<figcaption>General design of Data-Aware Composition</figcaption>
 </figure>
 </div>
-</div>
+<section id="layout-system" class="level2">
+<h2 class="anchored" data-anchor-id="layout-system">Layout System</h2>
+<p>At the heart of <code>ggalign</code> data-aware composition is an object-oriented <code>Layout</code> system that integrates seamlessly with <code>ggplot2</code>. It provides three core layout types:</p>
+<ul>
+<li><code>StackLayout</code>: Stacks plots horizontally or vertically.</li>
+<li><code>QuadLayout</code>: Arranges plots in four quadrants (top, left, bottom, right) around a central plot.</li>
+<li><code>CircleLayout</code>: Positions plots in a circular pattern.</li>
+</ul>
+<p>Each layout supports both discrete (e.g., categories) and continuous (e.g., numerical) data, and includes specialized alignment functions:</p>
+<p>For <code>StackLayout</code>:</p>
+<ul>
+<li><code>stack_discrete()</code>: Align discrete variable along the stack.</li>
+<li><code>stack_continuous()</code>: Align continuous variable along the stack.</li>
+<li><code>stack_layout()</code>: A unified interface that handles both discrete and continuous data.</li>
+</ul>
+<p>For <code>QuadLayout</code>:</p>
+<ul>
+<li><code>quad_continuous()</code>/<code>ggside()</code>: Align continuous variables in both horizontal and vertical directions.</li>
+<li><code>quad_discrete()</code>: Align discrete variables in both horizontal and vertical directions.</li>
+<li><code>quad_layout()</code>: A general function that adapts to both data types and directions.</li>
+</ul>
+<p>For <code>CircleLayout</code>:</p>
+<ul>
+<li><code>circle_discrete()</code>: Align discrete variable in the circle.</li>
+<li><code>circle_continuous()</code>: Align continuous variable in the circle.</li>
+<li><code>circle_layout()</code>: A unified interface for both cases.</li>
+</ul>
+<blockquote class="blockquote">
+<p>Note: Throughout this book, we refer to the main layout functions—<code>stack_layout()</code>, <code>quad_layout()</code>, and <code>circle_layout()</code>—as the primary interfaces, even when using their specialized variants.</p>
+</blockquote>
+</section>
+<section id="overview-of-supporting-systems" class="level2">
+<h2 class="anchored" data-anchor-id="overview-of-supporting-systems">Overview of Supporting Systems</h2>
+<p>In addition to the core <code>Layout</code> system, <code>ggalign</code> provides several helper systems that enhance data-aware composition by managing how observations are grouped, ordered, and supplemented with additional plot elements. These systems work together with layouts to create flexible and insightful multi-plot arrangements:</p>
+<ol type="1">
+<li>Layout customization:
+<ul>
+<li><code>align_group()</code>: Group observations into panel with a group variable.</li>
+<li><code>align_kmeans()</code>: Group observations into panel by kmeans.</li>
+<li><code>align_order()</code>: Reorder layout observations based on statistical weights or by manually specifying the observation index.</li>
+<li><code>align_order2</code>: Reorder observations using an arbitrary statistical function</li>
+<li><code>align_hclust()</code>: Reorder or group observations based on hierarchical clustering.</li>
+</ul></li>
+<li>Plot adding:
+<ul>
+<li><code>align_dendro()</code>: Add a dendrogram to the plot, and reorder or group observations based on hierarchical clustering.</li>
+<li><code>ggalign()</code>: Initialize a ggplot object and align the axes.</li>
+<li><code>ggmark()</code>: Add a plot to annotate selected observations.</li>
+<li><code>ggcross()</code>: Initialize a ggplot object to connect two different layout crosswise</li>
+<li><code>ggfree()</code>: Initialize a ggplot object without aligning the axes.</li>
+</ul></li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="overview.png" class="img-fluid figure-img"></p>
+<figcaption>Overview of Data-Aware Composition</figcaption>
+</figure>
 </div>
 </section>
-<section id="the-measles-vaccine-heatmap" class="level2" data-number="19.2">
-<h2 data-number="19.2" class="anchored" data-anchor-id="the-measles-vaccine-heatmap"><span class="header-section-number">19.2</span> The measles vaccine heatmap</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>mat <span class="ot">&lt;-</span> <span class="fu">read_example</span>(<span class="st">"measles.rds"</span>)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggheatmap</span>(mat, <span class="at">filling =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_tile</span>(<span class="fu">aes</span>(<span class="at">fill =</span> value), <span class="at">color =</span> <span class="st">"white"</span>) <span class="sc">+</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_gradientn</span>(</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">colours =</span> <span class="fu">c</span>(<span class="st">"white"</span>, <span class="st">"cornflowerblue"</span>, <span class="st">"yellow"</span>, <span class="st">"red"</span>),</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">values =</span> scales<span class="sc">::</span><span class="fu">rescale</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">800</span>, <span class="dv">1000</span>, <span class="dv">127000</span>), <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>))</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="sc">-</span><span class="dv">60</span>, <span class="at">hjust =</span> <span class="dv">0</span>)) <span class="sc">+</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">anno_right</span>() <span class="sc">+</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_dendro</span>(<span class="at">plot_dendrogram =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">anno_top</span>(<span class="at">size =</span> <span class="fu">unit</span>(<span class="dv">2</span>, <span class="st">"cm"</span>)) <span class="sc">+</span></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggalign</span>(<span class="at">data =</span> rowSums) <span class="sc">+</span></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">y =</span> value), <span class="at">fill =</span> <span class="st">"#FFE200"</span>, <span class="at">stat =</span> <span class="st">"identity"</span>) <span class="sc">+</span></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_y_continuous</span>(<span class="at">expand =</span> <span class="fu">expansion</span>()) <span class="sc">+</span></span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggtitle</span>(<span class="st">"Measles cases in US states 1930-2001</span><span class="sc">\n</span><span class="st">Vaccine introduced 1961"</span>) <span class="sc">+</span></span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>)) <span class="sc">+</span></span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">anno_right</span>(<span class="at">size =</span> <span class="fu">unit</span>(<span class="dv">2</span>, <span class="st">"cm"</span>)) <span class="sc">+</span></span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggalign</span>(<span class="at">data =</span> rowSums) <span class="sc">+</span></span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> value),</span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>        <span class="at">fill =</span> <span class="st">"#FFE200"</span>, <span class="at">stat =</span> <span class="st">"identity"</span>,</span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>        <span class="at">orientation =</span> <span class="st">"y"</span></span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_continuous</span>(<span class="at">expand =</span> <span class="fu">expansion</span>()) <span class="sc">+</span></span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="sc">-</span><span class="dv">60</span>, <span class="at">hjust =</span> <span class="dv">0</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="complexheatmap-more-examples_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="1152"></p>
-</figure>
-</div>
-</div>
-</div>
+<section id="sec-input-data" class="level2">
+<h2 class="anchored" data-anchor-id="sec-input-data">Input data</h2>
+<p>Before exploring data-aware compostion, it’s important to understand how axis alignment works in <code>ggplot2</code>.</p>
+<ul>
+<li><p>For continuous axes, alignment is straightforward: simply ensure the axis limits are consistent across plots.</p></li>
+<li><p>For discrete axes, alignment is more challenging. You must have the same set of unique values and maintain a consistent ordering across all plots. In ggplot2, this can be difficult when working with long-format data frames because the factor levels or ordering may differ.</p></li>
+</ul>
+<p><code>ggalign</code> addresses this challenge by using matrix inputs for layouts that align discrete axes (e.g., the <code>*_discrete()</code> functions). In this approach:</p>
+<ul>
+<li><p>Each row of the matrix represents a unique discrete value (called an “observation”).</p></li>
+<li><p>The total number of rows defines the complete set of unique discrete values.</p></li>
+<li><p>Reordering rows in the matrix controls the ordering of observations consistently across all linked plots.</p></li>
+</ul>
+<p>This design is especially useful for layouts that align axes in both directions (horizontal and vertical), such as heatmap, since matrices can be easily transposed to switch row and column alignment.</p>
+<p>The matrix is only used for positioning. Before rendering, <code>ggalign</code> will reorder the matrix rows based on the layout, and automatically converts it into a long-format data frame — the standard input for <code>ggplot2</code>.</p>
+<p>The main difference between discrete and continuous variable alignment in <code>ggalign</code> lies in the input data:</p>
+<ul>
+<li><p>Discrete variables require a matrix as input.</p></li>
+<li><p>Continuous variables require a data frame, just like in standard ggplot2.</p></li>
+</ul>
+<blockquote class="blockquote">
+<p>Terminology: <code>"Observations"</code> and <code>"discrete variables"</code> are interchangeable here. Any mention of <code>"observations"</code> applies to discrete variables too.</p>
+</blockquote>
+</section>
+<section id="what-will-you-learn" class="level2">
+<h2 class="anchored" data-anchor-id="what-will-you-learn">What Will You Learn?</h2>
+<p>This part is divided into sections that will guide you through:</p>
+<ul>
+<li><p>Exploring the <code>Layout</code> system and its core types.</p></li>
+<li><p>Understanding key concepts of data-aware composition.</p></li>
+<li><p>Learning how to align plots based on shared data features.</p></li>
+<li><p>Managing discrete and continuous data for alignment.</p></li>
+<li><p>Using grouping, ordering, and clustering to organize observations.</p></li>
+<li><p>Adding supporting visual elements like dendrograms and annotations.</p></li>
+</ul>
 
 
 </section>
@@ -958,11 +881,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./complexheatmap-single-heatmap.html" class="pagination-link" aria-label="A Single Heatmap">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">A Single Heatmap</span></span>
+      <a href="./free.html" class="pagination-link" aria-label="Fine-Grained Alignment Control">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Fine-Grained Alignment Control</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="./stack-layout.html" class="pagination-link" aria-label="stack layout">
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">stack layout</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->
@@ -970,4 +896,4 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/Yunuuuu/ggalign-book/blob/main/complexheatmap-more-examples.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/Yunuuuu/ggalign-book/edit/main/complexheatmap-more-examples.qmd" class="toc-action"><i class="bi empty"></i>Edit this page</a></li><li><a href="https://github.com/Yunuuuu/ggalign-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/Yunuuuu/ggalign-book/blob/main/data-aware.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/Yunuuuu/ggalign-book/edit/main/data-aware.qmd" class="toc-action"><i class="bi empty"></i>Edit this page</a></li><li><a href="https://github.com/Yunuuuu/ggalign-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>

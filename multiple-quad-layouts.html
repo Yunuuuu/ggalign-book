@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>9&nbsp; A list of quad_layout() – ggalign: Bridging the Grammar of Graphics and Complex layout</title>
+<title>11&nbsp; A list of quad_layout() – ggalign: Bridging the Grammar of Graphics and Complex layout</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -66,7 +66,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./circle-layout.html" rel="next">
-<link href="./quad-layout.html" rel="prev">
+<link href="./annotate-observations.html" rel="prev">
 <link href="./cover.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -107,7 +107,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
 
-<meta name="twitter:title" content="9&nbsp; A list of quad_layout() – ggalign: Bridging the Grammar of Graphics and Complex layout">
+<meta name="twitter:title" content="11&nbsp; A list of quad_layout() – ggalign: Bridging the Grammar of Graphics and Complex layout">
 <meta name="twitter:description" content="">
 <meta name="twitter:image" content="multiple-quad-layouts_files/figure-html/unnamed-chunk-1-1.png">
 <meta name="twitter:card" content="summary_large_image">
@@ -122,7 +122,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./stack-layout.html">Basics</a></li><li class="breadcrumb-item"><a href="./multiple-quad-layouts.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">A list of <code>quad_layout()</code></span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data-aware.html">Data-Aware Composition</a></li><li class="breadcrumb-item"><a href="./multiple-quad-layouts.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">A list of <code>quad_layout()</code></span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -164,7 +164,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">Getting Started</span></a>
+ <span class="menu-text">Welcome</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -179,15 +179,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./getting-started.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Overview</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Basic example</span></span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text">Basics</span></a>
+            <a href="./data-free.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data-Free Composition</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -195,82 +195,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./stack-layout.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">stack layout</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./heatmap-layout.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">heatmap layout</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./layout-customize.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Layout customize</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./plot-initialize.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Plot initialize</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./annotate-observations.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Annotate observations</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./quad-layout.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">quad-layout</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./multiple-quad-layouts.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">A list of <code>quad_layout()</code></span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./circle-layout.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">circle layout</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./operator.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Operators</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./schemes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Schemes</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./difference-with-ggplot2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Difference with ggplot2</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="./plot-composer.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Plot Composer</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Plot Composer</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./free.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Fine-Grained Alignment Control</span></span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
- <span class="menu-text">Advanced</span></a>
+            <a href="./data-aware.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data-Aware Composition</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -278,8 +218,74 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./stack-layout.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">stack layout</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./heatmap-layout.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">heatmap layout</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./quad-layout.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">quad-layout</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./layout-customize.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Layout customize</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./initialize-plot.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Initialize Plot</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./annotate-observations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Annotate observations</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./multiple-quad-layouts.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">A list of <code>quad_layout()</code></span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./circle-layout.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">circle layout</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./operator.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Operators</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./schemes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Schemes</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./difference-with-ggplot2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Difference with ggplot2</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./oncoplot.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">ggoncoplot</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">ggoncoplot</span></span></a>
   </div>
 </li>
       </ul>
@@ -296,7 +302,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./complete-examples.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Complete examples</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Complete examples</span></span></a>
   </div>
 </li>
       </ul>
@@ -313,13 +319,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./complexheatmap-single-heatmap.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">A Single Heatmap</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">A Single Heatmap</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./complexheatmap-more-examples.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">More examples</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">More examples</span></span></a>
   </div>
 </li>
       </ul>
@@ -334,17 +340,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#add-quad_layout-to-stack_layout" id="toc-add-quad_layout-to-stack_layout" class="nav-link active" data-scroll-target="#add-quad_layout-to-stack_layout"><span class="header-section-number">9.1</span> Add <code>quad_layout()</code> to <code>stack_layout()</code></a></li>
-  <li><a href="#control-sizes" id="toc-control-sizes" class="nav-link" data-scroll-target="#control-sizes"><span class="header-section-number">9.2</span> Control sizes</a></li>
+  <li><a href="#add-quad_layout-to-stack_layout" id="toc-add-quad_layout-to-stack_layout" class="nav-link active" data-scroll-target="#add-quad_layout-to-stack_layout"><span class="header-section-number">11.1</span> Add <code>quad_layout()</code> to <code>stack_layout()</code></a></li>
+  <li><a href="#control-sizes" id="toc-control-sizes" class="nav-link" data-scroll-target="#control-sizes"><span class="header-section-number">11.2</span> Control sizes</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/Yunuuuu/ggalign-book/blob/main/multiple-quad-layouts.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/Yunuuuu/ggalign-book/edit/main/multiple-quad-layouts.qmd" class="toc-action"><i class="bi empty"></i>Edit this page</a></li><li><a href="https://github.com/Yunuuuu/ggalign-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="quarto-other-links"><h2>Other Links</h2><ul><li><a href="https://yunuuuu.github.io/ggalign"><i class="bi bi-journal-text"></i>ggalign reference</a></li><li><a href="https://www.biorxiv.org/content/10.1101/2025.02.06.636847v1"><i class="bi bi-layout-text-sidebar-reverse"></i>ggalign manuscript</a></li></ul></div><div class="quarto-code-links"><h2>Code Links</h2><ul><li><a href="https://github.com/Yunuuuu/ggalign"><i class="bi bi-code-square"></i>ggalign repo</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/Yunuuuu/ggalign-book/blob/main/multiple-quad-layouts.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/Yunuuuu/ggalign-book/edit/main/multiple-quad-layouts.qmd" class="toc-action"><i class="bi empty"></i>Edit this page</a></li><li><a href="https://github.com/Yunuuuu/ggalign-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="quarto-other-links"><h2>Other Links</h2><ul><li><a href="https://yunuuuu.github.io/ggalign"><i class="bi bi-journal-text"></i>ggalign reference</a></li><li><a href="https://yunuuuu.github.io/ggalign-gallery"><i class="bi bi-journal-text"></i>ggalign gallery</a></li><li><a href="https://www.biorxiv.org/content/10.1101/2025.02.06.636847v1"><i class="bi bi-layout-text-sidebar-reverse"></i>ggalign manuscript</a></li></ul></div><div class="quarto-code-links"><h2>Code Links</h2><ul><li><a href="https://github.com/Yunuuuu/ggalign"><i class="bi bi-code-square"></i>ggalign repo</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./stack-layout.html">Basics</a></li><li class="breadcrumb-item"><a href="./multiple-quad-layouts.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">A list of <code>quad_layout()</code></span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data-aware.html">Data-Aware Composition</a></li><li class="breadcrumb-item"><a href="./multiple-quad-layouts.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">A list of <code>quad_layout()</code></span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="sec-multiple-quad-layouts" class="quarto-section-identifier"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">A list of <code>quad_layout()</code></span></span></h1>
+<h1 class="title"><span id="sec-multiple-quad-layouts" class="quarto-section-identifier"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">A list of <code>quad_layout()</code></span></span></h1>
 </div>
 
 
@@ -381,8 +387,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <blockquote class="blockquote">
 <p>note: when <code>stack_layout()</code> contains a nested <code>quad_layout()</code>, it cannot be used within the annotation of another <code>quad_layout()</code>.</p>
 </blockquote>
-<section id="add-quad_layout-to-stack_layout" class="level2" data-number="9.1">
-<h2 data-number="9.1" class="anchored" data-anchor-id="add-quad_layout-to-stack_layout"><span class="header-section-number">9.1</span> Add <code>quad_layout()</code> to <code>stack_layout()</code></h2>
+<section id="add-quad_layout-to-stack_layout" class="level2" data-number="11.1">
+<h2 data-number="11.1" class="anchored" data-anchor-id="add-quad_layout-to-stack_layout"><span class="header-section-number">11.1</span> Add <code>quad_layout()</code> to <code>stack_layout()</code></h2>
 <p>Here is a summarized table showing which <code>quad_layout()</code> can be used with each <code>stack_layout()</code>:</p>
 <table class="caption-top table">
 <colgroup>
@@ -494,7 +500,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p><code>stack_discrete()</code> ensures that all plots aligned along the stack have the same ordering index or groups.</p>
-<p>We can customize the layout in the <code>stack_discrete()</code> directly, or in <code>quad_layout()</code>. As introduced in <a href="stack-layout.html#sec-stack-layout-active-plot" class="quarto-xref"><span>Section 3.5</span></a>, you can easily switch from the <code>ggheatmap()</code>/<code>quad_layout()</code> to the <code>stack_layout()</code> using <code>stack_active()</code>.</p>
+<p>We can customize the layout in the <code>stack_discrete()</code> directly, or in <code>quad_layout()</code>. As introduced in <a href="stack-layout.html#sec-stack-layout-active-plot" class="quarto-xref"><span>Section 5.5</span></a>, you can easily switch from the <code>ggheatmap()</code>/<code>quad_layout()</code> to the <code>stack_layout()</code> using <code>stack_active()</code>.</p>
 <div class="grid">
 <div class="g-col-6">
 <div class="cell">
@@ -538,8 +544,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>When applied to a <code>stack_layout()</code>, the orientation of the dendrogram may need to be manually adjusted.</p>
 </section>
-<section id="control-sizes" class="level2" data-number="9.2">
-<h2 data-number="9.2" class="anchored" data-anchor-id="control-sizes"><span class="header-section-number">9.2</span> Control sizes</h2>
+<section id="control-sizes" class="level2" data-number="11.2">
+<h2 data-number="11.2" class="anchored" data-anchor-id="control-sizes"><span class="header-section-number">11.2</span> Control sizes</h2>
 <p>A numeric or a unit object of length 3 should be provided in <code>stack_discrete()</code>/<code>stack_continuous()</code> when placing a <code>quad_layout()</code>. For vertical <code>stack_layout()</code>, this means <code>quad_layout()</code> with left or right annotations; for horizontal <code>stack_layout()</code>, this means <code>quad_layout()</code> with top or bottom annotations. The first size controls the relative <code>width</code>/<code>height</code> of the left or top annotation, the second controls the relative <code>width</code>/<code>height</code> of the main plot, and the third controls the relative <code>width</code>/<code>height</code> of the right or bottom annotation.</p>
 <p>By default the three rows/columns will have equal sizes.</p>
 <div class="cell">
@@ -1054,13 +1060,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./quad-layout.html" class="pagination-link" aria-label="quad-layout">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">quad-layout</span></span>
+      <a href="./annotate-observations.html" class="pagination-link" aria-label="Annotate observations">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Annotate observations</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./circle-layout.html" class="pagination-link" aria-label="circle layout">
-        <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">circle layout</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">circle layout</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

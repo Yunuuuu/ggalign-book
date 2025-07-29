@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>2&nbsp; Overview – ggalign: Bridging the Grammar of Graphics and Complex layout</title>
+<title>2&nbsp; Basic example – ggalign: Bridging the Grammar of Graphics and Complex layout</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -65,7 +65,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./stack-layout.html" rel="next">
+<link href="./data-free.html" rel="next">
 <link href="./introduction.html" rel="prev">
 <link href="./cover.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
@@ -107,9 +107,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
 
-<meta name="twitter:title" content="2&nbsp; Overview – ggalign: Bridging the Grammar of Graphics and Complex layout">
+<meta name="twitter:title" content="2&nbsp; Basic example – ggalign: Bridging the Grammar of Graphics and Complex layout">
 <meta name="twitter:description" content="">
-<meta name="twitter:image" content="workflow.png">
+<meta name="twitter:image" content="getting-started_files/figure-html/unnamed-chunk-1-1.png">
 <meta name="twitter:card" content="summary_large_image">
 </head>
 
@@ -122,7 +122,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./introduction.html">Getting Started</a></li><li class="breadcrumb-item"><a href="./getting-started.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Overview</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./introduction.html">Welcome</a></li><li class="breadcrumb-item"><a href="./getting-started.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Basic example</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -164,7 +164,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">Getting Started</span></a>
+ <span class="menu-text">Welcome</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -179,15 +179,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./getting-started.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Overview</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Basic example</span></span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text">Basics</span></a>
+            <a href="./data-free.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data-Free Composition</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -195,82 +195,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./stack-layout.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">stack layout</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./heatmap-layout.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">heatmap layout</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./layout-customize.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Layout customize</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./plot-initialize.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Plot initialize</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./annotate-observations.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Annotate observations</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./quad-layout.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">quad-layout</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./multiple-quad-layouts.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">A list of <code>quad_layout()</code></span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./circle-layout.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">circle layout</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./operator.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Operators</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./schemes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Schemes</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./difference-with-ggplot2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Difference with ggplot2</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="./plot-composer.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Plot Composer</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Plot Composer</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./free.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Fine-Grained Alignment Control</span></span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
- <span class="menu-text">Advanced</span></a>
+            <a href="./data-aware.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data-Aware Composition</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -278,8 +218,74 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./stack-layout.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">stack layout</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./heatmap-layout.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">heatmap layout</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./quad-layout.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">quad-layout</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./layout-customize.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Layout customize</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./initialize-plot.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Initialize Plot</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./annotate-observations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Annotate observations</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./multiple-quad-layouts.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">A list of <code>quad_layout()</code></span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./circle-layout.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">circle layout</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./operator.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Operators</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./schemes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Schemes</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./difference-with-ggplot2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Difference with ggplot2</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./oncoplot.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">ggoncoplot</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">ggoncoplot</span></span></a>
   </div>
 </li>
       </ul>
@@ -296,7 +302,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./complete-examples.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Complete examples</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Complete examples</span></span></a>
   </div>
 </li>
       </ul>
@@ -313,13 +319,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./complexheatmap-single-heatmap.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">A Single Heatmap</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">A Single Heatmap</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./complexheatmap-more-examples.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">More examples</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">More examples</span></span></a>
   </div>
 </li>
       </ul>
@@ -334,18 +340,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#general-workflows" id="toc-general-workflows" class="nav-link active" data-scroll-target="#general-workflows"><span class="header-section-number">2.1</span> General Workflows</a></li>
-  <li><a href="#sec-input-data" id="toc-sec-input-data" class="nav-link" data-scroll-target="#sec-input-data"><span class="header-section-number">2.2</span> Input data</a></li>
-  <li><a href="#first-look" id="toc-first-look" class="nav-link" data-scroll-target="#first-look"><span class="header-section-number">2.3</span> First Look</a></li>
+  <li><a href="#data-free-composition" id="toc-data-free-composition" class="nav-link active" data-scroll-target="#data-free-composition"><span class="header-section-number">2.1</span> Data-Free Composition</a></li>
+  <li><a href="#data-aware-composition" id="toc-data-aware-composition" class="nav-link" data-scroll-target="#data-aware-composition"><span class="header-section-number">2.2</span> Data-Aware Composition</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/Yunuuuu/ggalign-book/blob/main/getting-started.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/Yunuuuu/ggalign-book/edit/main/getting-started.qmd" class="toc-action"><i class="bi empty"></i>Edit this page</a></li><li><a href="https://github.com/Yunuuuu/ggalign-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="quarto-other-links"><h2>Other Links</h2><ul><li><a href="https://yunuuuu.github.io/ggalign"><i class="bi bi-journal-text"></i>ggalign reference</a></li><li><a href="https://www.biorxiv.org/content/10.1101/2025.02.06.636847v1"><i class="bi bi-layout-text-sidebar-reverse"></i>ggalign manuscript</a></li></ul></div><div class="quarto-code-links"><h2>Code Links</h2><ul><li><a href="https://github.com/Yunuuuu/ggalign"><i class="bi bi-code-square"></i>ggalign repo</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/Yunuuuu/ggalign-book/blob/main/getting-started.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/Yunuuuu/ggalign-book/edit/main/getting-started.qmd" class="toc-action"><i class="bi empty"></i>Edit this page</a></li><li><a href="https://github.com/Yunuuuu/ggalign-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="quarto-other-links"><h2>Other Links</h2><ul><li><a href="https://yunuuuu.github.io/ggalign"><i class="bi bi-journal-text"></i>ggalign reference</a></li><li><a href="https://yunuuuu.github.io/ggalign-gallery"><i class="bi bi-journal-text"></i>ggalign gallery</a></li><li><a href="https://www.biorxiv.org/content/10.1101/2025.02.06.636847v1"><i class="bi bi-layout-text-sidebar-reverse"></i>ggalign manuscript</a></li></ul></div><div class="quarto-code-links"><h2>Code Links</h2><ul><li><a href="https://github.com/Yunuuuu/ggalign"><i class="bi bi-code-square"></i>ggalign repo</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./introduction.html">Getting Started</a></li><li class="breadcrumb-item"><a href="./getting-started.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Overview</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./introduction.html">Welcome</a></li><li class="breadcrumb-item"><a href="./getting-started.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Basic example</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Overview</span></h1>
+<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Basic example</span></h1>
 </div>
 
 
@@ -362,9 +367,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="general-workflows" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="general-workflows"><span class="header-section-number">2.1</span> General Workflows</h2>
+<p>This chapter shows simple usage examples of <code>ggalign</code>.</p>
 <div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggalign)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Loading required package: ggplot2</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
@@ -372,91 +378,54 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; The following object is masked from 'package:ggplot2':</span></span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     element_polygon</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
-<p>The usage of <code>ggalign</code> is simple if you’re familiar with <code>ggplot2</code> syntax, the typical workflow includes:</p>
-<ol type="1">
-<li>Initialize the layout.</li>
-<li>Customize the layout with:
-<ul>
-<li><code>align_group()</code>: Group observations into panel with a group variable.</li>
-<li><code>align_kmeans()</code>: Group observations into panel by kmeans.</li>
-<li><code>align_order()</code>: Reorder layout observations based on statistical weights or by manually specifying the observation index.</li>
-<li><code>align_order2</code>: Reorder observations using an arbitrary statistical function</li>
-<li><code>align_hclust()</code>: Reorder or group observations based on hierarchical clustering.</li>
-</ul></li>
-<li>Adding plots with:
-<ul>
-<li><code>align_dendro()</code>: Add a dendrogram to the plot, and reorder or group observations based on hierarchical clustering.</li>
-<li><code>ggalign()</code>: Initialize a ggplot object and align the axes.</li>
-<li><code>ggmark()</code>: Add a plot to annotate selected observations.</li>
-<li><code>ggcross()</code>: Initialize a ggplot object to connect two different layout crosswise</li>
-<li><code>ggfree()</code>: Initialize a ggplot object without aligning the axes.</li>
-</ul></li>
-<li>Layer additional <code>ggplot2</code> elements such as geoms, stats, or scales.</li>
-</ol>
-<div class="quarto-figure quarto-figure-center">
+<section id="data-free-composition" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="data-free-composition"><span class="header-section-number">2.1</span> Data-Free Composition</h2>
+<p>The usage of data-free composition is simple: just create plots first then arrange plots together!</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create individual plots</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(mtcars) <span class="sc">+</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(mpg, disp)) <span class="sc">+</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggtitle</span>(<span class="st">"Scatter Plot"</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(mtcars) <span class="sc">+</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="fu">factor</span>(cyl), mpg)) <span class="sc">+</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggtitle</span>(<span class="st">"Box Plot"</span>)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>p3 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(mtcars) <span class="sc">+</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(mpg), <span class="at">bins =</span> <span class="dv">15</span>) <span class="sc">+</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggtitle</span>(<span class="st">"Histogram"</span>)</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Arrange plots in a grid</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="fu">align_plots</span>(p1, p2, p3, <span class="at">ncol =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
 <figure class="figure">
-<p><img src="workflow.png" class="img-fluid figure-img"></p>
-<figcaption>Overview of the ggalign workflow</figcaption>
+<p><img src="getting-started_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
-</section>
-<section id="sec-input-data" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="sec-input-data"><span class="header-section-number">2.2</span> Input data</h2>
-<p>Before exploring <code>ggalign</code>, it’s important to understand how axis alignment works in <code>ggplot2</code>.</p>
-<ul>
-<li><p>For continuous axes, alignment is straightforward: simply ensure the axis limits are consistent across plots.</p></li>
-<li><p>For discrete axes, alignment is more challenging. You must have the same set of unique values and maintain a consistent ordering across all plots. In ggplot2, this can be difficult when working with long-format data frames because the factor levels or ordering may differ.</p></li>
-</ul>
-<p><code>ggalign</code> addresses this challenge by using matrix inputs for layouts that align discrete axes (e.g., the <code>*_discrete()</code> functions). In this approach:</p>
-<ul>
-<li><p>Each row of the matrix represents a unique discrete value (called an “observation”).</p></li>
-<li><p>The total number of rows defines the complete set of unique discrete values.</p></li>
-<li><p>Reordering rows in the matrix controls the ordering of observations consistently across all linked plots.</p></li>
-</ul>
-<p>This design is especially useful for layouts that align axes in both directions (horizontal and vertical), such as heatmap, since matrices can be easily transposed to switch row and column alignment.</p>
-<p>The matrix is only used for positioning. Before rendering, <code>ggalign</code> will reorder the matrix rows based on the layout, and automatically converts it into a long-format data frame — the standard input for <code>ggplot2</code>.</p>
-<p>The main difference between discrete and continuous variable alignment in <code>ggalign</code> lies in the input data:</p>
-<ul>
-<li><p>Discrete variables require a matrix as input.</p></li>
-<li><p>Continuous variables require a data frame, just like in standard ggplot2.</p></li>
-</ul>
-<blockquote class="blockquote">
-<p>Terminology: <code>"Observations"</code> and <code>"discrete variables"</code> are interchangeable here. Any mention of <code>"observations"</code> applies to discrete variables too.</p>
-</blockquote>
-</section>
-<section id="first-look" class="level2" data-number="2.3">
-<h2 data-number="2.3" class="anchored" data-anchor-id="first-look"><span class="header-section-number">2.3</span> First Look</h2>
-<p>In this section, we demonstrate how to align discrete variables across different layouts. Discrete variables are often the hardest to handle in ggplot2, and aligning them properly is one of the main motivations for ggalign.</p>
-<p>As mentioned earlier, <code>ggalign</code> uses a matrix to specify how observations should be aligned. Each row in the matrix corresponds to a single observation, and will be aligned across different columns.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>small_mat <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">rnorm</span>(<span class="dv">56</span>), <span class="at">nrow =</span> <span class="dv">7</span>)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(small_mat) <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"row"</span>, <span class="fu">seq_len</span>(<span class="fu">nrow</span>(small_mat)))</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(small_mat) <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"column"</span>, <span class="fu">seq_len</span>(<span class="fu">ncol</span>(small_mat)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Each <code>*_layout()</code> function accepts default data, inherited by all plots in the layout.</p>
-<p>Here’s a simple example:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="annotated-cell-3"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><button class="code-annotation-anchor" data-target-cell="annotated-cell-3" data-target-annotation="1">1</button><span id="annotated-cell-3-1" class="code-annotation-target"><a href="#annotated-cell-3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stack_discretev</span>(small_mat) <span class="sc">+</span></span>
-<button class="code-annotation-anchor" data-target-cell="annotated-cell-3" data-target-annotation="2">2</button><span id="annotated-cell-3-2" class="code-annotation-target"><a href="#annotated-cell-3-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_dendro</span>() <span class="sc">+</span></span>
-<button class="code-annotation-anchor" data-target-cell="annotated-cell-3" data-target-annotation="3">3</button><span id="annotated-cell-3-3" class="code-annotation-target"><a href="#annotated-cell-3-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>())</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-annotation">
-<dl class="code-annotation-container-hidden code-annotation-container-grid">
-<dt data-target-cell="annotated-cell-3" data-target-annotation="1">1</dt>
-<dd>
-<span data-code-cell="annotated-cell-3" data-code-lines="1" data-code-annotation="1">We initialize a vertical stack.</span>
-</dd>
-<dt data-target-cell="annotated-cell-3" data-target-annotation="2">2</dt>
-<dd>
-<span data-code-cell="annotated-cell-3" data-code-lines="2" data-code-annotation="2">Reorder the observations based on hierarchical clustering and add a dendrogram tree.</span>
-</dd>
-<dt data-target-cell="annotated-cell-3" data-target-annotation="3">3</dt>
-<dd>
-<span data-code-cell="annotated-cell-3" data-code-lines="3" data-code-annotation="3">Add x-axis text.</span>
-</dd>
-</dl>
 </div>
+<p>The <code>align_plots()</code> function offers flexible control over grid dimensions, sizing, and layout specifications. You can control the arrangement with parameters like <code>ncol</code>, <code>nrow</code>, <code>widths</code>, <code>heights</code>, and even use <code>area()</code> specifications for complex layouts.</p>
+<p><code>ggalign</code> provides various options to control layout specifications, including whether to collect legend guides, align axes, and more. For more, see <span class="quarto-unresolved-ref">?sec-data-free</span>.</p>
+</section>
+<section id="data-aware-composition" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="data-aware-composition"><span class="header-section-number">2.2</span> Data-Aware Composition</h2>
+<p>A common use case for data-aware composition is combining a heatmap with a dendrogram. The dendrogram reveals hierarchical relationships among the data (e.g., samples or genes), and the heatmap is reordered to align with the dendrogram structure—ensuring consistent interpretation.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Prepare heatmap matrix</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>mat <span class="ot">&lt;-</span> <span class="fu">matrix</span>(</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rnorm</span>(<span class="dv">200</span>, <span class="at">mean =</span> <span class="dv">5</span>, <span class="at">sd =</span> <span class="dv">2</span>),</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">nrow =</span> <span class="dv">20</span>, <span class="at">ncol =</span> <span class="dv">10</span>,</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">dimnames =</span> <span class="fu">list</span>(<span class="fu">paste0</span>(<span class="st">"G"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>), <span class="fu">paste0</span>(<span class="st">"S"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>))</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Create a basic heatmap:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggheatmap</span>(mat)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; → heatmap built with `geom_tile()`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -465,45 +434,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>The function <code>stack_discretev()</code> is a shortcut for <code>stack_discrete("v")</code>, which creates a vertically stacked layout and aligns discrete variables.</p>
-<p>When default data is passed to the layout, the number of observations (<code>nobs</code>) is determined by the number of rows in the matrix (i.e., <code>NROW()</code>). All plots added to the layout must use data with the same <code>nobs</code>.</p>
-<p>When you add <code>align_dendro()</code>, it can inherit the layout data, computes the dendrogram, and sets the global row ordering of the layout. It also creates a new <code>ggplot</code> object and sets it as the active context—so any following + operations apply to this plot.</p>
-<p>By default, axis text on the aligned axis is hidden to prevent duplicate labels. You can explicitly control visibility using <code>theme()</code>.</p>
-<p>Now, let’s add another plot with <code>ggalign()</code>. It will also inherit the layout data, but we can provide a function to transform the layout data. Note, as mentioned above, you must ensure the function returns data with the same nobs. When rendering, the data will be automatically transformed into a data frame. The data in the underlying ggplot object of <code>ggalign()</code> contains the following columns (more details will be introduced in <a href="plot-initialize.html#sec-ggalign" class="quarto-xref"><span>Section 6.1</span></a>):</p>
-<ul>
-<li><code>.panel</code>: the group panel for the aligned axis. It means <code>x-axis</code> for vertical stack layout, <code>y-axis</code> for horizontal stack layout.</li>
-<li><code>.x</code>/<code>.y</code> and <code>.discrete_x</code>/<code>.discrete_y</code>: an integer index of <code>x</code>/<code>y</code> coordinates and a factor of the data labels (only applicable when names exists).</li>
-<li><code>.names</code> and <code>.index</code>: A character names (only applicable when names exists) and an integer of index of the original data.</li>
-<li><code>value</code>: the actual value (only applicable if <code>data</code> is a <code>matrix</code> or atomic vector).</li>
-</ul>
-<p>Note, <code>ggalign</code> also sets the active context to the plot, so you can add other <code>ggplot2</code> components.</p>
+<p>With <code>ggalign</code>, you can add elements using the same <code>+</code> syntax as in <code>ggplot2</code>. For example, to add a dendrogram above the heatmap:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="annotated-cell-4"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><button class="code-annotation-anchor" data-target-cell="annotated-cell-4" data-target-annotation="1">1</button><span id="annotated-cell-4-1" class="code-annotation-target"><a href="#annotated-cell-4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stack_discretev</span>(small_mat) <span class="sc">+</span></span>
-<button class="code-annotation-anchor" data-target-cell="annotated-cell-4" data-target-annotation="2">2</button><span id="annotated-cell-4-2" class="code-annotation-target"><a href="#annotated-cell-4-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_dendro</span>() <span class="sc">+</span></span>
-<button class="code-annotation-anchor" data-target-cell="annotated-cell-4" data-target-annotation="3">3</button><span id="annotated-cell-4-3" class="code-annotation-target"><a href="#annotated-cell-4-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggalign</span>(<span class="at">data =</span> rowSums) <span class="sc">+</span></span>
-<button class="code-annotation-anchor" data-target-cell="annotated-cell-4" data-target-annotation="4">4</button><span id="annotated-cell-4-4" class="code-annotation-target"><a href="#annotated-cell-4-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>(<span class="fu">aes</span>(.discrete_x, value), <span class="at">stat =</span> <span class="st">"identity"</span>) <span class="sc">+</span></span>
-<button class="code-annotation-anchor" data-target-cell="annotated-cell-4" data-target-annotation="5">5</button><span id="annotated-cell-4-5" class="code-annotation-target"><a href="#annotated-cell-4-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>())</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="annotated-cell-5"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><button class="code-annotation-anchor" data-target-cell="annotated-cell-5" data-target-annotation="1">1</button><span id="annotated-cell-5-1" class="code-annotation-target"><a href="#annotated-cell-5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggheatmap</span>(mat) <span class="sc">+</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-5" data-target-annotation="2">2</button><span id="annotated-cell-5-2" class="code-annotation-target"><a href="#annotated-cell-5-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">anno_top</span>() <span class="sc">+</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-5" data-target-annotation="3">3</button><span id="annotated-cell-5-3" class="code-annotation-target"><a href="#annotated-cell-5-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_dendro</span>()</span>
+<span id="annotated-cell-5-4"><a href="#annotated-cell-5-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; → heatmap built with `geom_tile()`</span></span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-annotation">
 <dl class="code-annotation-container-hidden code-annotation-container-grid">
-<dt data-target-cell="annotated-cell-4" data-target-annotation="1">1</dt>
+<dt data-target-cell="annotated-cell-5" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-cell="annotated-cell-4" data-code-lines="1" data-code-annotation="1">We initialize a vertical stack.</span>
+<span data-code-cell="annotated-cell-5" data-code-lines="1" data-code-annotation="1">We initialize a heatmap layout.</span>
 </dd>
-<dt data-target-cell="annotated-cell-4" data-target-annotation="2">2</dt>
+<dt data-target-cell="annotated-cell-5" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-cell="annotated-cell-4" data-code-lines="2" data-code-annotation="2">Reorder the observations based on hierarchical clustering and add a dendrogram tree.</span>
+<span data-code-cell="annotated-cell-5" data-code-lines="2" data-code-annotation="2">we initialize an annotation in the top side of the heatmap body.</span>
 </dd>
-<dt data-target-cell="annotated-cell-4" data-target-annotation="3">3</dt>
+<dt data-target-cell="annotated-cell-5" data-target-annotation="3">3</dt>
 <dd>
-<span data-code-cell="annotated-cell-4" data-code-lines="3" data-code-annotation="3">Create a new ggplot in the layout, and use data based on the sum of the layout data.</span>
-</dd>
-<dt data-target-cell="annotated-cell-4" data-target-annotation="4">4</dt>
-<dd>
-<span data-code-cell="annotated-cell-4" data-code-lines="4" data-code-annotation="4">Add a bar layer.</span>
-</dd>
-<dt data-target-cell="annotated-cell-4" data-target-annotation="5">5</dt>
-<dd>
-<span data-code-cell="annotated-cell-4" data-code-lines="5" data-code-annotation="5">Add x-axis text.</span>
+<span data-code-cell="annotated-cell-5" data-code-lines="3" data-code-annotation="3">Reorder and group the observations based on hierarchical clustering, and add a dendrogram tree.</span>
 </dd>
 </dl>
 </div>
@@ -515,139 +464,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<blockquote class="blockquote">
-<p>You must use <code>.x</code>/<code>.y</code> or <code>.discrete_x</code>/<code>.discrete_y</code> as the <code>x</code>/<code>y</code> mapping to ensure the alignment.</p>
-</blockquote>
-<p><code>align_dendro()</code> can also split the observations into groups by specifying the <code>k</code> argument (more details will be introduced in <a href="plot-initialize.html#sec-ggalign" class="quarto-xref"><span>Section 6.1</span></a>).</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="annotated-cell-5"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><button class="code-annotation-anchor" data-target-cell="annotated-cell-5" data-target-annotation="1">1</button><span id="annotated-cell-5-1" class="code-annotation-target"><a href="#annotated-cell-5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stack_alignv</span>(small_mat) <span class="sc">+</span></span>
-<button class="code-annotation-anchor" data-target-cell="annotated-cell-5" data-target-annotation="2">2</button><span id="annotated-cell-5-2" class="code-annotation-target"><a href="#annotated-cell-5-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_dendro</span>(<span class="at">k =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
-<button class="code-annotation-anchor" data-target-cell="annotated-cell-5" data-target-annotation="3">3</button><span id="annotated-cell-5-3" class="code-annotation-target"><a href="#annotated-cell-5-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggalign</span>(<span class="at">data =</span> rowSums) <span class="sc">+</span></span>
-<button class="code-annotation-anchor" data-target-cell="annotated-cell-5" data-target-annotation="4">4</button><span id="annotated-cell-5-4" class="code-annotation-target"><a href="#annotated-cell-5-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>(<span class="fu">aes</span>(.discrete_x, value, <span class="at">fill =</span> .panel), <span class="at">stat =</span> <span class="st">"identity"</span>) <span class="sc">+</span></span>
-<button class="code-annotation-anchor" data-target-cell="annotated-cell-5" data-target-annotation="5">5</button><span id="annotated-cell-5-5" class="code-annotation-target"><a href="#annotated-cell-5-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">"Dark2"</span>, <span class="at">name =</span> <span class="st">"Group"</span>) <span class="sc">+</span></span>
-<button class="code-annotation-anchor" data-target-cell="annotated-cell-5" data-target-annotation="6">6</button><span id="annotated-cell-5-6" class="code-annotation-target"><a href="#annotated-cell-5-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>())</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-annotation">
-<dl class="code-annotation-container-hidden code-annotation-container-grid">
-<dt data-target-cell="annotated-cell-5" data-target-annotation="1">1</dt>
-<dd>
-<span data-code-cell="annotated-cell-5" data-code-lines="1" data-code-annotation="1">We initialize a vertical stack.</span>
-</dd>
-<dt data-target-cell="annotated-cell-5" data-target-annotation="2">2</dt>
-<dd>
-<span data-code-cell="annotated-cell-5" data-code-lines="2" data-code-annotation="2">Reorder and group the observations based on hierarchical clustering, and add a dendrogram tree.</span>
-</dd>
-<dt data-target-cell="annotated-cell-5" data-target-annotation="3">3</dt>
-<dd>
-<span data-code-cell="annotated-cell-5" data-code-lines="3" data-code-annotation="3">Create a new ggplot in the layout, and use data based on the sum of the layout data.</span>
-</dd>
-<dt data-target-cell="annotated-cell-5" data-target-annotation="4">4</dt>
-<dd>
-<span data-code-cell="annotated-cell-5" data-code-lines="4" data-code-annotation="4">Add a bar layer.</span>
-</dd>
-<dt data-target-cell="annotated-cell-5" data-target-annotation="5">5</dt>
-<dd>
-<span data-code-cell="annotated-cell-5" data-code-lines="5" data-code-annotation="5">Set fill scale palette.</span>
-</dd>
-<dt data-target-cell="annotated-cell-5" data-target-annotation="6">6</dt>
-<dd>
-<span data-code-cell="annotated-cell-5" data-code-lines="6" data-code-annotation="6">Add x-axis text.</span>
-</dd>
-</dl>
-</div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="getting-started_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>One common visualization associated with the dendrogram is the heatmap. You can use <code>ggheatmap()</code> to initialize a heatmap layout. When grouping the observations using <code>align_dendro(k = 3)</code>, a special column named <code>branch</code> is added, which you can use to color the dendrogram tree.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="annotated-cell-6"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><button class="code-annotation-anchor" data-target-cell="annotated-cell-6" data-target-annotation="1">1</button><span id="annotated-cell-6-1" class="code-annotation-target"><a href="#annotated-cell-6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggheatmap</span>(small_mat) <span class="sc">+</span></span>
-<button class="code-annotation-anchor" data-target-cell="annotated-cell-6" data-target-annotation="2">2</button><span id="annotated-cell-6-2" class="code-annotation-target"><a href="#annotated-cell-6-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="sc">-</span><span class="dv">60</span>, <span class="at">hjust =</span> <span class="dv">0</span>)) <span class="sc">+</span></span>
-<button class="code-annotation-anchor" data-target-cell="annotated-cell-6" data-target-annotation="3">3</button><span id="annotated-cell-6-3" class="code-annotation-target"><a href="#annotated-cell-6-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">anno_left</span>() <span class="sc">+</span></span>
-<button class="code-annotation-anchor" data-target-cell="annotated-cell-6" data-target-annotation="4">4</button><span id="annotated-cell-6-4" class="code-annotation-target"><a href="#annotated-cell-6-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_dendro</span>(<span class="fu">aes</span>(<span class="at">color =</span> branch), <span class="at">k =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
-<button class="code-annotation-anchor" data-target-cell="annotated-cell-6" data-target-annotation="5">5</button><span id="annotated-cell-6-5" class="code-annotation-target"><a href="#annotated-cell-6-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">"Dark2"</span>)</span>
-<span id="annotated-cell-6-6"><a href="#annotated-cell-6-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; → heatmap built with `geom_tile()`</span></span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-annotation">
-<dl class="code-annotation-container-hidden code-annotation-container-grid">
-<dt data-target-cell="annotated-cell-6" data-target-annotation="1">1</dt>
-<dd>
-<span data-code-cell="annotated-cell-6" data-code-lines="1" data-code-annotation="1">We initialize a heatmap layout.</span>
-</dd>
-<dt data-target-cell="annotated-cell-6" data-target-annotation="2">2</dt>
-<dd>
-<span data-code-cell="annotated-cell-6" data-code-lines="2" data-code-annotation="2">adjust the x-axis label theme element.</span>
-</dd>
-<dt data-target-cell="annotated-cell-6" data-target-annotation="3">3</dt>
-<dd>
-<span data-code-cell="annotated-cell-6" data-code-lines="3" data-code-annotation="3">we initialize an annotation in the left side of the heatmap body, and set it as the active context, in this way, all following addition will be directed to the left annotation.</span>
-</dd>
-<dt data-target-cell="annotated-cell-6" data-target-annotation="4">4</dt>
-<dd>
-<span data-code-cell="annotated-cell-6" data-code-lines="4" data-code-annotation="4">Reorder and group the observations based on hierarchical clustering, and add a dendrogram tree, coloring the tree by <code>branch</code>.</span>
-</dd>
-<dt data-target-cell="annotated-cell-6" data-target-annotation="5">5</dt>
-<dd>
-<span data-code-cell="annotated-cell-6" data-code-lines="5" data-code-annotation="5">Set fill scale palette.</span>
-</dd>
-</dl>
-</div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="getting-started_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<p><code>ggheatmap()</code> will automatically add axis text in the heatmap body, so you don’t need to manually adjust axis text visibility using <code>theme(axis.text.x = element_text())</code>/<code>theme(axis.text.y = element_text())</code>.</p>
-<p>We can also arrange the dendrogram in a circular layout to visualize hierarchical relationships in a more compact and aesthetically pleasing way.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="annotated-cell-7"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><button class="code-annotation-anchor" data-target-cell="annotated-cell-7" data-target-annotation="1">1</button><span id="annotated-cell-7-1" class="code-annotation-target"><a href="#annotated-cell-7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">circle_discrete</span>(small_mat, <span class="at">radial =</span> <span class="fu">coord_radial</span>(<span class="at">inner.radius =</span> <span class="fl">0.1</span>)) <span class="sc">+</span></span>
-<button class="code-annotation-anchor" data-target-cell="annotated-cell-7" data-target-annotation="2">2</button><span id="annotated-cell-7-2" class="code-annotation-target"><a href="#annotated-cell-7-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggalign</span>() <span class="sc">+</span></span>
-<button class="code-annotation-anchor" data-target-cell="annotated-cell-7" data-target-annotation="3">3</button><span id="annotated-cell-7-3" class="code-annotation-target"><a href="#annotated-cell-7-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_tile</span>(<span class="fu">aes</span>(<span class="at">y =</span> .column_index, <span class="at">fill =</span> value)) <span class="sc">+</span></span>
-<button class="code-annotation-anchor" data-target-cell="annotated-cell-7" data-target-annotation="4">4</button><span id="annotated-cell-7-4" class="code-annotation-target"><a href="#annotated-cell-7-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_viridis_c</span>() <span class="sc">+</span></span>
-<button class="code-annotation-anchor" data-target-cell="annotated-cell-7" data-target-annotation="5">5</button><span id="annotated-cell-7-5" class="code-annotation-target"><a href="#annotated-cell-7-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_dendro</span>(<span class="fu">aes</span>(<span class="at">color =</span> branch), <span class="at">k =</span> <span class="dv">3</span>L) <span class="sc">+</span></span>
-<button class="code-annotation-anchor" data-target-cell="annotated-cell-7" data-target-annotation="6">6</button><span id="annotated-cell-7-6" class="code-annotation-target"><a href="#annotated-cell-7-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_color_brewer</span>(<span class="at">palette =</span> <span class="st">"Dark2"</span>)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-annotation">
-<dl class="code-annotation-container-hidden code-annotation-container-grid">
-<dt data-target-cell="annotated-cell-7" data-target-annotation="1">1</dt>
-<dd>
-<span data-code-cell="annotated-cell-7" data-code-lines="1" data-code-annotation="1">We initialize a circle layout and set the inner radius.</span>
-</dd>
-<dt data-target-cell="annotated-cell-7" data-target-annotation="2">2</dt>
-<dd>
-<span data-code-cell="annotated-cell-7" data-code-lines="2" data-code-annotation="2">Create a new ggplot in the layout, and use data the same with the layout data.</span>
-</dd>
-<dt data-target-cell="annotated-cell-7" data-target-annotation="3">3</dt>
-<dd>
-<span data-code-cell="annotated-cell-7" data-code-lines="3" data-code-annotation="3">Add a tile layer, the matrix input will be converted into a long formated data frame with column <code>.column_index</code> indicates the column index of the original matrix.</span>
-</dd>
-<dt data-target-cell="annotated-cell-7" data-target-annotation="4">4</dt>
-<dd>
-<span data-code-cell="annotated-cell-7" data-code-lines="4" data-code-annotation="4">Set fill scale palette.</span>
-</dd>
-<dt data-target-cell="annotated-cell-7" data-target-annotation="5">5</dt>
-<dd>
-<span data-code-cell="annotated-cell-7" data-code-lines="5" data-code-annotation="5">Reorder and group the observations based on hierarchical clustering, and add a dendrogram tree, coloring the tree by <code>branch</code>.</span>
-</dd>
-<dt data-target-cell="annotated-cell-7" data-target-annotation="6">6</dt>
-<dd>
-<span data-code-cell="annotated-cell-7" data-code-lines="6" data-code-annotation="6">Set color scale palette.</span>
-</dd>
-</dl>
-</div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="getting-started_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>Having explored the general workflow of ggalign, you should now be familiar with its basic workflow. In later chapters, I’ll introduce the core components one by one.</p>
+<p>This automatically reorders the heatmap rows or columns to reflect the hierarchical structure in the dendrogram.</p>
+<p>While data-aware composition is the core strength of <code>ggalign</code>, its full capabilities go beyond a single example. For more advanced features and finer control, see <span class="quarto-unresolved-ref">?sec-data-aware</span>.</p>
 
 
 </section>
@@ -1098,8 +916,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./stack-layout.html" class="pagination-link" aria-label="stack layout">
-        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">stack layout</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./data-free.html" class="pagination-link" aria-label="Data-Free Composition">
+        <span class="nav-page-text">Data-Free Composition</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

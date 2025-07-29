@@ -105,12 +105,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<meta name="mermaid-theme" content="default">
+<script src="site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 
 
 <meta name="twitter:title" content="1&nbsp; Introduction – ggalign: Bridging the Grammar of Graphics and Complex layout">
 <meta name="twitter:description" content="">
-<meta name="twitter:image" content="design.png">
-<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:card" content="summary">
 </head>
 
 <body class="nav-sidebar floating quarto-light">
@@ -122,7 +125,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./introduction.html">Getting Started</a></li><li class="breadcrumb-item"><a href="./introduction.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./introduction.html">Welcome</a></li><li class="breadcrumb-item"><a href="./introduction.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -164,7 +167,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">Getting Started</span></a>
+ <span class="menu-text">Welcome</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -179,15 +182,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./getting-started.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Overview</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Basic example</span></span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text">Basics</span></a>
+            <a href="./data-free.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data-Free Composition</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -195,82 +198,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./stack-layout.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">stack layout</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./heatmap-layout.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">heatmap layout</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./layout-customize.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Layout customize</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./plot-initialize.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Plot initialize</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./annotate-observations.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Annotate observations</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./quad-layout.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">quad-layout</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./multiple-quad-layouts.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">A list of <code>quad_layout()</code></span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./circle-layout.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">circle layout</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./operator.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Operators</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./schemes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Schemes</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./difference-with-ggplot2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Difference with ggplot2</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="./plot-composer.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Plot Composer</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Plot Composer</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./free.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Fine-Grained Alignment Control</span></span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
- <span class="menu-text">Advanced</span></a>
+            <a href="./data-aware.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data-Aware Composition</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -278,8 +221,74 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./stack-layout.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">stack layout</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./heatmap-layout.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">heatmap layout</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./quad-layout.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">quad-layout</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./layout-customize.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Layout customize</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./initialize-plot.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Initialize Plot</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./annotate-observations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Annotate observations</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./multiple-quad-layouts.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">A list of <code>quad_layout()</code></span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./circle-layout.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">circle layout</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./operator.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Operators</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./schemes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Schemes</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./difference-with-ggplot2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Difference with ggplot2</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./oncoplot.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">ggoncoplot</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">ggoncoplot</span></span></a>
   </div>
 </li>
       </ul>
@@ -296,7 +305,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./complete-examples.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Complete examples</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Complete examples</span></span></a>
   </div>
 </li>
       </ul>
@@ -313,13 +322,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./complexheatmap-single-heatmap.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">A Single Heatmap</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">A Single Heatmap</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./complexheatmap-more-examples.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">More examples</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">More examples</span></span></a>
   </div>
 </li>
       </ul>
@@ -335,14 +344,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#installation" id="toc-installation" class="nav-link active" data-scroll-target="#installation"><span class="header-section-number">1.1</span> Installation</a></li>
-  <li><a href="#general-design" id="toc-general-design" class="nav-link" data-scroll-target="#general-design"><span class="header-section-number">1.2</span> General design</a></li>
+  <li><a href="#plot-composition" id="toc-plot-composition" class="nav-link" data-scroll-target="#plot-composition"><span class="header-section-number">1.2</span> Plot Composition</a>
+  <ul class="collapse">
+  <li><a href="#data-free-composition-simple-plot-arrangement" id="toc-data-free-composition-simple-plot-arrangement" class="nav-link" data-scroll-target="#data-free-composition-simple-plot-arrangement"><span class="header-section-number">1.2.1</span> Data-Free Composition: Simple Plot Arrangement</a></li>
+  <li><a href="#data-aware-composition-integrated-data-visualization" id="toc-data-aware-composition-integrated-data-visualization" class="nav-link" data-scroll-target="#data-aware-composition-integrated-data-visualization"><span class="header-section-number">1.2.2</span> Data-Aware Composition: Integrated Data Visualization</a></li>
+  </ul></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/Yunuuuu/ggalign-book/blob/main/introduction.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/Yunuuuu/ggalign-book/edit/main/introduction.qmd" class="toc-action"><i class="bi empty"></i>Edit this page</a></li><li><a href="https://github.com/Yunuuuu/ggalign-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="quarto-other-links"><h2>Other Links</h2><ul><li><a href="https://yunuuuu.github.io/ggalign"><i class="bi bi-journal-text"></i>ggalign reference</a></li><li><a href="https://www.biorxiv.org/content/10.1101/2025.02.06.636847v1"><i class="bi bi-layout-text-sidebar-reverse"></i>ggalign manuscript</a></li></ul></div><div class="quarto-code-links"><h2>Code Links</h2><ul><li><a href="https://github.com/Yunuuuu/ggalign"><i class="bi bi-code-square"></i>ggalign repo</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/Yunuuuu/ggalign-book/blob/main/introduction.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/Yunuuuu/ggalign-book/edit/main/introduction.qmd" class="toc-action"><i class="bi empty"></i>Edit this page</a></li><li><a href="https://github.com/Yunuuuu/ggalign-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="quarto-other-links"><h2>Other Links</h2><ul><li><a href="https://yunuuuu.github.io/ggalign"><i class="bi bi-journal-text"></i>ggalign reference</a></li><li><a href="https://yunuuuu.github.io/ggalign-gallery"><i class="bi bi-journal-text"></i>ggalign gallery</a></li><li><a href="https://www.biorxiv.org/content/10.1101/2025.02.06.636847v1"><i class="bi bi-layout-text-sidebar-reverse"></i>ggalign manuscript</a></li></ul></div><div class="quarto-code-links"><h2>Code Links</h2><ul><li><a href="https://github.com/Yunuuuu/ggalign"><i class="bi bi-code-square"></i>ggalign repo</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./introduction.html">Getting Started</a></li><li class="breadcrumb-item"><a href="./introduction.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./introduction.html">Welcome</a></li><li class="breadcrumb-item"><a href="./introduction.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></h1>
 </div>
@@ -361,8 +374,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>The <code>ggalign</code> package provides an integrative framework for composable visualization, enabling the construction of complex multi-plot layouts—including insets, circular arrangements, and multi-panel compositions. Built on the grammar of graphics, it introduces intuitive tools to align, stack, and nest plots, making it easy to link related views, overlay clustering results, or highlight shared patterns.</p>
-<p>Designed for high-dimensional data contexts such as genomics, transcriptomics, and microbiome studies, <code>ggalign</code> simplifies the creation of richly annotated, publication-ready figures from diverse visual components.</p>
+<p>The <code>ggalign</code> package provides a flexible and powerful framework for composable visualization, making it easy to build complex multi-plot layouts—such as insets, multi-panel views, and circular compositions.</p>
+<p>Built on top of the grammar of graphics, <code>ggalign</code> introduces intuitive tools to align, stack, and nest plots in a way that preserves relationships between data sources—ideal for visualizing shared patterns, clustering results, or coordinated subplots.</p>
+<p>Designed for high-dimensional data common in fields like genomics, transcriptomics, and microbiome research, <code>ggalign</code> helps you create publication-ready figures by composing diverse plots into cohesive, structured layouts.</p>
 <section id="installation" class="level2" data-number="1.1">
 <h2 data-number="1.1" class="anchored" data-anchor-id="installation"><span class="header-section-number">1.1</span> Installation</h2>
 <p>You can install <code>ggalign</code> from <code>CRAN</code> using:</p>
@@ -381,44 +395,89 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"Yunuuuu/ggalign"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="general-design" class="level2" data-number="1.2">
-<h2 data-number="1.2" class="anchored" data-anchor-id="general-design"><span class="header-section-number">1.2</span> General design</h2>
-<p>At the heart of <code>ggalign</code> is an object-oriented <code>Layout</code> system that integrates seamlessly with <code>ggplot2</code>. It provides three core layout types:</p>
-<ul>
-<li><code>StackLayout</code>: Stacks plots horizontally or vertically.</li>
-<li><code>QuadLayout</code>: Arranges plots in four quadrants (top, left, bottom, right) around a central plot.</li>
-<li><code>CircleLayout</code>: Positions plots in a circular pattern.</li>
-</ul>
-<p>Each layout supports both discrete (e.g., categories) and continuous (e.g., numerical) data, and includes specialized alignment functions:</p>
-<p>For <code>StackLayout</code>:</p>
-<ul>
-<li><code>stack_discrete()</code>: Align discrete variable along the stack.</li>
-<li><code>stack_continuous()</code>: Align continuous variable along the stack.</li>
-<li><code>stack_layout()</code>: A unified interface that handles both discrete and continuous data.</li>
-</ul>
-<p>For <code>QuadLayout</code>:</p>
-<ul>
-<li><code>quad_continuous()</code>/<code>ggside()</code>: Align continuous variables in both horizontal and vertical directions.</li>
-<li><code>quad_discrete()</code>: Align discrete variables in both horizontal and vertical directions.</li>
-<li><code>quad_layout()</code>: A general function that adapts to both data types and directions.</li>
-</ul>
-<p>For <code>CircleLayout</code>:</p>
-<ul>
-<li><code>circle_discrete()</code>: Align discrete variable in the circle.</li>
-<li><code>circle_continuous()</code>: Align continuous variable in the circle.</li>
-<li><code>circle_layout()</code>: A unified interface for both cases.</li>
-</ul>
-<blockquote class="blockquote">
-<p>Note: Throughout this book, we refer to the main layout functions—<code>stack_layout()</code>, <code>quad_layout()</code>, and <code>circle_layout()</code>—as the primary interfaces, even when using their specialized variants.</p>
-</blockquote>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="design.png" class="img-fluid figure-img"></p>
-<figcaption>General design of ggalign</figcaption>
-</figure>
+<section id="plot-composition" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="plot-composition"><span class="header-section-number">1.2</span> Plot Composition</h2>
+<p><code>ggalign</code> supports two core paradigms for plot composition, depending on how the data is shared or separated between plots.</p>
+<section id="data-free-composition-simple-plot-arrangement" class="level3" data-number="1.2.1">
+<h3 data-number="1.2.1" class="anchored" data-anchor-id="data-free-composition-simple-plot-arrangement"><span class="header-section-number">1.2.1</span> Data-Free Composition: Simple Plot Arrangement</h3>
+<p>Data-free composition represents traditional plot arrangement where independent plots are spatially arranged without data relationships. This approach is similar to what packages like <code>patchwork</code> or <code>cowplot</code> provide.</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">graph LR
+    P1["Plot A&lt;br/&gt;Independent data"]
+    P2["Plot B&lt;br/&gt;Independent data"] 
+    P3["Plot C&lt;br/&gt;Independent data"]
+    ARRANGE["align_plots()&lt;br/&gt;Spatial arrangement"]
+    OUTPUT1["Final Layout&lt;br/&gt;No data connection"]
+
+    P1 --&gt; ARRANGE
+    P2 --&gt; ARRANGE  
+    P3 --&gt; ARRANGE
+    ARRANGE --&gt; OUTPUT1
+
+    style P1 fill:#d0e6f7,stroke:#1f78b4,stroke-width:2px,color:#0b3d91
+    style P2 fill:#f0f4c3,stroke:#c0ca33,stroke-width:2px,color:#616515
+    style P3 fill:#ffe0b2,stroke:#fb8c00,stroke-width:2px,color:#663c00
+    style ARRANGE fill:#dcedc8,stroke:#689f38,stroke-width:2px,color:#33691e
+    style OUTPUT1 fill:#c8e6c9,stroke:#388e3c,stroke-width:2px,color:#2e7d32
+</pre>
 </div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p><strong>Characteristics:</strong></p>
+<ul>
+<li>Each plot uses independent data sources</li>
+<li>No shared observations between plots (maybe)</li>
+<li>Suitable for combining unrelated visualizations</li>
+</ul>
+</section>
+<section id="data-aware-composition-integrated-data-visualization" class="level3" data-number="1.2.2">
+<h3 data-number="1.2.2" class="anchored" data-anchor-id="data-aware-composition-integrated-data-visualization"><span class="header-section-number">1.2.2</span> Data-Aware Composition: Integrated Data Visualization</h3>
+<p>Data-aware composition is <code>ggalign</code>’s core innovation, where multiple plots share common observations and maintain consistent data alignment across all visualizations.</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">graph TB
+    SHARED["Shared Data&lt;br/&gt;Common observations"]
+    LAYOUT["Layout System&lt;br/&gt;quad_layout()&lt;br/&gt;stack_layout()&lt;br/&gt;circle_layout()"]
+    ALIGN["Layout Customization&lt;br/&gt;Data-Level Ordering and Grouping"]
+    PLOTS["Coordinated Plots&lt;br/&gt;Automatic observation sync"]
+    OUTPUT2["Integrated Visualization&lt;br/&gt;Guaranteed alignment"]
+    
+    SHARED --&gt; LAYOUT
+    LAYOUT --&gt; ALIGN
+    LAYOUT --&gt; PLOTS
+    ALIGN --&gt; OUTPUT2
+    PLOTS --&gt; OUTPUT2
+
+    style SHARED fill:#d0e6f7,stroke:#1f78b4,stroke-width:2px,color:#0b3d91
+    style LAYOUT fill:#f0f4c3,stroke:#c0ca33,stroke-width:2px,color:#616515
+    style ALIGN fill:#ffe0b2,stroke:#fb8c00,stroke-width:2px,color:#663c00
+    style PLOTS fill:#dcedc8,stroke:#689f38,stroke-width:2px,color:#33691e
+    style OUTPUT2 fill:#c8e6c9,stroke:#388e3c,stroke-width:2px,color:#2e7d32
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p><strong>Key Features:</strong></p>
+<ul>
+<li><strong>Observation Consistency</strong>: Data points from same observations aligned across all plots</li>
+<li><strong>Automatic Synchronization</strong>: No manual coordinate management required</li>
+<li><strong>Complex Relationships</strong>: Supports one-to-many, many-to-many, and crosswise data relationships</li>
+<li><strong>Specialized Layouts</strong>: Purpose-built layouts for specific data types</li>
+</ul>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -867,8 +926,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./getting-started.html" class="pagination-link" aria-label="Overview">
-        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Overview</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./getting-started.html" class="pagination-link" aria-label="Basic example">
+        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Basic example</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
