@@ -191,3 +191,4 @@ align_plots(
     free_guide(p_top, "t"),
     free_guide(p_left, "l")
 )
+```
