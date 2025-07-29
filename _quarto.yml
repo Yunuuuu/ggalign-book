@@ -64,11 +64,6 @@ book:
       chapters:
         - complete-examples.qmd
 
-    - part: complexheatmap.qmd
-      chapters:
-        - complexheatmap-single-heatmap.qmd
-        - complexheatmap-more-examples.qmd
-
 bibliography: references.bib
 
 knitr:
