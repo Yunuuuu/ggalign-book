@@ -43,6 +43,11 @@ jobs:
             **.Qmd
             **.qmd
 
+      - name: Check chromium
+        run: |
+          echo $(which chromium-browser)
+          $(which chromium-browser) --headless https://www.chromestatus.com
+
       - name: Render the new quarto files
         if: steps.new-qmd-files.outputs.any_changed == 'true'
         env:

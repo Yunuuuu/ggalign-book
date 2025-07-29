@@ -44,6 +44,11 @@ jobs:
 
       - uses: r-lib/actions/setup-r-dependencies@v2
 
+      - name: Check chromium
+        run: |
+          echo $(which chromium-browser)
+          $(which chromium-browser) --headless https://www.chromestatus.com
+
       - name: Render Quarto Project
         uses: quarto-dev/quarto-actions/render@v2
         env:
