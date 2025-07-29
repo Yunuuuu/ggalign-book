@@ -74,8 +74,9 @@ knitr:
 format:
   html:
     theme:
-      light: [cosmo, theme.scss]
-      dark: [cosmo, theme-dark.scss]
+      light: [default]
+      dark: [default]
+    respect-user-color-scheme: true
     code-link: true
     code-annotations: hover
     mermaid:
