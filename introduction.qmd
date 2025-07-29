@@ -84,7 +84,7 @@ visualizations.
 ```{mermaid}
 graph TB
     SHARED["Shared Data<br/>Common observations"]
-    LAYOUT["Layout System<br/>quad_layout()<br/>stack_layout()<br/>circle_layout()"]
+    LAYOUT["Layout System:<br/>quad_layout()<br/>stack_layout()<br/>circle_layout()"]
     ALIGN["Layout Customization<br/>Data-Level Ordering and Grouping"]
     PLOTS["Coordinated Plots<br/>Automatic observation sync"]
     OUTPUT2["Integrated Visualization<br/>Guaranteed alignment"]
