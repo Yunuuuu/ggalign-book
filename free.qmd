@@ -28,7 +28,7 @@ each letter represents a side of the plot:
 - `b`: bottom
 - `r`: right
 
-First, we create some example plots:
+First, let's create some example plots:
 ```{r}
 # A simple scatter plot
 p_simple <- ggplot(mtcars) +

@@ -1,6 +1,6 @@
 # Data-Free Composition {#sec-data-free}
 
-This chapter introduces one of the core features of the `ggalign` package:
+This part introduces one of the core features of the `ggalign` package:
 data-free composition. Data-free composition forms the structural foundation for
 building complex, multi-panel visual layouts. Unlike data-aware composition, it
 does not align plots based on shared data values. Instead, it focuses purely on
@@ -28,6 +28,6 @@ independence. Because there's no need to reconcile axes, or scales, it’s
 straightforward and versatile for many common multi-plot needs.
 
 ## What Will You Learn?
-This chapter is divided into sections, each addressing a specific graphical
+This part is divided into sections, each addressing a specific graphical
 challenge. This is not an exhaustive or exclusive categorization but rather a
 practical guide to help you navigate common tasks in data-free plot composition.

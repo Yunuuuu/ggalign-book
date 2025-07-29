@@ -1,30 +1,72 @@
 # Data-Aware Composition {#sec-data-aware}
-```{r}
-library(ggalign)
-```
 
-The usage of `ggalign` is simple if you're familiar with `ggplot2` syntax, the
-typical workflow includes: 
+This part introduces another core feature of the ggalign package: data-aware
+composition. Unlike data-free composition, which focuses solely on the visual
+arrangement of plots without considering shared data values, data-aware
+composition aligns plots based on common data characteristics—such as shared
+axis scales or categorical factors. This enables precise alignment of related
+plots where data correspondence matters.
 
-  1. Initialize the layout.
-  2. Customize the layout with:
+`ggalign` simplifies data-aware alignment in ggplot2, handling common tasks such
+as sorting, grouping, or clustering observations before composition.
+
+![General design of Data-Aware Composition](design.png)
+
+## Layout System
+At the heart of `ggalign` data-aware composition is an object-oriented `Layout`
+system that integrates seamlessly with `ggplot2`. It provides three core layout
+types:
+
+ - `StackLayout`: Stacks plots horizontally or vertically.
+ - `QuadLayout`: Arranges plots in four quadrants (top, left, bottom, right)
+ around a central plot.
+ - `CircleLayout`: Positions plots in a circular pattern.
+
+Each layout supports both discrete (e.g., categories) and continuous (e.g.,
+numerical) data, and includes specialized alignment functions:
+
+For `StackLayout`:
+
+ - `stack_discrete()`: Align discrete variable along the stack.
+ - `stack_continuous()`: Align continuous variable along the stack.
+ - `stack_layout()`: A unified interface that handles both discrete and continuous data.
+
+For `QuadLayout`: 
+
+ - `quad_continuous()`/`ggside()`: Align continuous variables in both horizontal and vertical directions. 
+ - `quad_discrete()`: Align discrete variables in both horizontal and vertical directions.
+ - `quad_layout()`: A general function that adapts to both data types and directions.
+
+For `CircleLayout`:
+
+ - `circle_discrete()`: Align discrete variable in the circle.
+ - `circle_continuous()`: Align continuous variable in the circle.
+ - `circle_layout()`: A unified interface for both cases.
+
+> Note: Throughout this book, we refer to the main layout
+functions—`stack_layout()`, `quad_layout()`, and `circle_layout()`—as the
+primary interfaces, even when using their specialized variants.
+
+## Overview of Other Systems
+Besides layout types, ggalign provides helper tools to `group`, `order`, or add plots to the `Layout`:
+
+  1. Layout customization:
       - `align_group()`: Group observations into panel with a group variable.
       - `align_kmeans()`: Group observations into panel by kmeans.
       - `align_order()`: Reorder layout observations based on statistical weights or by manually specifying the observation index.
       - `align_order2`: Reorder observations using an arbitrary statistical function
       - `align_hclust()`: Reorder or group observations based on hierarchical clustering.
-  3. Adding plots with:
+  2. Plot adding:
       - `align_dendro()`: Add a dendrogram to the plot, and reorder or group observations based on hierarchical clustering.
       - `ggalign()`: Initialize a ggplot object and align the axes.
       - `ggmark()`: Add a plot to annotate selected observations.
       - `ggcross()`: Initialize a ggplot object to connect two different layout crosswise
       - `ggfree()`: Initialize a ggplot object without aligning the axes.
-  4. Layer additional `ggplot2` elements such as geoms, stats, or scales.
 
-![Overview of the ggalign workflow](workflow.png)
+![Overview of Data-Aware Composition](overview.png)
 
 ## Input data {#sec-input-data}
-Before exploring `ggalign`, it’s important to understand how axis alignment works in `ggplot2`.
+Before exploring data-aware compostion, it’s important to understand how axis alignment works in `ggplot2`.
 
  - For continuous axes, alignment is straightforward: simply ensure the axis
  limits are consistent across plots.
@@ -62,194 +104,3 @@ The main difference between discrete and continuous variable alignment in
 
 > Terminology: `"Observations"` and `"discrete variables"` are interchangeable
 here. Any mention of `"observations"` applies to discrete variables too.
-
-## First Look
-In this section, we demonstrate how to align discrete variables across different
-layouts. Discrete variables are often the hardest to handle in ggplot2, and
-aligning them properly is one of the main motivations for ggalign.
-
-As mentioned earlier, `ggalign` uses a matrix to specify how observations should
-be aligned. Each row in the matrix corresponds to a single observation, and will
-be aligned across different columns.
-
-```{r}
-set.seed(123)
-small_mat <- matrix(rnorm(56), nrow = 7)
-rownames(small_mat) <- paste0("row", seq_len(nrow(small_mat)))
-colnames(small_mat) <- paste0("column", seq_len(ncol(small_mat)))
-```
-
-Each `*_layout()` function accepts default data, inherited by all plots in the
-layout.
-
-Here's a simple example:
-```{r}
-stack_discretev(small_mat) +               # <1>
-    align_dendro() +                       # <2>
-    theme(axis.text.x = element_text())    # <3>
-```
-
-  1. We initialize a vertical stack.
-  2. Reorder the observations based on hierarchical clustering and add a
-  dendrogram tree.
-  3. Add x-axis text.
-
-The function `stack_discretev()` is a shortcut for `stack_discrete("v")`, which
-creates a vertically stacked layout and aligns discrete variables.
-
-When default data is passed to the layout, the number of observations (`nobs`)
-is determined by the number of rows in the matrix (i.e., `NROW()`). All plots
-added to the layout must use data with the same `nobs`.
-
-When you add `align_dendro()`, it can inherit the layout data, computes the
-dendrogram, and sets the global row ordering of the layout. It also creates a
-new `ggplot` object and sets it as the active context—so any following +
-operations apply to this plot.
-
-By default, axis text on the aligned axis is hidden to prevent duplicate labels.
-You can explicitly control visibility using `theme()`.
-
-Now, let's add another plot with `ggalign()`. It will also inherit the layout
-data, but we can provide a function to transform the layout data. Note, as
-mentioned above, you must ensure the function returns data with the same nobs.
-When rendering, the data will be automatically transformed into a data frame.
-The data in the underlying ggplot object of `ggalign()` contains the following
-columns (more details will be introduced in [@sec-ggalign]):
-
- - `.panel`: the group panel for the aligned axis. It means `x-axis` for
- vertical stack layout, `y-axis` for horizontal stack layout.
- - `.x`/`.y` and `.discrete_x`/`.discrete_y`: an integer index of `x`/`y`
-   coordinates and a factor of the data labels (only applicable when names
-   exists).
- - `.names` and `.index`: A character names (only applicable when names exists)
- and an integer of index of the original data.
- - `value`: the actual value (only applicable if `data` is a `matrix` or
-   atomic vector).
-
-Note, `ggalign` also sets the active context to the plot, so you can add other
-`ggplot2` components.
-
-```{r}
-stack_discretev(small_mat) +                                # <1>
-    align_dendro() +                                        # <2>
-    ggalign(data = rowSums) +                               # <3>
-    geom_bar(aes(.discrete_x, value), stat = "identity") +  # <4>
-    theme(axis.text.x = element_text())                     # <5>
-```
-
-  1. We initialize a vertical stack.
-  2. Reorder the observations based on hierarchical clustering and add a
-  dendrogram tree.
-  3. Create a new ggplot in the layout, and use data based on the sum of the
-  layout data.
-  4. Add a bar layer.
-  5. Add x-axis text.
-
->You must use `.x`/`.y` or `.discrete_x`/`.discrete_y` as the `x`/`y` mapping to
-ensure the alignment.
-
-`align_dendro()` can also split the observations into groups by specifying the
-`k` argument  (more details will be introduced in [@sec-ggalign]). 
-
-```{r}
-stack_alignv(small_mat) +                                                  # <1>
-    align_dendro(k = 3) +                                                  # <2>
-    ggalign(data = rowSums) +                                              # <3>
-    geom_bar(aes(.discrete_x, value, fill = .panel), stat = "identity") +  # <4>
-    scale_fill_brewer(palette = "Dark2", name = "Group") +                 # <5>
-    theme(axis.text.x = element_text())                                    # <6>
-```
-
-  1. We initialize a vertical stack.
-  2. Reorder and group the observations based on hierarchical clustering, and
-  add a dendrogram tree.
-  3. Create a new ggplot in the layout, and use data based on the sum of the
-  layout data.
-  4. Add a bar layer.
-  5. Set fill scale palette.
-  6. Add x-axis text.
-
-One common visualization associated with the dendrogram is the heatmap. You can
-use `ggheatmap()` to initialize a heatmap layout. When grouping the observations
-using `align_dendro(k = 3)`, a special column named `branch` is added, which you
-can use to color the dendrogram tree.
-
-```{r}
-ggheatmap(small_mat) +                                          # <1>
-    theme(axis.text.x = element_text(angle = -60, hjust = 0)) + # <2>
-    anno_left() +                                               # <3>
-    align_dendro(aes(color = branch), k = 3) +                  # <4>
-    scale_fill_brewer(palette = "Dark2")                        # <5>
-```
-
-  1. We initialize a heatmap layout.
-  2. adjust the x-axis label theme element.
-  3. we initialize an annotation in the left side of the heatmap body, and set
-  it as the active context, in this way, all following addition will be directed
-  to the left annotation.
-  4. Reorder and group the observations based on hierarchical clustering, and
-  add a dendrogram tree, coloring the tree by `branch`.
-  5. Set fill scale palette.
-
-`ggheatmap()` will automatically add axis text in the heatmap body, so you don't
-need to manually adjust axis text visibility using
-`theme(axis.text.x = element_text())`/`theme(axis.text.y = element_text())`.
-
-We can also arrange the dendrogram in a circular layout to visualize
-hierarchical relationships in a more compact and aesthetically pleasing way.
-```{r}
-circle_discrete(small_mat, radial = coord_radial(inner.radius = 0.1)) + # <1>
-    ggalign() +                                                         # <2>
-    geom_tile(aes(y = .column_index, fill = value)) +                   # <3>
-    scale_fill_viridis_c() +                                            # <4>
-    align_dendro(aes(color = branch), k = 3L) +                         # <5>
-    scale_color_brewer(palette = "Dark2")                               # <6>
-```
-  1. We initialize a circle layout and set the inner radius.
-  2. Create a new ggplot in the layout, and use data the same with the layout data.
-  3. Add a tile layer, the matrix input will be converted into a long formated data
-  frame with column `.column_index` indicates the column index of the original matrix.
-  4. Set fill scale palette.
-  5. Reorder and group the observations based on hierarchical clustering, and
-  add a dendrogram tree, coloring the tree by `branch`.
-  6. Set color scale palette.
-
-Having explored the general workflow of ggalign, you should now be familiar with
-its basic workflow. In later chapters, I'll introduce the core components one
-by one.
-
-## General design
-At the heart of `ggalign` is an object-oriented `Layout` system that integrates
-seamlessly with `ggplot2`. It provides three core layout types:
-
- - `StackLayout`: Stacks plots horizontally or vertically.
- - `QuadLayout`: Arranges plots in four quadrants (top, left, bottom, right)
- around a central plot.
- - `CircleLayout`: Positions plots in a circular pattern.
-
-Each layout supports both discrete (e.g., categories) and continuous (e.g.,
-numerical) data, and includes specialized alignment functions:
-
-For `StackLayout`:
-
- - `stack_discrete()`: Align discrete variable along the stack.
- - `stack_continuous()`: Align continuous variable along the stack.
- - `stack_layout()`: A unified interface that handles both discrete and continuous data.
-
-For `QuadLayout`: 
-
- - `quad_continuous()`/`ggside()`: Align continuous variables in both horizontal and vertical directions. 
- - `quad_discrete()`: Align discrete variables in both horizontal and vertical directions.
- - `quad_layout()`: A general function that adapts to both data types and directions.
-
-For `CircleLayout`:
-
- - `circle_discrete()`: Align discrete variable in the circle.
- - `circle_continuous()`: Align continuous variable in the circle.
- - `circle_layout()`: A unified interface for both cases.
-
-> Note: Throughout this book, we refer to the main layout
-functions—`stack_layout()`, `quad_layout()`, and `circle_layout()`—as the
-primary interfaces, even when using their specialized variants.
-
-![General design of ggalign](design.png)

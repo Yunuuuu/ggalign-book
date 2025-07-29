@@ -22,6 +22,9 @@ book:
     - text: ggalign reference
       icon: journal-text
       href: https://yunuuuu.github.io/ggalign
+    - text: ggalign gallery
+      icon: journal-text
+      href: https://yunuuuu.github.io/ggalign-gallery
     - text: ggalign manuscript
       icon: layout-text-sidebar-reverse
       href: https://www.biorxiv.org/content/10.1101/2025.02.06.636847v1
