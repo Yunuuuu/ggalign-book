@@ -219,7 +219,7 @@ stack_discreteh(small_mat) +                             # <1>
 Without adding another plot, it's difficult to appreciate the benefits. Let's
 now explore how to incorporate a plot.
 
-## Plot initialize {#sec-stack-layout-plot-initialize}
+## Initializing Plot {#sec-stack-layout-plot-initialize}
 There are two primary functions for adding plots: 
 
   - `ggalign()`: Initialize a ggplot object and align the axes.
