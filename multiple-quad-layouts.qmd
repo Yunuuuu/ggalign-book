@@ -1,4 +1,4 @@
-# A list of `quad_layout()` {#sec-multiple-quad-layouts}
+# A list of QuadLayout {#sec-multiple-quad-layouts}
 Similarly, `stack_layout()` can be added to a `quad_layout()`, and a
 `quad_layout()` can also be added to a `stack_layout()`.
 
