@@ -540,20 +540,20 @@ ul.task-list li input[type="checkbox"] {
 <h2 data-number="21.1" class="anchored" data-anchor-id="technical-and-theoretical-questions"><span class="header-section-number">21.1</span> Technical and Theoretical Questions</h2>
 <section id="package-compatibility-and-integration" class="level3" data-number="21.1.1">
 <h3 data-number="21.1.1" class="anchored" data-anchor-id="package-compatibility-and-integration"><span class="header-section-number">21.1.1</span> Package Compatibility and Integration</h3>
-<p><strong>Q: How compatible is ggalign with other R graphics packages?</strong></p>
-<p>A: ggalign provides extensive compatibility through its <code>patch()</code> system and <code>align_plots()</code> function.</p>
+<p><strong>Q: How compatible is <code>ggalign</code> with other R graphics packages?</strong></p>
+<p>A: <code>ggalign</code> provides extensive compatibility through its <code>patch()</code> system and <code>align_plots()</code> function.</p>
 <p>The package can directly integrate: - ComplexHeatmap objects - pheatmap visualizations<br>
 - Base R plots and grid graphics - ggplot2 objects - MAF objects from maftools</p>
-<p>If you need to use other arrangement packages like <code>patchwork</code> or <code>cowplot</code>, you can convert ggalign objects using <code>ggalignGrob()</code>, though this will break the panel alignment feature.</p>
-<p><strong>Q: Can ggalign outputs be edited in external software?</strong></p>
-<p>A: Yes, ggalign outputs are standard ggplot2 objects that can be: - Saved as vector formats (PDF, SVG) for editing in Illustrator/Inkscape - Converted to grobs using <code>ggalignGrob()</code> for further manipulation - Integrated with other R graphics workflows</p>
+<p>If you need to use other arrangement packages like <code>patchwork</code> or <code>cowplot</code>, you can convert <code>ggalign</code> objects using <code>ggalignGrob()</code>, though this will break the panel alignment feature.</p>
+<p><strong>Q: Can <code>ggalign</code> outputs be edited in external software?</strong></p>
+<p>A: Yes, <code>ggalign</code> outputs are standard ggplot2 objects that can be: - Saved as vector formats (PDF, SVG) for editing in Illustrator/Inkscape - Converted to grobs using <code>ggalignGrob()</code> for further manipulation - Integrated with other R graphics workflows</p>
 </section>
 <section id="performance-considerations" class="level3" data-number="21.1.2">
 <h3 data-number="21.1.2" class="anchored" data-anchor-id="performance-considerations"><span class="header-section-number">21.1.2</span> Performance Considerations</h3>
-<p><strong>Q: How does ggalign perform with large datasets?</strong></p>
-<p>A: ggalign performance scales with data size and complexity. For large datasets: - Matrix operations are optimized for efficiency - Consider using rasterization for very large heatmaps - The package automatically uses <code>geom_raster()</code> for matrices with &gt;20,000 cells - Memory usage scales with the number of observations and plots in layouts</p>
+<p><strong>Q: How does <code>ggalign</code> perform with large datasets?</strong></p>
+<p>A: <code>ggalign</code> performance scales with data size and complexity. For large datasets: - Matrix operations are optimized for efficiency - Consider using rasterization for very large heatmaps - The package automatically uses <code>geom_raster()</code> for matrices with &gt;20,000 cells - Memory usage scales with the number of observations and plots in layouts</p>
 <p><strong>Q: What are the system requirements?</strong></p>
-<p>A: ggalign requires:</p>
+<p>A: <code>ggalign</code> requires:</p>
 <ul>
 <li>R ≥ 4.0.0</li>
 <li>ggplot2 ≥ 3.5.2.9000 (development version)</li>
@@ -582,13 +582,13 @@ ul.task-list li input[type="checkbox"] {
 <section id="alignment-constraints-and-reordering" class="level3" data-number="21.2.3">
 <h3 data-number="21.2.3" class="anchored" data-anchor-id="alignment-constraints-and-reordering"><span class="header-section-number">21.2.3</span> Alignment Constraints and Reordering</h3>
 <p><strong>Q: Why can’t I add two dendrograms with different reorder settings?</strong></p>
-<p>A: ggalign prevents users from reordering the layout direction twice to maintain data consistency.</p>
+<p>A: <code>ggalign</code> prevents users from reordering the layout direction twice to maintain data consistency.</p>
 <p>When <code>reorder_group = FALSE</code> is used, reordering occurs within each group. As long as the ordering within each group remains consistent, multiple dendrograms can be placed on the same axis.</p>
 </section>
 <section id="data-format-and-processing" class="level3" data-number="21.2.4">
 <h3 data-number="21.2.4" class="anchored" data-anchor-id="data-format-and-processing"><span class="header-section-number">21.2.4</span> Data Format and Processing</h3>
-<p><strong>Q: What data formats does ggalign accept?</strong></p>
-<p>A: ggalign accepts diverse input formats through its fortification system:</p>
+<p><strong>Q: What data formats does <code>ggalign</code> accept?</strong></p>
+<p>A: <code>ggalign</code> accepts diverse input formats through its fortification system:</p>
 <ul>
 <li><strong>Matrices</strong>: Gene expression data, correlation matrices</li>
 <li><strong>Data frames</strong>: Clinical data, metadata</li>
@@ -645,14 +645,14 @@ ul.task-list li input[type="checkbox"] {
 <section id="advanced-customization" class="level3" data-number="21.2.9">
 <h3 data-number="21.2.9" class="anchored" data-anchor-id="advanced-customization"><span class="header-section-number">21.2.9</span> Advanced Customization</h3>
 <p><strong>Q: How do I create custom alignment functions?</strong></p>
-<p>A: While ggalign provides comprehensive built-in alignment functions (<code>align_dendro()</code>, <code>align_kmeans()</code>, <code>align_group()</code>, <code>align_order()</code>), you can create custom ordering by:</p>
+<p>A: While <code>ggalign</code> provides comprehensive built-in alignment functions (<code>align_dendro()</code>, <code>align_kmeans()</code>, <code>align_group()</code>, <code>align_order()</code>), you can create custom ordering by:</p>
 <ol type="1">
 <li>Using <code>align_order()</code> with custom weight functions</li>
 <li>Providing manual ordering vectors</li>
 <li>Creating custom grouping variables for <code>align_group()</code></li>
 </ol>
 <p><strong>Q: Can I mix different coordinate systems in one layout?</strong></p>
-<p>A: Yes, ggalign supports mixing coordinate systems within layouts. Each plot can have its own coordinate system (Cartesian, polar, etc.), though alignment is maintained through the shared observation structure.</p>
+<p>A: Yes, <code>ggalign</code> supports mixing coordinate systems within layouts. Each plot can have its own coordinate system (Cartesian, polar, etc.), though alignment is maintained through the shared observation structure.</p>
 </section>
 </section>
 <section id="best-practices-and-recommendations" class="level2" data-number="21.3">
@@ -675,7 +675,7 @@ ul.task-list li input[type="checkbox"] {
 <li><strong>Optimize memory usage</strong> with selective rendering</li>
 <li><strong>Cache expensive computations</strong> like clustering results</li>
 </ol>
-<p>This Q&amp;A chapter addresses the most common challenges users face when implementing ggalign visualizations, providing practical solutions and best practices for effective usage.</p>
+<p>This Q&amp;A chapter addresses the most common challenges users face when implementing <code>ggalign</code> visualizations, providing practical solutions and best practices for effective usage.</p>
 
 
 </section>

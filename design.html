@@ -537,15 +537,15 @@ ul.task-list li input[type="checkbox"] {
 <p>This chapter explores the theoretical foundations and architectural principles underlying ggalign’s design. Understanding these concepts will help you make better decisions about when and how to use different components of the package.</p>
 <section id="core-design-philosophy" class="level2" data-number="5.1">
 <h2 data-number="5.1" class="anchored" data-anchor-id="core-design-philosophy"><span class="header-section-number">5.1</span> Core Design Philosophy</h2>
-<p>ggalign is built around three fundamental design principles that distinguish it from other visualization packages:</p>
+<p><code>ggalign</code> is built around three fundamental design principles that distinguish it from other visualization packages:</p>
 <ol type="1">
 <li><strong>Observation-Centric Alignment</strong></li>
 </ol>
-<p>The central innovation of ggalign is ensuring that identical observations maintain consistent positions across multiple interconnected plots. This goes beyond simple spatial arrangement to create true data-aware composition where the same biological samples, genes, or other entities appear in exactly the same positions across all visualizations.</p>
+<p>The central innovation of <code>ggalign</code> is ensuring that identical observations maintain consistent positions across multiple interconnected plots. This goes beyond simple spatial arrangement to create true data-aware composition where the same biological samples, genes, or other entities appear in exactly the same positions across all visualizations.</p>
 <ol start="2" type="1">
 <li><strong>Grammar of Graphics Integration</strong></li>
 </ol>
-<p>ggalign is designed as a native ggplot2 extension, maintaining full compatibility with the grammar of graphics. This means you can use all familiar ggplot2 components (geoms, scales, themes, etc.) while gaining the additional power of observation alignment.</p>
+<p><code>ggalign</code> is designed as a native ggplot2 extension, maintaining full compatibility with the grammar of graphics. This means you can use all familiar ggplot2 components (geoms, scales, themes, etc.) while gaining the additional power of observation alignment.</p>
 <ol start="3" type="1">
 <li><strong>Declarative Syntax</strong></li>
 </ol>
@@ -553,7 +553,7 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="system-architecture-overview" class="level2" data-number="5.2">
 <h2 data-number="5.2" class="anchored" data-anchor-id="system-architecture-overview"><span class="header-section-number">5.2</span> System Architecture Overview</h2>
-<p>The ggalign architecture consists of multiple interconnected layers that work together to create aligned, composable visualizations:</p>
+<p>The <code>ggalign</code> architecture consists of multiple interconnected layers that work together to create aligned, composable visualizations:</p>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
 <div>
@@ -804,7 +804,7 @@ ul.task-list li input[type="checkbox"] {
 <thead>
 <tr class="header">
 <th>Relationship Type</th>
-<th>ggalign</th>
+<th><code>ggalign</code></th>
 <th>Other Tools</th>
 <th>Use Case</th>
 </tr>
@@ -856,7 +856,7 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="focus-and-contribution-of-ggalign" class="level2" data-number="5.7">
 <h2 data-number="5.7" class="anchored" data-anchor-id="focus-and-contribution-of-ggalign"><span class="header-section-number">5.7</span> Focus and Contribution of <code>ggalign</code></h2>
-<p>ggalign’s primary contribution lies in solving the <strong>observation alignment problem</strong> in multi-plot compositions. Traditional tools typically focus on spatial arrangement, while ggalign ensures that:</p>
+<p>ggalign’s primary contribution lies in solving the <strong>observation alignment problem</strong> in multi-plot compositions. Traditional tools typically focus on spatial arrangement, while <code>ggalign</code> ensures that:</p>
 <ol type="1">
 <li><strong>Identical observations maintain consistent positions</strong> across all plots</li>
 <li><strong>Complex data relationships</strong> (hierarchical, many-to-many) are properly handled</li>
