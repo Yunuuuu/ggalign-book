@@ -37,7 +37,7 @@ specifications for complex layouts.
 
 `ggalign` provides various options to control layout specifications, including
 whether to collect legend guides, align axes, and more. For more, see
-@sec-data-free.
+Part `Data-Free Composition`.
 
 ## Data-Aware Composition
 
@@ -78,7 +78,7 @@ hierarchical structure in the dendrogram.
 
 While data-aware composition is the core strength of `ggalign`, its full
 capabilities go beyond a single example. For more advanced features and finer
-control, see @sec-data-aware.
+control, see Part `Data-Aware Composition`.
 
 ## When to Use Each Approach
 
