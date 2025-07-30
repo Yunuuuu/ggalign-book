@@ -1,6 +1,6 @@
 # Data-Aware Composition {#sec-data-aware}
 
-This part introduces another core feature of the ggalign package: data-aware
+This part introduces another core feature of the `ggalign` package: data-aware
 composition. Unlike data-free composition, which focuses solely on the visual
 arrangement of plots without considering shared data values, data-aware
 composition aligns plots based on common data characteristics—such as shared

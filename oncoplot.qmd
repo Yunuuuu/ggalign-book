@@ -196,7 +196,7 @@ Managing alteration types, especially in the case of overlapping alterations,
 requires meticulous design to ensure that the visual elements do not interfere
 with each other.
 
-## ggalign Attributes
+## `ggalign` Attributes
 Except for the data used for the main plot, `fortify_matrix.MAF()` also attaches
 several useful attributes.
 
