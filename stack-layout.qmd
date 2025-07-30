@@ -98,6 +98,9 @@ observations (`nobs`) is determined by the number of rows in the input matrix
 first element you add—if it includes data—will determine the layout’s `nobs`.
 
 ## How alignment works?
+
+### Discrete variables
+
 Without any plots, it's difficult to see how each layout system works in
 practice. Here, we introduce the most common 
 [plot adding](@sec-supporting-systems) function-`ggalign()`. This function plays
@@ -105,7 +108,6 @@ a role similar to `ggplot2::ggplot()` function-it initialize a `ggplot`
 object-but is designed specifically for use within the the `Layout` system of
 [Data-Aware Composition](#sec-data-aware). 
 
-### Discrete variables
 When `ggalign()` is added to the layout, it inherits the layout data and sets
 itself as the active plot. This means any subsequent `+` operations will apply
 to that plot. You can add standard `ggplot2` components like geoms, stats,
@@ -213,9 +215,8 @@ argument, which accepts a `continuous_limits()` object. `continuous_limits()`
 takes a numeric vector of length 2, defining the axis limits for each panel
 along the aligned axis.
 
-The `data` argument in `ggalign` can be a purrr-style function that transforms
-the default data and returns new data. The number of observations (`nobs`) in
-the output data must remain the same.
+The `data` argument in `ggalign` can be a `purrr-style` function that transforms
+the default data and returns new data.
 
 ```{r}
 stack_continuousv(mtcars, limits = continuous_limits(c(NA, 20))) +
@@ -260,62 +261,6 @@ stack_continuousv(mpg) +
     scale_color_brewer(palette = "Dark2") &
     theme_bw()
 ```
-
-## active plot {#sec-stack-layout-active-plot}
-As mentioned earlier, the active plot refers to the plot that subsequent ggplot2
-components will target. The package provide two functions to work with active
-plot for `stack_layout`.
-
-  - `stack_switch()`: switch the active context
-  - `stack_active()`: An alias for `stack_switch()`, which sets `what = NULL`
-
-The `stack_switch()` function accepts the `what` argument, which can either be
-the index of the plot added (based on its adding order) or the plot name
-specified via the `active()` object using the `name` argument. 
-
-Note that the `what` argument must be explicitly named, as it is placed second
-in the function signature. This is because, in most cases, we don't need to
-switch the active plot, manually—adjusting the order of plot additions typically
-suffices.
-
-::: {.grid}
-
-::: {.g-col-6}
-```{r}
-stack_alignh(small_mat) +
-    align_dendro() +
-    ggalign(data = rowSums) +
-    geom_bar(aes(value, .discrete_y), stat = "identity") +
-    stack_switch(what = 1) +
-    geom_point() +
-    theme(axis.text.y = element_text()) +
-    layout_title(title = "switch by integer")
-```
-:::
-
-::: {.g-col-6}
-```{r}
-stack_alignh(small_mat) +
-    align_dendro(active = active(name = "tree")) +
-    ggalign(data = rowSums) +
-    geom_bar(aes(value, .discrete_y), stat = "identity") +
-    stack_switch(what = "tree") +
-    geom_point() +
-    theme(axis.text.y = element_text()) +
-    layout_title(title = "switch by string")
-```
-:::
-
-:::
-
-In the example, we use `layout_title()` to insert a title for the entire layout.
-Alternatively, you can add a title to a single plot with `ggtitle()`.
-
-By setting `what = NULL` (or alias `stack_active()`), we remove the active plot.
-This is particularly useful when the active plot is a nested `Layout` object, as
-any additions would otherwise be directed to that nested `Layout`. By removing
-the active plot, you can continue adding components to the `StackLayout`. We'll
-introduce the nested layout of `StackLayout` in @sec-multiple-quad-layouts.
 
 In the next chapter, we will dive into the `HeatmapLayout`, which can take the
 `StackLayout` as input. Heatmap layouts offer additional features for aligning
