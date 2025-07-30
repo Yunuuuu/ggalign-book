@@ -38,7 +38,7 @@ ggside() +
     quad_active() +
     ggtitle("Main Plot") +
     theme(panel.background = element_rect(fill = scales::alpha("red", 0.5))) +
-    layout_title("QuadLayout") +
+    layout_title("Heatmap") +
     layout_theme(plot.title = element_text(size = 20))
 ```
 
