@@ -1,12 +1,9 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.7.32">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
-
 <title>14&nbsp; Nested Layouts – ggalign: Bridging the Grammar of Graphics and Complex layout</title>
 <style>
 code{white-space: pre-wrap;}
@@ -57,7 +54,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 </style>
 
-
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/quarto-nav/headroom.min.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
@@ -81,8 +77,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-961e19c331553d6a19484b463395fb9b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="site_libs/bootstrap/bootstrap-dark-d4b55224092f4f202cf7686f8eac6756.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-961e19c331553d6a19484b463395fb9b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
-<script id="quarto-search-options" type="application/json">{
+<link href="site_libs/bootstrap/bootstrap-961e19c331553d6a19484b463395fb9b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -109,14 +104,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
-
-
 <meta name="twitter:title" content="14&nbsp; Nested Layouts – ggalign: Bridging the Grammar of Graphics and Complex layout">
 <meta name="twitter:description" content="">
 <meta name="twitter:image" content="multiple-quad-layouts_files/figure-html/unnamed-chunk-1-1.png">
 <meta name="twitter:card" content="summary_large_image">
 </head>
-
 <body class="nav-sidebar floating quarto-light"><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
       const mode = bsSheetEl.getAttribute("data-mode");
@@ -291,9 +283,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </script>
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav">
-    <div class="container-fluid d-flex">
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
@@ -304,13 +294,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <i class="bi bi-search"></i>
       </button>
     </div>
-  </nav>
-</header>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">ggalign: Bridging the Grammar of Graphics and Complex layout</a> 
         <div class="sidebar-tools-main tools-wide">
@@ -331,7 +317,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Preface</span></a>
@@ -345,8 +331,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./introduction.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
@@ -359,7 +345,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="./data-free.html" class="sidebar-item-text sidebar-link">
@@ -368,8 +354,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./plot-composer.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Plot Composer</span></span></a>
@@ -382,7 +368,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./design.html" class="sidebar-item-text sidebar-link">
@@ -397,8 +383,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./data-aware-overview.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Overview</span></span></a>
@@ -471,7 +457,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
@@ -480,8 +466,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./case-gallery.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Case Gallery</span></span></a>
@@ -506,7 +492,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./conclusion.html" class="sidebar-item-text sidebar-link">
@@ -514,26 +500,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
 </li>
     </ul>
-    </div>
-</nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+</div>
+</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Table of contents</h2>
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#add-quad_layout-to-stack_layout" id="toc-add-quad_layout-to-stack_layout" class="nav-link active" data-scroll-target="#add-quad_layout-to-stack_layout"><span class="header-section-number">14.1</span> Add <code>quad_layout()</code> to <code>stack_layout()</code></a></li>
+<li><a href="#add-quad_layout-to-stack_layout" id="toc-add-quad_layout-to-stack_layout" class="nav-link active" data-scroll-target="#add-quad_layout-to-stack_layout"><span class="header-section-number">14.1</span> Add <code>quad_layout()</code> to <code>stack_layout()</code></a></li>
   <li><a href="#control-sizes" id="toc-control-sizes" class="nav-link" data-scroll-target="#control-sizes"><span class="header-section-number">14.2</span> Control sizes</a></li>
-  </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/Yunuuuu/ggalign-book/blob/main/multiple-quad-layouts.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/Yunuuuu/ggalign-book/edit/main/multiple-quad-layouts.qmd" class="toc-action"><i class="bi empty"></i>Edit this page</a></li><li><a href="https://github.com/Yunuuuu/ggalign-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="quarto-other-links"><h2>Other Links</h2><ul><li><a href="https://yunuuuu.github.io/ggalign"><i class="bi bi-journal-text"></i>ggalign reference</a></li><li><a href="https://yunuuuu.github.io/ggalign-gallery"><i class="bi bi-grid-1x2-fill"></i>ggalign gallery</a></li><li><a href="https://www.biorxiv.org/content/10.1101/2025.02.06.636847v1"><i class="bi bi-layout-text-sidebar-reverse"></i>ggalign manuscript</a></li></ul></div><div class="quarto-code-links"><h2>Code Links</h2><ul><li><a href="https://github.com/Yunuuuu/ggalign"><i class="bi bi-code-square"></i>ggalign repo</a></li></ul></div></nav>
+  </ul><div class="toc-actions"><ul><li><a href="https://github.com/Yunuuuu/ggalign-book/blob/main/multiple-quad-layouts.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/Yunuuuu/ggalign-book/edit/main/multiple-quad-layouts.qmd" class="toc-action"><i class="bi empty"></i>Edit this page</a></li><li><a href="https://github.com/Yunuuuu/ggalign-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="quarto-other-links"><h2>Other Links</h2><ul><li><a href="https://yunuuuu.github.io/ggalign"><i class="bi bi-journal-text"></i>ggalign reference</a></li><li><a href="https://yunuuuu.github.io/ggalign-gallery"><i class="bi bi-grid-1x2-fill"></i>ggalign gallery</a></li><li><a href="https://www.biorxiv.org/content/10.1101/2025.02.06.636847v1"><i class="bi bi-layout-text-sidebar-reverse"></i>ggalign manuscript</a></li></ul></div><div class="quarto-code-links"><h2>Code Links</h2><ul><li><a href="https://github.com/Yunuuuu/ggalign"><i class="bi bi-code-square"></i>ggalign repo</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data-aware.html">Data-Aware Composition</a></li><li class="breadcrumb-item"><a href="./multiple-quad-layouts.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Nested Layouts</span></a></li></ol></nav>
-<div class="quarto-title">
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data-aware.html">Data-Aware Composition</a></li><li class="breadcrumb-item"><a href="./multiple-quad-layouts.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Nested Layouts</span></a></li></ol></nav><div class="quarto-title">
 <h1 class="title"><span id="sec-nested-layouts" class="quarto-section-identifier"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Nested Layouts</span></span></h1>
 </div>
 
@@ -548,32 +527,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   
 
 
-</header>
-
-
-<p>Owing to the modular design, <code>stack_layout()</code> can be added to a <code>quad_layout()</code>, and a <code>quad_layout()</code> can also be added to a <code>stack_layout()</code>.</p>
+</header><p>Owing to the modular design, <code><a href="https://yunuuuu.github.io/ggalign/reference/stack_layout.html">stack_layout()</a></code> can be added to a <code><a href="https://yunuuuu.github.io/ggalign/reference/quad_layout.html">quad_layout()</a></code>, and a <code><a href="https://yunuuuu.github.io/ggalign/reference/quad_layout.html">quad_layout()</a></code> can also be added to a <code><a href="https://yunuuuu.github.io/ggalign/reference/stack_layout.html">stack_layout()</a></code>.</p>
 <div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggalign)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Loading required package: ggplot2</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Attaching package: 'ggalign'</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; The following object is masked from 'package:ggplot2':</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     element_polygon</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>small_mat <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">rnorm</span>(<span class="dv">56</span>), <span class="at">nrow =</span> <span class="dv">7</span>)</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(small_mat) <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"row"</span>, <span class="fu">seq_len</span>(<span class="fu">nrow</span>(small_mat)))</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(small_mat) <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"column"</span>, <span class="fu">seq_len</span>(<span class="fu">ncol</span>(small_mat)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/Yunuuuu/ggalign">ggalign</a></span><span class="op">)</span></span>
+<span><span class="co">#&gt; Loading required package: ggplot2</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Attaching package: 'ggalign'</span></span>
+<span><span class="co">#&gt; The following object is masked from 'package:ggplot2':</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;     element_polygon</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span>
+<span><span class="va">small_mat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">56</span><span class="op">)</span>, nrow <span class="op">=</span> <span class="fl">7</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span><span class="op">(</span><span class="va">small_mat</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"row"</span>, <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq_len</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">small_mat</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">small_mat</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"column"</span>, <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq_len</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">ncol</a></span><span class="op">(</span><span class="va">small_mat</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <blockquote class="blockquote">
-<p>note: when <code>stack_layout()</code> contains a nested <code>quad_layout()</code>, it cannot be used within the annotation of another <code>quad_layout()</code>.</p>
+<p>note: when <code><a href="https://yunuuuu.github.io/ggalign/reference/stack_layout.html">stack_layout()</a></code> contains a nested <code><a href="https://yunuuuu.github.io/ggalign/reference/quad_layout.html">quad_layout()</a></code>, it cannot be used within the annotation of another <code><a href="https://yunuuuu.github.io/ggalign/reference/quad_layout.html">quad_layout()</a></code>.</p>
 </blockquote>
-<section id="add-quad_layout-to-stack_layout" class="level2" data-number="14.1">
-<h2 data-number="14.1" class="anchored" data-anchor-id="add-quad_layout-to-stack_layout"><span class="header-section-number">14.1</span> Add <code>quad_layout()</code> to <code>stack_layout()</code></h2>
-<p>Here is a summarized table showing which <code>quad_layout()</code> can be used with each <code>stack_layout()</code>:</p>
+<section id="add-quad_layout-to-stack_layout" class="level2" data-number="14.1"><h2 data-number="14.1" class="anchored" data-anchor-id="add-quad_layout-to-stack_layout">
+<span class="header-section-number">14.1</span> Add <code>quad_layout()</code> to <code>stack_layout()</code>
+</h2>
+<p>Here is a summarized table showing which <code><a href="https://yunuuuu.github.io/ggalign/reference/quad_layout.html">quad_layout()</a></code> can be used with each <code><a href="https://yunuuuu.github.io/ggalign/reference/stack_layout.html">stack_layout()</a></code>:</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 27%">
@@ -582,18 +557,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <col style="width: 18%">
 <col style="width: 18%">
 </colgroup>
-<thead>
-<tr class="header">
+<thead><tr class="header">
 <th></th>
-<th><code>stack_discreteh()</code></th>
-<th><code>stack_discretev()</code></th>
-<th><code>stack_continuoush()</code></th>
-<th><code>stack_continuousv()</code></th>
-</tr>
-</thead>
+<th><code><a href="https://yunuuuu.github.io/ggalign/reference/stack_layout.html">stack_discreteh()</a></code></th>
+<th><code><a href="https://yunuuuu.github.io/ggalign/reference/stack_layout.html">stack_discretev()</a></code></th>
+<th><code><a href="https://yunuuuu.github.io/ggalign/reference/stack_layout.html">stack_continuoush()</a></code></th>
+<th><code><a href="https://yunuuuu.github.io/ggalign/reference/stack_layout.html">stack_continuousv()</a></code></th>
+</tr></thead>
 <tbody>
 <tr class="odd">
-<td><code>quad_continuous()</code>/<code>ggside()</code></td>
+<td>
+<code><a href="https://yunuuuu.github.io/ggalign/reference/quad_layout.html">quad_continuous()</a></code>/<code><a href="https://yunuuuu.github.io/ggalign/reference/quad_layout.html">ggside()</a></code>
+</td>
 <td>❌</td>
 <td>❌</td>
 <td>✅</td>
@@ -614,7 +589,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>❌</td>
 </tr>
 <tr class="even">
-<td><code>quad_discrete()</code>/<code>ggheatmap()</code></td>
+<td>
+<code><a href="https://yunuuuu.github.io/ggalign/reference/quad_layout.html">quad_discrete()</a></code>/<code><a href="https://yunuuuu.github.io/ggalign/reference/heatmap_layout.html">ggheatmap()</a></code>
+</td>
 <td>✅</td>
 <td>✅</td>
 <td>❌</td>
@@ -622,84 +599,79 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 </tbody>
 </table>
-<p>As long as the alignment is consistent across both <code>stack_layout()</code> and <code>quad_layout()</code>, you can directly add <code>quad_layout()</code>.</p>
+<p>As long as the alignment is consistent across both <code><a href="https://yunuuuu.github.io/ggalign/reference/stack_layout.html">stack_layout()</a></code> and <code><a href="https://yunuuuu.github.io/ggalign/reference/quad_layout.html">quad_layout()</a></code>, you can directly add <code><a href="https://yunuuuu.github.io/ggalign/reference/quad_layout.html">quad_layout()</a></code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stack_discreteh</span>(small_mat) <span class="sc">+</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggheatmap</span>()</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; → heatmap built with `geom_tile()`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://yunuuuu.github.io/ggalign/reference/stack_layout.html">stack_discreteh</a></span><span class="op">(</span><span class="va">small_mat</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://yunuuuu.github.io/ggalign/reference/heatmap_layout.html">ggheatmap</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; → heatmap built with `geom_tile()`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
-<figure class="figure">
-<p><img src="multiple-quad-layouts_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></p>
+<figure class="figure"><p><img src="multiple-quad-layouts_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
-<p>When <code>ggheatmap()</code>/<code>quad_layout()</code> is added to a <code>stack_layout()</code>, it will also set the active context to itself, which means subsequent addition will be directed to <code>ggheatmap()</code>/<code>quad_layout()</code>. One exception is the <code>ggheatmap()</code>/<code>quad_layout()</code> itself, which cannot be added to another <code>quad_layout()</code>. In this case, they will be added directly to the <code>stack_layout()</code>.</p>
+<p>When <code><a href="https://yunuuuu.github.io/ggalign/reference/heatmap_layout.html">ggheatmap()</a></code>/<code><a href="https://yunuuuu.github.io/ggalign/reference/quad_layout.html">quad_layout()</a></code> is added to a <code><a href="https://yunuuuu.github.io/ggalign/reference/stack_layout.html">stack_layout()</a></code>, it will also set the active context to itself, which means subsequent addition will be directed to <code><a href="https://yunuuuu.github.io/ggalign/reference/heatmap_layout.html">ggheatmap()</a></code>/<code><a href="https://yunuuuu.github.io/ggalign/reference/quad_layout.html">quad_layout()</a></code>. One exception is the <code><a href="https://yunuuuu.github.io/ggalign/reference/heatmap_layout.html">ggheatmap()</a></code>/<code><a href="https://yunuuuu.github.io/ggalign/reference/quad_layout.html">quad_layout()</a></code> itself, which cannot be added to another <code><a href="https://yunuuuu.github.io/ggalign/reference/quad_layout.html">quad_layout()</a></code>. In this case, they will be added directly to the <code><a href="https://yunuuuu.github.io/ggalign/reference/stack_layout.html">stack_layout()</a></code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stack_discretev</span>(small_mat) <span class="sc">+</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggheatmap</span>() <span class="sc">+</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggheatmap</span>() <span class="sc">+</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_viridis_c</span>()</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; → heatmap built with `geom_tile()`</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; → heatmap built with `geom_tile()`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://yunuuuu.github.io/ggalign/reference/stack_layout.html">stack_discretev</a></span><span class="op">(</span><span class="va">small_mat</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://yunuuuu.github.io/ggalign/reference/heatmap_layout.html">ggheatmap</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://yunuuuu.github.io/ggalign/reference/heatmap_layout.html">ggheatmap</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html">scale_fill_viridis_c</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; → heatmap built with `geom_tile()`</span></span>
+<span><span class="co">#&gt; → heatmap built with `geom_tile()`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
-<figure class="figure">
-<p><img src="multiple-quad-layouts_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+<figure class="figure"><p><img src="multiple-quad-layouts_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
-<p>The data of <code>ggheatmap()</code>/<code>quad_layout()</code> can inherit from the <code>stack_layout()</code>, but the data format must match. Otherwise, you will need to manually provide the data.</p>
+<p>The data of <code><a href="https://yunuuuu.github.io/ggalign/reference/heatmap_layout.html">ggheatmap()</a></code>/<code><a href="https://yunuuuu.github.io/ggalign/reference/quad_layout.html">quad_layout()</a></code> can inherit from the <code><a href="https://yunuuuu.github.io/ggalign/reference/stack_layout.html">stack_layout()</a></code>, but the data format must match. Otherwise, you will need to manually provide the data.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>quad_continuousv_plot <span class="ot">&lt;-</span> <span class="fu">quad_layout</span>(small_mat, <span class="at">xlim =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(value, .discrete_y, <span class="at">fill =</span> .row_names)) <span class="sc">+</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">"Dark2"</span>)</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># `stack_continuous()` need a data frame</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="fu">stack_continuousv</span>() <span class="sc">+</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    quad_continuousv_plot <span class="sc">+</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    quad_continuousv_plot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">quad_continuousv_plot</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://yunuuuu.github.io/ggalign/reference/quad_layout.html">quad_layout</a></span><span class="op">(</span><span class="va">small_mat</span>, xlim <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">value</span>, <span class="va">.discrete_y</span>, fill <span class="op">=</span> <span class="va">.row_names</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_brewer.html">scale_fill_brewer</a></span><span class="op">(</span>palette <span class="op">=</span> <span class="st">"Dark2"</span><span class="op">)</span></span>
+<span><span class="co"># `stack_continuous()` need a data frame</span></span>
+<span><span class="fu"><a href="https://yunuuuu.github.io/ggalign/reference/stack_layout.html">stack_continuousv</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="va">quad_continuousv_plot</span> <span class="op">+</span></span>
+<span>    <span class="va">quad_continuousv_plot</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
-<figure class="figure">
-<p><img src="multiple-quad-layouts_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+<figure class="figure"><p><img src="multiple-quad-layouts_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
-<p>When <code>ggheatmap()</code>/<code>quad_layout()</code> is added to a vertical <code>stack_layout()</code>, the inherited matrix is transposed before use. This is because the columns of <code>ggheatmap()</code>/<code>quad_layout()</code> must match the number of observations in <code>stack_layout()</code>.</p>
+<p>When <code><a href="https://yunuuuu.github.io/ggalign/reference/heatmap_layout.html">ggheatmap()</a></code>/<code><a href="https://yunuuuu.github.io/ggalign/reference/quad_layout.html">quad_layout()</a></code> is added to a vertical <code><a href="https://yunuuuu.github.io/ggalign/reference/stack_layout.html">stack_layout()</a></code>, the inherited matrix is transposed before use. This is because the columns of <code><a href="https://yunuuuu.github.io/ggalign/reference/heatmap_layout.html">ggheatmap()</a></code>/<code><a href="https://yunuuuu.github.io/ggalign/reference/quad_layout.html">quad_layout()</a></code> must match the number of observations in <code><a href="https://yunuuuu.github.io/ggalign/reference/stack_layout.html">stack_layout()</a></code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stack_discretev</span>(small_mat) <span class="sc">+</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggheatmap</span>() <span class="sc">+</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggheatmap</span>()</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; → heatmap built with `geom_tile()`</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; → heatmap built with `geom_tile()`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://yunuuuu.github.io/ggalign/reference/stack_layout.html">stack_discretev</a></span><span class="op">(</span><span class="va">small_mat</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://yunuuuu.github.io/ggalign/reference/heatmap_layout.html">ggheatmap</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://yunuuuu.github.io/ggalign/reference/heatmap_layout.html">ggheatmap</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; → heatmap built with `geom_tile()`</span></span>
+<span><span class="co">#&gt; → heatmap built with `geom_tile()`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
-<figure class="figure">
-<p><img src="multiple-quad-layouts_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+<figure class="figure"><p><img src="multiple-quad-layouts_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
-<p><code>stack_discrete()</code> ensures that all plots aligned along the stack have the same ordering index or groups.</p>
-<p>We can customize the layout in the <code>stack_discrete()</code> directly, or in <code>quad_layout()</code>. As introduced in <a href="stack-layout.html#sec-stack-layout-active-plot" class="quarto-xref"><span>Section 7.5</span></a>, you can easily switch from the <code>ggheatmap()</code>/<code>quad_layout()</code> to the <code>stack_layout()</code> using <code>stack_active()</code>.</p>
+<p><code><a href="https://yunuuuu.github.io/ggalign/reference/stack_layout.html">stack_discrete()</a></code> ensures that all plots aligned along the stack have the same ordering index or groups.</p>
+<p>We can customize the layout in the <code><a href="https://yunuuuu.github.io/ggalign/reference/stack_layout.html">stack_discrete()</a></code> directly, or in <code><a href="https://yunuuuu.github.io/ggalign/reference/quad_layout.html">quad_layout()</a></code>. As introduced in <a href="stack-layout.html#sec-stack-layout-active-plot" class="quarto-xref"><span>Section 7.5</span></a>, you can easily switch from the <code><a href="https://yunuuuu.github.io/ggalign/reference/heatmap_layout.html">ggheatmap()</a></code>/<code><a href="https://yunuuuu.github.io/ggalign/reference/quad_layout.html">quad_layout()</a></code> to the <code><a href="https://yunuuuu.github.io/ggalign/reference/stack_layout.html">stack_layout()</a></code> using <code><a href="https://yunuuuu.github.io/ggalign/reference/stack_switch.html">stack_active()</a></code>.</p>
 <div class="grid">
 <div class="g-col-6">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stack_discretev</span>(small_mat) <span class="sc">+</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggheatmap</span>() <span class="sc">+</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggheatmap</span>() <span class="sc">+</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">anno_bottom</span>(<span class="at">size =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_dendro</span>(<span class="fu">aes</span>(<span class="at">color =</span> branch), <span class="at">k =</span> <span class="dv">3</span>)<span class="sc">+</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">layout_title</span>(<span class="st">"dendrogram in ggheatmap()"</span>)</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; → heatmap built with `geom_tile()`</span></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; → heatmap built with `geom_tile()`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://yunuuuu.github.io/ggalign/reference/stack_layout.html">stack_discretev</a></span><span class="op">(</span><span class="va">small_mat</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://yunuuuu.github.io/ggalign/reference/heatmap_layout.html">ggheatmap</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://yunuuuu.github.io/ggalign/reference/heatmap_layout.html">ggheatmap</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://yunuuuu.github.io/ggalign/reference/quad_active.html">anno_bottom</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">0.2</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://yunuuuu.github.io/ggalign/reference/align_dendro.html">align_dendro</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>color <span class="op">=</span> <span class="va">branch</span><span class="op">)</span>, k <span class="op">=</span> <span class="fl">3</span><span class="op">)</span><span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://yunuuuu.github.io/ggalign/reference/layout_title.html">layout_title</a></span><span class="op">(</span><span class="st">"dendrogram in ggheatmap()"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; → heatmap built with `geom_tile()`</span></span>
+<span><span class="co">#&gt; → heatmap built with `geom_tile()`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
-<figure class="figure">
-<p><img src="multiple-quad-layouts_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+<figure class="figure"><p><img src="multiple-quad-layouts_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -707,104 +679,96 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="g-col-6">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stack_discretev</span>(small_mat) <span class="sc">+</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggheatmap</span>() <span class="sc">+</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggheatmap</span>() <span class="sc">+</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">stack_active</span>() <span class="sc">+</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_dendro</span>(<span class="fu">aes</span>(<span class="at">color =</span> branch), <span class="at">k =</span> <span class="dv">3</span>, <span class="at">size =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_y_reverse</span>() <span class="sc">+</span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">layout_title</span>(<span class="st">"dendrogram in stack_layout()"</span>)</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; → heatmap built with `geom_tile()`</span></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; → heatmap built with `geom_tile()`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://yunuuuu.github.io/ggalign/reference/stack_layout.html">stack_discretev</a></span><span class="op">(</span><span class="va">small_mat</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://yunuuuu.github.io/ggalign/reference/heatmap_layout.html">ggheatmap</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://yunuuuu.github.io/ggalign/reference/heatmap_layout.html">ggheatmap</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://yunuuuu.github.io/ggalign/reference/stack_switch.html">stack_active</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://yunuuuu.github.io/ggalign/reference/align_dendro.html">align_dendro</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>color <span class="op">=</span> <span class="va">branch</span><span class="op">)</span>, k <span class="op">=</span> <span class="fl">3</span>, size <span class="op">=</span> <span class="fl">0.2</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_reverse</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://yunuuuu.github.io/ggalign/reference/layout_title.html">layout_title</a></span><span class="op">(</span><span class="st">"dendrogram in stack_layout()"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; → heatmap built with `geom_tile()`</span></span>
+<span><span class="co">#&gt; → heatmap built with `geom_tile()`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
-<figure class="figure">
-<p><img src="multiple-quad-layouts_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+<figure class="figure"><p><img src="multiple-quad-layouts_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
 </div>
 </div>
-<p>When applied to a <code>stack_layout()</code>, the orientation of the dendrogram may need to be manually adjusted.</p>
-</section>
-<section id="control-sizes" class="level2" data-number="14.2">
-<h2 data-number="14.2" class="anchored" data-anchor-id="control-sizes"><span class="header-section-number">14.2</span> Control sizes</h2>
-<p>A numeric or a unit object of length 3 should be provided in <code>stack_discrete()</code>/<code>stack_continuous()</code> when placing a <code>quad_layout()</code>. For vertical <code>stack_layout()</code>, this means <code>quad_layout()</code> with left or right annotations; for horizontal <code>stack_layout()</code>, this means <code>quad_layout()</code> with top or bottom annotations. The first size controls the relative <code>width</code>/<code>height</code> of the left or top annotation, the second controls the relative <code>width</code>/<code>height</code> of the main plot, and the third controls the relative <code>width</code>/<code>height</code> of the right or bottom annotation.</p>
+<p>When applied to a <code><a href="https://yunuuuu.github.io/ggalign/reference/stack_layout.html">stack_layout()</a></code>, the orientation of the dendrogram may need to be manually adjusted.</p>
+</section><section id="control-sizes" class="level2" data-number="14.2"><h2 data-number="14.2" class="anchored" data-anchor-id="control-sizes">
+<span class="header-section-number">14.2</span> Control sizes</h2>
+<p>A numeric or a unit object of length 3 should be provided in <code><a href="https://yunuuuu.github.io/ggalign/reference/stack_layout.html">stack_discrete()</a></code>/<code><a href="https://yunuuuu.github.io/ggalign/reference/stack_layout.html">stack_continuous()</a></code> when placing a <code><a href="https://yunuuuu.github.io/ggalign/reference/quad_layout.html">quad_layout()</a></code>. For vertical <code><a href="https://yunuuuu.github.io/ggalign/reference/stack_layout.html">stack_layout()</a></code>, this means <code><a href="https://yunuuuu.github.io/ggalign/reference/quad_layout.html">quad_layout()</a></code> with left or right annotations; for horizontal <code><a href="https://yunuuuu.github.io/ggalign/reference/stack_layout.html">stack_layout()</a></code>, this means <code><a href="https://yunuuuu.github.io/ggalign/reference/quad_layout.html">quad_layout()</a></code> with top or bottom annotations. The first size controls the relative <code>width</code>/<code>height</code> of the left or top annotation, the second controls the relative <code>width</code>/<code>height</code> of the main plot, and the third controls the relative <code>width</code>/<code>height</code> of the right or bottom annotation.</p>
 <p>By default the three rows/columns will have equal sizes.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stack_discretev</span>(small_mat) <span class="sc">+</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggheatmap</span>() <span class="sc">+</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="sc">-</span><span class="dv">60</span>, <span class="at">hjust =</span> <span class="dv">0</span>)) <span class="sc">+</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">anno_left</span>() <span class="sc">+</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_dendro</span>(<span class="fu">aes</span>(<span class="at">color =</span> .panel), <span class="at">k =</span> <span class="dv">3</span>L) <span class="sc">+</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">anno_right</span>() <span class="sc">+</span></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggalign</span>(<span class="at">data =</span> rowSums) <span class="sc">+</span></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>(<span class="fu">aes</span>(value, <span class="at">fill =</span> .panel), <span class="at">orientation =</span> <span class="st">"y"</span>, <span class="at">stat =</span> <span class="st">"identity"</span>) <span class="sc">+</span></span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggheatmap</span>() <span class="sc">+</span></span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="sc">-</span><span class="dv">60</span>, <span class="at">hjust =</span> <span class="dv">0</span>))</span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; → heatmap built with `geom_tile()`</span></span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; → heatmap built with `geom_tile()`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://yunuuuu.github.io/ggalign/reference/stack_layout.html">stack_discretev</a></span><span class="op">(</span><span class="va">small_mat</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://yunuuuu.github.io/ggalign/reference/heatmap_layout.html">ggheatmap</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>axis.text.x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>angle <span class="op">=</span> <span class="op">-</span><span class="fl">60</span>, hjust <span class="op">=</span> <span class="fl">0</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://yunuuuu.github.io/ggalign/reference/quad_active.html">anno_left</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://yunuuuu.github.io/ggalign/reference/align_dendro.html">align_dendro</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>color <span class="op">=</span> <span class="va">.panel</span><span class="op">)</span>, k <span class="op">=</span> <span class="fl">3L</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://yunuuuu.github.io/ggalign/reference/quad_active.html">anno_right</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://yunuuuu.github.io/ggalign/reference/ggalign.html">ggalign</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">rowSums</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">value</span>, fill <span class="op">=</span> <span class="va">.panel</span><span class="op">)</span>, orientation <span class="op">=</span> <span class="st">"y"</span>, stat <span class="op">=</span> <span class="st">"identity"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://yunuuuu.github.io/ggalign/reference/heatmap_layout.html">ggheatmap</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>axis.text.x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>angle <span class="op">=</span> <span class="op">-</span><span class="fl">60</span>, hjust <span class="op">=</span> <span class="fl">0</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; → heatmap built with `geom_tile()`</span></span>
+<span><span class="co">#&gt; → heatmap built with `geom_tile()`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
-<figure class="figure">
-<p><img src="multiple-quad-layouts_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+<figure class="figure"><p><img src="multiple-quad-layouts_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>heat1 <span class="ot">&lt;-</span> <span class="fu">ggheatmap</span>(<span class="fu">t</span>(small_mat)) <span class="sc">+</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="sc">-</span><span class="dv">60</span>, <span class="at">hjust =</span> <span class="dv">0</span>)) <span class="sc">+</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">anno_left</span>() <span class="sc">+</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_dendro</span>(<span class="fu">aes</span>(<span class="at">color =</span> .panel), <span class="at">k =</span> <span class="dv">3</span>L) <span class="sc">+</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">anno_right</span>() <span class="sc">+</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggalign</span>(<span class="at">data =</span> rowSums) <span class="sc">+</span></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>(<span class="fu">aes</span>(value, <span class="at">fill =</span> .panel), <span class="at">orientation =</span> <span class="st">"y"</span>, <span class="at">stat =</span> <span class="st">"identity"</span>)</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="fu">stack_discretev</span>(small_mat, <span class="at">sizes =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>)) <span class="sc">+</span></span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>    heat1 <span class="sc">+</span></span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggheatmap</span>() <span class="sc">+</span></span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="sc">-</span><span class="dv">60</span>, <span class="at">hjust =</span> <span class="dv">0</span>))</span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; → heatmap built with `geom_tile()`</span></span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; → heatmap built with `geom_tile()`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">heat1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://yunuuuu.github.io/ggalign/reference/heatmap_layout.html">ggheatmap</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="va">small_mat</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>axis.text.x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>angle <span class="op">=</span> <span class="op">-</span><span class="fl">60</span>, hjust <span class="op">=</span> <span class="fl">0</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://yunuuuu.github.io/ggalign/reference/quad_active.html">anno_left</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://yunuuuu.github.io/ggalign/reference/align_dendro.html">align_dendro</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>color <span class="op">=</span> <span class="va">.panel</span><span class="op">)</span>, k <span class="op">=</span> <span class="fl">3L</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://yunuuuu.github.io/ggalign/reference/quad_active.html">anno_right</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://yunuuuu.github.io/ggalign/reference/ggalign.html">ggalign</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">rowSums</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">value</span>, fill <span class="op">=</span> <span class="va">.panel</span><span class="op">)</span>, orientation <span class="op">=</span> <span class="st">"y"</span>, stat <span class="op">=</span> <span class="st">"identity"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://yunuuuu.github.io/ggalign/reference/stack_layout.html">stack_discretev</a></span><span class="op">(</span><span class="va">small_mat</span>, sizes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="va">heat1</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://yunuuuu.github.io/ggalign/reference/heatmap_layout.html">ggheatmap</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>axis.text.x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>angle <span class="op">=</span> <span class="op">-</span><span class="fl">60</span>, hjust <span class="op">=</span> <span class="fl">0</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; → heatmap built with `geom_tile()`</span></span>
+<span><span class="co">#&gt; → heatmap built with `geom_tile()`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
-<figure class="figure">
-<p><img src="multiple-quad-layouts_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+<figure class="figure"><p><img src="multiple-quad-layouts_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
-<p>In this way, the width/height of main plot specified in <code>quad_active()</code> or <code>quad_layout()</code>/<code>ggheatmap()</code> won’t work.</p>
+<p>In this way, the width/height of main plot specified in <code><a href="https://yunuuuu.github.io/ggalign/reference/quad_active.html">quad_active()</a></code> or <code><a href="https://yunuuuu.github.io/ggalign/reference/quad_layout.html">quad_layout()</a></code>/<code><a href="https://yunuuuu.github.io/ggalign/reference/heatmap_layout.html">ggheatmap()</a></code> won’t work.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stack_discretev</span>(small_mat) <span class="sc">+</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggheatmap</span>(<span class="at">width =</span> <span class="fu">unit</span>(<span class="dv">2</span>, <span class="st">"null"</span>)) <span class="sc">+</span> <span class="co"># not work</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="sc">-</span><span class="dv">60</span>, <span class="at">hjust =</span> <span class="dv">0</span>)) <span class="sc">+</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">anno_left</span>() <span class="sc">+</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_dendro</span>(<span class="fu">aes</span>(<span class="at">color =</span> .panel), <span class="at">k =</span> <span class="dv">3</span>L) <span class="sc">+</span></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">anno_right</span>() <span class="sc">+</span></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggalign</span>(<span class="at">data =</span> rowSums) <span class="sc">+</span></span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>(<span class="fu">aes</span>(value, <span class="at">fill =</span> .panel), <span class="at">orientation =</span> <span class="st">"y"</span>, <span class="at">stat =</span> <span class="st">"identity"</span>) <span class="sc">+</span></span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggheatmap</span>(<span class="at">width =</span> <span class="fu">unit</span>(<span class="dv">2</span>, <span class="st">"null"</span>)) <span class="sc">+</span> <span class="co"># not work</span></span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="sc">-</span><span class="dv">60</span>, <span class="at">hjust =</span> <span class="dv">0</span>))</span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; → heatmap built with `geom_tile()`</span></span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; → heatmap built with `geom_tile()`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://yunuuuu.github.io/ggalign/reference/stack_layout.html">stack_discretev</a></span><span class="op">(</span><span class="va">small_mat</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://yunuuuu.github.io/ggalign/reference/heatmap_layout.html">ggheatmap</a></span><span class="op">(</span>width <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grid/unit.html">unit</a></span><span class="op">(</span><span class="fl">2</span>, <span class="st">"null"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="co"># not work</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>axis.text.x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>angle <span class="op">=</span> <span class="op">-</span><span class="fl">60</span>, hjust <span class="op">=</span> <span class="fl">0</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://yunuuuu.github.io/ggalign/reference/quad_active.html">anno_left</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://yunuuuu.github.io/ggalign/reference/align_dendro.html">align_dendro</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>color <span class="op">=</span> <span class="va">.panel</span><span class="op">)</span>, k <span class="op">=</span> <span class="fl">3L</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://yunuuuu.github.io/ggalign/reference/quad_active.html">anno_right</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://yunuuuu.github.io/ggalign/reference/ggalign.html">ggalign</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">rowSums</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">value</span>, fill <span class="op">=</span> <span class="va">.panel</span><span class="op">)</span>, orientation <span class="op">=</span> <span class="st">"y"</span>, stat <span class="op">=</span> <span class="st">"identity"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://yunuuuu.github.io/ggalign/reference/heatmap_layout.html">ggheatmap</a></span><span class="op">(</span>width <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grid/unit.html">unit</a></span><span class="op">(</span><span class="fl">2</span>, <span class="st">"null"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="co"># not work</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>axis.text.x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>angle <span class="op">=</span> <span class="op">-</span><span class="fl">60</span>, hjust <span class="op">=</span> <span class="fl">0</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; → heatmap built with `geom_tile()`</span></span>
+<span><span class="co">#&gt; → heatmap built with `geom_tile()`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
-<figure class="figure">
-<p><img src="multiple-quad-layouts_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+<figure class="figure"><p><img src="multiple-quad-layouts_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
-<p>Now that you’ve learned how to combine <code>quad_layout()</code> and <code>stack_layout()</code> in various configurations, you’re ready to explore a new, exciting way to organize and visualize your data: the circle layout. This layout offers a unique, radial perspective that can be particularly useful for visualizing hierarchical data or creating visually engaging plots.</p>
+<p>Now that you’ve learned how to combine <code><a href="https://yunuuuu.github.io/ggalign/reference/quad_layout.html">quad_layout()</a></code> and <code><a href="https://yunuuuu.github.io/ggalign/reference/stack_layout.html">stack_layout()</a></code> in various configurations, you’re ready to explore a new, exciting way to organize and visualize your data: the circle layout. This layout offers a unique, radial perspective that can be particularly useful for visualizing hierarchical data or creating visually engaging plots.</p>
 
 
-</section>
-
-</main> <!-- /main -->
-<script id="quarto-html-after-body" type="application/javascript">
+</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right
     if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
@@ -1254,9 +1218,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       }
     }
   });
-  </script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
+  </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
       <a href="./annotate-observations.html" class="pagination-link" aria-label="Annotate Observations">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Annotate Observations</span></span>
       </a>          
@@ -1268,7 +1230,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
 </nav>
 </div> <!-- /content -->
-
 
 
 
