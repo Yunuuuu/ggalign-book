@@ -483,7 +483,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#continuous-variables" id="toc-continuous-variables" class="nav-link" data-scroll-target="#continuous-variables"><span class="header-section-number">5.2.2</span> Continuous variables</a></li>
   </ul></li>
   <li><a href="#sec-stack-layout-plot-size" id="toc-sec-stack-layout-plot-size" class="nav-link" data-scroll-target="#sec-stack-layout-plot-size"><span class="header-section-number">5.3</span> Plot Size</a></li>
-  <li><a href="#sec-stack-layout-active-plot" id="toc-sec-stack-layout-active-plot" class="nav-link" data-scroll-target="#sec-stack-layout-active-plot"><span class="header-section-number">5.4</span> active plot</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/Yunuuuu/ggalign-book/blob/main/stack-layout.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/Yunuuuu/ggalign-book/edit/main/stack-layout.qmd" class="toc-action"><i class="bi empty"></i>Edit this page</a></li><li><a href="https://github.com/Yunuuuu/ggalign-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="quarto-other-links"><h2>Other Links</h2><ul><li><a href="https://yunuuuu.github.io/ggalign"><i class="bi bi-journal-text"></i>ggalign reference</a></li><li><a href="https://yunuuuu.github.io/ggalign-gallery"><i class="bi bi-grid-1x2-fill"></i>ggalign gallery</a></li><li><a href="https://www.biorxiv.org/content/10.1101/2025.02.06.636847v1"><i class="bi bi-layout-text-sidebar-reverse"></i>ggalign manuscript</a></li></ul></div><div class="quarto-code-links"><h2>Code Links</h2><ul><li><a href="https://github.com/Yunuuuu/ggalign"><i class="bi bi-code-square"></i>ggalign repo</a></li></ul></div></nav>
     </div>
@@ -579,9 +578,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="how-alignment-works" class="level2" data-number="5.2">
 <h2 data-number="5.2" class="anchored" data-anchor-id="how-alignment-works"><span class="header-section-number">5.2</span> How alignment works?</h2>
-<p>Without any plots, it’s difficult to see how each layout system works in practice. Here, we introduce the most common <a href="@sec-supporting-systems">plot adding</a> function-<code>ggalign()</code>. This function plays a role similar to <code>ggplot2::ggplot()</code> function-it initialize a <code>ggplot</code> object-but is designed specifically for use within the the <code>Layout</code> system of <a href="data-aware.html">Data-Aware Composition</a>.</p>
 <section id="discrete-variables" class="level3" data-number="5.2.1">
 <h3 data-number="5.2.1" class="anchored" data-anchor-id="discrete-variables"><span class="header-section-number">5.2.1</span> Discrete variables</h3>
+<p>Without any plots, it’s difficult to see how each layout system works in practice. Here, we introduce the most common <a href="@sec-supporting-systems">plot adding</a> function-<code>ggalign()</code>. This function plays a role similar to <code>ggplot2::ggplot()</code> function-it initialize a <code>ggplot</code> object-but is designed specifically for use within the the <code>Layout</code> system of <a href="data-aware.html">Data-Aware Composition</a>.</p>
 <p>When <code>ggalign()</code> is added to the layout, it inherits the layout data and sets itself as the active plot. This means any subsequent <code>+</code> operations will apply to that plot. You can add standard <code>ggplot2</code> components like geoms, stats, scales, etc.</p>
 <p>When aligning discrete variables, the underlying data passed to <code>ggplot</code> through <code>ggalign()</code> will include the following columns (more details will be introduced in <a href="initialize-plot.html#sec-ggalign" class="quarto-xref"><span>Section 9.1</span></a>):</p>
 <ul>
@@ -679,7 +678,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>To align the <code>x-axis</code> limits, you must manually set them using the <code>limits</code> argument, which accepts a <code>continuous_limits()</code> object. <code>continuous_limits()</code> takes a numeric vector of length 2, defining the axis limits for each panel along the aligned axis.</p>
-<p>The <code>data</code> argument in <code>ggalign</code> can be a purrr-style function that transforms the default data and returns new data. The number of observations (<code>nobs</code>) in the output data must remain the same.</p>
+<p>The <code>data</code> argument in <code>ggalign</code> can be a <code>purrr-style</code> function that transforms the default data and returns new data.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stack_continuousv</span>(mtcars, <span class="at">limits =</span> <span class="fu">continuous_limits</span>(<span class="fu">c</span>(<span class="cn">NA</span>, <span class="dv">20</span>))) <span class="sc">+</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggalign</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(mpg, disp, <span class="at">color =</span> <span class="fu">factor</span>(cyl))) <span class="sc">+</span></span>
@@ -734,58 +733,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-</section>
-<section id="sec-stack-layout-active-plot" class="level2" data-number="5.4">
-<h2 data-number="5.4" class="anchored" data-anchor-id="sec-stack-layout-active-plot"><span class="header-section-number">5.4</span> active plot</h2>
-<p>As mentioned earlier, the active plot refers to the plot that subsequent ggplot2 components will target. The package provide two functions to work with active plot for <code>stack_layout</code>.</p>
-<ul>
-<li><code>stack_switch()</code>: switch the active context</li>
-<li><code>stack_active()</code>: An alias for <code>stack_switch()</code>, which sets <code>what = NULL</code></li>
-</ul>
-<p>The <code>stack_switch()</code> function accepts the <code>what</code> argument, which can either be the index of the plot added (based on its adding order) or the plot name specified via the <code>active()</code> object using the <code>name</code> argument.</p>
-<p>Note that the <code>what</code> argument must be explicitly named, as it is placed second in the function signature. This is because, in most cases, we don’t need to switch the active plot, manually—adjusting the order of plot additions typically suffices.</p>
-<div class="grid">
-<div class="g-col-6">
-<div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stack_alignh</span>(small_mat) <span class="sc">+</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_dendro</span>() <span class="sc">+</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggalign</span>(<span class="at">data =</span> rowSums) <span class="sc">+</span></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>(<span class="fu">aes</span>(value, .discrete_y), <span class="at">stat =</span> <span class="st">"identity"</span>) <span class="sc">+</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">stack_switch</span>(<span class="at">what =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">axis.text.y =</span> <span class="fu">element_text</span>()) <span class="sc">+</span></span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">layout_title</span>(<span class="at">title =</span> <span class="st">"switch by integer"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="stack-layout_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-</div>
-<div class="g-col-6">
-<div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stack_alignh</span>(small_mat) <span class="sc">+</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_dendro</span>(<span class="at">active =</span> <span class="fu">active</span>(<span class="at">name =</span> <span class="st">"tree"</span>)) <span class="sc">+</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggalign</span>(<span class="at">data =</span> rowSums) <span class="sc">+</span></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>(<span class="fu">aes</span>(value, .discrete_y), <span class="at">stat =</span> <span class="st">"identity"</span>) <span class="sc">+</span></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">stack_switch</span>(<span class="at">what =</span> <span class="st">"tree"</span>) <span class="sc">+</span></span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">axis.text.y =</span> <span class="fu">element_text</span>()) <span class="sc">+</span></span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">layout_title</span>(<span class="at">title =</span> <span class="st">"switch by string"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="stack-layout_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-</div>
-</div>
-<p>In the example, we use <code>layout_title()</code> to insert a title for the entire layout. Alternatively, you can add a title to a single plot with <code>ggtitle()</code>.</p>
-<p>By setting <code>what = NULL</code> (or alias <code>stack_active()</code>), we remove the active plot. This is particularly useful when the active plot is a nested <code>Layout</code> object, as any additions would otherwise be directed to that nested <code>Layout</code>. By removing the active plot, you can continue adding components to the <code>StackLayout</code>. We’ll introduce the nested layout of <code>StackLayout</code> in <span class="quarto-unresolved-ref">?sec-multiple-quad-layouts</span>.</p>
 <p>In the next chapter, we will dive into the <code>HeatmapLayout</code>, which can take the <code>StackLayout</code> as input. Heatmap layouts offer additional features for aligning observations in both directions. Let’s move ahead and explore how heatmaps can be seamlessly integrated into your layout workflows.</p>
 
 
