@@ -253,13 +253,11 @@ stack_discretev(small_mat) +
 
 Alternatively, you can define an absolute size by using a `unit()` object:
 ```{r}
-stack_continuousv(mpg) +
-    ggfree(mapping = aes(displ, hwy, colour = class), size = unit(1, "cm")) +
-    geom_point(size = 2) +
-    ggfree(mapping = aes(displ, hwy, colour = class)) +
-    geom_point(size = 2) &
-    scale_color_brewer(palette = "Dark2") &
-    theme_bw()
+stack_discretev(small_mat) +
+    align_dendro(size = unit(1, "cm")) +
+    ggalign(mapping = aes(.x, value, fill = .discrete_x), size = 2) +
+    geom_boxplot() +
+    theme(axis.text.x = element_text())
 ```
 
 In the next chapter, we will dive into the `HeatmapLayout`, which can take the
