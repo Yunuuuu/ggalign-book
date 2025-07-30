@@ -80,8 +80,8 @@ knitr:
 format:
   html:
     theme:
-      light: [default]
-      dark: [default]
+      light: [cosmo, scss/light.scss]
+      dark: [cosmo, scss/dark.scss]
     respect-user-color-scheme: true
     code-link: true
     code-annotations: hover
