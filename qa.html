@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Data-Free Composition – ggalign: Bridging the Grammar of Graphics and Complex layout</title>
+<title>21&nbsp; Q &amp; A – ggalign: Bridging the Grammar of Graphics and Complex layout</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./plot-composer.html" rel="next">
-<link href="./getting-started.html" rel="prev">
+<link href="./conclusion.html" rel="next">
+<link href="./difference-with-ggplot2.html" rel="prev">
 <link href="./cover.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -76,7 +76,7 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
-<meta name="twitter:title" content="Data-Free Composition – ggalign: Bridging the Grammar of Graphics and Complex layout">
+<meta name="twitter:title" content="21&nbsp; Q &amp; A – ggalign: Bridging the Grammar of Graphics and Complex layout">
 <meta name="twitter:description" content="">
 <meta name="twitter:card" content="summary">
 </head>
@@ -261,7 +261,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data-free.html">Data-Free Composition</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./case-gallery.html">Others</a></li><li class="breadcrumb-item"><a href="./qa.html"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Q &amp; A</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -326,7 +326,7 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./data-free.html" class="sidebar-item-text sidebar-link active">
+            <a href="./data-free.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Data-Free Composition</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -465,7 +465,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./qa.html" class="sidebar-item-text sidebar-link">
+  <a href="./qa.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Q &amp; A</span></span></a>
   </div>
 </li>
@@ -487,18 +487,38 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#what-is-data-free-composition-for" id="toc-what-is-data-free-composition-for" class="nav-link active" data-scroll-target="#what-is-data-free-composition-for">What Is Data-Free Composition for?</a></li>
-  <li><a href="#what-will-you-learn" id="toc-what-will-you-learn" class="nav-link" data-scroll-target="#what-will-you-learn">What Will You Learn?</a></li>
+  <li><a href="#technical-and-theoretical-questions" id="toc-technical-and-theoretical-questions" class="nav-link active" data-scroll-target="#technical-and-theoretical-questions"><span class="header-section-number">21.1</span> Technical and Theoretical Questions</a>
+  <ul class="collapse">
+  <li><a href="#package-compatibility-and-integration" id="toc-package-compatibility-and-integration" class="nav-link" data-scroll-target="#package-compatibility-and-integration"><span class="header-section-number">21.1.1</span> Package Compatibility and Integration</a></li>
+  <li><a href="#performance-considerations" id="toc-performance-considerations" class="nav-link" data-scroll-target="#performance-considerations"><span class="header-section-number">21.1.2</span> Performance Considerations</a></li>
+  </ul></li>
+  <li><a href="#code-implementation-questions" id="toc-code-implementation-questions" class="nav-link" data-scroll-target="#code-implementation-questions"><span class="header-section-number">21.2</span> Code Implementation Questions</a>
+  <ul class="collapse">
+  <li><a href="#gene-ordering-and-customization" id="toc-gene-ordering-and-customization" class="nav-link" data-scroll-target="#gene-ordering-and-customization"><span class="header-section-number">21.2.1</span> Gene Ordering and Customization</a></li>
+  <li><a href="#layout-spacing-and-margins" id="toc-layout-spacing-and-margins" class="nav-link" data-scroll-target="#layout-spacing-and-margins"><span class="header-section-number">21.2.2</span> Layout Spacing and Margins</a></li>
+  <li><a href="#alignment-constraints-and-reordering" id="toc-alignment-constraints-and-reordering" class="nav-link" data-scroll-target="#alignment-constraints-and-reordering"><span class="header-section-number">21.2.3</span> Alignment Constraints and Reordering</a></li>
+  <li><a href="#data-format-and-processing" id="toc-data-format-and-processing" class="nav-link" data-scroll-target="#data-format-and-processing"><span class="header-section-number">21.2.4</span> Data Format and Processing</a></li>
+  <li><a href="#scheme-system-usage" id="toc-scheme-system-usage" class="nav-link" data-scroll-target="#scheme-system-usage"><span class="header-section-number">21.2.5</span> Scheme System Usage</a></li>
+  <li><a href="#layout-selection-and-design" id="toc-layout-selection-and-design" class="nav-link" data-scroll-target="#layout-selection-and-design"><span class="header-section-number">21.2.6</span> Layout Selection and Design</a></li>
+  <li><a href="#error-troubleshooting" id="toc-error-troubleshooting" class="nav-link" data-scroll-target="#error-troubleshooting"><span class="header-section-number">21.2.7</span> Error Troubleshooting</a></li>
+  <li><a href="#installation-and-dependencies" id="toc-installation-and-dependencies" class="nav-link" data-scroll-target="#installation-and-dependencies"><span class="header-section-number">21.2.8</span> Installation and Dependencies</a></li>
+  <li><a href="#advanced-customization" id="toc-advanced-customization" class="nav-link" data-scroll-target="#advanced-customization"><span class="header-section-number">21.2.9</span> Advanced Customization</a></li>
+  </ul></li>
+  <li><a href="#best-practices-and-recommendations" id="toc-best-practices-and-recommendations" class="nav-link" data-scroll-target="#best-practices-and-recommendations"><span class="header-section-number">21.3</span> Best Practices and Recommendations</a>
+  <ul class="collapse">
+  <li><a href="#development-workflow" id="toc-development-workflow" class="nav-link" data-scroll-target="#development-workflow"><span class="header-section-number">21.3.1</span> Development Workflow</a></li>
+  <li><a href="#performance-optimization" id="toc-performance-optimization" class="nav-link" data-scroll-target="#performance-optimization"><span class="header-section-number">21.3.2</span> Performance Optimization</a></li>
+  </ul></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/Yunuuuu/ggalign-book/blob/main/data-free.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/Yunuuuu/ggalign-book/edit/main/data-free.qmd" class="toc-action"><i class="bi empty"></i>Edit this page</a></li><li><a href="https://github.com/Yunuuuu/ggalign-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="quarto-other-links"><h2>Other Links</h2><ul><li><a href="https://yunuuuu.github.io/ggalign"><i class="bi bi-journal-text"></i>ggalign reference</a></li><li><a href="https://yunuuuu.github.io/ggalign-gallery"><i class="bi bi-grid-1x2-fill"></i>ggalign gallery</a></li><li><a href="https://www.biorxiv.org/content/10.1101/2025.02.06.636847v1"><i class="bi bi-layout-text-sidebar-reverse"></i>ggalign manuscript</a></li></ul></div><div class="quarto-code-links"><h2>Code Links</h2><ul><li><a href="https://github.com/Yunuuuu/ggalign"><i class="bi bi-code-square"></i>ggalign repo</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/Yunuuuu/ggalign-book/blob/main/qa.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/Yunuuuu/ggalign-book/edit/main/qa.qmd" class="toc-action"><i class="bi empty"></i>Edit this page</a></li><li><a href="https://github.com/Yunuuuu/ggalign-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="quarto-other-links"><h2>Other Links</h2><ul><li><a href="https://yunuuuu.github.io/ggalign"><i class="bi bi-journal-text"></i>ggalign reference</a></li><li><a href="https://yunuuuu.github.io/ggalign-gallery"><i class="bi bi-grid-1x2-fill"></i>ggalign gallery</a></li><li><a href="https://www.biorxiv.org/content/10.1101/2025.02.06.636847v1"><i class="bi bi-layout-text-sidebar-reverse"></i>ggalign manuscript</a></li></ul></div><div class="quarto-code-links"><h2>Code Links</h2><ul><li><a href="https://github.com/Yunuuuu/ggalign"><i class="bi bi-code-square"></i>ggalign repo</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./case-gallery.html">Others</a></li><li class="breadcrumb-item"><a href="./qa.html"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Q &amp; A</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="sec-data-free" class="quarto-section-identifier">Data-Free Composition</span></h1>
+<h1 class="title"><span id="sec-qa" class="quarto-section-identifier"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Q &amp; A</span></span></h1>
 </div>
 
 
@@ -515,24 +535,150 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>This part introduces one of the core features of the <code>ggalign</code> package: data-free composition. Data-free composition forms the structural foundation for building complex, multi-panel visual layouts. Unlike data-aware composition, it does not align plots based on shared data values. Instead, it focuses purely on the visual arrangement of plots—making it ideal for combining independently generated figures.</p>
-<p>If you’re familiar with tools like patchwork or cowplot, you’ll find some similarities. However, <code>ggalign</code> extends these ideas with finer control over alignment, spacing, and <code>guide</code>/<code>legend</code> collection, allowing you to construct more precise and expressive layouts.</p>
-<section id="what-is-data-free-composition-for" class="level2">
-<h2 class="anchored" data-anchor-id="what-is-data-free-composition-for">What Is Data-Free Composition for?</h2>
-<p>Use data-free composition when you want to:</p>
-<ul>
-<li><p>Visually compare results from different models or datasets.</p></li>
-<li><p>Combine summary, diagnostic, and metadata plots in figure panels.</p></li>
-<li><p>Annotate plots with separate diagrams, legends, or auxiliary views.</p></li>
-<li><p>Create layout templates that work across a variety of inputs.</p></li>
-</ul>
-<p>This approach gives you full spatial control while preserving each plot’s independence. Because there’s no need to reconcile axes, or scales, it’s straightforward and versatile for many common multi-plot needs.</p>
+<p>This chapter addresses common questions and troubleshooting scenarios that users encounter when working with ggalign. The questions are organized into theoretical/technical concepts and practical code implementation issues.</p>
+<section id="technical-and-theoretical-questions" class="level2" data-number="21.1">
+<h2 data-number="21.1" class="anchored" data-anchor-id="technical-and-theoretical-questions"><span class="header-section-number">21.1</span> Technical and Theoretical Questions</h2>
+<section id="package-compatibility-and-integration" class="level3" data-number="21.1.1">
+<h3 data-number="21.1.1" class="anchored" data-anchor-id="package-compatibility-and-integration"><span class="header-section-number">21.1.1</span> Package Compatibility and Integration</h3>
+<p><strong>Q: How compatible is ggalign with other R graphics packages?</strong></p>
+<p>A: ggalign provides extensive compatibility through its <code>patch()</code> system and <code>align_plots()</code> function.</p>
+<p>The package can directly integrate: - ComplexHeatmap objects - pheatmap visualizations<br>
+- Base R plots and grid graphics - ggplot2 objects - MAF objects from maftools</p>
+<p>If you need to use other arrangement packages like <code>patchwork</code> or <code>cowplot</code>, you can convert ggalign objects using <code>ggalignGrob()</code>, though this will break the panel alignment feature.</p>
+<p><strong>Q: Can ggalign outputs be edited in external software?</strong></p>
+<p>A: Yes, ggalign outputs are standard ggplot2 objects that can be: - Saved as vector formats (PDF, SVG) for editing in Illustrator/Inkscape - Converted to grobs using <code>ggalignGrob()</code> for further manipulation - Integrated with other R graphics workflows</p>
 </section>
-<section id="what-will-you-learn" class="level2">
-<h2 class="anchored" data-anchor-id="what-will-you-learn">What Will You Learn?</h2>
-<p>This part is divided into chapters, each addressing a specific graphical challenge. This is not an exhaustive or exclusive categorization but rather a practical guide to help you navigate common tasks in data-free plot composition.</p>
+<section id="performance-considerations" class="level3" data-number="21.1.2">
+<h3 data-number="21.1.2" class="anchored" data-anchor-id="performance-considerations"><span class="header-section-number">21.1.2</span> Performance Considerations</h3>
+<p><strong>Q: How does ggalign perform with large datasets?</strong></p>
+<p>A: ggalign performance scales with data size and complexity. For large datasets: - Matrix operations are optimized for efficiency - Consider using rasterization for very large heatmaps - The package automatically uses <code>geom_raster()</code> for matrices with &gt;20,000 cells - Memory usage scales with the number of observations and plots in layouts</p>
+<p><strong>Q: What are the system requirements?</strong></p>
+<p>A: ggalign requires:</p>
+<ul>
+<li>R ≥ 4.0.0</li>
+<li>ggplot2 ≥ 3.5.2.9000 (development version)</li>
+<li>Additional dependencies for specialized functions (maftools, ape, etc.)</li>
+</ul>
+</section>
+</section>
+<section id="code-implementation-questions" class="level2" data-number="21.2">
+<h2 data-number="21.2" class="anchored" data-anchor-id="code-implementation-questions"><span class="header-section-number">21.2</span> Code Implementation Questions</h2>
+<section id="gene-ordering-and-customization" class="level3" data-number="21.2.1">
+<h3 data-number="21.2.1" class="anchored" data-anchor-id="gene-ordering-and-customization"><span class="header-section-number">21.2.1</span> Gene Ordering and Customization</h3>
+<p><strong>Q: How do I customize gene ordering in ggoncoplot?</strong></p>
+<p>A: To manually control row and column ordering in <code>ggoncoplot()</code>, first disable automatic ordering, then use <code>align_order()</code>:</p>
+<p>For row ordering, you can use either numeric indices or character names if your matrix has row names. For column ordering, use <code>anno_top()</code> or <code>anno_bottom()</code> instead of <code>anno_left()</code>.</p>
+</section>
+<section id="layout-spacing-and-margins" class="level3" data-number="21.2.2">
+<h3 data-number="21.2.2" class="anchored" data-anchor-id="layout-spacing-and-margins"><span class="header-section-number">21.2.2</span> Layout Spacing and Margins</h3>
+<p><strong>Q: Why are there spaces after setting all plot margins to zero?</strong></p>
+<p>A: Spaces typically result from two sources:</p>
+<ol type="1">
+<li>Plot margins within individual plots</li>
+<li>Scale expansion automatically added by ggplot2</li>
+</ol>
+<p>You can resolve this by removing scale expansion and adjusting margins in the theme.</p>
+</section>
+<section id="alignment-constraints-and-reordering" class="level3" data-number="21.2.3">
+<h3 data-number="21.2.3" class="anchored" data-anchor-id="alignment-constraints-and-reordering"><span class="header-section-number">21.2.3</span> Alignment Constraints and Reordering</h3>
+<p><strong>Q: Why can’t I add two dendrograms with different reorder settings?</strong></p>
+<p>A: ggalign prevents users from reordering the layout direction twice to maintain data consistency.</p>
+<p>When <code>reorder_group = FALSE</code> is used, reordering occurs within each group. As long as the ordering within each group remains consistent, multiple dendrograms can be placed on the same axis.</p>
+</section>
+<section id="data-format-and-processing" class="level3" data-number="21.2.4">
+<h3 data-number="21.2.4" class="anchored" data-anchor-id="data-format-and-processing"><span class="header-section-number">21.2.4</span> Data Format and Processing</h3>
+<p><strong>Q: What data formats does ggalign accept?</strong></p>
+<p>A: ggalign accepts diverse input formats through its fortification system:</p>
+<ul>
+<li><strong>Matrices</strong>: Gene expression data, correlation matrices</li>
+<li><strong>Data frames</strong>: Clinical data, metadata</li>
+<li><strong>Specialized objects</strong>: MAF objects (maftools), phylogenetic trees (ape), clustering results (hclust)</li>
+<li><strong>External graphics</strong>: ComplexHeatmap objects, pheatmap visualizations</li>
+</ul>
+<p>The <code>fortify_matrix()</code> and <code>fortify_data_frame()</code> functions standardize these inputs into consistent formats.</p>
+</section>
+<section id="scheme-system-usage" class="level3" data-number="21.2.5">
+<h3 data-number="21.2.5" class="anchored" data-anchor-id="scheme-system-usage"><span class="header-section-number">21.2.5</span> Scheme System Usage</h3>
+<p><strong>Q: When should I use different scheme types?</strong></p>
+<p>A: The three scheme types serve different purposes:</p>
+<ul>
+<li><strong><code>scheme_data()</code></strong>: Apply consistent data transformations across multiple geoms</li>
+<li><strong><code>scheme_theme()</code></strong>: Apply theme modifications to all plots in a layout<br>
+</li>
+<li><strong><code>scheme_align()</code></strong>: Control alignment behavior, spacing, and guide collection</li>
+</ul>
+<p>Use schemes when you need the same modification applied to multiple plots or geoms within a layout.</p>
+</section>
+<section id="layout-selection-and-design" class="level3" data-number="21.2.6">
+<h3 data-number="21.2.6" class="anchored" data-anchor-id="layout-selection-and-design"><span class="header-section-number">21.2.6</span> Layout Selection and Design</h3>
+<p><strong>Q: Which layout type should I choose for my data?</strong></p>
+<p>A: Layout selection depends on your visualization goals:</p>
+<ul>
+<li><strong>StackLayout</strong>: Linear sequences, time series, comparative analysis</li>
+<li><strong>QuadLayout</strong>: Matrix visualizations, central plot with annotations, heatmap-style figures</li>
+<li><strong>CircleLayout</strong>: Phylogenetic data, circular genomic data, radial patterns</li>
+</ul>
+<p>QuadLayout is most common for genomics applications, while StackLayout works well for comparative studies.</p>
+</section>
+<section id="error-troubleshooting" class="level3" data-number="21.2.7">
+<h3 data-number="21.2.7" class="anchored" data-anchor-id="error-troubleshooting"><span class="header-section-number">21.2.7</span> Error Troubleshooting</h3>
+<p><strong>Q: Common alignment errors and solutions</strong></p>
+<p>A: Frequent alignment issues include:</p>
+<ol type="1">
+<li><strong>Mismatched observation counts</strong>: Ensure <code>NROW(data)</code> matches across plots</li>
+<li><strong>Missing alignment columns</strong>: Use <code>ggalign()</code> instead of <code>ggfree()</code> for strict alignment</li>
+<li><strong>Incorrect layout context</strong>: Check <code>active()</code> settings and layout switching</li>
+<li><strong>Data format incompatibility</strong>: Verify data types match layout requirements</li>
+</ol>
+</section>
+<section id="installation-and-dependencies" class="level3" data-number="21.2.8">
+<h3 data-number="21.2.8" class="anchored" data-anchor-id="installation-and-dependencies"><span class="header-section-number">21.2.8</span> Installation and Dependencies</h3>
+<p><strong>Q: How do I troubleshoot installation issues?</strong></p>
+<p>A: Common solutions:</p>
+<ol type="1">
+<li>Update R and ggplot2 to latest versions</li>
+<li>Install from r-universe for development versions</li>
+<li>Check system dependencies for compilation</li>
+<li>Use <code>remotes::install_github()</code> for latest features</li>
+</ol>
+</section>
+<section id="advanced-customization" class="level3" data-number="21.2.9">
+<h3 data-number="21.2.9" class="anchored" data-anchor-id="advanced-customization"><span class="header-section-number">21.2.9</span> Advanced Customization</h3>
+<p><strong>Q: How do I create custom alignment functions?</strong></p>
+<p>A: While ggalign provides comprehensive built-in alignment functions (<code>align_dendro()</code>, <code>align_kmeans()</code>, <code>align_group()</code>, <code>align_order()</code>), you can create custom ordering by:</p>
+<ol type="1">
+<li>Using <code>align_order()</code> with custom weight functions</li>
+<li>Providing manual ordering vectors</li>
+<li>Creating custom grouping variables for <code>align_group()</code></li>
+</ol>
+<p><strong>Q: Can I mix different coordinate systems in one layout?</strong></p>
+<p>A: Yes, ggalign supports mixing coordinate systems within layouts. Each plot can have its own coordinate system (Cartesian, polar, etc.), though alignment is maintained through the shared observation structure.</p>
+</section>
+</section>
+<section id="best-practices-and-recommendations" class="level2" data-number="21.3">
+<h2 data-number="21.3" class="anchored" data-anchor-id="best-practices-and-recommendations"><span class="header-section-number">21.3</span> Best Practices and Recommendations</h2>
+<section id="development-workflow" class="level3" data-number="21.3.1">
+<h3 data-number="21.3.1" class="anchored" data-anchor-id="development-workflow"><span class="header-section-number">21.3.1</span> Development Workflow</h3>
+<ol type="1">
+<li><strong>Start with simple layouts</strong> before adding complexity</li>
+<li><strong>Test alignment frequently</strong> during development</li>
+<li><strong>Use consistent data formats</strong> across related plots</li>
+<li><strong>Preview layouts interactively</strong> to catch issues early</li>
+<li><strong>Document complex area specifications</strong> for maintainability</li>
+</ol>
+</section>
+<section id="performance-optimization" class="level3" data-number="21.3.2">
+<h3 data-number="21.3.2" class="anchored" data-anchor-id="performance-optimization"><span class="header-section-number">21.3.2</span> Performance Optimization</h3>
+<ol type="1">
+<li><strong>Use rasterization</strong> for large datasets</li>
+<li><strong>Consider data filtering</strong> before visualization</li>
+<li><strong>Optimize memory usage</strong> with selective rendering</li>
+<li><strong>Cache expensive computations</strong> like clustering results</li>
+</ol>
+<p>This Q&amp;A chapter addresses the most common challenges users face when implementing ggalign visualizations, providing practical solutions and best practices for effective usage.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -989,13 +1135,13 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./getting-started.html" class="pagination-link" aria-label="Get Started">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Get Started</span></span>
+      <a href="./difference-with-ggplot2.html" class="pagination-link" aria-label="Difference with ggplot2">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Difference with ggplot2</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./plot-composer.html" class="pagination-link" aria-label="Plot Composer">
-        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Plot Composer</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./conclusion.html" class="pagination-link" aria-label="Conclusion">
+        <span class="nav-page-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Conclusion</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -1004,4 +1150,4 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/Yunuuuu/ggalign-book/blob/main/data-free.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/Yunuuuu/ggalign-book/edit/main/data-free.qmd" class="toc-action"><i class="bi empty"></i>Edit this page</a></li><li><a href="https://github.com/Yunuuuu/ggalign-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/Yunuuuu/ggalign-book/blob/main/qa.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/Yunuuuu/ggalign-book/edit/main/qa.qmd" class="toc-action"><i class="bi empty"></i>Edit this page</a></li><li><a href="https://github.com/Yunuuuu/ggalign-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>

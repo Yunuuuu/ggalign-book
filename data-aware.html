@@ -30,8 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./stack-layout.html" rel="next">
-<link href="./free.html" rel="prev">
+<link href="./data-aware-overview.html" rel="next">
+<link href="./design.html" rel="prev">
 <link href="./cover.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -78,8 +78,7 @@ ul.task-list li input[type="checkbox"] {
 
 <meta name="twitter:title" content="Data-Aware Composition – ggalign: Bridging the Grammar of Graphics and Complex layout">
 <meta name="twitter:description" content="">
-<meta name="twitter:image" content="design.png">
-<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:card" content="summary">
 </head>
 
 <body class="nav-sidebar floating quarto-light"><script id="quarto-html-before-body" type="application/javascript">
@@ -320,7 +319,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./getting-started.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Basic example</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Get Started</span></span></a>
   </div>
 </li>
       </ul>
@@ -348,6 +347,12 @@ ul.task-list li input[type="checkbox"] {
 </li>
       </ul>
   </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./design.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Design Philosophy and Architecture</span></span></a>
+  </div>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="./data-aware.html" class="sidebar-item-text sidebar-link active">
@@ -359,78 +364,119 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./stack-layout.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">stack layout</span></span></a>
+  <a href="./data-aware-overview.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Overview</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./heatmap-layout.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">heatmap layout</span></span></a>
+  <a href="./stack-layout.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Stack Layout</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./quad-layout.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">quad-layout</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Quad-side Layout</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./layout-customize.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Layout customize</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./initialize-plot.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Initialize Plot</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./annotate-observations.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Annotate observations</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./multiple-quad-layouts.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">A list of QuadLayout</span></span></a>
+  <a href="./heatmap-layout.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Heatmap Layout</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./circle-layout.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">circle layout</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Circle Layout</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./layout-customize.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Customize Layout</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./initialize-plot.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Integrate Plots</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./annotate-observations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Annotate Observations</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./multiple-quad-layouts.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Nested Layouts</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./operator.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Operators</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Operators</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./schemes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Schemes</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./difference-with-ggplot2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Difference with ggplot2</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Schemes</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./oncoplot.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">ggoncoplot</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">ggoncoplot</span></span></a>
   </div>
 </li>
       </ul>
   </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Others</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./case-gallery.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Case Gallery</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./benchmark.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Benchmark</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./difference-with-ggplot2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Difference with ggplot2</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./qa.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Q &amp; A</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./conclusion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Conclusion</span></span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -441,10 +487,7 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#layout-system" id="toc-layout-system" class="nav-link active" data-scroll-target="#layout-system">Layout System</a></li>
-  <li><a href="#overview-of-supporting-systems" id="toc-overview-of-supporting-systems" class="nav-link" data-scroll-target="#overview-of-supporting-systems">Overview of Supporting Systems</a></li>
-  <li><a href="#sec-input-data" id="toc-sec-input-data" class="nav-link" data-scroll-target="#sec-input-data">Input data</a></li>
-  <li><a href="#what-will-you-learn" id="toc-what-will-you-learn" class="nav-link" data-scroll-target="#what-will-you-learn">What Will You Learn?</a></li>
+  <li><a href="#what-will-you-learn" id="toc-what-will-you-learn" class="nav-link active" data-scroll-target="#what-will-you-learn">What Will You Learn?</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/Yunuuuu/ggalign-book/blob/main/data-aware.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/Yunuuuu/ggalign-book/edit/main/data-aware.qmd" class="toc-action"><i class="bi empty"></i>Edit this page</a></li><li><a href="https://github.com/Yunuuuu/ggalign-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="quarto-other-links"><h2>Other Links</h2><ul><li><a href="https://yunuuuu.github.io/ggalign"><i class="bi bi-journal-text"></i>ggalign reference</a></li><li><a href="https://yunuuuu.github.io/ggalign-gallery"><i class="bi bi-grid-1x2-fill"></i>ggalign gallery</a></li><li><a href="https://www.biorxiv.org/content/10.1101/2025.02.06.636847v1"><i class="bi bi-layout-text-sidebar-reverse"></i>ggalign manuscript</a></li></ul></div><div class="quarto-code-links"><h2>Code Links</h2><ul><li><a href="https://github.com/Yunuuuu/ggalign"><i class="bi bi-code-square"></i>ggalign repo</a></li></ul></div></nav>
     </div>
@@ -472,96 +515,8 @@ ul.task-list li input[type="checkbox"] {
 
 
 <p>This part introduces another core feature of the ggalign package: data-aware composition. Unlike data-free composition, which focuses solely on the visual arrangement of plots without considering shared data values, data-aware composition aligns plots based on common data characteristics—such as shared axis scales or categorical factors. This enables precise alignment of related plots where data correspondence matters.</p>
-<p><code>ggalign</code> simplifies data-aware alignment in ggplot2, handling common tasks such as sorting, grouping, or clustering observations before composition.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="design.png" class="img-fluid figure-img"></p>
-<figcaption>General design of Data-Aware Composition</figcaption>
-</figure>
-</div>
-<section id="layout-system" class="level2">
-<h2 class="anchored" data-anchor-id="layout-system">Layout System</h2>
-<p>At the heart of <code>ggalign</code> data-aware composition is an object-oriented <code>Layout</code> system that integrates seamlessly with <code>ggplot2</code>. It provides three core layout types:</p>
-<ul>
-<li><code>StackLayout</code>: Stacks plots horizontally or vertically.</li>
-<li><code>QuadLayout</code>: Arranges plots in four quadrants (top, left, bottom, right) around a central plot.</li>
-<li><code>CircleLayout</code>: Positions plots in a circular pattern.</li>
-</ul>
-<p>Each layout supports both discrete (e.g., categories) and continuous (e.g., numerical) data, and includes specialized alignment functions:</p>
-<p>For <code>StackLayout</code>:</p>
-<ul>
-<li><code>stack_discrete()</code>: Align discrete variable along the stack.</li>
-<li><code>stack_continuous()</code>: Align continuous variable along the stack.</li>
-<li><code>stack_layout()</code>: A unified interface that handles both discrete and continuous data.</li>
-</ul>
-<p>For <code>QuadLayout</code>:</p>
-<ul>
-<li><code>quad_continuous()</code>/<code>ggside()</code>: Align continuous variables in both horizontal and vertical directions.</li>
-<li><code>quad_discrete()</code>: Align discrete variables in both horizontal and vertical directions.</li>
-<li><code>quad_layout()</code>: A general function that adapts to both data types and directions.</li>
-</ul>
-<p>For <code>CircleLayout</code>:</p>
-<ul>
-<li><code>circle_discrete()</code>: Align discrete variable in the circle.</li>
-<li><code>circle_continuous()</code>: Align continuous variable in the circle.</li>
-<li><code>circle_layout()</code>: A unified interface for both cases.</li>
-</ul>
-<blockquote class="blockquote">
-<p>Note: Throughout this book, we refer to the main layout functions—<code>stack_layout()</code>, <code>quad_layout()</code>, and <code>circle_layout()</code>—as the primary interfaces, even when using their specialized variants.</p>
-</blockquote>
-</section>
-<section id="overview-of-supporting-systems" class="level2">
-<h2 class="anchored" data-anchor-id="overview-of-supporting-systems">Overview of Supporting Systems</h2>
-<p>In addition to the core <code>Layout</code> system, <code>ggalign</code> provides several helper systems that enhance data-aware composition by managing how observations are grouped, ordered, and supplemented with additional plot elements. These systems work together with layouts to create flexible and insightful multi-plot arrangements:</p>
-<ol type="1">
-<li>Layout customization:
-<ul>
-<li><code>align_group()</code>: Group observations into panel with a group variable.</li>
-<li><code>align_kmeans()</code>: Group observations into panel by kmeans.</li>
-<li><code>align_order()</code>: Reorder layout observations based on statistical weights or by manually specifying the observation index.</li>
-<li><code>align_order2</code>: Reorder observations using an arbitrary statistical function</li>
-<li><code>align_hclust()</code>: Reorder or group observations based on hierarchical clustering.</li>
-</ul></li>
-<li>Plot adding:
-<ul>
-<li><code>align_dendro()</code>: Add a dendrogram to the plot, and reorder or group observations based on hierarchical clustering.</li>
-<li><code>ggalign()</code>: Initialize a ggplot object and align the axes.</li>
-<li><code>ggmark()</code>: Add a plot to annotate selected observations.</li>
-<li><code>ggcross()</code>: Initialize a ggplot object to connect two different layout crosswise</li>
-<li><code>ggfree()</code>: Initialize a ggplot object without aligning the axes.</li>
-</ul></li>
-</ol>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="overview.png" class="img-fluid figure-img"></p>
-<figcaption>Overview of Data-Aware Composition</figcaption>
-</figure>
-</div>
-</section>
-<section id="sec-input-data" class="level2">
-<h2 class="anchored" data-anchor-id="sec-input-data">Input data</h2>
-<p>Before exploring data-aware compostion, it’s important to understand how axis alignment works in <code>ggplot2</code>.</p>
-<ul>
-<li><p>For continuous axes, alignment is straightforward: simply ensure the axis limits are consistent across plots.</p></li>
-<li><p>For discrete axes, alignment is more challenging. You must have the same set of unique values and maintain a consistent ordering across all plots. In ggplot2, this can be difficult when working with long-format data frames because the factor levels or ordering may differ.</p></li>
-</ul>
-<p><code>ggalign</code> addresses this challenge by using matrix inputs for layouts that align discrete axes (e.g., the <code>*_discrete()</code> functions). In this approach:</p>
-<ul>
-<li><p>Each row of the matrix represents a unique discrete value (called an “observation”).</p></li>
-<li><p>The total number of rows defines the complete set of unique discrete values.</p></li>
-<li><p>Reordering rows in the matrix controls the ordering of observations consistently across all linked plots.</p></li>
-</ul>
-<p>This design is especially useful for layouts that align axes in both directions (horizontal and vertical), such as heatmap, since matrices can be easily transposed to switch row and column alignment.</p>
-<p>The matrix is only used for positioning. Before rendering, <code>ggalign</code> will reorder the matrix rows based on the layout, and automatically converts it into a long-format data frame — the standard input for <code>ggplot2</code>.</p>
-<p>The main difference between discrete and continuous variable alignment in <code>ggalign</code> lies in the input data:</p>
-<ul>
-<li><p>Discrete variables require a matrix as input.</p></li>
-<li><p>Continuous variables require a data frame, just like in standard ggplot2.</p></li>
-</ul>
-<blockquote class="blockquote">
-<p>Terminology: <code>"Observations"</code> and <code>"discrete variables"</code> are interchangeable here. Any mention of <code>"observations"</code> applies to discrete variables too.</p>
-</blockquote>
-</section>
+<p>Consider a common scenario in cancer genomics: researchers need to display a heatmap of gene expression alongside mutation data, survival curves, and clinical annotations, all while ensuring that the same patients appear in identical positions across all plots. This seemingly simple requirement becomes complex when using traditional tools, often requiring manual coordinate management and careful data preprocessing.</p>
+<p>The <code>ggalign</code> package addresses these fundamental challenges by introducing the concept of <strong>observation alignment</strong>—ensuring that identical data points maintain consistent positioning across multiple interconnected plots. This approach transforms how we think about multi-plot visualizations, shifting from spatial arrangement to data-centric composition.</p>
 <section id="what-will-you-learn" class="level2">
 <h2 class="anchored" data-anchor-id="what-will-you-learn">What Will You Learn?</h2>
 <p>This part is divided into sections that will guide you through:</p>
@@ -1031,13 +986,13 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./free.html" class="pagination-link" aria-label="Fine-Grained Alignment Control">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Fine-Grained Alignment Control</span></span>
+      <a href="./design.html" class="pagination-link" aria-label="Design Philosophy and Architecture">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Design Philosophy and Architecture</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./stack-layout.html" class="pagination-link" aria-label="stack layout">
-        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">stack layout</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./data-aware-overview.html" class="pagination-link" aria-label="Overview">
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Overview</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

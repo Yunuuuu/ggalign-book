@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Data-Free Composition – ggalign: Bridging the Grammar of Graphics and Complex layout</title>
+<title>5&nbsp; Design Philosophy and Architecture – ggalign: Bridging the Grammar of Graphics and Complex layout</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./plot-composer.html" rel="next">
-<link href="./getting-started.html" rel="prev">
+<link href="./data-aware.html" rel="next">
+<link href="./free.html" rel="prev">
 <link href="./cover.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -74,9 +74,13 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<meta name="mermaid-theme" content="default">
+<script src="site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 
 
-<meta name="twitter:title" content="Data-Free Composition – ggalign: Bridging the Grammar of Graphics and Complex layout">
+<meta name="twitter:title" content="5&nbsp; Design Philosophy and Architecture – ggalign: Bridging the Grammar of Graphics and Complex layout">
 <meta name="twitter:description" content="">
 <meta name="twitter:card" content="summary">
 </head>
@@ -261,7 +265,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data-free.html">Data-Free Composition</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./design.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Design Philosophy and Architecture</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -326,7 +330,7 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./data-free.html" class="sidebar-item-text sidebar-link active">
+            <a href="./data-free.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Data-Free Composition</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -349,7 +353,7 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./design.html" class="sidebar-item-text sidebar-link">
+  <a href="./design.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Design Philosophy and Architecture</span></span></a>
   </div>
 </li>
@@ -487,10 +491,25 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#what-is-data-free-composition-for" id="toc-what-is-data-free-composition-for" class="nav-link active" data-scroll-target="#what-is-data-free-composition-for">What Is Data-Free Composition for?</a></li>
-  <li><a href="#what-will-you-learn" id="toc-what-will-you-learn" class="nav-link" data-scroll-target="#what-will-you-learn">What Will You Learn?</a></li>
+  <li><a href="#core-design-philosophy" id="toc-core-design-philosophy" class="nav-link active" data-scroll-target="#core-design-philosophy"><span class="header-section-number">5.1</span> Core Design Philosophy</a></li>
+  <li><a href="#system-architecture-overview" id="toc-system-architecture-overview" class="nav-link" data-scroll-target="#system-architecture-overview"><span class="header-section-number">5.2</span> System Architecture Overview</a></li>
+  <li><a href="#type-system-and-class-hierarchy" id="toc-type-system-and-class-hierarchy" class="nav-link" data-scroll-target="#type-system-and-class-hierarchy"><span class="header-section-number">5.3</span> Type System and Class Hierarchy</a>
+  <ul class="collapse">
+  <li><a href="#layout-hierarchy" id="toc-layout-hierarchy" class="nav-link" data-scroll-target="#layout-hierarchy"><span class="header-section-number">5.3.1</span> Layout Hierarchy</a></li>
+  <li><a href="#plot-integration-classes" id="toc-plot-integration-classes" class="nav-link" data-scroll-target="#plot-integration-classes"><span class="header-section-number">5.3.2</span> Plot Integration Classes</a></li>
+  </ul></li>
+  <li><a href="#data-flow-pipeline" id="toc-data-flow-pipeline" class="nav-link" data-scroll-target="#data-flow-pipeline"><span class="header-section-number">5.4</span> Data Flow Pipeline</a></li>
+  <li><a href="#two-type-composition-workflows" id="toc-two-type-composition-workflows" class="nav-link" data-scroll-target="#two-type-composition-workflows"><span class="header-section-number">5.5</span> Two-Type Composition Workflows</a>
+  <ul class="collapse">
+  <li><a href="#data-free-composition-architecture" id="toc-data-free-composition-architecture" class="nav-link" data-scroll-target="#data-free-composition-architecture"><span class="header-section-number">5.5.1</span> Data-Free Composition Architecture</a></li>
+  <li><a href="#data-aware-composition-architecture" id="toc-data-aware-composition-architecture" class="nav-link" data-scroll-target="#data-aware-composition-architecture"><span class="header-section-number">5.5.2</span> Data-Aware Composition Architecture</a></li>
+  <li><a href="#alignment-column-system" id="toc-alignment-column-system" class="nav-link" data-scroll-target="#alignment-column-system"><span class="header-section-number">5.5.3</span> Alignment Column System</a></li>
+  <li><a href="#relationship-type-support" id="toc-relationship-type-support" class="nav-link" data-scroll-target="#relationship-type-support"><span class="header-section-number">5.5.4</span> Relationship Type Support</a></li>
+  </ul></li>
+  <li><a href="#scheme-system-architecture" id="toc-scheme-system-architecture" class="nav-link" data-scroll-target="#scheme-system-architecture"><span class="header-section-number">5.6</span> Scheme System Architecture</a></li>
+  <li><a href="#focus-and-contribution-of-ggalign" id="toc-focus-and-contribution-of-ggalign" class="nav-link" data-scroll-target="#focus-and-contribution-of-ggalign"><span class="header-section-number">5.7</span> Focus and Contribution of <code>ggalign</code></a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/Yunuuuu/ggalign-book/blob/main/data-free.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/Yunuuuu/ggalign-book/edit/main/data-free.qmd" class="toc-action"><i class="bi empty"></i>Edit this page</a></li><li><a href="https://github.com/Yunuuuu/ggalign-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="quarto-other-links"><h2>Other Links</h2><ul><li><a href="https://yunuuuu.github.io/ggalign"><i class="bi bi-journal-text"></i>ggalign reference</a></li><li><a href="https://yunuuuu.github.io/ggalign-gallery"><i class="bi bi-grid-1x2-fill"></i>ggalign gallery</a></li><li><a href="https://www.biorxiv.org/content/10.1101/2025.02.06.636847v1"><i class="bi bi-layout-text-sidebar-reverse"></i>ggalign manuscript</a></li></ul></div><div class="quarto-code-links"><h2>Code Links</h2><ul><li><a href="https://github.com/Yunuuuu/ggalign"><i class="bi bi-code-square"></i>ggalign repo</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/Yunuuuu/ggalign-book/blob/main/design.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/Yunuuuu/ggalign-book/edit/main/design.qmd" class="toc-action"><i class="bi empty"></i>Edit this page</a></li><li><a href="https://github.com/Yunuuuu/ggalign-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="quarto-other-links"><h2>Other Links</h2><ul><li><a href="https://yunuuuu.github.io/ggalign"><i class="bi bi-journal-text"></i>ggalign reference</a></li><li><a href="https://yunuuuu.github.io/ggalign-gallery"><i class="bi bi-grid-1x2-fill"></i>ggalign gallery</a></li><li><a href="https://www.biorxiv.org/content/10.1101/2025.02.06.636847v1"><i class="bi bi-layout-text-sidebar-reverse"></i>ggalign manuscript</a></li></ul></div><div class="quarto-code-links"><h2>Code Links</h2><ul><li><a href="https://github.com/Yunuuuu/ggalign"><i class="bi bi-code-square"></i>ggalign repo</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -498,7 +517,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span id="sec-data-free" class="quarto-section-identifier">Data-Free Composition</span></h1>
+<h1 class="title"><span id="sec-design" class="quarto-section-identifier"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Design Philosophy and Architecture</span></span></h1>
 </div>
 
 
@@ -515,22 +534,338 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>This part introduces one of the core features of the <code>ggalign</code> package: data-free composition. Data-free composition forms the structural foundation for building complex, multi-panel visual layouts. Unlike data-aware composition, it does not align plots based on shared data values. Instead, it focuses purely on the visual arrangement of plots—making it ideal for combining independently generated figures.</p>
-<p>If you’re familiar with tools like patchwork or cowplot, you’ll find some similarities. However, <code>ggalign</code> extends these ideas with finer control over alignment, spacing, and <code>guide</code>/<code>legend</code> collection, allowing you to construct more precise and expressive layouts.</p>
-<section id="what-is-data-free-composition-for" class="level2">
-<h2 class="anchored" data-anchor-id="what-is-data-free-composition-for">What Is Data-Free Composition for?</h2>
-<p>Use data-free composition when you want to:</p>
-<ul>
-<li><p>Visually compare results from different models or datasets.</p></li>
-<li><p>Combine summary, diagnostic, and metadata plots in figure panels.</p></li>
-<li><p>Annotate plots with separate diagrams, legends, or auxiliary views.</p></li>
-<li><p>Create layout templates that work across a variety of inputs.</p></li>
-</ul>
-<p>This approach gives you full spatial control while preserving each plot’s independence. Because there’s no need to reconcile axes, or scales, it’s straightforward and versatile for many common multi-plot needs.</p>
+<p>This chapter explores the theoretical foundations and architectural principles underlying ggalign’s design. Understanding these concepts will help you make better decisions about when and how to use different components of the package.</p>
+<section id="core-design-philosophy" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="core-design-philosophy"><span class="header-section-number">5.1</span> Core Design Philosophy</h2>
+<p>ggalign is built around three fundamental design principles that distinguish it from other visualization packages:</p>
+<ol type="1">
+<li><strong>Observation-Centric Alignment</strong></li>
+</ol>
+<p>The central innovation of ggalign is ensuring that identical observations maintain consistent positions across multiple interconnected plots. This goes beyond simple spatial arrangement to create true data-aware composition where the same biological samples, genes, or other entities appear in exactly the same positions across all visualizations.</p>
+<ol start="2" type="1">
+<li><strong>Grammar of Graphics Integration</strong></li>
+</ol>
+<p>ggalign is designed as a native ggplot2 extension, maintaining full compatibility with the grammar of graphics. This means you can use all familiar ggplot2 components (geoms, scales, themes, etc.) while gaining the additional power of observation alignment.</p>
+<ol start="3" type="1">
+<li><strong>Declarative Syntax</strong></li>
+</ol>
+<p>Users specify what they want to achieve rather than how to implement it. The package handles the complex coordinate management, data synchronization, and layout calculations automatically, allowing researchers to focus on the biological insights rather than technical implementation details.</p>
 </section>
-<section id="what-will-you-learn" class="level2">
-<h2 class="anchored" data-anchor-id="what-will-you-learn">What Will You Learn?</h2>
-<p>This part is divided into chapters, each addressing a specific graphical challenge. This is not an exhaustive or exclusive categorization but rather a practical guide to help you navigate common tasks in data-free plot composition.</p>
+<section id="system-architecture-overview" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="system-architecture-overview"><span class="header-section-number">5.2</span> System Architecture Overview</h2>
+<p>The ggalign architecture consists of multiple interconnected layers that work together to create aligned, composable visualizations:</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">graph TB
+    subgraph "User Interface Layer"
+        UIF["Layout Functions&lt;br/&gt;stack_layout()&lt;br/&gt;quad_layout()&lt;br/&gt;circle_layout()"]
+        SPF["Specialized Functions&lt;br/&gt;ggheatmap()&lt;br/&gt;ggoncoplot()&lt;br/&gt;ggupset()"]
+    end
+    
+    subgraph "Core Engine"
+        LP["LayoutProto&lt;br/&gt;S4 Base Class"]
+        CB["CraftBox&lt;br/&gt;Plot Containers"]
+        SCHEMES["Scheme System&lt;br/&gt;data, theme, align"]
+    end
+    
+    subgraph "Data Processing"
+        FORTIFY["Fortification Layer&lt;br/&gt;fortify_matrix()&lt;br/&gt;fortify_data_frame()"]
+        ALIGN["Alignment System&lt;br/&gt;align_*() functions"]
+    end
+    
+    subgraph "Plot Integration"
+        PLOT_FUNCS["Plot Functions&lt;br/&gt;ggalign(), ggfree(), ggcross()"]
+        PATCH["Patch System&lt;br/&gt;External graphics integration"]
+    end
+    
+    UIF --&gt; LP
+    SPF --&gt; LP
+    LP --&gt; CB
+    CB --&gt; SCHEMES
+    
+    FORTIFY --&gt; ALIGN
+    ALIGN --&gt; PLOT_FUNCS
+    PLOT_FUNCS --&gt; CB
+    PATCH --&gt; CB
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="type-system-and-class-hierarchy" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="type-system-and-class-hierarchy"><span class="header-section-number">5.3</span> Type System and Class Hierarchy</h2>
+<section id="layout-hierarchy" class="level3" data-number="5.3.1">
+<h3 data-number="5.3.1" class="anchored" data-anchor-id="layout-hierarchy"><span class="header-section-number">5.3.1</span> Layout Hierarchy</h3>
+<p>The layout system follows a hierarchical S4-based architecture with as the base class:</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">graph TB
+    subgraph "Base Classes"
+        LayoutProto["LayoutProto&lt;br/&gt;Base layout class"]
+    end
+    
+    subgraph "Core Layouts"
+        StackLayout["StackLayout&lt;br/&gt;Linear arrangements"]
+        QuadLayout["QuadLayout&lt;br/&gt;Four-sided layouts"]
+        CircleLayout["CircleLayout&lt;br/&gt;Circular arrangements"]
+        StackCross["StackCross&lt;br/&gt;Cross-layout connections"]
+    end
+    
+    subgraph "Specialized Layouts"
+        HeatmapLayout["HeatmapLayout&lt;br/&gt;ggheatmap()"]
+        OncoLayout["OncoLayout&lt;br/&gt;ggoncoplot()"]
+        UpsetLayout["UpsetLayout&lt;br/&gt;ggupset()"]
+    end
+    
+    LayoutProto --&gt; StackLayout
+    LayoutProto --&gt; QuadLayout
+    LayoutProto --&gt; CircleLayout
+    LayoutProto --&gt; StackCross
+    
+    QuadLayout --&gt; HeatmapLayout
+    StackLayout --&gt; OncoLayout
+    StackLayout --&gt; UpsetLayout
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="plot-integration-classes" class="level3" data-number="5.3.2">
+<h3 data-number="5.3.2" class="anchored" data-anchor-id="plot-integration-classes"><span class="header-section-number">5.3.2</span> Plot Integration Classes</h3>
+<p>The plotting system uses a craftsman pattern with specialized ggproto classes. The core plotting functions create CraftBox objects that encapsulate plot behavior:</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">graph TB
+    subgraph "Base Classes"
+        Craftsman["Craftsman&lt;br/&gt;Base plotting behavior"]
+        CraftCross["CraftCross&lt;br/&gt;Cross-layout base"]
+    end
+    
+    subgraph "Implementation Classes"
+        AlignGg["AlignGg&lt;br/&gt;Strict axis alignment"]
+        FreeGg["FreeGg&lt;br/&gt;Free plotting"]
+        CrossGg["CrossGg&lt;br/&gt;Cross-layout plotting"]
+    end
+    
+    subgraph "User Interface"
+        ggalign_func["ggalign()"]
+        ggfree_func["ggfree()"]
+        ggcross_func["ggcross()"]
+    end
+    
+    Craftsman --&gt; AlignGg
+    Craftsman --&gt; FreeGg
+    CraftCross --&gt; CrossGg
+    
+    AlignGg --&gt; ggalign_func
+    FreeGg --&gt; ggfree_func
+    CrossGg --&gt; ggcross_func
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="data-flow-pipeline" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="data-flow-pipeline"><span class="header-section-number">5.4</span> Data Flow Pipeline</h2>
+<p>The system processes data through a well-defined pipeline that transforms input data into aligned visualizations:</p>
+<ol type="1">
+<li><strong>Data Normalization</strong></li>
+</ol>
+<p>The fortification layer standardizes different input types into consistent formats. This includes support for matrices, data frames, and specialized biological data objects.</p>
+<ol start="2" type="1">
+<li><strong>Layout Creation</strong></li>
+</ol>
+<p>Layout objects define the spatial arrangement structure and manage the overall composition.</p>
+<ol start="3" type="1">
+<li><strong>Alignment Processing</strong></li>
+</ol>
+<p>Alignment functions control how observations are ordered and grouped, ensuring consistency across all plots in the layout.</p>
+<ol start="4" type="1">
+<li><strong>Plot Generation</strong></li>
+</ol>
+<p>The core plotting functions integrate individual visualizations while maintaining alignment constraints and data relationships.</p>
+<ol start="5" type="1">
+<li><strong>Final Assembly</strong></li>
+</ol>
+<p>The build system combines all components into the final visualization, handling coordinate systems, themes, and legends.</p>
+</section>
+<section id="two-type-composition-workflows" class="level2" data-number="5.5">
+<h2 data-number="5.5" class="anchored" data-anchor-id="two-type-composition-workflows"><span class="header-section-number">5.5</span> Two-Type Composition Workflows</h2>
+<section id="data-free-composition-architecture" class="level3" data-number="5.5.1">
+<h3 data-number="5.5.1" class="anchored" data-anchor-id="data-free-composition-architecture"><span class="header-section-number">5.5.1</span> Data-Free Composition Architecture</h3>
+<p>Data-free composition represents traditional plot arrangement where individual visualizations maintain independence:</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">graph LR
+    subgraph "Data-Free Workflow"
+        IndependentPlots["Independent ggplot Objects"]
+        LayoutArrangement["Layout Arrangement&lt;br/&gt;align_plots()"]
+        FinalComposition["Final Composition"]
+    end
+    
+    subgraph "Characteristics"
+        NoDataSharing["No data sharing"]
+        FlexibleSizing["Flexible sizing"]
+        SimpleAlignment["Simple spatial alignment"]
+    end
+    
+    IndependentPlots --&gt; LayoutArrangement
+    LayoutArrangement --&gt; FinalComposition
+    
+    NoDataSharing --&gt; IndependentPlots
+    FlexibleSizing --&gt; LayoutArrangement
+    SimpleAlignment --&gt; FinalComposition
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>This approach uses the patch system for integrating external graphics objects, supporting ComplexHeatmap, pheatmap, and other visualization packages.</p>
+</section>
+<section id="data-aware-composition-architecture" class="level3" data-number="5.5.2">
+<h3 data-number="5.5.2" class="anchored" data-anchor-id="data-aware-composition-architecture"><span class="header-section-number">5.5.2</span> Data-Aware Composition Architecture</h3>
+<p>Data-aware composition represents ggalign’s core innovation - ensuring observation consistency across multiple interconnected visualizations:</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">graph TB
+    subgraph "Data-Aware Workflow"
+        SharedData["Shared Data Matrix&lt;br/&gt;Common observations"]
+        AlignmentProcessing["Alignment Processing&lt;br/&gt;fortify_data_frame()"]
+        AlignmentColumns["Alignment Columns&lt;br/&gt;.panel, .index, .x/.y"]
+        LayoutIntegration["Layout Integration"]
+        CoordinatedPlots["Coordinated Plot System"]
+    end
+    
+    subgraph "Key Features"
+        ObservationAlignment["Observation Alignment"]
+        DataConsistency["Data Consistency"]
+        ComplexRelationships["Complex Relationships&lt;br/&gt;One-to-Many, Many-to-Many"]
+    end
+    
+    SharedData --&gt; AlignmentProcessing
+    AlignmentProcessing --&gt; AlignmentColumns
+    AlignmentColumns --&gt; LayoutIntegration
+    LayoutIntegration --&gt; CoordinatedPlots
+    
+    ObservationAlignment --&gt; AlignmentColumns
+    DataConsistency --&gt; LayoutIntegration
+    ComplexRelationships --&gt; CoordinatedPlots
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="alignment-column-system" class="level3" data-number="5.5.3">
+<h3 data-number="5.5.3" class="anchored" data-anchor-id="alignment-column-system"><span class="header-section-number">5.5.3</span> Alignment Column System</h3>
+<p>The data-aware approach automatically generates alignment columns including:</p>
+<ul>
+<li><code>.panel</code>: Panel identification for axis alignment</li>
+<li><code>.index</code>: Integer index of original observations<br>
+</li>
+<li><code>.x</code>/<code>.y</code>: Integer coordinates for positioning</li>
+<li><code>.discrete_x</code>/<code>.discrete_y</code>: Factor labels for discrete positioning</li>
+</ul>
+</section>
+<section id="relationship-type-support" class="level3" data-number="5.5.4">
+<h3 data-number="5.5.4" class="anchored" data-anchor-id="relationship-type-support"><span class="header-section-number">5.5.4</span> Relationship Type Support</h3>
+<p>ggalign’s data-aware composition uniquely supports complex relationship types:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 34%">
+<col style="width: 10%">
+<col style="width: 16%">
+<col style="width: 38%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Relationship Type</th>
+<th>ggalign</th>
+<th>Other Tools</th>
+<th>Use Case</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>One-to-One</td>
+<td>✅</td>
+<td>✅</td>
+<td>Direct observation mapping</td>
+</tr>
+<tr class="even">
+<td>One-to-Many/Many-to-One</td>
+<td>✅</td>
+<td>❌</td>
+<td>Hierarchical relationships</td>
+</tr>
+<tr class="odd">
+<td>Many-to-Many</td>
+<td>✅</td>
+<td>❌</td>
+<td>Complex cross-mappings</td>
+</tr>
+<tr class="even">
+<td>Crosswise</td>
+<td>✅</td>
+<td>❌</td>
+<td>Cross-layout connections</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="scheme-system-architecture" class="level2" data-number="5.6">
+<h2 data-number="5.6" class="anchored" data-anchor-id="scheme-system-architecture"><span class="header-section-number">5.6</span> Scheme System Architecture</h2>
+<p>The scheme system provides fine-grained control over plot behavior through three main types:</p>
+<ol type="1">
+<li><strong>Data Schemes</strong></li>
+</ol>
+<p>Data schemes transform plot data before rendering, allowing consistent transformations across multiple geoms.</p>
+<ol start="2" type="1">
+<li><strong>Theme Schemes</strong></li>
+</ol>
+<p>Theme schemes apply consistent styling across all plots in a layout, ensuring visual coherence.</p>
+<ol start="3" type="1">
+<li><strong>Alignment Schemes</strong></li>
+</ol>
+<p>Alignment schemes control how plots interact with the layout system, including guide collection and spacing behavior.</p>
+</section>
+<section id="focus-and-contribution-of-ggalign" class="level2" data-number="5.7">
+<h2 data-number="5.7" class="anchored" data-anchor-id="focus-and-contribution-of-ggalign"><span class="header-section-number">5.7</span> Focus and Contribution of <code>ggalign</code></h2>
+<p>ggalign’s primary contribution lies in solving the <strong>observation alignment problem</strong> in multi-plot compositions. Traditional tools typically focus on spatial arrangement, while ggalign ensures that:</p>
+<ol type="1">
+<li><strong>Identical observations maintain consistent positions</strong> across all plots</li>
+<li><strong>Complex data relationships</strong> (hierarchical, many-to-many) are properly handled</li>
+<li><strong>Automatic synchronization</strong> occurs without manual coordinate management</li>
+<li><strong>ggplot2 ecosystem compatibility</strong> is maintained throughout</li>
+</ol>
+<p>This contribution enables sophisticated visualizations for high-dimensional data contexts such as genomics, transcriptomics, and microbiome studies, where observation consistency across multiple views is critical for meaningful interpretation.</p>
+<hr>
+<p>In summary, the design architecture provides a solid foundation for understanding how ggalign’s components work together to create powerful, aligned visualizations while maintaining the flexibility and familiarity of the ggplot2 ecosystem.</p>
 
 
 </section>
@@ -989,13 +1324,13 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./getting-started.html" class="pagination-link" aria-label="Get Started">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Get Started</span></span>
+      <a href="./free.html" class="pagination-link" aria-label="Fine-Grained Alignment Control">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Fine-Grained Alignment Control</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./plot-composer.html" class="pagination-link" aria-label="Plot Composer">
-        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Plot Composer</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./data-aware.html" class="pagination-link" aria-label="Data-Aware Composition">
+        <span class="nav-page-text">Data-Aware Composition</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -1004,4 +1339,4 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/Yunuuuu/ggalign-book/blob/main/data-free.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/Yunuuuu/ggalign-book/edit/main/data-free.qmd" class="toc-action"><i class="bi empty"></i>Edit this page</a></li><li><a href="https://github.com/Yunuuuu/ggalign-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/Yunuuuu/ggalign-book/blob/main/design.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/Yunuuuu/ggalign-book/edit/main/design.qmd" class="toc-action"><i class="bi empty"></i>Edit this page</a></li><li><a href="https://github.com/Yunuuuu/ggalign-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>

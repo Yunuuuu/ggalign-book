@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>13&nbsp; Operators – ggalign: Bridging the Grammar of Graphics and Complex layout</title>
+<title>15&nbsp; Operators – ggalign: Bridging the Grammar of Graphics and Complex layout</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -66,7 +66,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./schemes.html" rel="next">
-<link href="./circle-layout.html" rel="prev">
+<link href="./multiple-quad-layouts.html" rel="prev">
 <link href="./cover.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -111,7 +111,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
 
-<meta name="twitter:title" content="13&nbsp; Operators – ggalign: Bridging the Grammar of Graphics and Complex layout">
+<meta name="twitter:title" content="15&nbsp; Operators – ggalign: Bridging the Grammar of Graphics and Complex layout">
 <meta name="twitter:description" content="">
 <meta name="twitter:image" content="operator_files/figure-html/unnamed-chunk-1-1.png">
 <meta name="twitter:card" content="summary_large_image">
@@ -297,7 +297,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data-aware.html">Data-Aware Composition</a></li><li class="breadcrumb-item"><a href="./operator.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Operators</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data-aware.html">Data-Aware Composition</a></li><li class="breadcrumb-item"><a href="./operator.html"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Operators</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -355,7 +355,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./getting-started.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Basic example</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Get Started</span></span></a>
   </div>
 </li>
       </ul>
@@ -383,6 +383,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
       </ul>
   </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./design.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Design Philosophy and Architecture</span></span></a>
+  </div>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="./data-aware.html" class="sidebar-item-text sidebar-link">
@@ -394,78 +400,119 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./stack-layout.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">stack layout</span></span></a>
+  <a href="./data-aware-overview.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Overview</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./heatmap-layout.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">heatmap layout</span></span></a>
+  <a href="./stack-layout.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Stack Layout</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./quad-layout.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">quad-layout</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Quad-side Layout</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./layout-customize.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Layout customize</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./initialize-plot.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Initialize Plot</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./annotate-observations.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Annotate observations</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./multiple-quad-layouts.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">A list of QuadLayout</span></span></a>
+  <a href="./heatmap-layout.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Heatmap Layout</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./circle-layout.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">circle layout</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Circle Layout</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./layout-customize.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Customize Layout</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./initialize-plot.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Integrate Plots</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./annotate-observations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Annotate Observations</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./multiple-quad-layouts.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Nested Layouts</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./operator.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Operators</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Operators</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./schemes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Schemes</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./difference-with-ggplot2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Difference with ggplot2</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Schemes</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./oncoplot.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">ggoncoplot</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">ggoncoplot</span></span></a>
   </div>
 </li>
       </ul>
   </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Others</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./case-gallery.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Case Gallery</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./benchmark.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Benchmark</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./difference-with-ggplot2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Difference with ggplot2</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./qa.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Q &amp; A</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./conclusion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Conclusion</span></span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -476,17 +523,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#addition-operator" id="toc-addition-operator" class="nav-link active" data-scroll-target="#addition-operator"><span class="header-section-number">13.1</span> Addition operator</a></li>
-  <li><a href="#logical-and-operator" id="toc-logical-and-operator" class="nav-link" data-scroll-target="#logical-and-operator"><span class="header-section-number">13.2</span> logical AND operator</a></li>
-  <li><a href="#subtraction-operator" id="toc-subtraction-operator" class="nav-link" data-scroll-target="#subtraction-operator"><span class="header-section-number">13.3</span> Subtraction operator</a>
+  <li><a href="#addition-operator" id="toc-addition-operator" class="nav-link active" data-scroll-target="#addition-operator"><span class="header-section-number">15.1</span> Addition Operator</a></li>
+  <li><a href="#logical-and-operator" id="toc-logical-and-operator" class="nav-link" data-scroll-target="#logical-and-operator"><span class="header-section-number">15.2</span> Logical AND Operator</a></li>
+  <li><a href="#subtraction-operator" id="toc-subtraction-operator" class="nav-link" data-scroll-target="#subtraction-operator"><span class="header-section-number">15.3</span> Subtraction Operator</a>
   <ul class="collapse">
-  <li><a href="#sec-quad-layout-subtract" id="toc-sec-quad-layout-subtract" class="nav-link" data-scroll-target="#sec-quad-layout-subtract"><span class="header-section-number">13.3.1</span> <code>quad_layout()</code></a></li>
-  <li><a href="#stack_layout" id="toc-stack_layout" class="nav-link" data-scroll-target="#stack_layout"><span class="header-section-number">13.3.2</span> <code>stack_layout()</code></a></li>
+  <li><a href="#sec-quad-layout-subtract" id="toc-sec-quad-layout-subtract" class="nav-link" data-scroll-target="#sec-quad-layout-subtract"><span class="header-section-number">15.3.1</span> <code>quad_layout()</code></a></li>
+  <li><a href="#stack_layout" id="toc-stack_layout" class="nav-link" data-scroll-target="#stack_layout"><span class="header-section-number">15.3.2</span> <code>stack_layout()</code></a></li>
   </ul></li>
-  <li><a href="#with_quad" id="toc-with_quad" class="nav-link" data-scroll-target="#with_quad"><span class="header-section-number">13.4</span> <code>with_quad()</code></a>
+  <li><a href="#with_quad" id="toc-with_quad" class="nav-link" data-scroll-target="#with_quad"><span class="header-section-number">15.4</span> <code>with_quad()</code></a>
   <ul class="collapse">
-  <li><a href="#quad_layout" id="toc-quad_layout" class="nav-link" data-scroll-target="#quad_layout"><span class="header-section-number">13.4.1</span> <code>quad_layout()</code></a></li>
-  <li><a href="#stack_layout-1" id="toc-stack_layout-1" class="nav-link" data-scroll-target="#stack_layout-1"><span class="header-section-number">13.4.2</span> <code>stack_layout()</code></a></li>
+  <li><a href="#quad_layout" id="toc-quad_layout" class="nav-link" data-scroll-target="#quad_layout"><span class="header-section-number">15.4.1</span> <code>quad_layout()</code></a></li>
+  <li><a href="#stack_layout-1" id="toc-stack_layout-1" class="nav-link" data-scroll-target="#stack_layout-1"><span class="header-section-number">15.4.2</span> <code>stack_layout()</code></a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/Yunuuuu/ggalign-book/blob/main/operator.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/Yunuuuu/ggalign-book/edit/main/operator.qmd" class="toc-action"><i class="bi empty"></i>Edit this page</a></li><li><a href="https://github.com/Yunuuuu/ggalign-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="quarto-other-links"><h2>Other Links</h2><ul><li><a href="https://yunuuuu.github.io/ggalign"><i class="bi bi-journal-text"></i>ggalign reference</a></li><li><a href="https://yunuuuu.github.io/ggalign-gallery"><i class="bi bi-grid-1x2-fill"></i>ggalign gallery</a></li><li><a href="https://www.biorxiv.org/content/10.1101/2025.02.06.636847v1"><i class="bi bi-layout-text-sidebar-reverse"></i>ggalign manuscript</a></li></ul></div><div class="quarto-code-links"><h2>Code Links</h2><ul><li><a href="https://github.com/Yunuuuu/ggalign"><i class="bi bi-code-square"></i>ggalign repo</a></li></ul></div></nav>
@@ -495,9 +542,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data-aware.html">Data-Aware Composition</a></li><li class="breadcrumb-item"><a href="./operator.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Operators</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data-aware.html">Data-Aware Composition</a></li><li class="breadcrumb-item"><a href="./operator.html"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Operators</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="sec-operators" class="quarto-section-identifier"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Operators</span></span></h1>
+<h1 class="title"><span id="sec-operators" class="quarto-section-identifier"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Operators</span></span></h1>
 </div>
 
 
@@ -536,13 +583,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(small_mat) <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"column"</span>, <span class="fu">seq_len</span>(<span class="fu">ncol</span>(small_mat)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<section id="addition-operator" class="level2" data-number="13.1">
-<h2 data-number="13.1" class="anchored" data-anchor-id="addition-operator"><span class="header-section-number">13.1</span> Addition operator</h2>
+<section id="addition-operator" class="level2" data-number="15.1">
+<h2 data-number="15.1" class="anchored" data-anchor-id="addition-operator"><span class="header-section-number">15.1</span> Addition Operator</h2>
 <blockquote class="blockquote">
 <p><code>+</code>: adds elements to the active plot in the active layout.</p>
 </blockquote>
 <p>The <code>+</code> operator is straightforward and should be used as needed.</p>
-<p>In <code>stack_layout()</code>, a nested layout will only occur if you pass a <code>quad_layout()</code> into <code>stack_layout()</code> (<a href="multiple-quad-layouts.html" class="quarto-xref"><span>Chapter 11</span></a>). If the active context in the <code>stack_layout()</code> is <code>quad_layout()</code>, this <code>quad_layout()</code> is treated as the active layout, and the <code>+</code> operator will add elements to it, following the same principles as in <code>quad_layout()</code>. Otherwise, the <code>stack_layout()</code> itself is treated as the active layout, and the <code>+</code> operator will add elements directly to this plot.</p>
+<p>In <code>stack_layout()</code>, a nested layout will only occur if you pass a <code>quad_layout()</code> into <code>stack_layout()</code> (<span class="quarto-unresolved-ref">?sec-multiple-quad-layouts</span>). If the active context in the <code>stack_layout()</code> is <code>quad_layout()</code>, this <code>quad_layout()</code> is treated as the active layout, and the <code>+</code> operator will add elements to it, following the same principles as in <code>quad_layout()</code>. Otherwise, the <code>stack_layout()</code> itself is treated as the active layout, and the <code>+</code> operator will add elements directly to this plot.</p>
 <p><code>circle_layout()</code> works similarly to <code>stack_layout()</code>, but it does not support nested layouts. Therefore, the active layout in <code>circle_layout()</code> will always be the <code>circle_layout()</code> itself.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stack_alignh</span>(small_mat) <span class="sc">+</span></span>
@@ -579,8 +626,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="logical-and-operator" class="level2" data-number="13.2">
-<h2 data-number="13.2" class="anchored" data-anchor-id="logical-and-operator"><span class="header-section-number">13.2</span> logical AND operator</h2>
+<section id="logical-and-operator" class="level2" data-number="15.2">
+<h2 data-number="15.2" class="anchored" data-anchor-id="logical-and-operator"><span class="header-section-number">15.2</span> Logical AND Operator</h2>
 <blockquote class="blockquote">
 <p><code>&amp;</code>: applies elements to all plots in the layout including plots in the nested layout.</p>
 </blockquote>
@@ -607,11 +654,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="subtraction-operator" class="level2" data-number="13.3">
-<h2 data-number="13.3" class="anchored" data-anchor-id="subtraction-operator"><span class="header-section-number">13.3</span> Subtraction operator</h2>
+<section id="subtraction-operator" class="level2" data-number="15.3">
+<h2 data-number="15.3" class="anchored" data-anchor-id="subtraction-operator"><span class="header-section-number">15.3</span> Subtraction Operator</h2>
 <p>The <code>-</code> operator is more powerful than the <code>&amp;</code> operator, enabling flexible addition of elements to multiple plots. While its use might initially seem unintuitive, the reason behind this is that <code>-</code> shares the same precedence group as <code>+</code>, which allows it to seamlessly combine with <code>+</code>.</p>
-<section id="sec-quad-layout-subtract" class="level3" data-number="13.3.1">
-<h3 data-number="13.3.1" class="anchored" data-anchor-id="sec-quad-layout-subtract"><span class="header-section-number">13.3.1</span> <code>quad_layout()</code></h3>
+<section id="sec-quad-layout-subtract" class="level3" data-number="15.3.1">
+<h3 data-number="15.3.1" class="anchored" data-anchor-id="sec-quad-layout-subtract"><span class="header-section-number">15.3.1</span> <code>quad_layout()</code></h3>
 <p>For <code>ggheatmap()</code>/<code>quad_layout()</code>, if the active context is the <code>ggheatmap()</code>/<code>quad_layout()</code> itself (no active annotation), the <code>-</code> operator behaves similarly to <code>&amp;</code>. It applies the specified elements to all plots within the layout.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize the heatmap</span></span>
@@ -653,8 +700,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="stack_layout" class="level3" data-number="13.3.2">
-<h3 data-number="13.3.2" class="anchored" data-anchor-id="stack_layout"><span class="header-section-number">13.3.2</span> <code>stack_layout()</code></h3>
+<section id="stack_layout" class="level3" data-number="15.3.2">
+<h3 data-number="15.3.2" class="anchored" data-anchor-id="stack_layout"><span class="header-section-number">15.3.2</span> <code>stack_layout()</code></h3>
 <p>For <code>stack_layout()</code>, if the active layout is the <code>stack_layout()</code> itself, <code>-</code> applies the elements to all plots in the layout except the nested <code>ggheatmap()</code>/<code>quad_layout()</code>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stack_alignv</span>(small_mat) <span class="sc">+</span></span>
@@ -678,12 +725,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>When the active layout is the nested <code>ggheatmap()</code>/<code>quad_layout()</code>, the <code>-</code> operator applies the elements to this nested layout, following the same principles as in the <a href="#sec-quad-layout-subtract" class="quarto-xref"><span>Section 13.3.1</span></a>.</p>
+<p>When the active layout is the nested <code>ggheatmap()</code>/<code>quad_layout()</code>, the <code>-</code> operator applies the elements to this nested layout, following the same principles as in the <a href="#sec-quad-layout-subtract" class="quarto-xref"><span>Section 15.3.1</span></a>.</p>
 <p>Want apply elements for plots in both <code>stack_layout()</code> and the nested <code>ggheatmap()</code>/<code>quad_layout()</code> at the same time? refer to the following section.</p>
 </section>
 </section>
-<section id="with_quad" class="level2" data-number="13.4">
-<h2 data-number="13.4" class="anchored" data-anchor-id="with_quad"><span class="header-section-number">13.4</span> <code>with_quad()</code></h2>
+<section id="with_quad" class="level2" data-number="15.4">
+<h2 data-number="15.4" class="anchored" data-anchor-id="with_quad"><span class="header-section-number">15.4</span> <code>with_quad()</code></h2>
 <p>The <code>with_quad()</code> function adjusts the context in which elements are applied in <code>ggheatmap()</code>/<code>quad_layout()</code>. It allows you to control how objects such as themes, scales, and other plot elements are applied to specific annotation stacks or the main plot, without changing the currently active context.</p>
 <p>This function accepts three arguments:</p>
 <ol type="1">
@@ -691,8 +738,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>position</strong>: A string containing one or more of <code>"t"</code>, <code>"l"</code>, <code>"b"</code>, and <code>"r"</code> specifies the context for applying <code>x</code>.</li>
 <li><strong>main</strong>: A single boolean value indicates whether <code>x</code> should also apply to the main plot within <code>ggheatmap()</code>/<code>quad_layout()</code>. Only used when <code>position</code> is not <code>NULL</code>.</li>
 </ol>
-<section id="quad_layout" class="level3" data-number="13.4.1">
-<h3 data-number="13.4.1" class="anchored" data-anchor-id="quad_layout"><span class="header-section-number">13.4.1</span> <code>quad_layout()</code></h3>
+<section id="quad_layout" class="level3" data-number="15.4.1">
+<h3 data-number="15.4.1" class="anchored" data-anchor-id="quad_layout"><span class="header-section-number">15.4.1</span> <code>quad_layout()</code></h3>
 <p>Default Behavior by wrapping object with <code>with_quad()</code>:</p>
 <ul>
 <li>When <code>ggheatmap()</code>/<code>quad_layout()</code> has no active annotation stack, objects added via <code>+</code> or <code>-</code> operate normally without <code>with_quad()</code>.</li>
@@ -806,8 +853,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="stack_layout-1" class="level3" data-number="13.4.2">
-<h3 data-number="13.4.2" class="anchored" data-anchor-id="stack_layout-1"><span class="header-section-number">13.4.2</span> <code>stack_layout()</code></h3>
+<section id="stack_layout-1" class="level3" data-number="15.4.2">
+<h3 data-number="15.4.2" class="anchored" data-anchor-id="stack_layout-1"><span class="header-section-number">15.4.2</span> <code>stack_layout()</code></h3>
 <p>When the active layout is the <code>stack_layout()</code> itself, by default, by wrapping object with <code>with_quad()</code>, <code>-</code> operator will apply changes to all plots along the <code>stack_layout()</code>, which means if the stack layout is in horizontal, <code>-</code> operator will also add the element to the left and right annotation, if the stack layout is in vertical, <code>-</code> operator will also add element to the top and bottom annotation. In these cases, the object will also be applied to the main plot by default unless specified by <code>main</code> argument otherwise.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stack_alignv</span>(small_mat) <span class="sc">+</span></span>
@@ -1295,13 +1342,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./circle-layout.html" class="pagination-link" aria-label="circle layout">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">circle layout</span></span>
+      <a href="./multiple-quad-layouts.html" class="pagination-link" aria-label="Nested Layouts">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Nested Layouts</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./schemes.html" class="pagination-link" aria-label="Schemes">
-        <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Schemes</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Schemes</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
