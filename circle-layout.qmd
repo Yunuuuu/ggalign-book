@@ -1,4 +1,4 @@
-# circle layout {#sec-circle-layout}
+# Circle Layout {#sec-circle-layout}
 `circle_layout()` arranges plots in a circular, each plot will occupy one circle
 track. Based on whether we want to align the discrete or continuous variables,
 there are two types of circle layouts:
@@ -34,7 +34,7 @@ circle_continuous(mpg, radial = coord_radial(inner.radius = 0.1)) +
 #| eval: false
 ```
 
-## radial
+## Radial
 the core argument of `circle_layout()` is `radial`, which should be a
 `coord_radial()` object that defines the global parameters for `coord_radial()`
 across all plots in the layout. The parameters `start`, `end`, `direction`, and
@@ -98,7 +98,7 @@ circle_discrete(small_mat, radial = coord_radial(inner.radius = 0.1)) +
     scale_fill_brewer(palette = "Dark2", guide = "none")
 ```
 
-## spacing
+## Spacing
 The spacing between plot tracks in `circle_layout()` is controlled
 `panel.spacing.r` parameter. The `panel.spacing.r` parameter sets the spacing
 between the individual plot panels (tracks) within the circle layout. Increasing

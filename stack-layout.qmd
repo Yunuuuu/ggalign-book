@@ -1,4 +1,5 @@
-# stack layout {#sec-stack-layout}
+# Stack Layout {#sec-stack-layout}
+
 `stack_layout()` arranges plots either horizontally or vertically. Based on
 whether we want to align the discrete or continuous variables, there are two
 types of stack layouts:
@@ -386,7 +387,7 @@ stack_continuousv(mpg) +
     theme_bw()
 ```
 
-## active plot {#sec-stack-layout-active-plot}
+## Active Plot {#sec-stack-layout-active-plot}
 As mentioned earlier, the active plot refers to the plot that subsequent ggplot2
 components will target. The package provide two functions to work with active
 plot for `stack_layout`.
@@ -440,7 +441,7 @@ By setting `what = NULL` (or alias `stack_active()`), we remove the active plot.
 This is particularly useful when the active plot is a nested `Layout` object, as
 any additions would otherwise be directed to that nested `Layout`. By removing
 the active plot, you can continue adding components to the `StackLayout`. We'll
-introduce the nested layout of `StackLayout` in @sec-multiple-quad-layouts.
+introduce the nested layout of `StackLayout` in @sec-nested-layouts.
 
 In the next chapter, we will dive into the `HeatmapLayout`, which can take the
 `StackLayout` as input. Heatmap layouts offer additional features for aligning

@@ -1,4 +1,4 @@
-# Introduction
+# Introduction {#sec-intro}
 
 The `ggalign` package provides a flexible and powerful framework for composable
 visualization, making it easy to build complex multi-plot layouts—such as
@@ -13,6 +13,15 @@ Designed for high-dimensional data common in fields like genomics,
 transcriptomics, and microbiome research, `ggalign` helps you create
 publication-ready figures by composing diverse plots into cohesive, structured
 layouts.
+
+`ggalign` fills a critical gap in the R visualization ecosystem by providing:
+
+- **Seamless ggplot2 integration**: Full compatibility with geoms, scales, themes, and other ggplot2 components
+- **Automatic data alignment**: No manual coordinate management required
+- **Flexible layout system**: Support for linear, quad, and circular arrangements
+- **Biological data focus**: Specialized functions for genomics, transcriptomics, and clinical data
+- **Publication-ready output**: High-quality figures suitable for scientific publications
+
 
 ## Installation
 
@@ -37,6 +46,26 @@ or from [GitHub](https://github.com/Yunuuuu/ggalign) with:
 # install.packages("remotes")
 remotes::install_github("Yunuuuu/ggalign")
 ```
+
+## Package Input and Output
+
+### Input Types
+
+ggalign accepts diverse input formats to accommodate different data structures commonly used in biological research:
+
+- **Matrices**: Gene expression data, correlation matrices, distance matrices
+- **Data frames**: Clinical data, metadata, experimental conditions
+- **Specialized objects**: MAF objects (maftools), phylogenetic trees (ape), clustering results (hclust)
+- **External graphics**: ComplexHeatmap objects, pheatmap visualizations, base R plots
+
+### Output Types
+
+The package produces two main types of outputs:
+
+1. **Data-Free Compositions**: Standard ggplot2 objects arranged in grids, compatible with all ggplot2 functionality
+2. **Data-Aware Compositions**: Specialized layout objects that maintain observation alignment and can be further customized with additional plots and annotations
+
+Both output types are fully compatible with the ggplot2 ecosystem and can be saved using `ggsave()` or converted to other formats for publication.
 
 ## Plot Composition
 

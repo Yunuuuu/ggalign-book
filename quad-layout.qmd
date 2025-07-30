@@ -1,4 +1,5 @@
-# quad-layout {#sec-quad-layout}
+# Quad-side Layout {#sec-quad-layout}
+
 `quad_layout()` arranges plots around the quad-sides of a main plot, aligning
 both horizontal and vertical axes, and can handle either discrete or continuous
 variables.

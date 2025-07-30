@@ -1,4 +1,4 @@
-# heatmap layout {#sec-heatmap-layout}
+# Heatmap Layout {#sec-heatmap-layout}
 The `heatmap_layout()` function provides a powerful way to create customizable
 heatmaps in R using `ggplot2`. This chapter will guide you through its usage.
 
@@ -52,7 +52,7 @@ is an alias for `heatmap_layout()`.
 #| eval: true
 ```
 
-## input data
+## Input Data
 As mentioned in @sec-input-data, we typically require a matrix for the
 `Layout` which need align discrete variables. Internally, `fortify_matrix()`
 will be used to process the data. You can provide a numeric or character vector,
@@ -63,7 +63,7 @@ a data frame, or any other data type that can be converted into a matrix using
 ggheatmap(small_mat)
 ```
 
-## Main plot (heatmap body) {#sec-heatmap-layout-main-plot}
+## Main Plot (Heatmap Body) {#sec-heatmap-layout-main-plot}
 The `ggheatmap()`/`quad_layout()` functions arrange plots in the Quad-Side
 layout of the main plot. When the layout is initialized, a `ggplot` object is
 automatically created for the main plot.
@@ -126,7 +126,7 @@ ggheatmap(matrix(runif(360L), nrow = 20L), filling = NULL) +
 For more complex customizations of pie charts, you can try using
 `ggforce::geom_arc_bar()` instead.
 
-## rasterization
+## Rasterization
 When working with large heatmaps, it's often beneficial to rasterize the heatmap
 body layer. You can achieve this by using the `raster_magick()` function. The
 `res` argument controls the resolution of the raster image. By default, the
@@ -181,7 +181,7 @@ ggrastr::rasterise(ggheatmap(small_mat), dev = "ragg")
 Furthermore, [ggfx](https://ggfx.data-imaginist.com/) offers many image filters
 that can be applied to ggplot2 layers. See the package for the details.
 
-## annotations {#sec-heatmap-layout-annotations}
+## Annotations {#sec-heatmap-layout-annotations}
 In `ggheatmap()`/`quad_layout()`, annotations are handled by a `stack_layout()`
 object and can be positioned at the top, left, bottom, or right of the main plot
 (heatmap body). `quad_layout()` can align discrete or continuous variables
@@ -278,7 +278,7 @@ in the layout may not fit the data for the annotation.
 In both cases, `quad_anno()` won't initialize the annotation by default,
 instead, you must provide the annotation manually.
 
-## Adding stack layout {#sec-heatmap-layout-add-stack-layout}
+## Adding Stack Layout {#sec-heatmap-layout-add-stack-layout}
 To add a `stack_layout()` to the `ggheatmap()`, we must prevent the automatic
 creation of annotations by `quad_anno()` by setting `initialize = FALSE`. 
 

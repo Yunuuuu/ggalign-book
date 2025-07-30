@@ -1,4 +1,5 @@
-# Initialize Plot
+# Integrate Plots {#sec-integrate-plots}
+
 There are following primary functions for adding plots: 
 
   - `ggalign()`: Create a ggplot object and aligns the axes.
@@ -307,7 +308,7 @@ ggheatmap(small_mat) +
     align_dendro(aes(color = branch), merge_dendrogram = TRUE)
 ```
 
-## Plot titles
+## Plot Titles
 `ggplot2` only allow add titles in the top or add caption in the bottom. we
 extends this capability, allowing you to place titles around any border of the
 plot using the `patch_titles()` function. 

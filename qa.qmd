@@ -1,0 +1,166 @@
+# Q & A {#sec-qa}
+
+This chapter addresses common questions and troubleshooting scenarios that users encounter when working with ggalign. The questions are organized into theoretical/technical concepts and practical code implementation issues.
+
+## Technical and Theoretical Questions
+
+### Package Compatibility and Integration
+
+**Q: How compatible is ggalign with other R graphics packages?**
+
+A: ggalign provides extensive compatibility through its `patch()` system and `align_plots()` function.
+
+The package can directly integrate:
+- ComplexHeatmap objects
+- pheatmap visualizations  
+- Base R plots and grid graphics
+- ggplot2 objects
+- MAF objects from maftools
+
+If you need to use other arrangement packages like `patchwork` or `cowplot`, you can convert ggalign objects using `ggalignGrob()`, though this will break the panel alignment feature.
+
+**Q: Can ggalign outputs be edited in external software?**
+
+A: Yes, ggalign outputs are standard ggplot2 objects that can be:
+- Saved as vector formats (PDF, SVG) for editing in Illustrator/Inkscape
+- Converted to grobs using `ggalignGrob()` for further manipulation
+- Integrated with other R graphics workflows
+
+### Performance Considerations
+
+**Q: How does ggalign perform with large datasets?**
+
+A: ggalign performance scales with data size and complexity. For large datasets:
+- Matrix operations are optimized for efficiency
+- Consider using rasterization for very large heatmaps
+- The package automatically uses `geom_raster()` for matrices with >20,000 cells
+- Memory usage scales with the number of observations and plots in layouts
+
+**Q: What are the system requirements?**
+
+A: ggalign requires:
+
+- R ≥ 4.0.0
+- ggplot2 ≥ 3.5.2.9000 (development version)
+- Additional dependencies for specialized functions (maftools, ape, etc.)
+
+## Code Implementation Questions
+
+### Gene Ordering and Customization
+
+**Q: How do I customize gene ordering in ggoncoplot?**
+
+A: To manually control row and column ordering in `ggoncoplot()`, first disable automatic ordering, then use `align_order()`:
+
+For row ordering, you can use either numeric indices or character names if your matrix has row names. For column ordering, use `anno_top()` or `anno_bottom()` instead of `anno_left()`.
+
+### Layout Spacing and Margins
+
+**Q: Why are there spaces after setting all plot margins to zero?**
+
+A: Spaces typically result from two sources: 
+
+1. Plot margins within individual plots
+2. Scale expansion automatically added by ggplot2
+
+You can resolve this by removing scale expansion and adjusting margins in the theme.
+
+### Alignment Constraints and Reordering
+
+**Q: Why can't I add two dendrograms with different reorder settings?**
+
+A: ggalign prevents users from reordering the layout direction twice to maintain data consistency.
+
+When `reorder_group = FALSE` is used, reordering occurs within each group. As long as the ordering within each group remains consistent, multiple dendrograms can be placed on the same axis.
+
+### Data Format and Processing
+
+**Q: What data formats does ggalign accept?**
+
+A: ggalign accepts diverse input formats through its fortification system:
+
+- **Matrices**: Gene expression data, correlation matrices
+- **Data frames**: Clinical data, metadata
+- **Specialized objects**: MAF objects (maftools), phylogenetic trees (ape), clustering results (hclust)
+- **External graphics**: ComplexHeatmap objects, pheatmap visualizations
+
+The `fortify_matrix()` and `fortify_data_frame()` functions standardize these inputs into consistent formats.
+
+### Scheme System Usage
+
+**Q: When should I use different scheme types?**
+
+A: The three scheme types serve different purposes:
+
+- **`scheme_data()`**: Apply consistent data transformations across multiple geoms
+- **`scheme_theme()`**: Apply theme modifications to all plots in a layout  
+- **`scheme_align()`**: Control alignment behavior, spacing, and guide collection
+
+Use schemes when you need the same modification applied to multiple plots or geoms within a layout.
+
+### Layout Selection and Design
+
+**Q: Which layout type should I choose for my data?**
+
+A: Layout selection depends on your visualization goals:
+
+- **StackLayout**: Linear sequences, time series, comparative analysis
+- **QuadLayout**: Matrix visualizations, central plot with annotations, heatmap-style figures
+- **CircleLayout**: Phylogenetic data, circular genomic data, radial patterns
+
+QuadLayout is most common for genomics applications, while StackLayout works well for comparative studies.
+
+### Error Troubleshooting
+
+**Q: Common alignment errors and solutions**
+
+A: Frequent alignment issues include:
+
+1. **Mismatched observation counts**: Ensure `NROW(data)` matches across plots
+2. **Missing alignment columns**: Use `ggalign()` instead of `ggfree()` for strict alignment
+3. **Incorrect layout context**: Check `active()` settings and layout switching
+4. **Data format incompatibility**: Verify data types match layout requirements
+
+### Installation and Dependencies
+
+**Q: How do I troubleshoot installation issues?**
+
+A: Common solutions:
+
+1. Update R and ggplot2 to latest versions
+2. Install from r-universe for development versions
+3. Check system dependencies for compilation
+4. Use `remotes::install_github()` for latest features
+
+### Advanced Customization
+
+**Q: How do I create custom alignment functions?**
+
+A: While ggalign provides comprehensive built-in alignment functions (`align_dendro()`, `align_kmeans()`, `align_group()`, `align_order()`), you can create custom ordering by:
+
+1. Using `align_order()` with custom weight functions
+2. Providing manual ordering vectors
+3. Creating custom grouping variables for `align_group()`
+
+**Q: Can I mix different coordinate systems in one layout?**
+
+A: Yes, ggalign supports mixing coordinate systems within layouts. Each plot can have its own coordinate system (Cartesian, polar, etc.), though alignment is maintained through the shared observation structure.
+
+## Best Practices and Recommendations
+
+### Development Workflow
+
+1. **Start with simple layouts** before adding complexity
+2. **Test alignment frequently** during development
+3. **Use consistent data formats** across related plots
+4. **Preview layouts interactively** to catch issues early
+5. **Document complex area specifications** for maintainability
+
+### Performance Optimization
+
+1. **Use rasterization** for large datasets
+2. **Consider data filtering** before visualization
+3. **Optimize memory usage** with selective rendering
+4. **Cache expensive computations** like clustering results
+
+This Q&A chapter addresses the most common challenges users face when implementing ggalign visualizations, providing practical solutions and best practices for effective usage.

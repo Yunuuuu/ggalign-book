@@ -1,0 +1,118 @@
+# Overview {#sec-data-aware-overview}
+
+![General design of Data-Aware Composition](design.png)
+
+## Layout System
+
+At the heart of `ggalign` data-aware composition is an object-oriented `Layout`
+system that integrates seamlessly with `ggplot2`. It provides three core layout
+types:
+
+ - `StackLayout`: Stacks plots horizontally or vertically.
+ - `QuadLayout`: Arranges plots in four quadrants (top, left, bottom, right)
+ around a central plot.
+ - `CircleLayout`: Positions plots in a circular pattern.
+
+Each layout supports both discrete (e.g., categories) and continuous (e.g.,
+numerical) data, and includes specialized alignment functions:
+
+For `StackLayout`:
+
+ - `stack_discrete()`: Align discrete variable along the stack.
+ - `stack_continuous()`: Align continuous variable along the stack.
+ - `stack_layout()`: A unified interface that handles both discrete and continuous data.
+
+For `QuadLayout`: 
+
+ - `quad_continuous()`/`ggside()`: Align continuous variables in both horizontal and vertical directions. 
+ - `quad_discrete()`: Align discrete variables in both horizontal and vertical directions.
+ - `quad_layout()`: A general function that adapts to both data types and directions.
+
+For `CircleLayout`:
+
+ - `circle_discrete()`: Align discrete variable in the circle.
+ - `circle_continuous()`: Align continuous variable in the circle.
+ - `circle_layout()`: A unified interface for both cases.
+
+> Note: Throughout this book, we refer to the main layout
+functions—`stack_layout()`, `quad_layout()`, and `circle_layout()`—as the
+primary interfaces, even when using their specialized variants.
+
+
+## Supporting Systems
+
+In addition to the core `Layout` system, `ggalign` provides several helper systems
+that enhance data-aware composition by managing how observations are grouped,
+ordered, and supplemented with additional plot elements. These systems work
+together with layouts to create flexible and insightful multi-plot arrangements:
+
+  1. Layout customization:
+      - `align_group()`: Group observations into panel with a group variable.
+      - `align_kmeans()`: Group observations into panel by kmeans.
+      - `align_order()`: Reorder layout observations based on statistical weights or by manually specifying the observation index.
+      - `align_order2`: Reorder observations using an arbitrary statistical function
+      - `align_hclust()`: Reorder or group observations based on hierarchical clustering.
+  2. Plot adding:
+      - `align_dendro()`: Add a dendrogram to the plot, and reorder or group observations based on hierarchical clustering.
+      - `ggalign()`: Initialize a ggplot object and align the axes.
+      - `ggmark()`: Add a plot to annotate selected observations.
+      - `ggcross()`: Initialize a ggplot object to connect two different layout crosswise
+      - `ggfree()`: Initialize a ggplot object without aligning the axes.
+
+![Overview of Data-Aware Composition](overview.png)
+
+## Input data {#sec-input-data}
+Before exploring data-aware compostion, it’s important to understand how axis alignment works in `ggplot2`.
+
+ - For continuous axes, alignment is straightforward: simply ensure the axis
+ limits are consistent across plots.
+
+ - For discrete axes, alignment is more challenging. You must have the same set
+ of unique values and maintain a consistent ordering across all plots. In
+ ggplot2, this can be difficult when working with long-format data frames
+ because the factor levels or ordering may differ.
+
+`ggalign` addresses this challenge by using matrix inputs for layouts that align
+discrete axes (e.g., the `*_discrete()` functions). In this approach:
+
+ - Each row of the matrix represents a unique discrete value (called an
+ "observation").
+
+ - The total number of rows defines the complete set of unique discrete values.
+
+ - Reordering rows in the matrix controls the ordering of observations
+ consistently across all linked plots.
+
+This design is especially useful for layouts that align axes in both directions
+(horizontal and vertical), such as heatmap, since matrices can be easily
+transposed to switch row and column alignment.
+
+The matrix is only used for positioning. Before rendering, `ggalign` will
+reorder the matrix rows based on the layout, and automatically converts it into
+a long-format data frame — the standard input for `ggplot2`.
+
+The main difference between discrete and continuous variable alignment in
+`ggalign` lies in the input data:
+
+ - Discrete variables require a matrix as input.
+
+ - Continuous variables require a data frame, just like in standard ggplot2.
+
+> Terminology: `"Observations"` and `"discrete variables"` are interchangeable
+here. Any mention of `"observations"` applies to discrete variables too.
+
+## Workflow
+
+The data-aware composition follows a systematic process with five main steps:
+
+| Step                         | Purpose                      | Core Functions                                       | Description                                      |
+| ---------------------------- | ---------------------------- | ---------------------------------------------------- | ------------------------------------------------ |
+| **1. Data Preparation**      | Standardize input formats    | `fortify_matrix()`, `fortify_data_frame()`           | Convert diverse data types to consistent formats |
+| **2. Layout Initialization** | Create layout container      | `stack_layout()`, `quad_layout()`, `circle_layout()` | Define spatial arrangement structure             |
+| **3. Data Alignment**        | Order and group observations | `align_order()`, `align_group()`, `align_dendro()`   | Control observation ordering and grouping        |
+| **4. Plot Integration**      | Add coordinated plots        | `ggalign()`, `ggfree()`, `ggcross()`                 | Integrate plots with alignment constraints       |
+| **5. Scheme Application**    | Control plot behavior        | `scheme_data()`, `scheme_theme()`, `scheme_align()`  | Fine-tune plot appearance and behavior           |
+
+Note that during the actual application of this toolkit, some of these 5 steps may not be necessary or clearly displayed, but this workflow covers the entire general calculation process quite well, making it easier to understand how to transform input data into a result visualization.
+
+

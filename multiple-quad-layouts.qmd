@@ -1,5 +1,6 @@
-# A list of `quad_layout()` {#sec-multiple-quad-layouts}
-Similarly, `stack_layout()` can be added to a `quad_layout()`, and a
+# Nested Layouts {#sec-nested-layouts}
+
+Owing to the modular design, `stack_layout()` can be added to a `quad_layout()`, and a
 `quad_layout()` can also be added to a `stack_layout()`.
 
 ```{r setup}
