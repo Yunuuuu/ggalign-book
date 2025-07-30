@@ -4,15 +4,15 @@ This chapter explores the theoretical foundations and architectural principles u
 
 ## Core Design Philosophy
 
-ggalign is built around three fundamental design principles that distinguish it from other visualization packages:
+`ggalign` is built around three fundamental design principles that distinguish it from other visualization packages:
 
 1. **Observation-Centric Alignment**
 
-The central innovation of ggalign is ensuring that identical observations maintain consistent positions across multiple interconnected plots. This goes beyond simple spatial arrangement to create true data-aware composition where the same biological samples, genes, or other entities appear in exactly the same positions across all visualizations.
+The central innovation of `ggalign` is ensuring that identical observations maintain consistent positions across multiple interconnected plots. This goes beyond simple spatial arrangement to create true data-aware composition where the same biological samples, genes, or other entities appear in exactly the same positions across all visualizations.
 
 2. **Grammar of Graphics Integration**
 
-ggalign is designed as a native ggplot2 extension, maintaining full compatibility with the grammar of graphics. This means you can use all familiar ggplot2 components (geoms, scales, themes, etc.) while gaining the additional power of observation alignment.
+`ggalign` is designed as a native ggplot2 extension, maintaining full compatibility with the grammar of graphics. This means you can use all familiar ggplot2 components (geoms, scales, themes, etc.) while gaining the additional power of observation alignment.
 
 3. **Declarative Syntax**
 
@@ -20,7 +20,7 @@ Users specify what they want to achieve rather than how to implement it. The pac
 
 ## System Architecture Overview
 
-The ggalign architecture consists of multiple interconnected layers that work together to create aligned, composable visualizations:
+The `ggalign` architecture consists of multiple interconnected layers that work together to create aligned, composable visualizations:
 
 ```{mermaid}
 graph TB
@@ -220,7 +220,7 @@ The data-aware approach automatically generates alignment columns including:
 
 ggalign's data-aware composition uniquely supports complex relationship types:
 
-| Relationship Type       | ggalign | Other Tools | Use Case                   |
+| Relationship Type       | `ggalign` | Other Tools | Use Case                   |
 | ----------------------- | ------- | ----------- | -------------------------- |
 | One-to-One              | ✅       | ✅           | Direct observation mapping |
 | One-to-Many/Many-to-One | ✅       | ❌           | Hierarchical relationships |
@@ -245,7 +245,7 @@ Alignment schemes control how plots interact with the layout system, including g
 
 ## Focus and Contribution of `ggalign`
 
-ggalign's primary contribution lies in solving the **observation alignment problem** in multi-plot compositions. Traditional tools typically focus on spatial arrangement, while ggalign ensures that:
+ggalign's primary contribution lies in solving the **observation alignment problem** in multi-plot compositions. Traditional tools typically focus on spatial arrangement, while `ggalign` ensures that:
 
 1. **Identical observations maintain consistent positions** across all plots
 2. **Complex data relationships** (hierarchical, many-to-many) are properly handled

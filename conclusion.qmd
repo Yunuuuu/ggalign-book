@@ -1,14 +1,14 @@
 # Conclusion {#sec-conclusion}
 
-This tutorial book has provided a comprehensive guide to the ggalign package, covering everything from basic concepts to advanced applications. Let's summarize the key takeaways and look ahead to future developments.
+This tutorial book has provided a comprehensive guide to the `ggalign` package, covering everything from basic concepts to advanced applications. Let's summarize the key takeaways and look ahead to future developments.
 
 ## Key Concepts Mastered
 
-Throughout this book, you've learned the fundamental concepts that make ggalign unique in the R visualization ecosystem:
+Throughout this book, you've learned the fundamental concepts that make `ggalign` unique in the R visualization ecosystem:
 
 ### Observation-Centric Alignment
 
-The core innovation of ggalign is ensuring that identical observations maintain consistent positions across multiple interconnected plots. This goes beyond simple spatial arrangement to create true data-aware composition.
+The core innovation of `ggalign` is ensuring that identical observations maintain consistent positions across multiple interconnected plots. This goes beyond simple spatial arrangement to create true data-aware composition.
 
 ### Two-Type Composition System
 You've mastered both composition approaches:
@@ -26,11 +26,11 @@ You've explored all three core layout types:
 
 ## Unique Capabilities Unlocked
 
-ggalign provides capabilities that distinguish it from other visualization frameworks:
+`ggalign` provides capabilities that distinguish it from other visualization frameworks:
 
 - **Complex Relationship Support**
 
-    Unlike other tools, ggalign supports one-to-many, many-to-many, and crosswise relationships, enabling sophisticated multi-dimensional data visualizations.
+    Unlike other tools, `ggalign` supports one-to-many, many-to-many, and crosswise relationships, enabling sophisticated multi-dimensional data visualizations.
 
 - **Full ggplot2 Integration**
 
@@ -48,7 +48,7 @@ Through the examples and case studies, you've learned essential best practices:
 
 ## Future Directions
 
-The ggalign package continues to evolve with new features and improvements. Key areas of ongoing development include:
+The `ggalign` package continues to evolve with new features and improvements. Key areas of ongoing development include:
 
 - Enhanced performance optimizations for large datasets
 - Additional specialized layout types for domain-specific applications
@@ -57,7 +57,7 @@ The ggalign package continues to evolve with new features and improvements. Key 
 
 ## Getting Help and Contributing
 
-As you continue using ggalign in your work:
+As you continue using `ggalign` in your work:
 
 - **Documentation**: Visit <https://yunuuuu.github.io/ggalign/> for complete reference
 - **Tutorial**: This book is available at <https://yunuuuu.github.io/ggalign-book/>
@@ -67,14 +67,14 @@ As you continue using ggalign in your work:
 
 ## Final Thoughts
 
-ggalign represents a significant advancement in composable visualization for R, particularly for high-dimensional biological data. By mastering the concepts and techniques presented in this book, you're now equipped to create sophisticated, publication-ready visualizations that effectively communicate complex data relationships.
+`ggalign` represents a significant advancement in composable visualization for R, particularly for high-dimensional biological data. By mastering the concepts and techniques presented in this book, you're now equipped to create sophisticated, publication-ready visualizations that effectively communicate complex data relationships.
 
 The package's unique combination of observation alignment, flexible layout systems, and full ggplot2 compatibility makes it an invaluable tool for researchers working with genomics, transcriptomics, clinical data, and other complex datasets requiring multi-view analysis.
 
-Remember that effective visualization is both an art and a science. While ggalign provides the technical foundation, your domain expertise and understanding of your data will guide you in creating meaningful, impactful visualizations that advance scientific understanding.
+Remember that effective visualization is both an art and a science. While `ggalign` provides the technical foundation, your domain expertise and understanding of your data will guide you in creating meaningful, impactful visualizations that advance scientific understanding.
 
-Welcome to the ggalign community, and happy visualizing!
+Welcome to the `ggalign` community, and happy visualizing!
 
 ---
 
-*This concludes the ggalign Tutorial Book. For the most up-to-date information and examples, always refer to the official documentation and community resources.*
+*This concludes the `ggalign` Tutorial Book. For the most up-to-date information and examples, always refer to the official documentation and community resources.*
