@@ -60,10 +60,6 @@ book:
         - difference-with-ggplot2.qmd
         - oncoplot.qmd
 
-    - part: "Cases"
-      chapters:
-        - complete-examples.qmd
-
 bibliography: references.bib
 
 knitr:
