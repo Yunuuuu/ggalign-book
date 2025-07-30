@@ -467,10 +467,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <a href="#specialized-geoms" id="toc-specialized-geoms" class="nav-link" data-scroll-target="#specialized-geoms"><span class="header-section-number">16.5</span> Specialized Geoms</a>
   <ul class="collapse">
 <li><a href="#geom_subtile" id="toc-geom_subtile" class="nav-link" data-scroll-target="#geom_subtile"><span class="header-section-number">16.5.1</span> <code>geom_subtile()</code></a></li>
-  <li><a href="#geom_gshape" id="toc-geom_gshape" class="nav-link" data-scroll-target="#geom_gshape"><span class="header-section-number">16.5.2</span> <code>geom_gshape()</code></a></li>
+  <li><a href="#geom_gshape" id="toc-geom_gshape" class="nav-link" data-scroll-target="#geom_gshape"><span class="header-section-number">16.5.2</span> geom_gshape()</a></li>
   </ul>
 </li>
-  <li><a href="#ggalign-attributes" id="toc-ggalign-attributes" class="nav-link" data-scroll-target="#ggalign-attributes"><span class="header-section-number">16.6</span> <code>ggalign</code> Attributes</a></li>
+  <li><a href="#data-attributes" id="toc-data-attributes" class="nav-link" data-scroll-target="#data-attributes"><span class="header-section-number">16.6</span> Data Attributes</a></li>
   <li><a href="#integration-with-gistic-results-from-maftools" id="toc-integration-with-gistic-results-from-maftools" class="nav-link" data-scroll-target="#integration-with-gistic-results-from-maftools"><span class="header-section-number">16.7</span> Integration with GISTIC Results from <code>maftools</code></a></li>
   </ul><div class="toc-actions"><ul><li><a href="https://github.com/Yunuuuu/ggalign-book/blob/main/oncoplot.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/Yunuuuu/ggalign-book/edit/main/oncoplot.qmd" class="toc-action"><i class="bi empty"></i>Edit this page</a></li><li><a href="https://github.com/Yunuuuu/ggalign-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="quarto-other-links"><h2>Other Links</h2><ul><li><a href="https://yunuuuu.github.io/ggalign"><i class="bi bi-journal-text"></i>ggalign reference</a></li><li><a href="https://yunuuuu.github.io/ggalign-gallery"><i class="bi bi-grid-1x2-fill"></i>ggalign gallery</a></li><li><a href="https://www.biorxiv.org/content/10.1101/2025.02.06.636847v1"><i class="bi bi-layout-text-sidebar-reverse"></i>ggalign manuscript</a></li></ul></div><div class="quarto-code-links"><h2>Code Links</h2><ul><li><a href="https://github.com/Yunuuuu/ggalign"><i class="bi bi-code-square"></i>ggalign repo</a></li></ul></div></nav>
     </div>
@@ -702,8 +702,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section><section id="geom_gshape" class="level3" data-number="16.5.2"><h3 data-number="16.5.2" class="anchored" data-anchor-id="geom_gshape">
-<span class="header-section-number">16.5.2</span> <code>geom_gshape()</code>
-</h3>
+<span class="header-section-number">16.5.2</span> geom_gshape()</h3>
 <p><code><a href="https://yunuuuu.github.io/ggalign/reference/geom_subrect.html">geom_subtile()</a></code> often suffices for most scenarios. However, if you require a strategy similar to that of <code>ComplexHeatmap</code>, consider using <code><a href="https://yunuuuu.github.io/ggalign/reference/geom_gshape.html">geom_gshape()</a></code>, which offers greater flexibility for complex customizations.</p>
 <p>Key Features of <code><a href="https://yunuuuu.github.io/ggalign/reference/geom_gshape.html">geom_gshape()</a></code>:</p>
 <ul>
@@ -711,8 +710,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Flexible Aesthetic Mapping: You must provide the manual scaling <code><a href="https://yunuuuu.github.io/ggalign/reference/scale_gshape_manual.html">scale_gshape_manual()</a></code> to map <code>gshape</code> values to corresponding drawing functions. Functions mapped through <code><a href="https://yunuuuu.github.io/ggalign/reference/scale_gshape_manual.html">scale_gshape_manual()</a></code> can utilize any number of ggplot2 aesthetics and output custom graphical objects (<code>grob</code>).</li>
 </ul>
 <p>The function provided in <code>values</code> argument of <code><a href="https://yunuuuu.github.io/ggalign/reference/scale_gshape_manual.html">scale_gshape_manual()</a></code> operates similarly to <code>alter_fun</code> in ComplexHeatmap. Currently, <code><a href="https://yunuuuu.github.io/ggalign/reference/geom_subrect.html">geom_subtile()</a></code> performs well enough for most cases, making <code><a href="https://yunuuuu.github.io/ggalign/reference/geom_gshape.html">geom_gshape()</a></code> somewhat cumbersome to use. Managing alteration types, especially in the case of overlapping alterations, requires meticulous design to ensure that the visual elements do not interfere with each other.</p>
-</section></section><section id="ggalign-attributes" class="level2" data-number="16.6"><h2 data-number="16.6" class="anchored" data-anchor-id="ggalign-attributes">
-<span class="header-section-number">16.6</span> <code>ggalign</code> Attributes</h2>
+</section></section><section id="data-attributes" class="level2" data-number="16.6"><h2 data-number="16.6" class="anchored" data-anchor-id="data-attributes">
+<span class="header-section-number">16.6</span> Data Attributes</h2>
 <p>Except for the data used for the main plot, <code>fortify_matrix.MAF()</code> also attaches several useful attributes.</p>
 <ul>
 <li>
