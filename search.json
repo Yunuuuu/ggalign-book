@@ -653,34 +653,34 @@
   {
     "objectID": "multiple-quad-layouts.html",
     "href": "multiple-quad-layouts.html",
-    "title": "11  A list of quad_layout()",
+    "title": "11  A list of QuadLayout",
     "section": "",
     "text": "11.1 Add quad_layout() to stack_layout()\nSimilarly, stack_layout() can be added to a quad_layout(), and a quad_layout() can also be added to a stack_layout().\nHere is a summarized table showing which quad_layout() can be used with each stack_layout():\nAs long as the alignment is consistent across both stack_layout() and quad_layout(), you can directly add quad_layout().\nstack_discreteh(small_mat) +\n    ggheatmap()\n#&gt; → heatmap built with `geom_tile()`\nWhen ggheatmap()/quad_layout() is added to a stack_layout(), it will also set the active context to itself, which means subsequent addition will be directed to ggheatmap()/quad_layout(). One exception is the ggheatmap()/quad_layout() itself, which cannot be added to another quad_layout(). In this case, they will be added directly to the stack_layout().\nstack_discretev(small_mat) +\n    ggheatmap() +\n    ggheatmap() +\n    scale_fill_viridis_c()\n#&gt; → heatmap built with `geom_tile()`\n#&gt; → heatmap built with `geom_tile()`\nThe data of ggheatmap()/quad_layout() can inherit from the stack_layout(), but the data format must match. Otherwise, you will need to manually provide the data.\nquad_continuousv_plot &lt;- quad_layout(small_mat, xlim = NULL) +\n    geom_boxplot(aes(value, .discrete_y, fill = .row_names)) +\n    scale_fill_brewer(palette = \"Dark2\")\n# `stack_continuous()` need a data frame\nstack_continuousv() +\n    quad_continuousv_plot +\n    quad_continuousv_plot\nWhen ggheatmap()/quad_layout() is added to a vertical stack_layout(), the inherited matrix is transposed before use. This is because the columns of ggheatmap()/quad_layout() must match the number of observations in stack_layout().\nstack_discretev(small_mat) +\n    ggheatmap() +\n    ggheatmap()\n#&gt; → heatmap built with `geom_tile()`\n#&gt; → heatmap built with `geom_tile()`\nstack_discrete() ensures that all plots aligned along the stack have the same ordering index or groups.\nWe can customize the layout in the stack_discrete() directly, or in quad_layout(). As introduced in Section 5.5, you can easily switch from the ggheatmap()/quad_layout() to the stack_layout() using stack_active().\nWhen applied to a stack_layout(), the orientation of the dendrogram may need to be manually adjusted.",
     "crumbs": [
       "Data-Aware Composition",
-      "<span class='chapter-number'>11</span>  <span class='chapter-title'>A list of `quad_layout()`</span>"
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>A list of QuadLayout</span>"
     ]
   },
   {
     "objectID": "multiple-quad-layouts.html#add-quad_layout-to-stack_layout",
     "href": "multiple-quad-layouts.html#add-quad_layout-to-stack_layout",
-    "title": "11  A list of quad_layout()",
+    "title": "11  A list of QuadLayout",
     "section": "",
     "text": "stack_discreteh()\nstack_discretev()\nstack_continuoush()\nstack_continuousv()\n\n\n\n\nquad_continuous()/ggside()\n❌\n❌\n✅\n✅\n\n\nquad_layout(xlim = ...)\n✅\n❌\n❌\n✅\n\n\nquad_layout(ylim = ...)\n❌\n✅\n✅\n❌\n\n\nquad_discrete()/ggheatmap()\n✅\n✅\n❌\n❌\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nstack_discretev(small_mat) +\n    ggheatmap() +\n    ggheatmap() +\n    anno_bottom(size = 0.2) +\n    align_dendro(aes(color = branch), k = 3)+\n    layout_title(\"dendrogram in ggheatmap()\")\n#&gt; → heatmap built with `geom_tile()`\n#&gt; → heatmap built with `geom_tile()`\n\n\n\n\n\n\n\n\n\n\n\nstack_discretev(small_mat) +\n    ggheatmap() +\n    ggheatmap() +\n    stack_active() +\n    align_dendro(aes(color = branch), k = 3, size = 0.2) +\n    scale_y_reverse() +\n    layout_title(\"dendrogram in stack_layout()\")\n#&gt; → heatmap built with `geom_tile()`\n#&gt; → heatmap built with `geom_tile()`",
     "crumbs": [
       "Data-Aware Composition",
-      "<span class='chapter-number'>11</span>  <span class='chapter-title'>A list of `quad_layout()`</span>"
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>A list of QuadLayout</span>"
     ]
   },
   {
     "objectID": "multiple-quad-layouts.html#control-sizes",
     "href": "multiple-quad-layouts.html#control-sizes",
-    "title": "11  A list of quad_layout()",
+    "title": "11  A list of QuadLayout",
     "section": "11.2 Control sizes",
     "text": "11.2 Control sizes\nA numeric or a unit object of length 3 should be provided in stack_discrete()/stack_continuous() when placing a quad_layout(). For vertical stack_layout(), this means quad_layout() with left or right annotations; for horizontal stack_layout(), this means quad_layout() with top or bottom annotations. The first size controls the relative width/height of the left or top annotation, the second controls the relative width/height of the main plot, and the third controls the relative width/height of the right or bottom annotation.\nBy default the three rows/columns will have equal sizes.\n\nstack_discretev(small_mat) +\n    ggheatmap() +\n    theme(axis.text.x = element_text(angle = -60, hjust = 0)) +\n    anno_left() +\n    align_dendro(aes(color = .panel), k = 3L) +\n    anno_right() +\n    ggalign(data = rowSums) +\n    geom_bar(aes(value, fill = .panel), orientation = \"y\", stat = \"identity\") +\n    ggheatmap() +\n    theme(axis.text.x = element_text(angle = -60, hjust = 0))\n#&gt; → heatmap built with `geom_tile()`\n#&gt; → heatmap built with `geom_tile()`\n\n\n\n\n\n\n\n\n\nheat1 &lt;- ggheatmap(t(small_mat)) +\n    theme(axis.text.x = element_text(angle = -60, hjust = 0)) +\n    anno_left() +\n    align_dendro(aes(color = .panel), k = 3L) +\n    anno_right() +\n    ggalign(data = rowSums) +\n    geom_bar(aes(value, fill = .panel), orientation = \"y\", stat = \"identity\")\n\nstack_discretev(small_mat, sizes = c(1, 2, 1)) +\n    heat1 +\n    ggheatmap() +\n    theme(axis.text.x = element_text(angle = -60, hjust = 0))\n#&gt; → heatmap built with `geom_tile()`\n#&gt; → heatmap built with `geom_tile()`\n\n\n\n\n\n\n\n\nIn this way, the width/height of main plot specified in quad_active() or quad_layout()/ggheatmap() won’t work.\n\nstack_discretev(small_mat) +\n    ggheatmap(width = unit(2, \"null\")) + # not work\n    theme(axis.text.x = element_text(angle = -60, hjust = 0)) +\n    anno_left() +\n    align_dendro(aes(color = .panel), k = 3L) +\n    anno_right() +\n    ggalign(data = rowSums) +\n    geom_bar(aes(value, fill = .panel), orientation = \"y\", stat = \"identity\") +\n    ggheatmap(width = unit(2, \"null\")) + # not work\n    theme(axis.text.x = element_text(angle = -60, hjust = 0))\n#&gt; → heatmap built with `geom_tile()`\n#&gt; → heatmap built with `geom_tile()`\n\n\n\n\n\n\n\n\nNow that you’ve learned how to combine quad_layout() and stack_layout() in various configurations, you’re ready to explore a new, exciting way to organize and visualize your data: the circle layout. This layout offers a unique, radial perspective that can be particularly useful for visualizing hierarchical data or creating visually engaging plots.",
     "crumbs": [
       "Data-Aware Composition",
-      "<span class='chapter-number'>11</span>  <span class='chapter-title'>A list of `quad_layout()`</span>"
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>A list of QuadLayout</span>"
     ]
   },
   {
