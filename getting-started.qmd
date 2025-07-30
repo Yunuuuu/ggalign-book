@@ -33,11 +33,11 @@ align_plots(p1, p2, p3, ncol = 2)
 The `align_plots()` function offers flexible control over grid dimensions,
 sizing, and layout specifications. You can control the arrangement with
 parameters like `ncol`, `nrow`, `widths`, `heights`, and even use `area()`
-specifications for complex layouts. This function allows you to quickly arrange independent plots without worrying about data relationships.
+specifications for complex layouts.
 
 `ggalign` provides various options to control layout specifications, including
-whether to collect legend guides, align axes, and more. For more, see [Part
-`Data-Free Composition`](#).
+whether to collect legend guides, align axes, and more. For more, see
+@sec-data-free.
 
 ## Data-Aware Composition
 
@@ -78,7 +78,7 @@ hierarchical structure in the dendrogram.
 
 While data-aware composition is the core strength of `ggalign`, its full
 capabilities go beyond a single example. For more advanced features and finer
-control, see @sec-data-aware-overview.
+control, see @sec-data-aware.
 
 ## When to Use Each Approach
 
