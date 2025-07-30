@@ -8,7 +8,7 @@ engine: knitr
 book:
   title: "ggalign: Bridging the Grammar of Graphics and Complex layout"
   author: "Yun Peng"
-  date: "11/24/2024"
+  date: today
   cover-image: cover.png
   favicon: cover.png
   repo-url: https://github.com/Yunuuuu/ggalign-book
@@ -44,21 +44,31 @@ book:
       chapters:
         - plot-composer.qmd
         - free.qmd
-
+    
+    - design.qmd
     - part: data-aware.qmd
       chapters:
+        - data-aware-overview.qmd
         - stack-layout.qmd
-        - heatmap-layout.qmd
         - quad-layout.qmd
+        - heatmap-layout.qmd
+        - circle-layout.qmd
         - layout-customize.qmd
         - initialize-plot.qmd
         - annotate-observations.qmd
         - multiple-quad-layouts.qmd
-        - circle-layout.qmd
         - operator.qmd
         - schemes.qmd
-        - difference-with-ggplot2.qmd
         - oncoplot.qmd
+    
+    - part: Others
+      chapters: 
+        - case-gallery.qmd
+        - benchmark.qmd
+        - difference-with-ggplot2.qmd
+        - qa.qmd 
+    
+    - conclusion.qmd
 
 bibliography: references.bib
 

@@ -1,4 +1,4 @@
-# Fine-Grained Alignment Control
+# Fine-Grained Alignment Control {#sec-fine-align-control}
 
 The `ggalign` package provides six `free_` functions that give you precise
 control over plot alignment behavior by selectively disabling alignment
@@ -148,7 +148,8 @@ align_plots(p1,
 
 :::
 
-## free_guide
+## `free_guide()`
+
 The `free_guide()` function allows you to override the `guides` argument for a
 single plot.
 ```{r}

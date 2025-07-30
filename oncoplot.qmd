@@ -1,4 +1,5 @@
-# ggoncoplot
+# ggoncoplot {#sec-ggoncoplot}
+
 The `ggoncoplot()` function generates `oncoPrint` visualizations that display
 genetic alterations in a matrix format. This function is especially useful for
 visualizing complex genomic data, such as mutations, copy number variations, and
@@ -9,7 +10,7 @@ other genomic alterations in cancer research.
 library(ggalign)
 ```
 
-## Input data
+## Input Data
 The input should be a character matrix which encodes the alterations, you can use
 string of `r ggalign:::oxford_and(c(";", ":", ",", "|"))` to separate multiple
 alterations. Internally, `ggoncoplot()` will use `fortify_matrix()` to get such
@@ -32,7 +33,7 @@ A basic oncoprint can be generated as follows:
 ggoncoplot(mat)
 ```
 
-## oncoPrint Customization
+## OncoPrint Customization
 By default, all alterations are represented with tiles of equal width and
 height, which may lead to overlapping. You can control the `width` and `height`
 of the tiles using the `map_width` and `map_height` arguments (we will introduce
@@ -104,7 +105,7 @@ ggoncoplot(mat, map_width = c(snv = 0.5), map_height = c(indel = 0.9)) +
     scale_fill_brewer(palette = "Dark2", na.translate = FALSE)
 ```
 
-## Integration with maftools
+## Integration with `maftools`
 The `ggoncoplot()` function supports `MAF` objects from the `maftools` package
 using the `fortify_matrix.MAF()` method. It includes options to control data
 generation for `ggoncoplot()`, such as drawing the top `n_top` genes.
@@ -143,7 +144,7 @@ align_plots(
 ```
 
 ## Specialized Geoms
-### geom_subtile()
+### `geom_subtile()`
 When multiple alterations occur in the same sample and gene, they are combined
 into a single value, `"Multi_Hit"`, by default. To visualize these alterations
 separately, you can set `collapse_vars = FALSE`. However, doing so can lead to
@@ -174,7 +175,7 @@ ggoncoplot(laml, n_top = 20, collapse_vars = FALSE, filling = FALSE) +
     theme_no_axes("x")
 ```
 
-### geom_gshape()
+### `geom_gshape()`
 `geom_subtile()` often suffices for most scenarios. However, if you require a
 strategy similar to that of `ComplexHeatmap`, consider using `geom_gshape()`,
 which offers greater flexibility for complex customizations.
@@ -195,7 +196,7 @@ Managing alteration types, especially in the case of overlapping alterations,
 requires meticulous design to ensure that the visual elements do not interfere
 with each other.
 
-## ggalign attributes
+## ggalign Attributes
 Except for the data used for the main plot, `fortify_matrix.MAF()` also attaches
 several useful attributes.
 
@@ -310,7 +311,7 @@ ggoncoplot(laml, n_top = 20, collapse_vars = FALSE, filling = FALSE) +
     scale_fill_brewer("Ti/Tv", palette = "Set2")
 ```
 
-## Integration with GISTIC results from maftools
+## Integration with GISTIC Results from `maftools`
 The package also includes a `fortify_matrix.GISTIC()` method designed to handle
 `GISTIC` objects from the `maftools` package. This allows you to seamlessly
 apply the same operations to visualize `GISTIC` results. The following ggalign

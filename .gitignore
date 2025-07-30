@@ -6,3 +6,5 @@ Scratch.RConsole
 .Rhistory
 .radian_history
 ggalign-book.Rproj
+*.html
+Rplots.pdf

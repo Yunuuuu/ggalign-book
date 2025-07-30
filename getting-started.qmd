@@ -1,4 +1,4 @@
-# Basic example
+# Get Started {#sec-get-started}
 
 This chapter shows simple usage examples of `ggalign`.
 
@@ -8,6 +8,7 @@ library(ggalign)
 ```
 
 ## Data-Free Composition
+
 The usage of data-free composition is simple: just create plots first then
 arrange plots together!
 
@@ -32,11 +33,11 @@ align_plots(p1, p2, p3, ncol = 2)
 The `align_plots()` function offers flexible control over grid dimensions,
 sizing, and layout specifications. You can control the arrangement with
 parameters like `ncol`, `nrow`, `widths`, `heights`, and even use `area()`
-specifications for complex layouts.
+specifications for complex layouts. This function allows you to quickly arrange independent plots without worrying about data relationships.
 
 `ggalign` provides various options to control layout specifications, including
 whether to collect legend guides, align axes, and more. For more, see [Part
-`Data-Free Composition`].
+`Data-Free Composition`](#).
 
 ## Data-Aware Composition
 
@@ -78,4 +79,22 @@ hierarchical structure in the dendrogram.
 
 While data-aware composition is the core strength of `ggalign`, its full
 capabilities go beyond a single example. For more advanced features and finer
-control, see [Part `Data-Aware Composition`].
+control, see @sec-data-aware-overview.
+
+## When to Use Each Approach
+
+**Use data-free composition when:**
+- Combining unrelated plots for publication figures
+- Creating dashboard-style layouts
+- Arranging plots with different data sources
+- Simple spatial arrangement is sufficient
+
+**Use data-aware composition when:**
+- Analyzing the same dataset from multiple perspectives
+- Creating heatmaps with annotations
+- Ensuring observation consistency across plots
+- Working with genomic, transcriptomic, or other omics data
+
+This foundational understanding of ggalign's two composition modes will guide you through the more advanced features covered in subsequent chapters.
+
+

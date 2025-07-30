@@ -1,0 +1,259 @@
+# Design Philosophy and Architecture {#sec-design}
+
+This chapter explores the theoretical foundations and architectural principles underlying ggalign's design. Understanding these concepts will help you make better decisions about when and how to use different components of the package.
+
+## Core Design Philosophy
+
+ggalign is built around three fundamental design principles that distinguish it from other visualization packages:
+
+1. **Observation-Centric Alignment**
+
+The central innovation of ggalign is ensuring that identical observations maintain consistent positions across multiple interconnected plots. This goes beyond simple spatial arrangement to create true data-aware composition where the same biological samples, genes, or other entities appear in exactly the same positions across all visualizations.
+
+2. **Grammar of Graphics Integration**
+
+ggalign is designed as a native ggplot2 extension, maintaining full compatibility with the grammar of graphics. This means you can use all familiar ggplot2 components (geoms, scales, themes, etc.) while gaining the additional power of observation alignment.
+
+3. **Declarative Syntax**
+
+Users specify what they want to achieve rather than how to implement it. The package handles the complex coordinate management, data synchronization, and layout calculations automatically, allowing researchers to focus on the biological insights rather than technical implementation details.
+
+## System Architecture Overview
+
+The ggalign architecture consists of multiple interconnected layers that work together to create aligned, composable visualizations:
+
+```{mermaid}
+graph TB
+    subgraph "User Interface Layer"
+        UIF["Layout Functions<br/>stack_layout()<br/>quad_layout()<br/>circle_layout()"]
+        SPF["Specialized Functions<br/>ggheatmap()<br/>ggoncoplot()<br/>ggupset()"]
+    end
+    
+    subgraph "Core Engine"
+        LP["LayoutProto<br/>S4 Base Class"]
+        CB["CraftBox<br/>Plot Containers"]
+        SCHEMES["Scheme System<br/>data, theme, align"]
+    end
+    
+    subgraph "Data Processing"
+        FORTIFY["Fortification Layer<br/>fortify_matrix()<br/>fortify_data_frame()"]
+        ALIGN["Alignment System<br/>align_*() functions"]
+    end
+    
+    subgraph "Plot Integration"
+        PLOT_FUNCS["Plot Functions<br/>ggalign(), ggfree(), ggcross()"]
+        PATCH["Patch System<br/>External graphics integration"]
+    end
+    
+    UIF --> LP
+    SPF --> LP
+    LP --> CB
+    CB --> SCHEMES
+    
+    FORTIFY --> ALIGN
+    ALIGN --> PLOT_FUNCS
+    PLOT_FUNCS --> CB
+    PATCH --> CB
+```
+
+## Type System and Class Hierarchy
+
+### Layout Hierarchy
+
+The layout system follows a hierarchical S4-based architecture with as the base class:
+
+```{mermaid}
+graph TB
+    subgraph "Base Classes"
+        LayoutProto["LayoutProto<br/>Base layout class"]
+    end
+    
+    subgraph "Core Layouts"
+        StackLayout["StackLayout<br/>Linear arrangements"]
+        QuadLayout["QuadLayout<br/>Four-sided layouts"]
+        CircleLayout["CircleLayout<br/>Circular arrangements"]
+        StackCross["StackCross<br/>Cross-layout connections"]
+    end
+    
+    subgraph "Specialized Layouts"
+        HeatmapLayout["HeatmapLayout<br/>ggheatmap()"]
+        OncoLayout["OncoLayout<br/>ggoncoplot()"]
+        UpsetLayout["UpsetLayout<br/>ggupset()"]
+    end
+    
+    LayoutProto --> StackLayout
+    LayoutProto --> QuadLayout
+    LayoutProto --> CircleLayout
+    LayoutProto --> StackCross
+    
+    QuadLayout --> HeatmapLayout
+    StackLayout --> OncoLayout
+    StackLayout --> UpsetLayout
+```
+
+### Plot Integration Classes
+
+The plotting system uses a craftsman pattern with specialized ggproto classes. The core plotting functions create CraftBox objects that encapsulate plot behavior:
+
+```{mermaid}
+graph TB
+    subgraph "Base Classes"
+        Craftsman["Craftsman<br/>Base plotting behavior"]
+        CraftCross["CraftCross<br/>Cross-layout base"]
+    end
+    
+    subgraph "Implementation Classes"
+        AlignGg["AlignGg<br/>Strict axis alignment"]
+        FreeGg["FreeGg<br/>Free plotting"]
+        CrossGg["CrossGg<br/>Cross-layout plotting"]
+    end
+    
+    subgraph "User Interface"
+        ggalign_func["ggalign()"]
+        ggfree_func["ggfree()"]
+        ggcross_func["ggcross()"]
+    end
+    
+    Craftsman --> AlignGg
+    Craftsman --> FreeGg
+    CraftCross --> CrossGg
+    
+    AlignGg --> ggalign_func
+    FreeGg --> ggfree_func
+    CrossGg --> ggcross_func
+```
+
+## Data Flow Pipeline
+
+The system processes data through a well-defined pipeline that transforms input data into aligned visualizations:
+
+1. **Data Normalization**
+
+The fortification layer standardizes different input types into consistent formats. This includes support for matrices, data frames, and specialized biological data objects.
+
+2. **Layout Creation**
+
+Layout objects define the spatial arrangement structure and manage the overall composition. 
+
+3. **Alignment Processing**
+
+Alignment functions control how observations are ordered and grouped, ensuring consistency across all plots in the layout.
+
+4. **Plot Generation**
+
+The core plotting functions integrate individual visualizations while maintaining alignment constraints and data relationships.
+
+5. **Final Assembly**
+
+The build system combines all components into the final visualization, handling coordinate systems, themes, and legends.
+
+## Two-Type Composition Workflows
+
+### Data-Free Composition Architecture
+
+Data-free composition represents traditional plot arrangement where individual visualizations maintain independence:
+
+```{mermaid}
+graph LR
+    subgraph "Data-Free Workflow"
+        IndependentPlots["Independent ggplot Objects"]
+        LayoutArrangement["Layout Arrangement<br/>align_plots()"]
+        FinalComposition["Final Composition"]
+    end
+    
+    subgraph "Characteristics"
+        NoDataSharing["No data sharing"]
+        FlexibleSizing["Flexible sizing"]
+        SimpleAlignment["Simple spatial alignment"]
+    end
+    
+    IndependentPlots --> LayoutArrangement
+    LayoutArrangement --> FinalComposition
+    
+    NoDataSharing --> IndependentPlots
+    FlexibleSizing --> LayoutArrangement
+    SimpleAlignment --> FinalComposition
+```
+
+This approach uses the patch system for integrating external graphics objects, supporting ComplexHeatmap, pheatmap, and other visualization packages.
+
+### Data-Aware Composition Architecture
+
+Data-aware composition represents ggalign's core innovation - ensuring observation consistency across multiple interconnected visualizations:
+
+```{mermaid}
+graph TB
+    subgraph "Data-Aware Workflow"
+        SharedData["Shared Data Matrix<br/>Common observations"]
+        AlignmentProcessing["Alignment Processing<br/>fortify_data_frame()"]
+        AlignmentColumns["Alignment Columns<br/>.panel, .index, .x/.y"]
+        LayoutIntegration["Layout Integration"]
+        CoordinatedPlots["Coordinated Plot System"]
+    end
+    
+    subgraph "Key Features"
+        ObservationAlignment["Observation Alignment"]
+        DataConsistency["Data Consistency"]
+        ComplexRelationships["Complex Relationships<br/>One-to-Many, Many-to-Many"]
+    end
+    
+    SharedData --> AlignmentProcessing
+    AlignmentProcessing --> AlignmentColumns
+    AlignmentColumns --> LayoutIntegration
+    LayoutIntegration --> CoordinatedPlots
+    
+    ObservationAlignment --> AlignmentColumns
+    DataConsistency --> LayoutIntegration
+    ComplexRelationships --> CoordinatedPlots
+```
+
+### Alignment Column System
+
+The data-aware approach automatically generates alignment columns including:
+
+- `.panel`: Panel identification for axis alignment
+- `.index`: Integer index of original observations  
+- `.x`/`.y`: Integer coordinates for positioning
+- `.discrete_x`/`.discrete_y`: Factor labels for discrete positioning
+
+### Relationship Type Support
+
+ggalign's data-aware composition uniquely supports complex relationship types:
+
+| Relationship Type       | ggalign | Other Tools | Use Case                   |
+| ----------------------- | ------- | ----------- | -------------------------- |
+| One-to-One              | ✅       | ✅           | Direct observation mapping |
+| One-to-Many/Many-to-One | ✅       | ❌           | Hierarchical relationships |
+| Many-to-Many            | ✅       | ❌           | Complex cross-mappings     |
+| Crosswise               | ✅       | ❌           | Cross-layout connections   |
+
+## Scheme System Architecture
+
+The scheme system provides fine-grained control over plot behavior through three main types:
+
+1. **Data Schemes** 
+
+Data schemes transform plot data before rendering, allowing consistent transformations across multiple geoms.
+
+2. **Theme Schemes**
+
+Theme schemes apply consistent styling across all plots in a layout, ensuring visual coherence.
+
+3. **Alignment Schemes**
+
+Alignment schemes control how plots interact with the layout system, including guide collection and spacing behavior.
+
+## Focus and Contribution of `ggalign`
+
+ggalign's primary contribution lies in solving the **observation alignment problem** in multi-plot compositions. Traditional tools typically focus on spatial arrangement, while ggalign ensures that:
+
+1. **Identical observations maintain consistent positions** across all plots
+2. **Complex data relationships** (hierarchical, many-to-many) are properly handled
+3. **Automatic synchronization** occurs without manual coordinate management
+4. **ggplot2 ecosystem compatibility** is maintained throughout
+
+This contribution enables sophisticated visualizations for high-dimensional data contexts such as genomics, transcriptomics, and microbiome studies, where observation consistency across multiple views is critical for meaningful interpretation.
+
+-----
+
+In summary, the design architecture provides a solid foundation for understanding how ggalign's components work together to create powerful, aligned visualizations while maintaining the flexibility and familiarity of the ggplot2 ecosystem.

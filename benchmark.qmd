@@ -1,0 +1,3 @@
+# Benchmark {#sec-benchmark}
+
+Currently, please refer to <https://yunuuuu.github.io/ggalign/articles/benchmarks.html>.

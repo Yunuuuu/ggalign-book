@@ -1,4 +1,4 @@
-# Annotate observations
+# Annotate Observations {#sec-annotate-observations}
 ```{r setup}
 #| code-fold: true
 library(ggalign)
