@@ -21,6 +21,8 @@ Imports:
     maftools,
     R.utils,
     tidyr,
-    dplyr
+    dplyr,
+    downlit,
+    xml2
 Remotes:
     Yunuuuu/ggalign
