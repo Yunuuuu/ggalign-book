@@ -70,8 +70,7 @@ ggheatmap(mat) +                                                # <1>
 
   1. We initialize a heatmap layout.
   2. we initialize an annotation in the top side of the heatmap body.
-  3. Reorder and group the observations based on hierarchical clustering, and
-  add a dendrogram tree.
+  3. Add a dendrogram tree in the top annotation, and Reorder and group the observations based on hierarchical clustering.
 
 This automatically reorders the heatmap rows or columns to reflect the
 hierarchical structure in the dendrogram.

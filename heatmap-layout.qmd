@@ -1,10 +1,9 @@
 # heatmap layout {#sec-heatmap-layout}
 The `heatmap_layout()` function provides a powerful way to create customizable
-heatmaps in R using `ggplot2`. This chapter will guide you through its usage.
+heatmaps using `ggplot2`. This chapter will guide you through its usage.
 
-`heatmap_layout()` is a specialized version of `quad_discrete()`, which itself
-is a specific variant of `QuadLayout` (`quad_layout()`) designed to align
-discrete variables both horizontally and vertically. We introduce
+`heatmap_layout()` is a specialized version of `quad_discrete()`, designed to
+align discrete variables both horizontally and vertically. We introduce
 `heatmap_layout()` directly, as it is more familiar to many users, especially
 those experienced with popular heatmap packages like `pheatmap` and
 `ComplexHeatmap`.
@@ -21,6 +20,7 @@ colnames(small_mat) <- paste0("column", seq_len(ncol(small_mat)))
 
 ```{r}
 #| echo: false
+#| height: 100%
 ggside() +
     lapply(c("top", "left", "bottom", "right"), function(side) {
         c(

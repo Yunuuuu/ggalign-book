@@ -26,10 +26,6 @@ Several aliases are available for convenience:
 #| echo: false
 #| output: false
 library(ggalign)
-set.seed(123)
-small_mat <- matrix(rnorm(56), nrow = 7)
-rownames(small_mat) <- paste0("row", seq_len(nrow(small_mat)))
-colnames(small_mat) <- paste0("column", seq_len(ncol(small_mat)))
 ```
 
 ```{r}
@@ -60,387 +56,207 @@ stack_discretev(matrix(rnorm(56), nrow = 7)) +
 #| eval: false
 ```
 
-## Input data {#sec-stack-layout-input-data}
+## Default data
 As discussed in @sec-input-data, when aligning discrete variables, we
 typically use a matrix. For continuous axes, we can still use the long-formatted
-data frame, which is the same as in ggplot2.
+data frame, which is the same as in `ggplot2`.
 
 - For `stack_continuous()`, a data frame is required, and the input will be
 automatically converted using `fortify_data_frame()` if needed. 
 - For `stack_discrete()`, a matrix is required, and the input will be
 automatically converted using `fortify_matrix()` if needed. 
 
-By default, `fortify_data_frame()` will invoke the `ggplot2::fortify()` function
-for conversion. Note, for matrix, it will be converted to a long-formatted data
-frame which is different from the `ggplot2::fortify()`.
+```{r}
+set.seed(123)
+small_mat <- matrix(rnorm(56), nrow = 7)
+rownames(small_mat) <- paste0("row", seq_len(nrow(small_mat)))
+colnames(small_mat) <- paste0("column", seq_len(ncol(small_mat)))
+```
 
 `stack_discrete()`/`stack_continuous()` will set up the layout, but no plot will
 be drawn until you add a plot element:
 ```{r empty_layout}
 #| eval: false
-stack_discretev(small_mat) +                                                 # <1>
-    layout_theme(plot.background = element_rect(color = "red"))              # <2>
+stack_discretev(small_mat)                                # <1>
 # the same for `stack_continuous()`
 ```
 
   1. initialize a vertical stack layout.
-  2. Add a plot background in for the entire layout.
 
 ```{r empty_layout}
 #| echo: false
 ```
 
-In this example, we use `layout_theme()` to insert a plot background in the
-entire layout, it can also be used to control the theme of title,
-subtitle, caption (`layout_title()`), guides, margins, panel.border, panel.spacing.
+The data input when initializing the layout will be regarded as the default
+data, which can be inherited by all plots added to the layout.
 
-## Customizing the Layout {#sec-stack-layout-layout-customize}
-When aligning discrete variables, the package offers a suite of `align_*`
-functions designed to give you precise control over the ordering and groups.
-Instead of detailing each `align_*` function individually, we will focus on the
-general usage and how to combine them with `stack_discrete()`.
+For `stack_discrete()`, when default data is provided, the number of
+observations (`nobs`) is determined by the number of rows in the input matrix
+(i.e., `NROW()`). All plots added to the layout must use data with the same
+`nobs`. If you do not provide default data when initializing the layout, the
+first element you add—if it includes data—will determine the layout’s `nobs`.
 
-Here, we remain take `align_dendro()` as an example, it can reorder the
-observations, split them into groups, and can add a plot for visualization.
+## How alignment works?
+Without any plots, it's difficult to see how each layout system works in
+practice. Here, we introduce the most common 
+[plot adding](@sec-supporting-systems) function-`ggalign()`. This function plays
+a role similar to `ggplot2::ggplot()` function-it initialize a `ggplot`
+object-but is designed specifically for use within the the `Layout` system of
+[Data-Aware Composition](#sec-data-aware). 
 
-When used for `stack_discreteh()`, the observations are aligned along the `y-axis`:
+### Discrete variables
+When `ggalign()` is added to the layout, it inherits the layout data and sets
+itself as the active plot. This means any subsequent `+` operations will apply
+to that plot. You can add standard `ggplot2` components like geoms, stats,
+scales, etc.
+
+When aligning discrete variables, the underlying data passed to `ggplot` through
+`ggalign()` will include the following columns (more details will be introduced in
+[@sec-ggalign]):
+
+ - `.x`/`.y` and `.discrete_x`/`.discrete_y`: an integer index of `x`/`y`
+   coordinates and a factor of the data labels (only applicable when `names`/`rownames`
+   exists).
+ - `.names` and `.index`: A character names (only applicable when `names`/`rownames`
+ exists) and an integer of index of the original data.
+
+For horizontal stack, the `y-axis` is aligned-the rows correspond to the
+`y-axis`.
+
+For vertical stack, the `x-axis` is aligned-the rows correspond to the `x-axis`.
+
+>You must use `.x`/`.y`, or `.discrete_x`/`.discrete_y` as the `x`/`y` aesthetic
+mapping in order to enable axis alignment.
+
+When rendering, the input data is matched to the layout data by row index. 
+
+As mentioned in @sec-input-data, if the input is a matrix, it will be
+automatically converted into a long-formatted data frame (the meanings of the
+resulting columns match their names; see `?fortify_data_frame.matrix` for
+details):
+
 ```{r}
-stack_discreteh(small_mat) + # <1>
-    align_dendro()           # <2>
-```
-  1. initialize a horizontal stack layout.
-  2. reorder the observations based on the hierarchical clustering, add
-  a dendrogram tree, and set the active plot to this plot.
-
-When used for `stack_discretev()`, the observations are aligned along the `x-axis`:
-```{r}
-stack_discretev(small_mat) + # <1>
-    align_dendro()        # <2>
-```
-  1. initialize a vertical stack layout.
-  2. reorder the observations based on the hierarchical clustering, add
-  a dendrogram tree, and set the active plot to this plot.
-
-When `align_dendro()` is added to the layout, it performs following actions:
-
-  1. reorder the observations.
-  2. set the active plot to the dendrogram.
-
-The active plot refers to the plot that subsequent ggplot2 components will
-target. In this case, the active plot is the dendrogram, and any new layers
-added will be applied to it. For instance, we can add additional layers to
-visualize the dendrogram's structure or data. The default data underlying the
-`ggplot` object of `align_dendro()` consists of the dendrogram node data. It is
-also possible to use the dendrogram's edge data for customization, which I will
-introduce in @sec-align-dendro.
-
-```{r}
-stack_discreteh(small_mat) + # <1>
-    align_dendro() +         # <2>
-    geom_point()             # <3>
-```
-  1. initialize a horizontal stack layout.
-  2. reorder the observations based on the hierarchical clustering, add
-  a dendrogram tree, and set the active plot to this plot.
-  3. add a point layer to the dendrogram
-
-The `active` argument controls whether a plot should be set as the active plot. It
-accepts an `active()` object with the `use` argument to specify if the plot should
-be active when added. 
-```{r}
-#| error: true
-stack_discreteh(small_mat) +                             # <1>
-    align_dendro(active = active(use = FALSE)) +      # <2>
-    geom_point()                                      # <3>
-```
-  1. initialize a horizontal stack layout.
-  2. reorder the observations based on the hierarchical clustering, add
-  a dendrogram tree, but don't set the active plot to this plot.
-  3. try to add a point layer to the dendrogram, should fail due to no active plot
-
-Usually, you don't need to set this manually, as the active context is
-automatically applied only for functions that add plot areas. You can inspect
-whether a `align_*` function will add a plot by print it:
-```{r}
-align_dendro()
+head(fortify_data_frame(small_mat))
 ```
 
-You might find it confusing that we mentioned `align_dendro()` will split
-observations into groups, while the print output shows `split = "no"`. This
-happens because we haven't specified the `k`/`h` argument in `align_dendro()`.
+Note the first argument of `ggalign()` is the `data`, so you must explicitly
+name the `mapping` argument.
 ```{r}
-align_dendro(k = 3L)
+stack_discretev(small_mat) +
+    ggalign(mapping = aes(.x, value, fill = .discrete_x)) +
+    geom_boxplot() +
+    theme(axis.text.x = element_text())
 ```
 
-You don't need to explicitly provide `data` to `align_dendro()`. By default, it
-inherits data from the layout. However, you can always provide another data
-source, but note that this package uses the concept of `number of observations`
-(`NROW()`). When aligning the observations, you must ensure the number of
-observations is consistent across all plots.
-```{r}
-#| error: true
-set.seed(123)
-stack_discreteh(small_mat) +                                     # <1>
-    align_dendro(data = matrix(rnorm(56), nrow = 8)) +        # <2>
-    theme(axis.text.y = element_text())                       # <3>
-```
-  1. initialize a horizontal stack layout.
-  2. reorder the observations based on hierarchical clustering, add a dendrogram
-  tree, and set the active plot to this one, using self-provided data. This
-  should fail because the number of observations is inconsistent.
-  3. try to add y-axis text to the dendrogram.
+By default, axis text on the aligned axis (for vertical stack, `x-axis`) is
+removed to prevent duplicate labels. You can re-enable it using `theme()`.
+
+One major benefit of this system is that it supports algorithmic ordering of
+observations (note: `rows` are considered as `observations`, @sec-ggalign) and
+grouping observations into panels.
+
+I'll now introduce the most common algorithm — hierarchical clustering, which
+can also generate dendrograms: `align_dendro()` (more details will be introduced
+in [@sec-align-dendro]). When you add `align_dendro()`, it can inherit the layout
+data, computes the dendrogram, and sets the global row ordering of the layout.
+It also creates a new `ggplot` object to draw the dendrogram. 
 
 ```{r}
-set.seed(123)
-stack_discreteh(small_mat) +                                # <1>
-    align_dendro(data = matrix(rnorm(70), nrow = 7)) +   # <2>
-    theme(axis.text.y = element_text())                  # <3>
-```
-  1. initialize a horizontal stack layout.
-  2. reorder the observations based on the hierarchical clustering, add
-  a dendrogram tree, and set the active plot to this plot, using self-provided data
-  3. add y-axis text to the dendrogram.
-
-Alternatively, you can provide a function (or purrr-lambda) that will be applied
-to the layout's matrix. For layouts that align observations, a matrix is always
-required, so the data input must be in matrix form.
-```{r}
-set.seed(123)
-stack_discreteh(small_mat) +                             # <1>
-    align_dendro(data = ~ .x[sample(nrow(.x)), ]) +   # <2>
-    theme(axis.text.y = element_text())               # <3>
-```
-  1. initialize a horizontal stack layout.
-  2. reorder the observations based on the hierarchical clustering, add a
-  dendrogram tree, and set the active plot to this plot, using self-provided
-  data function
-  3. add y-axis text to the dendrogram.
-
-Without adding another plot, it's difficult to appreciate the benefits. Let's
-now explore how to incorporate a plot.
-
-## Initializing Plot {#sec-stack-layout-plot-initialize}
-There are two primary functions for adding plots: 
-
-  - `ggalign()`: Initialize a ggplot object and align the axes.
-  - `ggfree()`: Initialize a ggplot object without aligning the axes.
-
-Both functions initialize a `ggplot` object and, by default, set the `active` plot
-when added to the layout.
-
-```{r}
-stack_discreteh(small_mat) +                                # <1>
-    align_dendro() +                                        # <2>
-    ggalign(data = rowSums) +                               # <3>
-    geom_bar(aes(value, .discrete_y), stat = "identity") +  # <4>
-    theme(axis.text.y = element_text())                     # <5>
-```
-  1. initialize a horizontal stack layout.
-  2. reorder the observations based on the hierarchical clustering, add
-  a dendrogram tree, and set the active plot to this plot.
-  3. initialize a ggplot object, and set the active plot to this plot, using
-  self-provided data function
-  4. add a bar to the plot
-  5. add y-axis text
-
-You can build the plot separately and then add it to the layout:
-```{r}
-my_bar <- ggalign(data = rowSums) +                           # <1>
-    geom_bar(aes(value, .discrete_y), stat = "identity") +    # <1>
-    theme(axis.text.y = element_text())                       # <1>
-stack_discreteh(small_mat) +                                  # <2>
-    align_dendro() +                                          # <3>
-    my_bar                                                    # <4>
-```
-  1. Create the bar plot.
-  2. initialize a horizontal stack layout.
-  3. reorder the observations based on the hierarchical clustering, add
-  a dendrogram tree, and set the active plot to this plot.
-  4. Add another bar plot to the layout.
-
-The `active` argument can also control the place of the plot area to be added. It
-accepts an `active()` object with the `order` argument to specify the order of
-the plot area.
-```{r}
-stack_discreteh(small_mat) +
+stack_discretev(small_mat) +
     align_dendro() +
-    ggalign(data = rowSums, active = active(order = 1)) +
-    geom_bar(aes(value, .discrete_y), stat = "identity") +
-    theme(axis.text.y = element_text()) 
+    ggalign(mapping = aes(.x, value, fill = .discrete_x)) +
+    geom_boxplot() +
+    theme(axis.text.x = element_text())
 ```
 
-You can also stack plots vertically using `stack_discretev()`:
+### Continuous variables
+The main strength of `ggalign` is the alignment of discrete variables; continuous
+variable support is provided mainly for completeness. Here we show basic usage
+for aligning continuous variables.
+
 ```{r}
-stack_discretev(small_mat) + 
-    align_dendro() +
-    ggalign(data = rowSums) +
-    geom_bar(aes(.discrete_x, value), stat = "identity") +
-    theme(axis.text.y = element_text()) 
+stack_continuousv(mtcars) +
+    ggalign(mapping = aes(mpg, disp, color = factor(cyl))) +
+    geom_point() +
+    theme(axis.text.x = element_text()) +
+    ggalign(mapping = aes(mpg, hp, color = factor(cyl))) +
+    geom_point() +
+    theme(axis.text.x = element_text())
 ```
 
-For `stack_continuous()`, no special action is taken except ensuring consistent
-axis limits across all plots. You can manually control limits using
-`continuous_limits()`:
+Similar to `stack_discretev()`, by default, axis text on the aligned axis (for
+vertical stacks, the `x-axis`) is removed to prevent duplicate labels. You can
+explicitly control visibility using `theme()`.
 
-::: {.grid}
+In this example, no special alignment occurs because both `ggalign()` calls
+inherit the same default data, resulting in identical axis limits.
 
-::: {.g-col-6}
+To demonstrate differences, here we filter the data to make the plot `x-axis`
+limits different. By default, `stack_continuous()` does not set axis limits:
+
 ```{r}
-stack_continuousv(mpg) +
-    ggalign(mapping = aes(displ, hwy, colour = class)) +
-    geom_point(size = 2) +
-    ggalign(mapping = aes(displ, hwy, colour = class)) +
-    geom_point(size = 2) &
-    scale_color_brewer(palette = "Dark2") &
-    theme(
-        panel.background = element_rect(fill = NA, color = "black"),
-        axis.text.x = element_text()
-    )
+stack_continuousv(mtcars) +
+    ggalign(mapping = aes(mpg, disp, color = factor(cyl))) +
+    geom_point() +
+    theme(axis.text.x = element_text()) +
+    ggalign(
+        ~ dplyr::filter(.x, mpg < 20), 
+        mapping = aes(mpg, hp, color = factor(cyl))
+    ) +
+    geom_point() +
+    theme(axis.text.x = element_text())
 ```
-:::
 
-::: {.g-col-6}
+To align the `x-axis` limits, you must manually set them using the `limits`
+argument, which accepts a `continuous_limits()` object. `continuous_limits()`
+takes a numeric vector of length 2, defining the axis limits for each panel
+along the aligned axis.
+
+The `data` argument in `ggalign` can be a purrr-style function that transforms
+the default data and returns new data. The number of observations (`nobs`) in
+the output data must remain the same.
+
 ```{r}
-stack_continuousv(mpg) +
-    continuous_limits(c(3, 6)) +
-    ggalign(mapping = aes(displ, hwy, colour = class)) +
-    geom_point(size = 2) +
-    ggalign(mapping = aes(displ, hwy, colour = class)) +
-    geom_point(size = 2) &
-    scale_color_brewer(palette = "Dark2") &
-    theme(
-        panel.background = element_rect(fill = NA, color = "black"),
-        axis.text.x = element_text()
-    )
+stack_continuousv(mtcars, limits = continuous_limits(c(NA, 20))) +
+    ggalign(mapping = aes(mpg, disp, color = factor(cyl))) +
+    geom_point() +
+    theme(axis.text.x = element_text()) +
+    ggalign(~ dplyr::filter(.x, mpg < 20), mapping = aes(mpg, hp, color = factor(cyl))) +
+    geom_point() +
+    theme(axis.text.x = element_text())
 ```
-:::
 
-:::
+Aside from differences in input data, most operations in `stack_discrete()` also
+apply to `stack_continuous()`. The key distinction lies in how alignment is
+handled, as discussed in @sec-input-data: `stack_continuous()` does not support
+the [Layout customization](@sec-supporting-systems) system used for discrete
+variables.
 
-The `&` operator applies the added element to all plots in the layout, similar to
-its functionality in the `patchwork` package.
-
-`ggfree()` focuses on layout integration without enforcing strict axis alignment.
-
-::: {.grid}
-
-::: {.g-col-6}
-```{r}
-stack_discretev() +
-    ggfree(mpg, aes(displ, hwy, colour = class)) +
-    geom_point(size = 2) +
-    ggfree(mpg, aes(displ, hwy, colour = class)) +
-    geom_point(size = 2) &
-    scale_color_brewer(palette = "Dark2")  &
-    theme(
-        panel.background = element_rect(fill = NA, color = "black"),
-        axis.text.x = element_text()
-    )
-```
-:::
-
-::: {.g-col-6}
-```{r}
-stack_continuousv(mpg) +
-    continuous_limits(c(3, 6)) +
-    ggfree(mapping = aes(displ, hwy, colour = class)) +
-    geom_point(size = 2) +
-    ggfree(mapping = aes(displ, hwy, colour = class)) +
-    geom_point(size = 2) &
-    scale_color_brewer(palette = "Dark2") &
-    theme(
-        panel.background = element_rect(fill = NA, color = "black"),
-        axis.text.x = element_text()
-    )
-```
-:::
-
-:::
-
-By default, `ggfree()` will also inherit data from the layout and call
-`fortify_data_frame()` to convert the data to a data frame. So, note that if the
-layout data is a matrix, it will be converted into a long-formatted data frame. 
+Because of this, we will focus on `stack_discrete()`. Nearly all techniques
+shown can also be used with `stack_continuous()`, except for 
+[Layout customization](@sec-supporting-systems).
 
 ## Plot Size {#sec-stack-layout-plot-size}
-Both `ggalign()` and `ggfree()` functions have a `size` argument to control the
-relative `width` (for horizontal stack layout) or `height` (for vertical stack
-layout) of the plot's panel area.
+All [plot adding](@sec-supporting-systems) functions have a `size` argument to
+control the relative `width` (for horizontal stack layout) or `height` (for
+vertical stack layout) of the plot's panel area.
+
 ```{r}
-stack_continuousv(mpg) +
-    ggfree(mapping = aes(displ, hwy, colour = class), size = 2) +
-    geom_point(size = 2) +
-    ggfree(mapping = aes(displ, hwy, colour = class), size = 1) +
-    geom_point(size = 2) &
-    scale_color_brewer(palette = "Dark2") &
-    theme_bw()
+stack_discretev(small_mat) +
+    align_dendro(size = 1) +
+    ggalign(mapping = aes(.x, value, fill = .discrete_x), size = 2) +
+    geom_boxplot() +
+    theme(axis.text.x = element_text())
 ```
 
 Alternatively, you can define an absolute size by using a `unit()` object:
 ```{r}
-stack_continuousv(mpg) +
-    ggfree(mapping = aes(displ, hwy, colour = class), size = unit(1, "cm")) +
-    geom_point(size = 2) +
-    ggfree(mapping = aes(displ, hwy, colour = class)) +
-    geom_point(size = 2) &
-    scale_color_brewer(palette = "Dark2") &
-    theme_bw()
+stack_discretev(small_mat) +
+    align_dendro(size = unit(1, "cm")) +
+    ggalign(mapping = aes(.x, value, fill = .discrete_x)) +
+    geom_boxplot() +
+    theme(axis.text.x = element_text())
 ```
-
-## active plot {#sec-stack-layout-active-plot}
-As mentioned earlier, the active plot refers to the plot that subsequent ggplot2
-components will target. The package provide two functions to work with active
-plot for `stack_layout`.
-
-  - `stack_switch()`: switch the active context
-  - `stack_active()`: An alias for `stack_switch()`, which sets `what = NULL`
-
-The `stack_switch()` function accepts the `what` argument, which can either be
-the index of the plot added (based on its adding order) or the plot name
-specified via the `active()` object using the `name` argument. 
-
-Note that the `what` argument must be explicitly named, as it is placed second
-in the function signature. This is because, in most cases, we don't need to
-switch the active plot, manually—adjusting the order of plot additions typically
-suffices.
-
-::: {.grid}
-
-::: {.g-col-6}
-```{r}
-stack_alignh(small_mat) +
-    align_dendro() +
-    ggalign(data = rowSums) +
-    geom_bar(aes(value, .discrete_y), stat = "identity") +
-    stack_switch(what = 1) +
-    geom_point() +
-    theme(axis.text.y = element_text()) +
-    layout_title(title = "switch by integer")
-```
-:::
-
-::: {.g-col-6}
-```{r}
-stack_alignh(small_mat) +
-    align_dendro(active = active(name = "tree")) +
-    ggalign(data = rowSums) +
-    geom_bar(aes(value, .discrete_y), stat = "identity") +
-    stack_switch(what = "tree") +
-    geom_point() +
-    theme(axis.text.y = element_text()) +
-    layout_title(title = "switch by string")
-```
-:::
-
-:::
-
-In the example, we use `layout_title()` to insert a title for the entire layout.
-Alternatively, you can add a title to a single plot with `ggtitle()`.
-
-By setting `what = NULL` (or alias `stack_active()`), we remove the active plot.
-This is particularly useful when the active plot is a nested `Layout` object, as
-any additions would otherwise be directed to that nested `Layout`. By removing
-the active plot, you can continue adding components to the `StackLayout`. We'll
-introduce the nested layout of `StackLayout` in @sec-multiple-quad-layouts.
 
 In the next chapter, we will dive into the `HeatmapLayout`, which can take the
 `StackLayout` as input. Heatmap layouts offer additional features for aligning

@@ -43,11 +43,7 @@ For `CircleLayout`:
  - `circle_continuous()`: Align continuous variable in the circle.
  - `circle_layout()`: A unified interface for both cases.
 
-> Note: Throughout this book, we refer to the main layout
-functions—`stack_layout()`, `quad_layout()`, and `circle_layout()`—as the
-primary interfaces, even when using their specialized variants.
-
-## Overview of Supporting Systems
+## Overview of Supporting Systems {#supporting-systems}
 In addition to the core `Layout` system, `ggalign` provides several helper systems
 that enhance data-aware composition by managing how observations are grouped,
 ordered, and supplemented with additional plot elements. These systems work
@@ -105,8 +101,15 @@ The main difference between discrete and continuous variable alignment in
 
  - Continuous variables require a data frame, just like in standard ggplot2.
 
-> Terminology: `"Observations"` and `"discrete variables"` are interchangeable
-here. Any mention of `"observations"` applies to discrete variables too.
+When a data frame is required, the input will be automatically converted using
+`fortify_data_frame()` if needed. When a matrix is required, the input will be
+automatically converted using fortify_matrix().
+
+By default, `fortify_data_frame()` calls `ggplot2::fortify()` for conversion.
+
+>Note: When applied to a matrix, `fortify_data_frame()` will convert it into a
+long-formatted data frame, which differs from the behavior of
+`ggplot2::fortify()`.
 
 ## What Will You Learn?
 This part is divided into sections that will guide you through:
