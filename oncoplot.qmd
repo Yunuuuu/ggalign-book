@@ -175,7 +175,7 @@ ggoncoplot(laml, n_top = 20, collapse_vars = FALSE, filling = FALSE) +
     theme_no_axes("x")
 ```
 
-### `geom_gshape()`
+### geom_gshape()
 `geom_subtile()` often suffices for most scenarios. However, if you require a
 strategy similar to that of `ComplexHeatmap`, consider using `geom_gshape()`,
 which offers greater flexibility for complex customizations.
@@ -196,7 +196,7 @@ Managing alteration types, especially in the case of overlapping alterations,
 requires meticulous design to ensure that the visual elements do not interfere
 with each other.
 
-## `ggalign` Attributes
+## Data Attributes
 Except for the data used for the main plot, `fortify_matrix.MAF()` also attaches
 several useful attributes.
 
