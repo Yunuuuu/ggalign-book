@@ -22,7 +22,7 @@ rownames(small_mat) <- paste0("row", seq_len(nrow(small_mat)))
 colnames(small_mat) <- paste0("column", seq_len(ncol(small_mat)))
 ```
 
-## Addition operator
+## Addition Operator
 > `+`: adds elements to the active plot in the active layout.
 
 The `+` operator is straightforward and should be used as needed. 
@@ -65,7 +65,7 @@ ggheatmap(small_mat) +
     align_dendro()
 ```
 
-## logical AND operator
+## Logical AND Operator
 > `&`: applies elements to all plots in the layout including plots in the nested layout.
 
 The `&` operator works similarly to `patchwork`, applying an element across all
@@ -86,7 +86,7 @@ ggheatmap(small_mat) +
     scale_color_brewer(palette = "Dark2")
 ```
 
-## Subtraction operator
+## Subtraction Operator
 The `-` operator is more powerful than the `&` operator, enabling flexible
 addition of elements to multiple plots. While its use might initially seem
 unintuitive, the reason behind this is that `-` shares the same precedence group

@@ -1,4 +1,4 @@
-# Plot Composer
+# Plot Composer {#sec-plot-composer}
 
 The `align_plots()` function is the core engine for data-free composition in the
 `ggalign` package. It enables users to arrange multiple plots and graphical
@@ -78,7 +78,7 @@ align_plots(p1, p2, p3, p4, area = c(
 ))
 ```
 
-## Plot panel Size
+## Plot Panel Size
 Use `widths` and `heights` to control how much space each panel column or panel
 row should take, respectively. These can be:
 
@@ -99,7 +99,7 @@ align_plots(p1, NULL, p2, NULL, p3, NULL)
 
 Empty cells will still take up layout space unless you explicitly adjust sizes.
 
-## Guide legends
+## Guide Legends
 By default, each plot keeps its own guides. Use the `guides` argument to collect
 and consolidate them to specific sides, which should be of a single string with
 following elements:

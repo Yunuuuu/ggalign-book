@@ -1,4 +1,5 @@
-# stack layout {#sec-stack-layout}
+# Stack Layout {#sec-stack-layout}
+
 `stack_layout()` arranges plots either horizontally or vertically. Based on
 whether we want to align the discrete or continuous variables, there are two
 types of stack layouts:
@@ -251,12 +252,70 @@ stack_discretev(small_mat) +
 
 Alternatively, you can define an absolute size by using a `unit()` object:
 ```{r}
-stack_discretev(small_mat) +
-    align_dendro(size = unit(1, "cm")) +
-    ggalign(mapping = aes(.x, value, fill = .discrete_x)) +
-    geom_boxplot() +
-    theme(axis.text.x = element_text())
+stack_continuousv(mpg) +
+    ggfree(mapping = aes(displ, hwy, colour = class), size = unit(1, "cm")) +
+    geom_point(size = 2) +
+    ggfree(mapping = aes(displ, hwy, colour = class)) +
+    geom_point(size = 2) &
+    scale_color_brewer(palette = "Dark2") &
+    theme_bw()
 ```
+
+## active plot {#sec-stack-layout-active-plot}
+As mentioned earlier, the active plot refers to the plot that subsequent ggplot2
+components will target. The package provide two functions to work with active
+plot for `stack_layout`.
+
+  - `stack_switch()`: switch the active context
+  - `stack_active()`: An alias for `stack_switch()`, which sets `what = NULL`
+
+The `stack_switch()` function accepts the `what` argument, which can either be
+the index of the plot added (based on its adding order) or the plot name
+specified via the `active()` object using the `name` argument. 
+
+Note that the `what` argument must be explicitly named, as it is placed second
+in the function signature. This is because, in most cases, we don't need to
+switch the active plot, manually—adjusting the order of plot additions typically
+suffices.
+
+::: {.grid}
+
+::: {.g-col-6}
+```{r}
+stack_alignh(small_mat) +
+    align_dendro() +
+    ggalign(data = rowSums) +
+    geom_bar(aes(value, .discrete_y), stat = "identity") +
+    stack_switch(what = 1) +
+    geom_point() +
+    theme(axis.text.y = element_text()) +
+    layout_title(title = "switch by integer")
+```
+:::
+
+::: {.g-col-6}
+```{r}
+stack_alignh(small_mat) +
+    align_dendro(active = active(name = "tree")) +
+    ggalign(data = rowSums) +
+    geom_bar(aes(value, .discrete_y), stat = "identity") +
+    stack_switch(what = "tree") +
+    geom_point() +
+    theme(axis.text.y = element_text()) +
+    layout_title(title = "switch by string")
+```
+:::
+
+:::
+
+In the example, we use `layout_title()` to insert a title for the entire layout.
+Alternatively, you can add a title to a single plot with `ggtitle()`.
+
+By setting `what = NULL` (or alias `stack_active()`), we remove the active plot.
+This is particularly useful when the active plot is a nested `Layout` object, as
+any additions would otherwise be directed to that nested `Layout`. By removing
+the active plot, you can continue adding components to the `StackLayout`. We'll
+introduce the nested layout of `StackLayout` in @sec-multiple-quad-layouts.
 
 In the next chapter, we will dive into the `HeatmapLayout`, which can take the
 `StackLayout` as input. Heatmap layouts offer additional features for aligning

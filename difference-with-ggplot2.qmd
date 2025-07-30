@@ -1,4 +1,5 @@
-# Difference with ggplot2
+# Difference with ggplot2 {#sec-difference-with-ggplot2}
+
 `ggalign` focuses on aligning axes across multiple plots. While it builds on the
 `ggplot2` framework, there are key differences in how scales, facets, and
 coordinates are handled. This chapter highlights these syntax differences. 
@@ -25,24 +26,20 @@ that observations are properly aligned and operations are user-friendly.
 The following syntax applies to the axes used to align observations (discrete
 values).
 
-### breaks
+### Breaks
 `breaks` and `labels` are typically handled similarly to discrete scales, as we
 focus on aligning observations (which should be regarded as discrete variables);
 no matter what you use is continuous scale or discrete scale.
 
 `breaks` should be one of:
 
-    - `NULL` for no breaks
-
-    - `waiver()` for the default breaks (the full data index or `NULL` if no
-    data names and `labels` is `waiver()`)
-
-    - A character vector of breaks (rownames / colunames of the matrix).
-
-    - A numeric vector of data index (must be an integer).
-
-    - A function that takes the data names or the data index as input and
-    returns breaks as output. Also accepts rlang lambda function notation. 
+- `NULL` for no breaks
+- `waiver()` for the default breaks (the full data index or `NULL` if no
+data names and `labels` is `waiver()`)
+- A character vector of breaks (rownames / colunames of the matrix).
+- A numeric vector of data index (must be an integer).
+- A function that takes the data names or the data index as input and
+returns breaks as output. Also accepts rlang lambda function notation. 
 
 Default `breaks` without names:
 ```{r}
@@ -107,21 +104,18 @@ ggheatmap(small_mat) +
     align_dendro(k = 3L)
 ```
 
-### labels
+### Labels
+
 `labels` should be one of:
 
-    - `NULL` for no labels
-
-    - `waiver()` for the default labels (data names)
-
-    - A character vector giving labels (must be same length as breaks)
-
-    - An expression vector (must be the same length as breaks). See `?plotmath`
-    for details. 
-
-    - A function that takes the data names (or data index if data has no names)
-    as input and returns labels as output. This can be also a rlang lambda
-    function.
+- `NULL` for no labels
+- `waiver()` for the default labels (data names)
+- A character vector giving labels (must be same length as breaks)
+- An expression vector (must be the same length as breaks). See `?plotmath`
+for details. 
+- A function that takes the data names (or data index if data has no names)
+as input and returns labels as output. This can be also a rlang lambda
+function.
 
 The default labels are the data names (or indices if names are absent):
 ```{r}
@@ -164,7 +158,8 @@ ggheatmap(small_mat) +
     scale_x_continuous(breaks = c(5, 3), labels = I(c("a", "b")))
 ```
 
-## theme
+## Theme
+
 Although ggplot2 does not officially support vectorized input for theme
 elements, we can still utilize it. `ggalign` extends this feature, allowing
 theme elements to be vectorized and applied across panels.
@@ -186,6 +181,7 @@ ggheatmap(small_mat) +
 ```
 
 ## Facets
+
 When working with facets, manual configuration of the panel using the
 `facet_*()` functions is not possible since the internal structure will use
 `facet_grid()` to set the row/column groups defined by `align_*()` functions.

@@ -13,6 +13,7 @@ alignment, spacing, and `guide`/`legend` collection, allowing you to construct
 more precise and expressive layouts.
 
 ## What Is Data-Free Composition for?
+
 Use data-free composition when you want to:
 
 * Visually compare results from different models or datasets.
@@ -28,6 +29,7 @@ independence. Because there's no need to reconcile axes, or scales, it’s
 straightforward and versatile for many common multi-plot needs.
 
 ## What Will You Learn?
-This part is divided into sections, each addressing a specific graphical
+
+This part is divided into chapters, each addressing a specific graphical
 challenge. This is not an exhaustive or exclusive categorization but rather a
 practical guide to help you navigate common tasks in data-free plot composition.
