@@ -563,13 +563,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div>
 <pre class="mermaid mermaid-js">graph TD
     %% Input objects
-    subgraph "Input Objects"
+    subgraph InputObjects["Input Objects"]
         G["ggplot"]
         H["ComplexHeatmap, pheatmap, base plot with formula, et al."]
     end
 
     %% patch() as optional wrapper
-    PatchFn["patch() - (optional) wraps input into Patchable"]
+    PatchFn["**patch()**&lt;br/&gt;(optional) wraps input into Patchable"]
 
     Patch["**Patch object system**&lt;br/&gt;The detailed implementation of layout, alignment, and compositional logic"]
 
@@ -616,6 +616,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     F6 --&gt; F6Desc
 
     %% Colors and styling
+    style InputObjects fill:none,stroke:#888888,stroke-width:2px
+
     style G fill:#D1E8FF,stroke:#1E90FF,stroke-width:2px,color:#1E3A8A
     style H fill:#FFE5D9,stroke:#FF7F50,stroke-width:2px,color:#7F3F00
     style PatchFn fill:#F0F4C3,stroke:#C0CA33,stroke-width:2px,color:#616515
@@ -641,6 +643,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
     style F6 fill:#CFD8DC,stroke:#607D8B,stroke-width:2px,color:#263238
     style F6Desc fill:#ECEFF1,stroke:#90A4AE,stroke-width:1px,color:#455A64
+
 </pre>
 </div>
 <p></p>
