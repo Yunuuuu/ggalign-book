@@ -93,7 +93,7 @@ graph TD
     end
 
     %% Core engine
-    Align["**align_plots()**<br/>Core layout engine<br/><i>Accepts raw inputs or Patch objects</i>"]
+    Align["**align_plots()**<br/>Core data-free composition engine<br/><i>Accepts raw inputs or Patch objects</i>"]
 
     %% Layout modifiers
     subgraph Modifiers
