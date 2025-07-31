@@ -115,6 +115,7 @@ graph TD
     G --> Align
     H --> PatchFn
     G --> Patch
+    H --> Patch
     PatchFn --> Patch
     Patch --> Align
 
@@ -144,15 +145,24 @@ graph TD
     style Patch fill:#C8E6C9,stroke:#388E3C,stroke-width:2px,color:#2E7D32
     style Align fill:#BBDEFB,stroke:#2196F3,stroke-width:2px,color:#0D47A1
     style Modifiers fill:#FFF3E0,stroke:#FFB300,stroke-width:2px,color:#E65100
+
     style F1 fill:#FFE0B2,stroke:#FB8C00,stroke-width:2px,color:#663C00
     style F1Desc fill:#FFECB3,stroke:#FFB300,stroke-width:1px,color:#6D4C41
+
     style F2 fill:#FFCCBC,stroke:#FF5722,stroke-width:2px,color:#4E342E
     style F2Desc fill:#FFCDD2,stroke:#E57373,stroke-width:1px,color:#B71C1C
+
     style F3 fill:#FFF9C4,stroke:#FBC02D,stroke-width:2px,color:#827717
     style F3Desc fill:#FFFDE7,stroke:#FBC02D,stroke-width:1px,color:#F9A825
+
     style F4 fill:#E1BEE7,stroke:#9C27B0,stroke-width:2px,color:#4A148C
     style F4Desc fill:#F3E5F5,stroke:#BA68C8,stroke-width:1px,color:#6A1B9A
-    style F5 fill:#B2DFDB,stroke:#0079
+
+    style F5 fill:#B2DFDB,stroke:#00796B,stroke-width:2px,color:#004D40
+    style F5Desc fill:#E0F2F1,stroke:#004D40,stroke-width:1px,color:#00695C
+
+    style F6 fill:#CFD8DC,stroke:#607D8B,stroke-width:2px,color:#263238
+    style F6Desc fill:#ECEFF1,stroke:#90A4AE,stroke-width:1px,color:#455A64
 ```
 
 **Characteristics:**
