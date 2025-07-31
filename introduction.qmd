@@ -92,7 +92,7 @@ graph TD
     Patch["**Patch object system**<br/>The detailed implementation of layout, alignment, and compositional logic"]
 
     %% align_plots as the core engine
-    Align["align_plots()<br/>Core layout engine"]
+    Align["**align_plots()**<br/>Core layout engine"]
 
     %% Layout Modifiers
     subgraph Modifiers
