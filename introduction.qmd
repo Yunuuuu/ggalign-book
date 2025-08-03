@@ -40,13 +40,13 @@ remotes::install_github("Yunuuuu/ggalign")
 
 ## Plot Composition
 
+### Data-Free Composition: Simple Plot Arrangement
+
 ggalign is a grammar-based system for composing multi-panel visualizations in R,
 designed to extend the expressive capabilities of ggplot2. At its core is a plot
 composer architecture that spatially arranges independent plots—an approach we
 refer to as data-free composition, where plots are combined without assuming any
 data relationships.
-
-### Data-Free Composition: Simple Plot Arrangement
 
 Data-free composition represents traditional plot arrangement where independent
 plots are spatially arranged without data relationships. This paradigm is
@@ -163,12 +163,6 @@ graph TD
     style F6 fill:#CFD8DC,stroke:#607D8B,stroke-width:2px,color:#263238
     style F6Desc fill:#ECEFF1,stroke:#90A4AE,stroke-width:1px,color:#455A64
 ```
-
-**Characteristics:**
-
-- Each plot uses independent data sources
-- No shared observations between plots (maybe)
-- Suitable for combining unrelated visualizations
 
 ### Data-Aware Composition: Integrated Data Visualization
 
