@@ -508,9 +508,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section><section id="plot-composition" class="level2" data-number="1.2"><h2 data-number="1.2" class="anchored" data-anchor-id="plot-composition">
 <span class="header-section-number">1.2</span> Plot Composition</h2>
-<p>ggalign is a grammar-based system for composing multi-panel visualizations in R, designed to extend the expressive capabilities of ggplot2. At its core is a plot composer architecture that spatially arranges independent plots—an approach we refer to as data-free composition, where plots are combined without assuming any data relationships.</p>
 <section id="data-free-composition-simple-plot-arrangement" class="level3" data-number="1.2.1"><h3 data-number="1.2.1" class="anchored" data-anchor-id="data-free-composition-simple-plot-arrangement">
 <span class="header-section-number">1.2.1</span> Data-Free Composition: Simple Plot Arrangement</h3>
+<p>ggalign is a grammar-based system for composing multi-panel visualizations in R, designed to extend the expressive capabilities of ggplot2. At its core is a plot composer architecture that spatially arranges independent plots—an approach we refer to as data-free composition, where plots are combined without assuming any data relationships.</p>
 <p>Data-free composition represents traditional plot arrangement where independent plots are spatially arranged without data relationships. This paradigm is conceptually aligned with tools like patchwork or cowplot, but ggalign provides finer control over alignment, spacing, and legend management, enabling more precise and expressive layout designs.</p>
 <p>The central engine for data-free composition is the <code>align_plots()</code> function. It arranges multiple plots or graphic objects into a structured layout, with detailed control over alignment, spacing, sizing, and guide collection.</p>
 <p>Beneath <code>align_plots()</code> lies a modular transformation layer built around the generic <code>patch()</code> function and the Patch R6-like object system. The <code>patch()</code> function converts heterogeneous plot-like inputs—such as ComplexHeatmap, pheatmap, base plots, and others—into standardized grid-compatible graphical objects (grobs). The Patch object then encapsulates the layout semantics, alignment logic, and compositional behavior.</p>
@@ -611,12 +611,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p><strong>Characteristics:</strong></p>
-<ul>
-<li>Each plot uses independent data sources</li>
-<li>No shared observations between plots (maybe)</li>
-<li>Suitable for combining unrelated visualizations</li>
-</ul></section><section id="data-aware-composition-integrated-data-visualization" class="level3" data-number="1.2.2"><h3 data-number="1.2.2" class="anchored" data-anchor-id="data-aware-composition-integrated-data-visualization">
+</section><section id="data-aware-composition-integrated-data-visualization" class="level3" data-number="1.2.2"><h3 data-number="1.2.2" class="anchored" data-anchor-id="data-aware-composition-integrated-data-visualization">
 <span class="header-section-number">1.2.2</span> Data-Aware Composition: Integrated Data Visualization</h3>
 <p>Data-aware composition is <code>ggalign</code>’s core innovation, where multiple plots share common observations and maintain consistent data alignment across all visualizations.</p>
 <div class="cell" data-layout-align="default">
