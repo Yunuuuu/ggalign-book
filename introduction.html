@@ -462,17 +462,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
 <li><a href="#installation" id="toc-installation" class="nav-link active" data-scroll-target="#installation"><span class="header-section-number">1.1</span> Installation</a></li>
   <li>
-<a href="#package-input-and-output" id="toc-package-input-and-output" class="nav-link" data-scroll-target="#package-input-and-output"><span class="header-section-number">1.2</span> Package Input and Output</a>
+<a href="#plot-composition" id="toc-plot-composition" class="nav-link" data-scroll-target="#plot-composition"><span class="header-section-number">1.2</span> Plot Composition</a>
   <ul class="collapse">
-<li><a href="#input-types" id="toc-input-types" class="nav-link" data-scroll-target="#input-types"><span class="header-section-number">1.2.1</span> Input Types</a></li>
-  <li><a href="#output-types" id="toc-output-types" class="nav-link" data-scroll-target="#output-types"><span class="header-section-number">1.2.2</span> Output Types</a></li>
-  </ul>
-</li>
-  <li>
-<a href="#plot-composition" id="toc-plot-composition" class="nav-link" data-scroll-target="#plot-composition"><span class="header-section-number">1.3</span> Plot Composition</a>
-  <ul class="collapse">
-<li><a href="#data-free-composition-simple-plot-arrangement" id="toc-data-free-composition-simple-plot-arrangement" class="nav-link" data-scroll-target="#data-free-composition-simple-plot-arrangement"><span class="header-section-number">1.3.1</span> Data-Free Composition: Simple Plot Arrangement</a></li>
-  <li><a href="#data-aware-composition-integrated-data-visualization" id="toc-data-aware-composition-integrated-data-visualization" class="nav-link" data-scroll-target="#data-aware-composition-integrated-data-visualization"><span class="header-section-number">1.3.2</span> Data-Aware Composition: Integrated Data Visualization</a></li>
+<li><a href="#data-free-composition-simple-plot-arrangement" id="toc-data-free-composition-simple-plot-arrangement" class="nav-link" data-scroll-target="#data-free-composition-simple-plot-arrangement"><span class="header-section-number">1.2.1</span> Data-Free Composition: Simple Plot Arrangement</a></li>
+  <li><a href="#data-aware-composition-integrated-data-visualization" id="toc-data-aware-composition-integrated-data-visualization" class="nav-link" data-scroll-target="#data-aware-composition-integrated-data-visualization"><span class="header-section-number">1.2.2</span> Data-Aware Composition: Integrated Data Visualization</a></li>
   </ul>
 </li>
   </ul><div class="toc-actions"><ul><li><a href="https://github.com/Yunuuuu/ggalign-book/blob/main/introduction.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/Yunuuuu/ggalign-book/edit/main/introduction.qmd" class="toc-action"><i class="bi empty"></i>Edit this page</a></li><li><a href="https://github.com/Yunuuuu/ggalign-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="quarto-other-links"><h2>Other Links</h2><ul><li><a href="https://yunuuuu.github.io/ggalign"><i class="bi bi-journal-text"></i>ggalign reference</a></li><li><a href="https://yunuuuu.github.io/ggalign-gallery"><i class="bi bi-grid-1x2-fill"></i>ggalign gallery</a></li><li><a href="https://www.biorxiv.org/content/10.1101/2025.02.06.636847v1"><i class="bi bi-layout-text-sidebar-reverse"></i>ggalign manuscript</a></li></ul></div><div class="quarto-code-links"><h2>Code Links</h2><ul><li><a href="https://github.com/Yunuuuu/ggalign"><i class="bi bi-code-square"></i>ggalign repo</a></li></ul></div></nav>
@@ -496,19 +489,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header><p>The <code>ggalign</code> package provides a flexible and powerful framework for composable visualization, making it easy to build complex multi-plot layouts—such as insets, multi-panel views, and circular compositions.</p>
 <p>Built on top of the grammar of graphics, <code>ggalign</code> introduces intuitive tools to align, stack, and nest plots in a way that preserves relationships between data sources—ideal for visualizing shared patterns, clustering results, or coordinated subplots.</p>
 <p>Designed for high-dimensional data common in fields like genomics, transcriptomics, and microbiome research, <code>ggalign</code> helps you create publication-ready figures by composing diverse plots into cohesive, structured layouts.</p>
-<p><code>ggalign</code> fills a critical gap in the R visualization ecosystem by providing:</p>
-<ul>
-<li>
-<strong>Seamless ggplot2 integration</strong>: Full compatibility with geoms, scales, themes, and other ggplot2 components</li>
-<li>
-<strong>Automatic data alignment</strong>: No manual coordinate management required</li>
-<li>
-<strong>Flexible layout system</strong>: Support for linear, quad, and circular arrangements</li>
-<li>
-<strong>Biological data focus</strong>: Specialized functions for genomics, transcriptomics, and clinical data</li>
-<li>
-<strong>Publication-ready output</strong>: High-quality figures suitable for scientific publications</li>
-</ul>
 <section id="installation" class="level2" data-number="1.1"><h2 data-number="1.1" class="anchored" data-anchor-id="installation">
 <span class="header-section-number">1.1</span> Installation</h2>
 <p>You can install <code>ggalign</code> from <code>CRAN</code> using:</p>
@@ -526,36 +506,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># install.packages("remotes")</span></span>
 <span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"Yunuuuu/ggalign"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="package-input-and-output" class="level2" data-number="1.2"><h2 data-number="1.2" class="anchored" data-anchor-id="package-input-and-output">
-<span class="header-section-number">1.2</span> Package Input and Output</h2>
-<section id="input-types" class="level3" data-number="1.2.1"><h3 data-number="1.2.1" class="anchored" data-anchor-id="input-types">
-<span class="header-section-number">1.2.1</span> Input Types</h3>
-<p>ggalign accepts diverse input formats to accommodate different data structures commonly used in biological research:</p>
-<ul>
-<li>
-<strong>Matrices</strong>: Gene expression data, correlation matrices, distance matrices</li>
-<li>
-<strong>Data frames</strong>: Clinical data, metadata, experimental conditions</li>
-<li>
-<strong>Specialized objects</strong>: MAF objects (maftools), phylogenetic trees (ape), clustering results (hclust)</li>
-<li>
-<strong>External graphics</strong>: ComplexHeatmap objects, pheatmap visualizations, base R plots</li>
-</ul></section><section id="output-types" class="level3" data-number="1.2.2"><h3 data-number="1.2.2" class="anchored" data-anchor-id="output-types">
-<span class="header-section-number">1.2.2</span> Output Types</h3>
-<p>The package produces two main types of outputs:</p>
-<ol type="1">
-<li>
-<strong>Data-Free Compositions</strong>: Standard ggplot2 objects arranged in grids, compatible with all ggplot2 functionality</li>
-<li>
-<strong>Data-Aware Compositions</strong>: Specialized layout objects that maintain observation alignment and can be further customized with additional plots and annotations</li>
-</ol>
-<p>Both output types are fully compatible with the ggplot2 ecosystem and can be saved using <code>ggsave()</code> or converted to other formats for publication.</p>
-</section></section><section id="plot-composition" class="level2" data-number="1.3"><h2 data-number="1.3" class="anchored" data-anchor-id="plot-composition">
-<span class="header-section-number">1.3</span> Plot Composition</h2>
-<p><code>ggalign</code> supports two core paradigms for plot composition, depending on how the data is shared or separated between plots.</p>
-<section id="data-free-composition-simple-plot-arrangement" class="level3" data-number="1.3.1"><h3 data-number="1.3.1" class="anchored" data-anchor-id="data-free-composition-simple-plot-arrangement">
-<span class="header-section-number">1.3.1</span> Data-Free Composition: Simple Plot Arrangement</h3>
-<p>Data-free composition represents traditional plot arrangement where independent plots are spatially arranged without data relationships. This approach is similar to what packages like <code>patchwork</code> or <code>cowplot</code> provide.</p>
+</section><section id="plot-composition" class="level2" data-number="1.2"><h2 data-number="1.2" class="anchored" data-anchor-id="plot-composition">
+<span class="header-section-number">1.2</span> Plot Composition</h2>
+<p>ggalign is a grammar-based system for composing multi-panel visualizations in R, designed to extend the expressive capabilities of ggplot2. At its core is a plot composer architecture that spatially arranges independent plots—an approach we refer to as data-free composition, where plots are combined without assuming any data relationships.</p>
+<section id="data-free-composition-simple-plot-arrangement" class="level3" data-number="1.2.1"><h3 data-number="1.2.1" class="anchored" data-anchor-id="data-free-composition-simple-plot-arrangement">
+<span class="header-section-number">1.2.1</span> Data-Free Composition: Simple Plot Arrangement</h3>
+<p>Data-free composition represents traditional plot arrangement where independent plots are spatially arranged without data relationships. This paradigm is conceptually aligned with tools like patchwork or cowplot, but ggalign provides finer control over alignment, spacing, and legend management, enabling more precise and expressive layout designs.</p>
+<p>The central engine for data-free composition is the align_plots() function. It arranges multiple plots or graphic objects into a structured layout, with detailed control over alignment, spacing, sizing, and guide collection.</p>
+<p>Beneath align_plots() lies a modular transformation layer built around the generic patch() function and the Patch R6-like object system. The patch() function converts heterogeneous plot-like inputs—such as ComplexHeatmap, pheatmap, base plots, and others—into standardized grid-compatible graphical objects (grobs). The Patch object then encapsulates the layout semantics, alignment logic, and compositional behavior.</p>
+<p>This design not only facilitates consistent and flexible handling of diverse graphical inputs but also makes the system extensible. By supporting generic patching, users and developers can introduce new types of visual objects into the ggalign ecosystem by implementing methods for patch() or or by defining new Patch objects to implement custom layout strategies, allowing seamless integration into complex multi-panel layoutst.</p>
+<p>To support fine-grained control over alignment behavior, ggalign also includes a set of modifier functions (e.g., free_align(), free_space(), free_border()) that allow selective relaxation or customization of alignment rules—making the system adaptable to a wide range of visualization scenarios.</p>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
 <div>
@@ -656,8 +616,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Each plot uses independent data sources</li>
 <li>No shared observations between plots (maybe)</li>
 <li>Suitable for combining unrelated visualizations</li>
-</ul></section><section id="data-aware-composition-integrated-data-visualization" class="level3" data-number="1.3.2"><h3 data-number="1.3.2" class="anchored" data-anchor-id="data-aware-composition-integrated-data-visualization">
-<span class="header-section-number">1.3.2</span> Data-Aware Composition: Integrated Data Visualization</h3>
+</ul></section><section id="data-aware-composition-integrated-data-visualization" class="level3" data-number="1.2.2"><h3 data-number="1.2.2" class="anchored" data-anchor-id="data-aware-composition-integrated-data-visualization">
+<span class="header-section-number">1.2.2</span> Data-Aware Composition: Integrated Data Visualization</h3>
 <p>Data-aware composition is <code>ggalign</code>’s core innovation, where multiple plots share common observations and maintain consistent data alignment across all visualizations.</p>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">

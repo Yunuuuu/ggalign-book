@@ -469,13 +469,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#stack_layout" id="toc-stack_layout" class="nav-link" data-scroll-target="#stack_layout"><span class="header-section-number">13.3.2</span> <code>stack_layout()</code></a></li>
   </ul>
 </li>
-  <li>
-<a href="#with_quad" id="toc-with_quad" class="nav-link" data-scroll-target="#with_quad"><span class="header-section-number">13.4</span> <code>with_quad()</code></a>
-  <ul class="collapse">
-<li><a href="#quad_layout" id="toc-quad_layout" class="nav-link" data-scroll-target="#quad_layout"><span class="header-section-number">13.4.1</span> <code>quad_layout()</code></a></li>
-  <li><a href="#stack_layout-1" id="toc-stack_layout-1" class="nav-link" data-scroll-target="#stack_layout-1"><span class="header-section-number">13.4.2</span> <code>stack_layout()</code></a></li>
-  </ul>
-</li>
+  <li><a href="#quad_scope" id="toc-quad_scope" class="nav-link" data-scroll-target="#quad_scope"><span class="header-section-number">13.4</span> <code>quad_scope()</code></a></li>
   </ul><div class="toc-actions"><ul><li><a href="https://github.com/Yunuuuu/ggalign-book/blob/main/operator.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/Yunuuuu/ggalign-book/edit/main/operator.qmd" class="toc-action"><i class="bi empty"></i>Edit this page</a></li><li><a href="https://github.com/Yunuuuu/ggalign-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="quarto-other-links"><h2>Other Links</h2><ul><li><a href="https://yunuuuu.github.io/ggalign"><i class="bi bi-journal-text"></i>ggalign reference</a></li><li><a href="https://yunuuuu.github.io/ggalign-gallery"><i class="bi bi-grid-1x2-fill"></i>ggalign gallery</a></li><li><a href="https://www.biorxiv.org/content/10.1101/2025.02.06.636847v1"><i class="bi bi-layout-text-sidebar-reverse"></i>ggalign manuscript</a></li></ul></div><div class="quarto-code-links"><h2>Code Links</h2><ul><li><a href="https://github.com/Yunuuuu/ggalign"><i class="bi bi-code-square"></i>ggalign repo</a></li></ul></div></nav>
     </div>
 <!-- main -->
@@ -651,33 +645,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>When the active layout is the nested <code><a href="https://yunuuuu.github.io/ggalign/reference/heatmap_layout.html">ggheatmap()</a></code>/<code><a href="https://yunuuuu.github.io/ggalign/reference/quad_layout.html">quad_layout()</a></code>, the <code>-</code> operator applies the elements to this nested layout, following the same principles as in the <a href="#sec-quad-layout-subtract" class="quarto-xref"><span>Section 13.3.1</span></a>.</p>
 <p>Want apply elements for plots in both <code><a href="https://yunuuuu.github.io/ggalign/reference/stack_layout.html">stack_layout()</a></code> and the nested <code><a href="https://yunuuuu.github.io/ggalign/reference/heatmap_layout.html">ggheatmap()</a></code>/<code><a href="https://yunuuuu.github.io/ggalign/reference/quad_layout.html">quad_layout()</a></code> at the same time? refer to the following section.</p>
-</section></section><section id="with_quad" class="level2" data-number="13.4"><h2 data-number="13.4" class="anchored" data-anchor-id="with_quad">
-<span class="header-section-number">13.4</span> <code>with_quad()</code>
+</section></section><section id="quad_scope" class="level2" data-number="13.4"><h2 data-number="13.4" class="anchored" data-anchor-id="quad_scope">
+<span class="header-section-number">13.4</span> <code>quad_scope()</code>
 </h2>
-<p>The <code><a href="https://yunuuuu.github.io/ggalign/reference/with_quad.html">with_quad()</a></code> function adjusts the context in which elements are applied in <code><a href="https://yunuuuu.github.io/ggalign/reference/heatmap_layout.html">ggheatmap()</a></code>/<code><a href="https://yunuuuu.github.io/ggalign/reference/quad_layout.html">quad_layout()</a></code>. It allows you to control how objects such as themes, scales, and other plot elements are applied to specific annotation stacks or the main plot, without changing the currently active context.</p>
-<p>This function accepts three arguments:</p>
+<p>The <code><a href="https://yunuuuu.github.io/ggalign/reference/quad_scope.html">quad_scope()</a></code> function adjusts the context in which elements are applied in <code><a href="https://yunuuuu.github.io/ggalign/reference/heatmap_layout.html">ggheatmap()</a></code>/<code><a href="https://yunuuuu.github.io/ggalign/reference/quad_layout.html">quad_layout()</a></code>. It allows you to control how objects such as themes, scales, and other plot elements are applied to specific annotation stacks or the main plot, without changing the currently active context.</p>
+<p>This function accepts two arguments:</p>
 <ol type="1">
 <li>
 <strong>x</strong>: An object which can be added to the plot.</li>
 <li>
-<strong>position</strong>: A string containing one or more of <code>"t"</code>, <code>"l"</code>, <code>"b"</code>, and <code>"r"</code> specifies the context for applying <code>x</code>.</li>
-<li>
-<strong>main</strong>: A single boolean value indicates whether <code>x</code> should also apply to the main plot within <code><a href="https://yunuuuu.github.io/ggalign/reference/heatmap_layout.html">ggheatmap()</a></code>/<code><a href="https://yunuuuu.github.io/ggalign/reference/quad_layout.html">quad_layout()</a></code>. Only used when <code>position</code> is not <code>NULL</code>.</li>
+<strong>position</strong>: A string containing one or more of <code>"t"</code>, <code>"l"</code>, <code>"b"</code>, <code>"r"</code>, and <code>"i"</code> specifies the context for applying <code>x</code>.</li>
 </ol>
-<section id="quad_layout" class="level3" data-number="13.4.1"><h3 data-number="13.4.1" class="anchored" data-anchor-id="quad_layout">
-<span class="header-section-number">13.4.1</span> <code>quad_layout()</code>
-</h3>
-<p>Default Behavior by wrapping object with <code><a href="https://yunuuuu.github.io/ggalign/reference/with_quad.html">with_quad()</a></code>:</p>
+<p>Default Behavior by wrapping object with <code><a href="https://yunuuuu.github.io/ggalign/reference/quad_scope.html">quad_scope()</a></code>:</p>
 <ul>
-<li>When <code><a href="https://yunuuuu.github.io/ggalign/reference/heatmap_layout.html">ggheatmap()</a></code>/<code><a href="https://yunuuuu.github.io/ggalign/reference/quad_layout.html">quad_layout()</a></code> has no active annotation stack, objects added via <code>+</code> or <code>-</code> operate normally without <code><a href="https://yunuuuu.github.io/ggalign/reference/with_quad.html">with_quad()</a></code>.</li>
-<li>When the active annotation stack is set, <code><a href="https://yunuuuu.github.io/ggalign/reference/with_quad.html">with_quad()</a></code> ensures the applied object also modifies:
+<li>When <code><a href="https://yunuuuu.github.io/ggalign/reference/heatmap_layout.html">ggheatmap()</a></code>/<code><a href="https://yunuuuu.github.io/ggalign/reference/quad_layout.html">quad_layout()</a></code> has no active annotation stack, objects added via <code>+</code> or <code>-</code> operate normally without <code><a href="https://yunuuuu.github.io/ggalign/reference/quad_scope.html">quad_scope()</a></code>.</li>
+<li>When the active annotation stack is set, <code><a href="https://yunuuuu.github.io/ggalign/reference/quad_scope.html">quad_scope()</a></code> ensures the applied object also modifies:
 <ul>
-<li>The main plot (by default).</li>
-<li>Opposite annotation stacks when using <code>-</code>.</li>
+<li>The active annotation stack.</li>
+<li>The main plot.</li>
 </ul>
 </li>
 </ul>
-<p>By wrapping object with <code><a href="https://yunuuuu.github.io/ggalign/reference/with_quad.html">with_quad()</a></code>, the <code>+</code> operator will apply the object not only to the active plot in the annotation stack, but also to the main plot unless specified by <code>main</code> argument otherwise.</p>
+<p>By wrapping object with <code><a href="https://yunuuuu.github.io/ggalign/reference/quad_scope.html">quad_scope()</a></code>, the <code>+</code> operator will apply the object not only to the active plot in the annotation stack, but also to the main plot.</p>
 <div class="cell">
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://yunuuuu.github.io/ggalign/reference/heatmap_layout.html">ggheatmap</a></span><span class="op">(</span><span class="va">small_mat</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="co"># initialize the left annotation</span></span>
@@ -685,9 +674,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>    <span class="fu"><a href="https://yunuuuu.github.io/ggalign/reference/align_dendro.html">align_dendro</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="co"># apply the object not only to the active plot in the annotation stack, but</span></span>
 <span>    <span class="co"># also to the main plot</span></span>
-<span>    <span class="fu"><a href="https://yunuuuu.github.io/ggalign/reference/with_quad.html">with_quad</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>plot.background <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_rect</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Warning: `with_quad()` was deprecated in ggalign 1.0.3.</span></span>
-<span><span class="co">#&gt; ℹ quad_scope()</span></span>
+<span>    <span class="fu"><a href="https://yunuuuu.github.io/ggalign/reference/quad_scope.html">quad_scope</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>plot.background <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_rect</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; → heatmap built with `geom_tile()`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
@@ -696,7 +683,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>By wrapping object with <code><a href="https://yunuuuu.github.io/ggalign/reference/with_quad.html">with_quad()</a></code>, the <code>-</code> operator will apply the object not only to that annotation stack but also to the opposite one (i.e., bottom if top is active, and vice versa). In these cases, the object will also be applied to the main plot by default unless specified by <code>main</code> argument otherwise.</p>
+<p>By wrapping object with <code><a href="https://yunuuuu.github.io/ggalign/reference/quad_scope.html">quad_scope()</a></code>, the <code>-</code> operator will apply the object not only to the active plot in the annotation stack, but also to the main plot.</p>
 <div class="cell">
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://yunuuuu.github.io/ggalign/reference/heatmap_layout.html">ggheatmap</a></span><span class="op">(</span><span class="va">small_mat</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="co"># initialize the left annotation</span></span>
@@ -707,9 +694,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>    <span class="fu"><a href="https://yunuuuu.github.io/ggalign/reference/align_dendro.html">align_dendro</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>color <span class="op">=</span> <span class="va">branch</span><span class="op">)</span>, k <span class="op">=</span> <span class="fl">3L</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://yunuuuu.github.io/ggalign/reference/quad_active.html">anno_bottom</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">0.2</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://yunuuuu.github.io/ggalign/reference/align_dendro.html">align_dendro</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>color <span class="op">=</span> <span class="va">branch</span><span class="op">)</span>, k <span class="op">=</span> <span class="fl">3L</span><span class="op">)</span> <span class="op">-</span></span>
-<span>    <span class="co"># Modify the theme of all plots in the bottom and the opposite annotation</span></span>
-<span>    <span class="co"># in this way, the `main` argument by default would be `TRUE`</span></span>
-<span>    <span class="fu"><a href="https://yunuuuu.github.io/ggalign/reference/with_quad.html">with_quad</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>plot.background <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_rect</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span>    <span class="co"># Modify the theme of all plots in the bottom annotation in this way, and</span></span>
+<span>    <span class="co"># the main plot</span></span>
+<span>    <span class="fu"><a href="https://yunuuuu.github.io/ggalign/reference/quad_scope.html">quad_scope</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>plot.background <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_rect</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; → heatmap built with `geom_tile()`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
@@ -718,7 +705,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>The <code>position</code> argument can be a string containing one or more of <code>"t"</code>, <code>"l"</code>, <code>"b"</code>, and <code>"r"</code>, indicating which annotation stack should be used as the context. When the <code>position</code> argument is manually set, the default value of the <code>main</code> argument will be <code>FALSE</code>.</p>
+<p>The <code>position</code> argument can be a string containing one or more of <code>"t"</code>, <code>"l"</code>, <code>"b"</code>, <code>"r"</code>, and <code>"i"</code>, indicating which annotation stack should be used as the context or if it should be applied to the main plot.</p>
 <div class="cell">
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://yunuuuu.github.io/ggalign/reference/heatmap_layout.html">ggheatmap</a></span><span class="op">(</span><span class="va">small_mat</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="co"># initialize the left annotation</span></span>
@@ -731,7 +718,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>    <span class="fu"><a href="https://yunuuuu.github.io/ggalign/reference/quad_active.html">anno_bottom</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">0.2</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://yunuuuu.github.io/ggalign/reference/align_dendro.html">align_dendro</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>color <span class="op">=</span> <span class="va">branch</span><span class="op">)</span>, k <span class="op">=</span> <span class="fl">3L</span><span class="op">)</span> <span class="op">-</span></span>
 <span>    <span class="co"># Modify the background of all plots in the left and top annotation</span></span>
-<span>    <span class="fu"><a href="https://yunuuuu.github.io/ggalign/reference/with_quad.html">with_quad</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>plot.background <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_rect</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span><span class="op">)</span>, <span class="st">"tl"</span><span class="op">)</span></span>
+<span>    <span class="fu"><a href="https://yunuuuu.github.io/ggalign/reference/quad_scope.html">quad_scope</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>plot.background <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_rect</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span><span class="op">)</span>, <span class="st">"tl"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; → heatmap built with `geom_tile()`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
@@ -740,24 +727,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>Setting <code>position</code> to <code>NULL</code> change the context to the <code><a href="https://yunuuuu.github.io/ggalign/reference/heatmap_layout.html">ggheatmap()</a></code>/<code><a href="https://yunuuuu.github.io/ggalign/reference/quad_layout.html">quad_layout()</a></code> itself.</p>
+<p>The <code>position</code> argument can also be <code>NULL</code>, which behaves as if no annotation is active.</p>
 <div class="cell">
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://yunuuuu.github.io/ggalign/reference/heatmap_layout.html">ggheatmap</a></span><span class="op">(</span><span class="va">small_mat</span><span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="co"># initialize the left annotation</span></span>
-<span>    <span class="fu"><a href="https://yunuuuu.github.io/ggalign/reference/quad_active.html">anno_left</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">0.2</span><span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu"><a href="https://yunuuuu.github.io/ggalign/reference/align_dendro.html">align_dendro</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="co"># we apply the theme to the main plot only</span></span>
-<span>    <span class="fu"><a href="https://yunuuuu.github.io/ggalign/reference/with_quad.html">with_quad</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>plot.background <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_rect</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span><span class="op">)</span>, <span class="cn">NULL</span><span class="op">)</span></span>
-<span><span class="co">#&gt; → heatmap built with `geom_tile()`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure"><p><img src="operator_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://yunuuuu.github.io/ggalign/reference/heatmap_layout.html">ggheatmap</a></span><span class="op">(</span><span class="va">small_mat</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="co"># initialize the left annotation</span></span>
 <span>    <span class="fu"><a href="https://yunuuuu.github.io/ggalign/reference/quad_active.html">anno_left</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">0.2</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://yunuuuu.github.io/ggalign/reference/align_dendro.html">align_dendro</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>color <span class="op">=</span> <span class="va">branch</span><span class="op">)</span>, k <span class="op">=</span> <span class="fl">3L</span><span class="op">)</span> <span class="op">+</span></span>
@@ -768,48 +740,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>    <span class="fu"><a href="https://yunuuuu.github.io/ggalign/reference/quad_active.html">anno_bottom</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">0.2</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://yunuuuu.github.io/ggalign/reference/align_dendro.html">align_dendro</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>color <span class="op">=</span> <span class="va">branch</span><span class="op">)</span>, k <span class="op">=</span> <span class="fl">3L</span><span class="op">)</span> <span class="op">-</span></span>
 <span>    <span class="co"># Modify the background of all plots</span></span>
-<span>    <span class="fu"><a href="https://yunuuuu.github.io/ggalign/reference/with_quad.html">with_quad</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>plot.background <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_rect</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span><span class="op">)</span>, <span class="cn">NULL</span><span class="op">)</span></span>
+<span>    <span class="fu"><a href="https://yunuuuu.github.io/ggalign/reference/quad_scope.html">quad_scope</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>plot.background <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_rect</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span><span class="op">)</span>, <span class="cn">NULL</span><span class="op">)</span></span>
 <span><span class="co">#&gt; → heatmap built with `geom_tile()`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="operator_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
+<figure class="figure"><p><img src="operator_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
-</section><section id="stack_layout-1" class="level3" data-number="13.4.2"><h3 data-number="13.4.2" class="anchored" data-anchor-id="stack_layout-1">
-<span class="header-section-number">13.4.2</span> <code>stack_layout()</code>
-</h3>
-<p>When the active layout is the <code><a href="https://yunuuuu.github.io/ggalign/reference/stack_layout.html">stack_layout()</a></code> itself, by default, by wrapping object with <code><a href="https://yunuuuu.github.io/ggalign/reference/with_quad.html">with_quad()</a></code>, <code>-</code> operator will apply changes to all plots along the <code><a href="https://yunuuuu.github.io/ggalign/reference/stack_layout.html">stack_layout()</a></code>, which means if the stack layout is in horizontal, <code>-</code> operator will also add the element to the left and right annotation, if the stack layout is in vertical, <code>-</code> operator will also add element to the top and bottom annotation. In these cases, the object will also be applied to the main plot by default unless specified by <code>main</code> argument otherwise.</p>
-<div class="cell">
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://yunuuuu.github.io/ggalign/reference/stack_layout.html">stack_alignv</a></span><span class="op">(</span><span class="va">small_mat</span><span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu"><a href="https://yunuuuu.github.io/ggalign/reference/align_dendro.html">align_dendro</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span><span class="op">(</span><span class="st">"I'm from the parent stack"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu"><a href="https://yunuuuu.github.io/ggalign/reference/heatmap_layout.html">ggheatmap</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu"><a href="https://yunuuuu.github.io/ggalign/reference/quad_active.html">anno_top</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu"><a href="https://yunuuuu.github.io/ggalign/reference/align_dendro.html">align_dendro</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span><span class="op">(</span><span class="st">"I'm from the nested heatmap"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="co"># remove any active context</span></span>
-<span>    <span class="fu"><a href="https://yunuuuu.github.io/ggalign/reference/stack_switch.html">stack_active</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu"><a href="https://yunuuuu.github.io/ggalign/reference/align_dendro.html">align_dendro</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span><span class="op">(</span><span class="st">"I'm from the parent stack"</span><span class="op">)</span> <span class="op">-</span></span>
-<span>    <span class="co"># Modify the the color scales of all plots in the stack layout except the heatmap layout</span></span>
-<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_brewer.html">scale_color_brewer</a></span><span class="op">(</span>palette <span class="op">=</span> <span class="st">"Dark2"</span><span class="op">)</span> <span class="op">-</span></span>
-<span>    <span class="co"># set the background of all plots in the stack layout (including plots in the heatmap layout)</span></span>
-<span>    <span class="fu"><a href="https://yunuuuu.github.io/ggalign/reference/with_quad.html">with_quad</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>plot.background <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_rect</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; → heatmap built with `geom_tile()`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure"><p><img src="operator_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<p><code>+</code> operator won’t do anything special when the active layout is the <code><a href="https://yunuuuu.github.io/ggalign/reference/stack_layout.html">stack_layout()</a></code> itself.</p>
-<p>When the active layout is the nested <code><a href="https://yunuuuu.github.io/ggalign/reference/heatmap_layout.html">ggheatmap()</a></code>/<code><a href="https://yunuuuu.github.io/ggalign/reference/quad_layout.html">quad_layout()</a></code>, the <code>+</code>/<code>-</code> operator applies the elements to this nested layout, following the same principles as for <code><a href="https://yunuuuu.github.io/ggalign/reference/heatmap_layout.html">ggheatmap()</a></code>/<code><a href="https://yunuuuu.github.io/ggalign/reference/quad_layout.html">quad_layout()</a></code>.</p>
 
 
-</section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right
     if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
