@@ -289,13 +289,12 @@ ggoncoplot(laml, n_top = 20, collapse_vars = FALSE, filling = FALSE) +
     ) +
     xlab("No. of samples") -
     # we apply the scale mapping to the top and right annotation: `position = "tr"`
-    # and the main plot: `main = TRUE`
-    with_quad(
+    # and the main plot: `position = "i"`
+    quad_scope(
         scale_fill_brewer("Mutations",
             palette = "Dark2", na.translate = FALSE
         ),
-        position = "tr",
-        main = TRUE
+        position = "tri"
     ) +
     # add bottom annotation
     anno_bottom(size = 0.2) +
