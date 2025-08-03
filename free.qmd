@@ -148,7 +148,7 @@ align_plots(p1,
 
 :::
 
-## free_guide
+## `free_guide()`
 
 The `free_guide()` function allows you to override the `guides` argument for a
 single plot.
