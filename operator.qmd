@@ -159,7 +159,7 @@ This function accepts two arguments:
 
  1. **x**: An object which can be added to the plot.
  2. **position**: A string containing one or more of 
-    `r ggalign:::oxford_and(c(ggalign:::.tlbr, "i))` specifies the context for
+    `r ggalign:::oxford_and(c(ggalign:::.tlbr, "i"))` specifies the context for
     applying `x`.
 
 Default Behavior by wrapping object with `quad_scope()`:
@@ -201,7 +201,7 @@ ggheatmap(small_mat) +
 ```
 
 The `position` argument can be a string containing one or more of 
-`r ggalign:::oxford_and(c(ggalign:::.tlbr, "i))`, indicating which annotation stack
+`r ggalign:::oxford_and(c(ggalign:::.tlbr, "i"))`, indicating which annotation stack
 should be used as the context or if it should be applied to the main plot.
 
 ```{r}
