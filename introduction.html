@@ -521,24 +521,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div>
 <p></p><figure class="figure"></figure><p></p>
 <div>
-<pre class="mermaid mermaid-js">graph TD
-    %% Input objects
-    subgraph InputObjects["Input Objects"]
+<pre class="mermaid mermaid-js">flowchart TD
+ subgraph InputObjects["Input plot (Plot Objects Ocean)"]
         G["ggplot"]
         H["ComplexHeatmap, pheatmap, base plot with formula, etc."]
-    end
-
-    %% Internal automatic processing
-    subgraph Internal["Developer interface"]
-        PatchFn["**patch()**&lt;br/&gt;&lt;i&gt;Automatically wraps inputs to Patchable&lt;/i&gt;"]
-        Patch["**Patch object system**&lt;br/&gt;&lt;i&gt;Handles layout, alignment,&lt;br/&gt;and composition logic&lt;/i&gt;"]
-    end
-
-    %% Core engine
-    Align["**align_plots()**&lt;br/&gt;Core data-free composition engine&lt;br/&gt;&lt;i&gt;Accepts raw inputs or Patch objects&lt;/i&gt;"]
-
-    %% Layout modifiers
-    subgraph Modifiers
+  end
+ subgraph Internal["Developer interface"]
+        PatchFn["**patch()**&lt;br&gt;&lt;i&gt;Automatically wraps inputs to Patchable&lt;/i&gt;"]
+        Patch["**Patch object system**&lt;br&gt;&lt;i&gt;Handles layout, alignment,&lt;br&gt;and composition logic&lt;/i&gt;"]
+  end
+ subgraph Modifiers["Modifiers"]
         F1["free_align()"]
         F1Desc["Disable axis-based panel alignment"]
         F2["free_space()"]
@@ -551,60 +543,45 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         F5Desc["Customize viewport placement"]
         F6["free_guide()"]
         F6Desc["Override legend alignment"]
-    end
-
-    %% Flow of data
-    G --&gt; Align
-    H --&gt; PatchFn
+  end
+    H --&gt; PatchFn &amp; Patch
     G --&gt; Patch
-    H --&gt; Patch
+    InputObjects --&gt; Align["**align_plots()**&lt;br&gt;Core data-free composition engine&lt;br&gt;"] &amp; Modifiers
+    Modifiers --&gt; Align &amp; Patch
     PatchFn --&gt; Patch
-    Patch --&gt; Align
-
-    %% Dashed arrow: inputs can also be passed directly to align_plots()
-    H -.-&gt; Align
-
-    Align --&gt; F1
-    Align --&gt; F2
-    Align --&gt; F3
-    Align --&gt; F4
-    Align --&gt; F5
-    Align --&gt; F6
-
     F1 --&gt; F1Desc
     F2 --&gt; F2Desc
     F3 --&gt; F3Desc
     F4 --&gt; F4Desc
     F5 --&gt; F5Desc
     F6 --&gt; F6Desc
+    Patch --- D[" "]
+    Align --- D
+    D --&gt; Render["Rendering"]
 
-    %% Styling
-    style InputObjects fill:none,stroke:#888888,stroke-width:2px
-    style Internal fill:#FFF9C4,stroke:#FBC02D,stroke-width:2px,color:#827717
+     D:::empty
+    classDef empty width:0px,height:0px
     style G fill:#D1E8FF,stroke:#1E90FF,stroke-width:2px,color:#1E3A8A
     style H fill:#FFE5D9,stroke:#FF7F50,stroke-width:2px,color:#7F3F00
     style PatchFn fill:#F0F4C3,stroke:#C0CA33,stroke-width:2px,color:#616515
     style Patch fill:#C8E6C9,stroke:#388E3C,stroke-width:2px,color:#2E7D32
-    style Align fill:#BBDEFB,stroke:#2196F3,stroke-width:2px,color:#0D47A1
-    style Modifiers fill:#FFF3E0,stroke:#FFB300,stroke-width:2px,color:#E65100
-
     style F1 fill:#FFE0B2,stroke:#FB8C00,stroke-width:2px,color:#663C00
     style F1Desc fill:#FFECB3,stroke:#FFB300,stroke-width:1px,color:#6D4C41
-
     style F2 fill:#FFCCBC,stroke:#FF5722,stroke-width:2px,color:#4E342E
     style F2Desc fill:#FFCDD2,stroke:#E57373,stroke-width:1px,color:#B71C1C
-
     style F3 fill:#FFF9C4,stroke:#FBC02D,stroke-width:2px,color:#827717
     style F3Desc fill:#FFFDE7,stroke:#FBC02D,stroke-width:1px,color:#F9A825
-
     style F4 fill:#E1BEE7,stroke:#9C27B0,stroke-width:2px,color:#4A148C
     style F4Desc fill:#F3E5F5,stroke:#BA68C8,stroke-width:1px,color:#6A1B9A
-
     style F5 fill:#B2DFDB,stroke:#00796B,stroke-width:2px,color:#004D40
     style F5Desc fill:#E0F2F1,stroke:#004D40,stroke-width:1px,color:#00695C
-
     style F6 fill:#CFD8DC,stroke:#607D8B,stroke-width:2px,color:#263238
     style F6Desc fill:#ECEFF1,stroke:#90A4AE,stroke-width:1px,color:#455A64
+    style InputObjects fill:none,stroke:#888888,stroke-width:2px,font-size:12px
+    style Align fill:#BBDEFB,stroke:#2196F3,stroke-width:2px,color:#0D47A1,font-size:12px
+    style Modifiers fill:#FFF3E0,stroke:#FFB300,stroke-width:2px,color:#E65100,font-size:12px
+    style Render fill:#C5CAE9,stroke:#3F51B5,stroke-width:2px,color:#1A237E,font-size:12px
+    style Internal fill:#FFF9C4,stroke:#FBC02D,stroke-width:2px,color:#827717,font-size:12px
 </pre>
 </div>
 <p></p>
