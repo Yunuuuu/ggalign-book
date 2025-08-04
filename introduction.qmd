@@ -81,7 +81,7 @@ rules—making the system adaptable to a wide range of visualization scenarios.
 flowchart TD
     %% Input Objects subgraph with title node
     subgraph InputObjects[" "]
-        InputTitle["Input plot<br>(Plot Objects Ocean)"]
+        InputTitle["Input plot<br><br>(Plot Objects Ocean)"]
         style InputTitle fill:none,stroke:none,color:#7F3F00,font-weight:bold,font-size:28px
         G["ggplot"]
         H["ComplexHeatmap, pheatmap, base plot in formula, etc."]
@@ -206,7 +206,7 @@ flowchart TD
     %% CraftBox system
     subgraph CraftBox[" "]
         style CraftBox fill:#E6F2E6,stroke:#2E8B57,stroke-width:3px
-        CraftBoxTitle["**CraftBox system**<br>User Interface"]
+        CraftBoxTitle["**CraftBox system**<br><br>User Interface"]
         style CraftBoxTitle fill:none,stroke:none,color:#2E8B57,font-weight:bold,font-size:28px
         
         AlignHclust["**align_hclust()**"]
@@ -263,7 +263,7 @@ flowchart TD
     %% Linking system
     subgraph Linking[" "]
         style Linking fill:#E0F0FF,stroke:#1E90FF,stroke-width:3px
-        LinkingTitle["**Linking system**<br>Manages connections between observations"]
+        LinkingTitle["**Linking system**<br><br>Manages connections between observations"]
         style LinkingTitle fill:none,stroke:none,color:#1E90FF,font-weight:bold,font-size:28px
     end
 
@@ -271,13 +271,13 @@ flowchart TD
     Linking --o CrossLink
 
     %% Developer Interface
-    Craftsman["**Developer interface**<br>**Craftsman**<br>Core logic for grouping, clustering, ordering, and adding plots"]
+    Craftsman["**Developer interface**<br><br>**Craftsman**<br><br>Core logic for grouping, clustering, ordering, and adding plots"]
     style Craftsman fill:#FFF8DC,stroke:#B8860B,stroke-width:3px,color:#B8860B,font-weight:bold,font-size:28px
 
     %% Scheme system
     subgraph Scheme[" "]
         style Scheme fill:#F5E6FF,stroke:#8B008B,stroke-width:3px
-        SchemeTitle["**Scheme system**<br>Defines visual/structural controls<br>applied during rendering"]
+        SchemeTitle["**Scheme system**<br><br>Defines visual/structural controls"]
         style SchemeTitle fill:none,stroke:none,color:#8B008B,font-weight:bold,font-size:28px
         SchemeTheme["**scheme_theme()**"]
         SchemeData["**scheme_data()**"]
