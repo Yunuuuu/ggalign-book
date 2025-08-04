@@ -79,15 +79,15 @@ rules—making the system adaptable to a wide range of visualization scenarios.
 
 ```{mermaid}
 flowchart TD
- subgraph InputObjects["Input plot (Plot Objects Ocean)"]
+    subgraph InputObjects["Input plot (Plot Objects Ocean)"]
         G["ggplot"]
         H["ComplexHeatmap, pheatmap, base plot with formula, etc."]
-  end
- subgraph Internal["Developer interface"]
+    end
+    subgraph Internal["Developer interface"]
         PatchFn["**patch()**<br><i>Automatically wraps inputs to Patchable</i>"]
         Patch["**Patch object system**<br><i>Handles layout, alignment,<br>and composition logic</i>"]
-  end
- subgraph Modifiers["Modifiers"]
+    end
+    subgraph Modifiers["Modifiers"]
         F1["free_align()"]
         F1Desc["Disable axis-based panel alignment"]
         F2["free_space()"]
@@ -100,7 +100,7 @@ flowchart TD
         F5Desc["Customize viewport placement"]
         F6["free_guide()"]
         F6Desc["Override legend alignment"]
-  end
+    end
     H --> PatchFn & Patch
     G --> Patch
     InputObjects --> Align["**align_plots()**<br>Core data-free composition engine<br>"] & Modifiers
