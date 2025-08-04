@@ -116,7 +116,7 @@ flowchart TD
     Align --- D
     D --> Render["Rendering"]
 
-     D:::empty
+    D:::empty
     classDef empty width:0px,height:0px
     style G fill:#D1E8FF,stroke:#1E90FF,stroke-width:2px,color:#1E3A8A
     style H fill:#FFE5D9,stroke:#FF7F50,stroke-width:2px,color:#7F3F00
