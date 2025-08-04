@@ -522,15 +522,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p></p><figure class="figure"></figure><p></p>
 <div>
 <pre class="mermaid mermaid-js">flowchart TD
-    subgraph InputObjects["Input plot (Plot Objects Ocean)"]
+    %% Input Objects subgraph with title node
+    subgraph InputObjects[" "]
+        InputTitle["Input plot (Plot Objects Ocean)"]
+        style InputTitle fill:none,stroke:none,color:#7F3F00,font-weight:bold,font-size:28px
         G["ggplot"]
         H["ComplexHeatmap, pheatmap, base plot with formula, etc."]
     end
-    subgraph Internal["Developer interface"]
+
+    %% Developer Interface subgraph with title node
+    subgraph Internal[" "]
+        InternalTitle["Developer interface"]
+        style InternalTitle fill:none,stroke:none,color:#827717,font-weight:bold,font-size:28px
         PatchFn["**patch()**&lt;br&gt;&lt;i&gt;Automatically wraps inputs to Patchable&lt;/i&gt;"]
         Patch["**Patch object system**&lt;br&gt;&lt;i&gt;Handles layout, alignment,&lt;br&gt;and composition logic&lt;/i&gt;"]
     end
-    subgraph Modifiers["Modifiers"]
+
+    %% Modifiers subgraph with title node
+    subgraph Modifiers[" "]
+        ModifiersTitle["Modifiers"]
+        style ModifiersTitle fill:none,stroke:none,color:#E65100,font-weight:bold,font-size:28px
         F1["free_align()"]
         F1Desc["Disable axis-based panel alignment"]
         F2["free_space()"]
@@ -544,23 +555,37 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         F6["free_guide()"]
         F6Desc["Override legend alignment"]
     end
-    H --&gt; PatchFn &amp; Patch
+
+    %% Core engine and render nodes
+    Align["**align_plots()**&lt;br&gt;Core data-free composition engine&lt;br&gt;"]
+    Render["Rendering"]
+
+    %% Flow connections
+    H --&gt; PatchFn
+    H --&gt; Patch
     G --&gt; Patch
-    InputObjects --&gt; Align["**align_plots()**&lt;br&gt;Core data-free composition engine&lt;br&gt;"] &amp; Modifiers
-    Modifiers --&gt; Align &amp; Patch
+
+    InputObjects --&gt; Align
+    InputObjects --&gt; Modifiers
+    Modifiers --&gt; Align
+    Modifiers --&gt; Patch
     PatchFn --&gt; Patch
+
     F1 --&gt; F1Desc
     F2 --&gt; F2Desc
     F3 --&gt; F3Desc
     F4 --&gt; F4Desc
     F5 --&gt; F5Desc
     F6 --&gt; F6Desc
+
     Patch --- D[" "]
     Align --- D
-    D --&gt; Render["Rendering"]
+    D --&gt; Render
 
-     D:::empty
+    %% Styling
     classDef empty width:0px,height:0px
+    class D empty
+
     style G fill:#D1E8FF,stroke:#1E90FF,stroke-width:2px,color:#1E3A8A
     style H fill:#FFE5D9,stroke:#FF7F50,stroke-width:2px,color:#7F3F00
     style PatchFn fill:#F0F4C3,stroke:#C0CA33,stroke-width:2px,color:#616515
@@ -577,11 +602,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     style F5Desc fill:#E0F2F1,stroke:#004D40,stroke-width:1px,color:#00695C
     style F6 fill:#CFD8DC,stroke:#607D8B,stroke-width:2px,color:#263238
     style F6Desc fill:#ECEFF1,stroke:#90A4AE,stroke-width:1px,color:#455A64
-    style InputObjects fill:none,stroke:#888888,stroke-width:2px,font-size:12px
+
+    style InputObjects fill:none,stroke:#888888,stroke-width:2px
     style Align fill:#BBDEFB,stroke:#2196F3,stroke-width:2px,color:#0D47A1,font-size:12px
     style Modifiers fill:#FFF3E0,stroke:#FFB300,stroke-width:2px,color:#E65100,font-size:12px
     style Render fill:#C5CAE9,stroke:#3F51B5,stroke-width:2px,color:#1A237E,font-size:12px
     style Internal fill:#FFF9C4,stroke:#FBC02D,stroke-width:2px,color:#827717,font-size:12px
+
 </pre>
 </div>
 <p></p>
