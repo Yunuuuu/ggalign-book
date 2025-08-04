@@ -88,16 +88,16 @@ flowchart TD
     end
 
     %% Developer Interface subgraph with title node
-    subgraph Internal[" "]
-        InternalTitle["Developer interface"]
-        style InternalTitle fill:none,stroke:none,color:#827717,font-weight:bold,font-size:28px
-        PatchFn["**patch()**<br><i>Automatically wraps inputs to Patchable</i>"]
-        Patch["**Patch object system**<br><i>Handles layout, alignment,<br>and composition logic</i>"]
+    subgraph PatchGraph[" "]
+        PatchGraphTitle["**Developer interface**"]
+        style PatchGraphTitle fill:none,stroke:none,color:#827717,font-weight:bold,font-size:28px
+        PatchFn["**patch()**<br>Automatically wraps inputs to Patchable"]
+        Patch["**Patch object system**<br>Handles layout, alignment,<br>and composition logic"]
     end
 
     %% Modifiers subgraph with title node
     subgraph Modifiers[" "]
-        ModifiersTitle["Modifiers"]
+        ModifiersTitle["**Modifiers**"]
         style ModifiersTitle fill:none,stroke:none,color:#E65100,font-weight:bold,font-size:28px
         F1["free_align()"]
         F1Desc["Disable axis-based panel alignment"]
@@ -175,29 +175,166 @@ common observations and maintain consistent data alignment across all
 visualizations.
 
 ```{mermaid}
-graph TB
-    SHARED["Shared Data<br/>Common observations"]
-    LAYOUT["Layout System:<br/>quad_layout()<br/>stack_layout()<br/>circle_layout()"]
-    ALIGN["Layout Customization<br/>Data-Level Ordering and Grouping"]
-    PLOTS["Coordinated Plots<br/>Automatic observation sync"]
-    OUTPUT2["Integrated Visualization<br/>Guaranteed alignment"]
+flowchart TD
+    %% Layout system
+    subgraph Layout[" "]
+        style Layout fill:#FFF3E0,stroke:#D2691E,stroke-width:3px
+        LayoutTitle["**Layout system**"]
+        style LayoutTitle fill:none,stroke:none,color:#D2691E,font-weight:bold,font-size:28px
+
+        Stack["**StackLayout**"]
+        Circle["**CircleLayout**"]
+        Quad["**QuadLayout**"]
+
+        StackDesc["Stacks plots horizontally or vertically"]
+        CircleDesc["Positions plots in a circular pattern"]
+        QuadDesc["Arranges plots in a grid of four quadrants"]
+    end
+    Render["Rendering"]
+
+    Stack --- StackDesc
+    Circle --- CircleDesc
+    Quad --- QuadDesc
+
+    style Stack fill:#FFE4B5,stroke:#D2691E,stroke-width:2px,color:#D2691E,font-weight:bold,font-size:28px
+    style Circle fill:#FFE4B5,stroke:#D2691E,stroke-width:2px,color:#D2691E,font-weight:bold,font-size:28px
+    style Quad fill:#FFE4B5,stroke:#D2691E,stroke-width:2px,color:#D2691E,font-weight:bold,font-size:28px
+    style StackDesc fill:#FFF5E1,color:#D2691E,font-size:28px
+    style CircleDesc fill:#FFF5E1,color:#D2691E,font-size:28px
+    style QuadDesc fill:#FFF5E1,color:#D2691E,font-size:28px
+
+    %% CraftBox system
+    subgraph CraftBox[" "]
+        style CraftBox fill:#E6F2E6,stroke:#2E8B57,stroke-width:3px
+        CraftBoxTitle["**CraftBox system**<br>User Interface"]
+        style CraftBoxTitle fill:none,stroke:none,color:#2E8B57,font-weight:bold,font-size:28px
+        
+        AlignHclust["**align_hclust()**"]
+        AlignOrder["**align_order()**"]
+        AlignKmeans["**align_kmeans()**"]
+        AlignGroup["**align_group()**"]
+
+        AlignHclustDesc["Hierarchical clustering"]
+        AlignOrderDesc["Custom ordering"]
+        AlignKmeansDesc["K-means clustering"]
+        AlignGroupDesc["Manual grouping"]
+
+        Ggalign["**ggalign()**"]
+        Ggfree["**ggfree()**"]
+        Ggmark["**ggmark()**"]
+        CrossLink["**cross_link()**"]
+
+        GgalignDesc["Add aligned plots to layouts"]
+        GgfreeDesc["Add freely positioned plots"]
+        GgmarkDesc["Annotate linked observations"]
+        CrossLinkDesc["Create cross-panel links (lines/polygons)"]
+    end
+
+    AlignHclust --- AlignHclustDesc
+    AlignOrder --- AlignOrderDesc
+    AlignKmeans --- AlignKmeansDesc
+    AlignGroup --- AlignGroupDesc
     
-    SHARED --> LAYOUT
-    LAYOUT --> ALIGN
-    LAYOUT --> PLOTS
-    ALIGN --> OUTPUT2
-    PLOTS --> OUTPUT2
+    Ggalign --- GgalignDesc
+    Ggfree --- GgfreeDesc
+    Ggmark --- GgmarkDesc
+    CrossLink --- CrossLinkDesc
 
-    style SHARED fill:#d0e6f7,stroke:#1f78b4,stroke-width:2px,color:#0b3d91
-    style LAYOUT fill:#f0f4c3,stroke:#c0ca33,stroke-width:2px,color:#616515
-    style ALIGN fill:#ffe0b2,stroke:#fb8c00,stroke-width:2px,color:#663c00
-    style PLOTS fill:#dcedc8,stroke:#689f38,stroke-width:2px,color:#33691e
-    style OUTPUT2 fill:#c8e6c9,stroke:#388e3c,stroke-width:2px,color:#2e7d32
+    style AlignHclust fill:#C1E1C1,stroke:#2E8B57,stroke-width:2px,color:#2E8B57,font-weight:bold,font-size:28px
+    style AlignOrder fill:#C1E1C1,stroke:#2E8B57,stroke-width:2px,color:#2E8B57,font-weight:bold,font-size:28px
+    style AlignKmeans fill:#C1E1C1,stroke:#2E8B57,stroke-width:2px,color:#2E8B57,font-weight:bold,font-size:28px
+    style AlignGroup fill:#C1E1C1,stroke:#2E8B57,stroke-width:2px,color:#2E8B57,font-weight:bold,font-size:28px
+
+    style Ggalign fill:#A9DFBF,stroke:#2E8B57,stroke-width:2px,color:#2E8B57,font-weight:bold,font-size:28px
+    style Ggfree fill:#A9DFBF,stroke:#2E8B57,stroke-width:2px,color:#2E8B57,font-weight:bold,font-size:28px
+    style Ggmark fill:#A9DFBF,stroke:#2E8B57,stroke-width:2px,color:#2E8B57,font-weight:bold,font-size:28px
+    style CrossLink fill:#A9DFBF,stroke:#2E8B57,stroke-width:2px,color:#2E8B57,font-weight:bold,font-size:28px
+
+    style AlignHclustDesc fill:#D5F5E3,color:#2E8B57,font-size:28px
+    style AlignOrderDesc fill:#D5F5E3,color:#2E8B57,font-size:28px
+    style AlignKmeansDesc fill:#D5F5E3,color:#2E8B57,font-size:28px
+    style AlignGroupDesc fill:#D5F5E3,color:#2E8B57,font-size:28px
+
+    style GgalignDesc fill:#DFF0D8,color:#2E8B57,font-size:28px
+    style GgfreeDesc fill:#DFF0D8,color:#2E8B57,font-size:28px
+    style GgmarkDesc fill:#DFF0D8,color:#2E8B57,font-size:28px
+    style CrossLinkDesc fill:#DFF0D8,color:#2E8B57,font-size:28px
+
+    %% Linking system
+    subgraph Linking[" "]
+        style Linking fill:#E0F0FF,stroke:#1E90FF,stroke-width:3px
+        LinkingTitle["**Linking system**<br>Manages connections between observations"]
+        style LinkingTitle fill:none,stroke:none,color:#1E90FF,font-weight:bold,font-size:28px
+    end
+
+    Linking --o Ggmark
+    Linking --o CrossLink
+
+    %% Developer Interface
+    Craftsman["**Developer interface**<br>**Craftsman**<br>Core logic for grouping, clustering, ordering, and adding plots"]
+    style Craftsman fill:#FFF8DC,stroke:#B8860B,stroke-width:3px,color:#B8860B,font-weight:bold,font-size:28px
+
+    %% Scheme system
+    subgraph Scheme[" "]
+        style Scheme fill:#F5E6FF,stroke:#8B008B,stroke-width:3px
+        SchemeTitle["**Scheme system**<br>Defines visual/structural controls<br>applied during rendering"]
+        style SchemeTitle fill:none,stroke:none,color:#8B008B,font-weight:bold,font-size:28px
+        SchemeTheme["**scheme_theme()**"]
+        SchemeData["**scheme_data()**"]
+        SchemeAlign["**scheme_align()**"]
+
+        SchemeThemeDesc["Controls theming"]
+        SchemeDataDesc["Data transformations"]
+        SchemeAlignDesc["Alignment specifications"]
+    end
+
+    SchemeTheme --- SchemeThemeDesc
+    SchemeData --- SchemeDataDesc
+    SchemeAlign --- SchemeAlignDesc
+
+    style SchemeTheme fill:#E6E6FA,stroke:#8B008B,stroke-width:2px,color:#8B008B,font-weight:bold
+    style SchemeData fill:#E6E6FA,stroke:#8B008B,stroke-width:2px,color:#8B008B,font-weight:bold
+    style SchemeAlign fill:#E6E6FA,stroke:#8B008B,stroke-width:2px,color:#8B008B,font-weight:bold
+
+    style SchemeThemeDesc fill:#F0F8FF,color:#8B008B,font-size:28px
+    style SchemeDataDesc fill:#F0F8FF,color:#8B008B,font-size:28px
+    style SchemeAlignDesc fill:#F0F8FF,color:#8B008B,font-size:28px
+
+    %% Scheme implementation
+    subgraph SchemeImpl[" "]
+        style SchemeImpl fill:#FDE6F8,stroke:#800080,stroke-width:3px
+        SchemeUpdate["**scheme_update()**"]
+        SchemeInit["**scheme_init()**"]
+        SchemeInherit["**scheme_inherit()**"]
+        PlotAddScheme["**plot_add_scheme()**"]
+
+        SchemeUpdateDesc["Updates scheme properties"]
+        SchemeInitDesc["Initializes scheme"]
+        SchemeInheritDesc["Inherits properties"]
+        PlotAddSchemeDesc["Applies schemes to plots"]
+    end
+
+    SchemeUpdate --- SchemeUpdateDesc
+    SchemeInit --- SchemeInitDesc
+    SchemeInherit --- SchemeInheritDesc
+    PlotAddScheme --- PlotAddSchemeDesc
+
+    style SchemeUpdate fill:#FFF0F5,stroke:#800080,stroke-width:2px,color:#800080,font-weight:bold
+    style SchemeInit fill:#FFF0F5,stroke:#800080,stroke-width:2px,color:#800080,font-weight:bold
+    style SchemeInherit fill:#FFF0F5,stroke:#800080,stroke-width:2px,color:#800080,font-weight:bold
+    style PlotAddScheme fill:#FFF0F5,stroke:#800080,stroke-width:2px,color:#800080,font-weight:bold
+
+    style SchemeUpdateDesc fill:#FFE4F1,color:#800080,font-size:28px
+    style SchemeInitDesc fill:#FFE4F1,color:#800080,font-size:28px
+    style SchemeInheritDesc fill:#FFE4F1,color:#800080,font-size:28px
+    style PlotAddSchemeDesc fill:#FFE4F1,color:#800080,font-size:28px
+    style Render fill:#C5CAE9,stroke:#3F51B5,stroke-width:2px,color:#1A237E,font-size:28px
+
+    %% Connections
+    SchemeImpl --> Scheme
+    CraftBox --o Layout
+    Craftsman --o CraftBox
+    Scheme --o CraftBox
+    Scheme --o Layout
+    Layout --> Render
 ```
-
-**Key Features:**
-
-- **Observation Consistency**: Data points from same observations aligned across all plots
-- **Automatic Synchronization**: No manual coordinate management required
-- **Complex Relationships**: Supports one-to-many, many-to-many, and crosswise data relationships
-- **Specialized Layouts**: Purpose-built layouts for specific data types
