@@ -522,15 +522,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p></p><figure class="figure"></figure><p></p>
 <div>
 <pre class="mermaid mermaid-js">flowchart TD
- subgraph InputObjects["Input plot (Plot Objects Ocean)"]
+    subgraph InputObjects["Input plot (Plot Objects Ocean)"]
         G["ggplot"]
         H["ComplexHeatmap, pheatmap, base plot with formula, etc."]
-  end
- subgraph Internal["Developer interface"]
+    end
+    subgraph Internal["Developer interface"]
         PatchFn["**patch()**&lt;br&gt;&lt;i&gt;Automatically wraps inputs to Patchable&lt;/i&gt;"]
         Patch["**Patch object system**&lt;br&gt;&lt;i&gt;Handles layout, alignment,&lt;br&gt;and composition logic&lt;/i&gt;"]
-  end
- subgraph Modifiers["Modifiers"]
+    end
+    subgraph Modifiers["Modifiers"]
         F1["free_align()"]
         F1Desc["Disable axis-based panel alignment"]
         F2["free_space()"]
@@ -543,7 +543,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         F5Desc["Customize viewport placement"]
         F6["free_guide()"]
         F6Desc["Override legend alignment"]
-  end
+    end
     H --&gt; PatchFn &amp; Patch
     G --&gt; Patch
     InputObjects --&gt; Align["**align_plots()**&lt;br&gt;Core data-free composition engine&lt;br&gt;"] &amp; Modifiers
@@ -559,7 +559,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     Align --- D
     D --&gt; Render["Rendering"]
 
-     D:::empty
+    D:::empty
     classDef empty width:0px,height:0px
     style G fill:#D1E8FF,stroke:#1E90FF,stroke-width:2px,color:#1E3A8A
     style H fill:#FFE5D9,stroke:#FF7F50,stroke-width:2px,color:#7F3F00
