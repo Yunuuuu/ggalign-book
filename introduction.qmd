@@ -189,6 +189,7 @@ flowchart TD
         %%  CircleDesc["Positions plots in a circular pattern"]
         %%  QuadDesc["Arranges plots in a grid of four quadrants"]
     end
+    DataFree["Building with Data-free composition"]
     Render["Rendering"]
 
     %% Stack --- StackDesc
@@ -329,6 +330,7 @@ flowchart TD
     style SchemeInitDesc fill:#FFE4F1,color:#800080,font-size:28px
     style SchemeInheritDesc fill:#FFE4F1,color:#800080,font-size:28px
     style PlotAddSchemeDesc fill:#FFE4F1,color:#800080,font-size:28px
+    style DataFree fill:#FFECB3,stroke:#FF6F00,stroke-width:2px,color:#BF360C,font-weight:bold,font-size:28px
     style Render fill:#C5CAE9,stroke:#3F51B5,stroke-width:2px,color:#1A237E,font-size:28px
 
     %% Connections
@@ -337,5 +339,6 @@ flowchart TD
     Craftsman --o CraftBox
     Scheme --o CraftBox
     Scheme --o Layout
-    Layout --> Render
+    Layout --> DataFree
+    DataFree --> Render
 ```
