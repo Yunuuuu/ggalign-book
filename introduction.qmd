@@ -219,6 +219,7 @@ flowchart TD
         %% AlignKmeansDesc["K-means clustering"]
         %% AlignGroupDesc["Manual grouping"]
 
+        AlignDendro["align_dendro()"]
         Ggalign["ggalign()"]
         Ggfree["ggfree()"]
         Ggmark["ggmark()"]
@@ -245,6 +246,7 @@ flowchart TD
     style AlignKmeans fill:#C1E1C1,stroke:#2E8B57,stroke-width:2px,color:#2E8B57,font-weight:bold,font-size:28px
     style AlignGroup fill:#C1E1C1,stroke:#2E8B57,stroke-width:2px,color:#2E8B57,font-weight:bold,font-size:28px
 
+    style AlignDendro fill:#A9DFBF,stroke:#2E8B57,stroke-width:2px,color:#2E8B57,font-weight:bold,font-size:28px
     style Ggalign fill:#A9DFBF,stroke:#2E8B57,stroke-width:2px,color:#2E8B57,font-weight:bold,font-size:28px
     style Ggfree fill:#A9DFBF,stroke:#2E8B57,stroke-width:2px,color:#2E8B57,font-weight:bold,font-size:28px
     style Ggmark fill:#A9DFBF,stroke:#2E8B57,stroke-width:2px,color:#2E8B57,font-weight:bold,font-size:28px
