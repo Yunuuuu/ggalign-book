@@ -633,22 +633,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         Circle["**CircleLayout**"]
         Quad["**QuadLayout**"]
 
-        StackDesc["Stacks plots horizontally or vertically"]
-        CircleDesc["Positions plots in a circular pattern"]
-        QuadDesc["Arranges plots in a grid of four quadrants"]
+        %%  StackDesc["Stacks plots horizontally or vertically"]
+        %%  CircleDesc["Positions plots in a circular pattern"]
+        %%  QuadDesc["Arranges plots in a grid of four quadrants"]
     end
     Render["Rendering"]
 
-    Stack --- StackDesc
-    Circle --- CircleDesc
-    Quad --- QuadDesc
+    %% Stack --- StackDesc
+    %% Circle --- CircleDesc
+    %% Quad --- QuadDesc
 
     style Stack fill:#FFE4B5,stroke:#D2691E,stroke-width:2px,color:#D2691E,font-weight:bold,font-size:28px
     style Circle fill:#FFE4B5,stroke:#D2691E,stroke-width:2px,color:#D2691E,font-weight:bold,font-size:28px
     style Quad fill:#FFE4B5,stroke:#D2691E,stroke-width:2px,color:#D2691E,font-weight:bold,font-size:28px
-    style StackDesc fill:#FFF5E1,color:#D2691E,font-size:28px
-    style CircleDesc fill:#FFF5E1,color:#D2691E,font-size:28px
-    style QuadDesc fill:#FFF5E1,color:#D2691E,font-size:28px
+    %% style StackDesc fill:#FFF5E1,color:#D2691E,font-size:28px
+    %% style CircleDesc fill:#FFF5E1,color:#D2691E,font-size:28px
+    %% style QuadDesc fill:#FFF5E1,color:#D2691E,font-size:28px
 
     %% CraftBox system
     subgraph CraftBox[" "]
@@ -661,31 +661,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         AlignKmeans["**align_kmeans()**"]
         AlignGroup["**align_group()**"]
 
-        AlignHclustDesc["Hierarchical clustering"]
-        AlignOrderDesc["Custom ordering"]
-        AlignKmeansDesc["K-means clustering"]
-        AlignGroupDesc["Manual grouping"]
+        %% AlignHclustDesc["Hierarchical clustering"]
+        %% AlignOrderDesc["Custom ordering"]
+        %% AlignKmeansDesc["K-means clustering"]
+        %% AlignGroupDesc["Manual grouping"]
 
         Ggalign["**ggalign()**"]
         Ggfree["**ggfree()**"]
         Ggmark["**ggmark()**"]
         CrossLink["**cross_link()**"]
 
-        GgalignDesc["Add aligned plots to layouts"]
-        GgfreeDesc["Add freely positioned plots"]
-        GgmarkDesc["Annotate linked observations"]
-        CrossLinkDesc["Create cross-panel links (lines/polygons)"]
+        %% GgalignDesc["Add aligned plots to layouts"]
+        %% GgfreeDesc["Add freely positioned plots"]
+        %% GgmarkDesc["Annotate linked observations"]
+        %% CrossLinkDesc["Create cross-panel links (lines/polygons)"]
     end
 
-    AlignHclust --- AlignHclustDesc
-    AlignOrder --- AlignOrderDesc
-    AlignKmeans --- AlignKmeansDesc
-    AlignGroup --- AlignGroupDesc
+    %% AlignHclust --- AlignHclustDesc
+    %% AlignOrder --- AlignOrderDesc
+    %% AlignKmeans --- AlignKmeansDesc
+    %% AlignGroup --- AlignGroupDesc
     
-    Ggalign --- GgalignDesc
-    Ggfree --- GgfreeDesc
-    Ggmark --- GgmarkDesc
-    CrossLink --- CrossLinkDesc
+    %% Ggalign --- GgalignDesc
+    %% Ggfree --- GgfreeDesc
+    %% Ggmark --- GgmarkDesc
+    %% CrossLink --- CrossLinkDesc
 
     style AlignHclust fill:#C1E1C1,stroke:#2E8B57,stroke-width:2px,color:#2E8B57,font-weight:bold,font-size:28px
     style AlignOrder fill:#C1E1C1,stroke:#2E8B57,stroke-width:2px,color:#2E8B57,font-weight:bold,font-size:28px
@@ -697,15 +697,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     style Ggmark fill:#A9DFBF,stroke:#2E8B57,stroke-width:2px,color:#2E8B57,font-weight:bold,font-size:28px
     style CrossLink fill:#A9DFBF,stroke:#2E8B57,stroke-width:2px,color:#2E8B57,font-weight:bold,font-size:28px
 
-    style AlignHclustDesc fill:#D5F5E3,color:#2E8B57,font-size:28px
-    style AlignOrderDesc fill:#D5F5E3,color:#2E8B57,font-size:28px
-    style AlignKmeansDesc fill:#D5F5E3,color:#2E8B57,font-size:28px
-    style AlignGroupDesc fill:#D5F5E3,color:#2E8B57,font-size:28px
+    %% style AlignHclustDesc fill:#D5F5E3,color:#2E8B57,font-size:28px
+    %% style AlignOrderDesc fill:#D5F5E3,color:#2E8B57,font-size:28px
+    %% style AlignKmeansDesc fill:#D5F5E3,color:#2E8B57,font-size:28px
+    %% style AlignGroupDesc fill:#D5F5E3,color:#2E8B57,font-size:28px
 
-    style GgalignDesc fill:#DFF0D8,color:#2E8B57,font-size:28px
-    style GgfreeDesc fill:#DFF0D8,color:#2E8B57,font-size:28px
-    style GgmarkDesc fill:#DFF0D8,color:#2E8B57,font-size:28px
-    style CrossLinkDesc fill:#DFF0D8,color:#2E8B57,font-size:28px
+    %% style GgalignDesc fill:#DFF0D8,color:#2E8B57,font-size:28px
+    %% style GgfreeDesc fill:#DFF0D8,color:#2E8B57,font-size:28px
+    %% style GgmarkDesc fill:#DFF0D8,color:#2E8B57,font-size:28px
+    %% style CrossLinkDesc fill:#DFF0D8,color:#2E8B57,font-size:28px
 
     %% Linking system
     subgraph Linking[" "]
@@ -724,32 +724,34 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     %% Scheme system
     subgraph Scheme[" "]
         style Scheme fill:#F5E6FF,stroke:#8B008B,stroke-width:3px
-        SchemeTitle["**Scheme system**&lt;br&gt;&lt;br&gt;Defines visual/structural controls"]
+        SchemeTitle["**Scheme system**&lt;br&gt;&lt;br&gt;Visual/Structural controls"]
         style SchemeTitle fill:none,stroke:none,color:#8B008B,font-weight:bold,font-size:28px
         SchemeTheme["**scheme_theme()**"]
         SchemeData["**scheme_data()**"]
         SchemeAlign["**scheme_align()**"]
 
-        SchemeThemeDesc["Controls theming"]
-        SchemeDataDesc["Data transformations"]
-        SchemeAlignDesc["Alignment specifications"]
+        %% SchemeThemeDesc["Controls theming"]
+        %% SchemeDataDesc["Data transformations"]
+        %% SchemeAlignDesc["Alignment specifications"]
     end
 
-    SchemeTheme --- SchemeThemeDesc
-    SchemeData --- SchemeDataDesc
-    SchemeAlign --- SchemeAlignDesc
+    %% SchemeTheme --- SchemeThemeDesc
+    %% SchemeData --- SchemeDataDesc
+    %% SchemeAlign --- SchemeAlignDesc
 
     style SchemeTheme fill:#E6E6FA,stroke:#8B008B,stroke-width:2px,color:#8B008B,font-weight:bold,font-size:28px
     style SchemeData fill:#E6E6FA,stroke:#8B008B,stroke-width:2px,color:#8B008B,font-weight:bold,font-size:28px
     style SchemeAlign fill:#E6E6FA,stroke:#8B008B,stroke-width:2px,color:#8B008B,font-weight:bold,font-size:28px
 
-    style SchemeThemeDesc fill:#F0F8FF,color:#8B008B,font-size:28px
-    style SchemeDataDesc fill:#F0F8FF,color:#8B008B,font-size:28px
-    style SchemeAlignDesc fill:#F0F8FF,color:#8B008B,font-size:28px
+    %% style SchemeThemeDesc fill:#F0F8FF,color:#8B008B,font-size:28px
+    %% style SchemeDataDesc fill:#F0F8FF,color:#8B008B,font-size:28px
+    %% style SchemeAlignDesc fill:#F0F8FF,color:#8B008B,font-size:28px
 
     %% Scheme implementation
     subgraph SchemeImpl[" "]
         style SchemeImpl fill:#FDE6F8,stroke:#800080,stroke-width:3px
+        SchemeImplTitle["**Developer interface**"]
+        style SchemeImplTitle fill:none,stroke:none,color:#8B008,font-weight:bold,font-size:28px
         SchemeUpdate["**scheme_update()**"]
         SchemeInit["**scheme_init()**"]
         SchemeInherit["**scheme_inherit()**"]
