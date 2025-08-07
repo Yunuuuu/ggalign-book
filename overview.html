@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>2&nbsp; Get Started – ggalign: Bridging the Grammar of Graphics and Complex layout</title>
+<title>5&nbsp; Overview – ggalign: Bridging the Grammar of Graphics and Complex layout</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,41 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -65,8 +30,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./data-free.html" rel="next">
-<link href="./introduction.html" rel="prev">
+<link href="./stack-layout.html" rel="next">
+<link href="./data-aware.html" rel="prev">
 <link href="./cover.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -111,9 +76,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
 
-<meta name="twitter:title" content="2&nbsp; Get Started – ggalign: Bridging the Grammar of Graphics and Complex layout">
+<meta name="twitter:title" content="5&nbsp; Overview – ggalign: Bridging the Grammar of Graphics and Complex layout">
 <meta name="twitter:description" content="">
-<meta name="twitter:image" content="getting-started_files/figure-html/unnamed-chunk-1-1.png">
+<meta name="twitter:image" content="design.png">
 <meta name="twitter:card" content="summary_large_image">
 </head>
 
@@ -297,7 +262,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./introduction.html">Welcome</a></li><li class="breadcrumb-item"><a href="./getting-started.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Get Started</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data-aware.html">Data-Aware Composition</a></li><li class="breadcrumb-item"><a href="./overview.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Overview</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -354,7 +319,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./getting-started.html" class="sidebar-item-text sidebar-link active">
+  <a href="./getting-started.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Get Started</span></span></a>
   </div>
 </li>
@@ -394,7 +359,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./overview.html" class="sidebar-item-text sidebar-link">
+  <a href="./overview.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Overview</span></span></a>
   </div>
 </li>
@@ -482,19 +447,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#data-free-composition" id="toc-data-free-composition" class="nav-link active" data-scroll-target="#data-free-composition"><span class="header-section-number">2.1</span> Data-Free Composition</a></li>
-  <li><a href="#data-aware-composition" id="toc-data-aware-composition" class="nav-link" data-scroll-target="#data-aware-composition"><span class="header-section-number">2.2</span> Data-Aware Composition</a></li>
-  <li><a href="#when-to-use-each-approach" id="toc-when-to-use-each-approach" class="nav-link" data-scroll-target="#when-to-use-each-approach"><span class="header-section-number">2.3</span> When to Use Each Approach</a></li>
+  <li><a href="#layout-system" id="toc-layout-system" class="nav-link active" data-scroll-target="#layout-system"><span class="header-section-number">5.1</span> Layout System</a></li>
+  <li><a href="#supporting-systems" id="toc-supporting-systems" class="nav-link" data-scroll-target="#supporting-systems"><span class="header-section-number">5.2</span> Overview of Supporting Systems</a></li>
+  <li><a href="#sec-input-data" id="toc-sec-input-data" class="nav-link" data-scroll-target="#sec-input-data"><span class="header-section-number">5.3</span> Input data</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/Yunuuuu/ggalign-book/blob/main/getting-started.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/Yunuuuu/ggalign-book/edit/main/getting-started.qmd" class="toc-action"><i class="bi empty"></i>Edit this page</a></li><li><a href="https://github.com/Yunuuuu/ggalign-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="quarto-other-links"><h2>Other Links</h2><ul><li><a href="https://yunuuuu.github.io/ggalign"><i class="bi bi-journal-text"></i>ggalign reference</a></li><li><a href="https://yunuuuu.github.io/ggalign-gallery"><i class="bi bi-grid-1x2-fill"></i>ggalign gallery</a></li><li><a href="https://www.biorxiv.org/content/10.1101/2025.02.06.636847v1"><i class="bi bi-layout-text-sidebar-reverse"></i>ggalign manuscript</a></li></ul></div><div class="quarto-code-links"><h2>Code Links</h2><ul><li><a href="https://github.com/Yunuuuu/ggalign"><i class="bi bi-code-square"></i>ggalign repo</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/Yunuuuu/ggalign-book/blob/main/overview.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/Yunuuuu/ggalign-book/edit/main/overview.qmd" class="toc-action"><i class="bi empty"></i>Edit this page</a></li><li><a href="https://github.com/Yunuuuu/ggalign-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="quarto-other-links"><h2>Other Links</h2><ul><li><a href="https://yunuuuu.github.io/ggalign"><i class="bi bi-journal-text"></i>ggalign reference</a></li><li><a href="https://yunuuuu.github.io/ggalign-gallery"><i class="bi bi-grid-1x2-fill"></i>ggalign gallery</a></li><li><a href="https://www.biorxiv.org/content/10.1101/2025.02.06.636847v1"><i class="bi bi-layout-text-sidebar-reverse"></i>ggalign manuscript</a></li></ul></div><div class="quarto-code-links"><h2>Code Links</h2><ul><li><a href="https://github.com/Yunuuuu/ggalign"><i class="bi bi-code-square"></i>ggalign repo</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./introduction.html">Welcome</a></li><li class="breadcrumb-item"><a href="./getting-started.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Get Started</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data-aware.html">Data-Aware Composition</a></li><li class="breadcrumb-item"><a href="./overview.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Overview</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="sec-get-started" class="quarto-section-identifier"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Get Started</span></span></h1>
+<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Overview</span></h1>
 </div>
 
 
@@ -511,111 +476,94 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>This chapter shows simple usage examples of <code>ggalign</code>.</p>
-<div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggalign)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Loading required package: ggplot2</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Attaching package: 'ggalign'</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; The following object is masked from 'package:ggplot2':</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     element_polygon</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-<section id="data-free-composition" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="data-free-composition"><span class="header-section-number">2.1</span> Data-Free Composition</h2>
-<p>The usage of data-free composition is simple: just create plots first then arrange plots together!</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create individual plots</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(mtcars) <span class="sc">+</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(mpg, disp)) <span class="sc">+</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggtitle</span>(<span class="st">"Scatter Plot"</span>)</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(mtcars) <span class="sc">+</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="fu">factor</span>(cyl), mpg)) <span class="sc">+</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggtitle</span>(<span class="st">"Box Plot"</span>)</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>p3 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(mtcars) <span class="sc">+</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(mpg), <span class="at">bins =</span> <span class="dv">15</span>) <span class="sc">+</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggtitle</span>(<span class="st">"Histogram"</span>)</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Arrange plots in a grid</span></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="fu">align_plots</span>(p1, p2, p3, <span class="at">ncol =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
+<p><code>ggalign</code> simplifies data-aware alignment in ggplot2, handling common tasks such as sorting, grouping, or clustering observations before composition. It introduces the concept of <code>observation alignment</code>, which ensures that identical data points maintain consistent positions across multiple interconnected plots.</p>
+<div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="getting-started_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="design.png" class="img-fluid figure-img"></p>
+<figcaption>General design of Data-Aware Composition</figcaption>
 </figure>
 </div>
-</div>
-</div>
-<p>The <code>align_plots()</code> function offers flexible control over grid dimensions, sizing, and layout specifications. You can control the arrangement with parameters like <code>ncol</code>, <code>nrow</code>, <code>widths</code>, <code>heights</code>, and even use <code>area()</code> specifications for complex layouts.</p>
-<p><code>ggalign</code> provides various options to control layout specifications, including whether to collect legend guides, align axes, and more. For more, see Part <code>Data-Free Composition</code>.</p>
+<section id="layout-system" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="layout-system"><span class="header-section-number">5.1</span> Layout System</h2>
+<p>At the heart of <code>ggalign</code> data-aware composition is an object-oriented <code>Layout</code> system that integrates seamlessly with <code>ggplot2</code>. It provides three core layout types:</p>
+<ul>
+<li><code>StackLayout</code>: Stacks plots horizontally or vertically.</li>
+<li><code>QuadLayout</code>: Arranges plots in four quadrants (top, left, bottom, right) around a central plot.</li>
+<li><code>CircleLayout</code>: Positions plots in a circular pattern.</li>
+</ul>
+<p>Each layout supports both discrete (e.g., categories) and continuous (e.g., numerical) data, and includes specialized alignment functions:</p>
+<p>For <code>StackLayout</code>:</p>
+<ul>
+<li><code>stack_discrete()</code>: Align discrete variable along the stack.</li>
+<li><code>stack_continuous()</code>: Align continuous variable along the stack.</li>
+<li><code>stack_layout()</code>: A unified interface that handles both discrete and continuous data.</li>
+</ul>
+<p>For <code>QuadLayout</code>:</p>
+<ul>
+<li><code>quad_continuous()</code>/<code>ggside()</code>: Align continuous variables in both horizontal and vertical directions.</li>
+<li><code>quad_discrete()</code>: Align discrete variables in both horizontal and vertical directions.</li>
+<li><code>quad_layout()</code>: A general function that adapts to both data types and directions.</li>
+</ul>
+<p>For <code>CircleLayout</code>:</p>
+<ul>
+<li><code>circle_discrete()</code>: Align discrete variable in the circle.</li>
+<li><code>circle_continuous()</code>: Align continuous variable in the circle.</li>
+<li><code>circle_layout()</code>: A unified interface for both cases.</li>
+</ul>
 </section>
-<section id="data-aware-composition" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="data-aware-composition"><span class="header-section-number">2.2</span> Data-Aware Composition</h2>
-<p>A common use case for data-aware composition is combining a heatmap with a dendrogram. The dendrogram reveals hierarchical relationships among the data (e.g., samples or genes), and the heatmap is reordered to align with the dendrogram structure—ensuring consistent interpretation.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Prepare heatmap matrix</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>mat <span class="ot">&lt;-</span> <span class="fu">matrix</span>(</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rnorm</span>(<span class="dv">200</span>, <span class="at">mean =</span> <span class="dv">5</span>, <span class="at">sd =</span> <span class="dv">2</span>),</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">nrow =</span> <span class="dv">20</span>, <span class="at">ncol =</span> <span class="dv">10</span>,</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">dimnames =</span> <span class="fu">list</span>(<span class="fu">paste0</span>(<span class="st">"G"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>), <span class="fu">paste0</span>(<span class="st">"S"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>))</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Create a basic heatmap:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggheatmap</span>(mat)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; → heatmap built with `geom_tile()`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
+<section id="supporting-systems" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="supporting-systems"><span class="header-section-number">5.2</span> Overview of Supporting Systems</h2>
+<p>In addition to the core <code>Layout</code> system, <code>ggalign</code> provides several helper systems that enhance data-aware composition by managing how observations are grouped, ordered, and supplemented with additional plot elements. These systems work together with layouts to create flexible and insightful multi-plot arrangements:</p>
+<ol type="1">
+<li>Layout customization:
+<ul>
+<li><code>align_group()</code>: Group observations into panel with a group variable.</li>
+<li><code>align_kmeans()</code>: Group observations into panel by kmeans.</li>
+<li><code>align_order()</code>: Reorder layout observations based on statistical weights or by manually specifying the observation index.</li>
+<li><code>align_order2</code>: Reorder observations using an arbitrary statistical function</li>
+<li><code>align_hclust()</code>: Reorder or group observations based on hierarchical clustering.</li>
+</ul></li>
+<li>Plot adding:
+<ul>
+<li><code>align_dendro()</code>: Add a dendrogram to the plot, and reorder or group observations based on hierarchical clustering.</li>
+<li><code>ggalign()</code>: Initialize a ggplot object and align the axes.</li>
+<li><code>ggmark()</code>: Add a plot to annotate selected observations.</li>
+<li><code>ggcross()</code>: Initialize a ggplot object to connect two different layout crosswise</li>
+<li><code>ggfree()</code>: Initialize a ggplot object without aligning the axes.</li>
+</ul></li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="getting-started_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="overview.png" class="img-fluid figure-img"></p>
+<figcaption>Overview of Data-Aware Composition</figcaption>
 </figure>
 </div>
-</div>
-</div>
-<p>With <code>ggalign</code>, you can add elements using the same <code>+</code> syntax as in <code>ggplot2</code>. For example, to add a dendrogram above the heatmap:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="annotated-cell-5"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><button class="code-annotation-anchor" data-target-cell="annotated-cell-5" data-target-annotation="1">1</button><span id="annotated-cell-5-1" class="code-annotation-target"><a href="#annotated-cell-5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggheatmap</span>(mat) <span class="sc">+</span></span>
-<button class="code-annotation-anchor" data-target-cell="annotated-cell-5" data-target-annotation="2">2</button><span id="annotated-cell-5-2" class="code-annotation-target"><a href="#annotated-cell-5-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">anno_top</span>() <span class="sc">+</span></span>
-<button class="code-annotation-anchor" data-target-cell="annotated-cell-5" data-target-annotation="3">3</button><span id="annotated-cell-5-3" class="code-annotation-target"><a href="#annotated-cell-5-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_dendro</span>()</span>
-<span id="annotated-cell-5-4"><a href="#annotated-cell-5-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; → heatmap built with `geom_tile()`</span></span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-annotation">
-<dl class="code-annotation-container-hidden code-annotation-container-grid">
-<dt data-target-cell="annotated-cell-5" data-target-annotation="1">1</dt>
-<dd>
-<span data-code-cell="annotated-cell-5" data-code-lines="1" data-code-annotation="1">We initialize a heatmap layout.</span>
-</dd>
-<dt data-target-cell="annotated-cell-5" data-target-annotation="2">2</dt>
-<dd>
-<span data-code-cell="annotated-cell-5" data-code-lines="2" data-code-annotation="2">we initialize an annotation in the top side of the heatmap body.</span>
-</dd>
-<dt data-target-cell="annotated-cell-5" data-target-annotation="3">3</dt>
-<dd>
-<span data-code-cell="annotated-cell-5" data-code-lines="3" data-code-annotation="3">Add a dendrogram tree in the top annotation, and Reorder and group the observations based on hierarchical clustering.</span>
-</dd>
-</dl>
-</div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="getting-started_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>This automatically reorders the heatmap rows or columns to reflect the hierarchical structure in the dendrogram.</p>
-<p>While data-aware composition is the core strength of <code>ggalign</code>, its full capabilities go beyond a single example. For more advanced features and finer control, see Part <code>Data-Aware Composition</code>.</p>
 </section>
-<section id="when-to-use-each-approach" class="level2" data-number="2.3">
-<h2 data-number="2.3" class="anchored" data-anchor-id="when-to-use-each-approach"><span class="header-section-number">2.3</span> When to Use Each Approach</h2>
-<p><strong>Use data-free composition when:</strong> - Combining unrelated plots for publication figures - Creating dashboard-style layouts - Arranging plots with different data sources - Simple spatial arrangement is sufficient</p>
-<p><strong>Use data-aware composition when:</strong> - Analyzing the same dataset from multiple perspectives - Creating heatmaps with annotations - Ensuring observation consistency across plots - Working with genomic, transcriptomic, or other omics data</p>
-<p>This foundational understanding of ggalign’s two composition modes will guide you through the more advanced features covered in subsequent chapters.</p>
+<section id="sec-input-data" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="sec-input-data"><span class="header-section-number">5.3</span> Input data</h2>
+<p>Before exploring data-aware compostion, it’s important to understand how axis alignment works in <code>ggplot2</code>.</p>
+<ul>
+<li><p>For continuous axes, alignment is straightforward: simply ensure the axis limits are consistent across plots.</p></li>
+<li><p>For discrete axes, alignment is more challenging. You must have the same set of unique values and maintain a consistent ordering across all plots. In ggplot2, this can be difficult when working with long-format data frames because the factor levels or ordering may differ.</p></li>
+</ul>
+<p><code>ggalign</code> addresses this challenge by using matrix inputs for layouts that align discrete axes (e.g., the <code>*_discrete()</code> functions). In this approach:</p>
+<ul>
+<li><p>Each row of the matrix represents a unique discrete value (called an “observation”).</p></li>
+<li><p>The total number of rows defines the complete set of unique discrete values.</p></li>
+<li><p>Reordering rows in the matrix controls the ordering of observations consistently across all linked plots.</p></li>
+</ul>
+<p>This design is especially useful for layouts that align axes in both directions (horizontal and vertical), such as heatmap, since matrices can be easily transposed to switch row and column alignment.</p>
+<p>The matrix is only used for positioning. Before rendering, <code>ggalign</code> will reorder the matrix rows based on the layout, and automatically converts it into a long-format data frame — the standard input for <code>ggplot2</code>.</p>
+<p>The main difference between discrete and continuous variable alignment in <code>ggalign</code> lies in the input data:</p>
+<ul>
+<li><p>Discrete variables require a matrix as input.</p></li>
+<li><p>Continuous variables require a data frame, just like in standard ggplot2.</p></li>
+</ul>
+<p>When a data frame is required, the input will be automatically converted using <code>fortify_data_frame()</code> if needed. When a matrix is required, the input will be automatically converted using fortify_matrix().</p>
+<p>By default, <code>fortify_data_frame()</code> calls <code>ggplot2::fortify()</code> for conversion.</p>
+<blockquote class="blockquote">
+<p>Note: When applied to a matrix, <code>fortify_data_frame()</code> will convert it into a long-formatted data frame, which differs from the behavior of <code>ggplot2::fortify()</code>.</p>
+</blockquote>
 
 
 </section>
@@ -1074,13 +1022,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./introduction.html" class="pagination-link" aria-label="Introduction">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span>
+      <a href="./data-aware.html" class="pagination-link" aria-label="Data-Aware Composition">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Data-Aware Composition</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./data-free.html" class="pagination-link" aria-label="Data-Free Composition">
-        <span class="nav-page-text">Data-Free Composition</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./stack-layout.html" class="pagination-link" aria-label="Stack Layout">
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Stack Layout</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -1089,4 +1037,4 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/Yunuuuu/ggalign-book/blob/main/getting-started.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/Yunuuuu/ggalign-book/edit/main/getting-started.qmd" class="toc-action"><i class="bi empty"></i>Edit this page</a></li><li><a href="https://github.com/Yunuuuu/ggalign-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/Yunuuuu/ggalign-book/blob/main/overview.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/Yunuuuu/ggalign-book/edit/main/overview.qmd" class="toc-action"><i class="bi empty"></i>Edit this page</a></li><li><a href="https://github.com/Yunuuuu/ggalign-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
