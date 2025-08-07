@@ -61,7 +61,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./quad-layout.html" rel="next">
+<link href="./layout-customize.html" rel="next">
 <link href="./stack-layout.html" rel="prev">
 <link href="./cover.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
@@ -398,14 +398,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./quad-layout.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Quad-side Layout</span></span></a>
+  <a href="./layout-customize.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Layout customization</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./layout-customize.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Customize Layout</span></span></a>
+  <a href="./quad-layout.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Quad-side Layout</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -671,7 +671,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <code>anno_right</code>: A special case of <code><a href="https://yunuuuu.github.io/ggalign/reference/quad_active.html">quad_anno()</a></code> with <code>position = "right"</code>.</li>
 </ul>
 <p>When <code><a href="https://yunuuuu.github.io/ggalign/reference/quad_active.html">quad_anno()</a></code> is added to a <code><a href="https://yunuuuu.github.io/ggalign/reference/heatmap_layout.html">ggheatmap()</a></code>/<code><a href="https://yunuuuu.github.io/ggalign/reference/quad_layout.html">quad_layout()</a></code>, it will try to create a new <code><a href="https://yunuuuu.github.io/ggalign/reference/stack_layout.html">stack_layout()</a></code>. For top and bottom annotations, <code><a href="https://yunuuuu.github.io/ggalign/reference/stack_layout.html">stack_discretev()</a></code> or <code><a href="https://yunuuuu.github.io/ggalign/reference/stack_layout.html">stack_continuousv()</a></code> will be used; for left and right annotations, <code><a href="https://yunuuuu.github.io/ggalign/reference/stack_layout.html">stack_discreteh()</a></code> or <code><a href="https://yunuuuu.github.io/ggalign/reference/stack_layout.html">stack_continuoush()</a></code> will be applied.</p>
-<p>Additionally, <code><a href="https://yunuuuu.github.io/ggalign/reference/quad_active.html">quad_anno()</a></code> will set the active context to the annotation. This means that subsequent additions will be directed to the annotation rather than the main plot. We use the term <code>active context</code> in contrast to <code>active plot</code> (as discussed in <span class="quarto-unresolved-ref">?sec-stack-layout-layout-customize</span>), since the annotation is a <code>Layout</code> object but not a single plot.</p>
+<p>Additionally, <code><a href="https://yunuuuu.github.io/ggalign/reference/quad_active.html">quad_anno()</a></code> will set the active context to the annotation. This means that subsequent additions will be directed to the annotation rather than the main plot. We use the term <code>active context</code> in contrast to <code>active plot</code> (as discussed in <a href="stack-layout.html" class="quarto-xref"><span>Chapter 6</span></a>), since the annotation is a <code>Layout</code> object but not a single plot.</p>
 <div class="cell">
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://yunuuuu.github.io/ggalign/reference/heatmap_layout.html">ggheatmap</a></span><span class="op">(</span><span class="va">small_mat</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>axis.text.x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>angle <span class="op">=</span> <span class="op">-</span><span class="fl">60</span>, hjust <span class="op">=</span> <span class="fl">0</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
@@ -685,7 +685,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>By default, the annotation <code><a href="https://yunuuuu.github.io/ggalign/reference/stack_layout.html">stack_layout()</a></code> will try to inherit data from <code><a href="https://yunuuuu.github.io/ggalign/reference/heatmap_layout.html">ggheatmap()</a></code>/<code><a href="https://yunuuuu.github.io/ggalign/reference/quad_layout.html">quad_layout()</a></code>. If we need align discrete variables vertically, this means the data from <code><a href="https://yunuuuu.github.io/ggalign/reference/heatmap_layout.html">ggheatmap()</a></code>/<code><a href="https://yunuuuu.github.io/ggalign/reference/quad_layout.html">quad_layout()</a></code> should be a matrix, the column annotations will also require a matrix and the matrix from <code><a href="https://yunuuuu.github.io/ggalign/reference/heatmap_layout.html">ggheatmap()</a></code>/<code><a href="https://yunuuuu.github.io/ggalign/reference/quad_layout.html">quad_layout()</a></code> will be transposed for use in the column annotations.</p>
+<p>By default, the annotation <code><a href="https://yunuuuu.github.io/ggalign/reference/stack_layout.html">stack_layout()</a></code> attempts to inherit data from <code><a href="https://yunuuuu.github.io/ggalign/reference/heatmap_layout.html">ggheatmap()</a></code> or <code><a href="https://yunuuuu.github.io/ggalign/reference/quad_layout.html">quad_layout()</a></code>. When aligning discrete variables vertically, the data provided to <code><a href="https://yunuuuu.github.io/ggalign/reference/heatmap_layout.html">ggheatmap()</a></code> or <code><a href="https://yunuuuu.github.io/ggalign/reference/quad_layout.html">quad_layout()</a></code> must be a matrix. In this case, column annotations must also be based on a matrix. Internally, the matrix from <code><a href="https://yunuuuu.github.io/ggalign/reference/heatmap_layout.html">ggheatmap()</a></code> or <code><a href="https://yunuuuu.github.io/ggalign/reference/quad_layout.html">quad_layout()</a></code> will be transposed for use in column annotations, since rows are always treated as observations and alignment is performed along matrix rows.</p>
 <div class="cell">
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://yunuuuu.github.io/ggalign/reference/heatmap_layout.html">ggheatmap</a></span><span class="op">(</span><span class="va">small_mat</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="co"># we set the active context to the top annotation</span></span>
@@ -727,7 +727,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>
 <code>geom_point(aes(color = branch))</code> is then added to this active plot within the annotation stack, here, it means the <code><a href="https://yunuuuu.github.io/ggalign/reference/align_dendro.html">align_dendro()</a></code> plot.</li>
 </ul>
-<p><code><a href="https://yunuuuu.github.io/ggalign/reference/heatmap_layout.html">ggheatmap()</a></code> aligns discrete variable both horizontally and vertically, so it’s safe to always use <code><a href="https://yunuuuu.github.io/ggalign/reference/quad_active.html">quad_anno()</a></code> directly, as all annotations require a matrix, and the layout data is also a matrix. However, for <code>quad_layout(xlim = NULL)</code> and <code>quad_layout(ylim = NULL)</code> (which I’ll discuss in more detail in a <a href="quad-layout.html" class="quarto-xref"><span>Chapter 8</span></a>), which only align discrete variable in one direction, the data in the layout may not fit the data for the annotation.</p>
+<blockquote class="blockquote">
+<p>Note: I’ll cover <code><a href="https://yunuuuu.github.io/ggalign/reference/align_dendro.html">align_dendro()</a></code> in more detail in a later chapter. For now, just know that when you specify the <code>k</code> argument, the resulting internal data will include a branch column representing cluster assignments.</p>
+</blockquote>
+<p><code><a href="https://yunuuuu.github.io/ggalign/reference/heatmap_layout.html">ggheatmap()</a></code> aligns discrete variable both horizontally and vertically, so it’s safe to always use <code><a href="https://yunuuuu.github.io/ggalign/reference/quad_active.html">quad_anno()</a></code> directly, as all annotations require a matrix, and the layout data is also a matrix. However, for <code>quad_layout(xlim = NULL)</code> and <code>quad_layout(ylim = NULL)</code> (which I’ll discuss in more detail in a <a href="quad-layout.html" class="quarto-xref"><span>Chapter 9</span></a>), which only align discrete variable in one direction, the data in the layout may not fit the data for the annotation.</p>
 <pre><code>- `quad_layout(xlim = NULL)`: aligning discrete variable in horizontal
 direction, for column annotations, we ll need a data frame for
 `stack_continuous()`.
@@ -771,7 +774,7 @@ direction, for row annotations, we ll need a data frame for
 </section><section id="quad_active" class="level2" data-number="7.6"><h2 data-number="7.6" class="anchored" data-anchor-id="quad_active">
 <span class="header-section-number">7.6</span> <code>quad_active()</code>
 </h2>
-<p>To remove the active context and redirect additions back to the heatmap body, you can use <code><a href="https://yunuuuu.github.io/ggalign/reference/quad_active.html">quad_active()</a></code>.</p>
+<p>When you want to resume adding layers (using the <code>"+"</code> operator) to the main heatmap body—after previously adding to an annotation—you need to remove the active context. You can do this using <code><a href="https://yunuuuu.github.io/ggalign/reference/quad_active.html">quad_active()</a></code>.</p>
 <div class="cell">
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://yunuuuu.github.io/ggalign/reference/heatmap_layout.html">ggheatmap</a></span><span class="op">(</span><span class="va">small_mat</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="co"># we set the active context to the top annotation</span></span>
@@ -872,6 +875,7 @@ direction, for row annotations, we ll need a data frame for
 </section><section id="annotation-stack-size" class="level3" data-number="7.8.2"><h3 data-number="7.8.2" class="anchored" data-anchor-id="annotation-stack-size">
 <span class="header-section-number">7.8.2</span> Annotation Stack Size</h3>
 <p>The <code><a href="https://yunuuuu.github.io/ggalign/reference/quad_active.html">quad_anno()</a></code> function allows you to control the total annotation stack size. The <code>size</code> argument controls the relative width (for left and right annotations) or height (for top and bottom annotations) of the whole annotation stack.</p>
+<p>By default, the annotation stack has the same relative size as the heatmap body (<code>height</code>/<code>width</code>). However, if your annotations contain multiple plots, you may need to increase this value to prevent overcrowding:</p>
 <div class="cell">
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://yunuuuu.github.io/ggalign/reference/heatmap_layout.html">ggheatmap</a></span><span class="op">(</span><span class="va">small_mat</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://yunuuuu.github.io/ggalign/reference/quad_active.html">anno_top</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">+</span></span>
@@ -897,7 +901,9 @@ direction, for row annotations, we ll need a data frame for
 </div>
 </div>
 </div>
+<blockquote class="blockquote">
 <p>Note that the size of an individual plot (<a href="stack-layout.html#sec-stack-layout-plot-size" class="quarto-xref"><span>Section 6.3</span></a>) does not affect the total annotation stack size. You must adjust the annotation size using the method described above.</p>
+</blockquote>
 <div class="grid">
 <div class="g-col-6">
 <div class="cell">
@@ -930,8 +936,8 @@ direction, for row annotations, we ll need a data frame for
 </div>
 </div>
 </div>
-<p>In this chapter, we explored the usage of heatmap layout. These features provide a strong foundation for visualizing matrix-based data in a structured way. However, as your visualization needs grow more complex, the ability to further customize and fine-tune the layout becomes essential.</p>
-<p>In the next chapter, we will dive into the Layout Customize functionalities, where you can gain full control over your plot’s layout.</p>
+<p>In this chapter, we explored the fundamentals of heatmap layout. These features provide a solid foundation for organizing and visualizing matrix-based data in a structured and interpretable way. As your visualization tasks become more complex—such as requiring precise control over observation ordering or grouping—the need for flexible layout customization becomes increasingly important.</p>
+<p>In the next chapter, we’ll introduce layout customization tools that give you full control over the structure and arrangement of your heatmap and annotation components.</p>
 
 
 </section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
@@ -1390,8 +1396,8 @@ direction, for row annotations, we ll need a data frame for
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./quad-layout.html" class="pagination-link" aria-label="Quad-side Layout">
-        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Quad-side Layout</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./layout-customize.html" class="pagination-link" aria-label="Layout customization">
+        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Layout customization</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
