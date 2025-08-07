@@ -50,8 +50,8 @@ book:
         - overview.qmd
         - stack-layout.qmd
         - heatmap-layout.qmd
-        - quad-layout.qmd
         - layout-customize.qmd
+        - quad-layout.qmd
         - initialize-plot.qmd
         - annotate-observations.qmd
         - multiple-quad-layouts.qmd

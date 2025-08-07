@@ -215,8 +215,8 @@ annotations, `stack_discreteh()` or `stack_continuoush()` will be applied.
 Additionally, `quad_anno()` will set the active context to the annotation. This
 means that subsequent additions will be directed to the annotation rather than
 the main plot. We use the term `active context` in contrast to `active plot` (as
-discussed in @sec-stack-layout-layout-customize), since the annotation is a
-`Layout` object but not a single plot.
+discussed in @sec-stack-layout), since the annotation is a `Layout` object but
+not a single plot.
 
 ```{r}
 ggheatmap(small_mat) +
@@ -225,12 +225,13 @@ ggheatmap(small_mat) +
     align_dendro()
 ```
 
-By default, the annotation `stack_layout()` will try to inherit data from
-`ggheatmap()`/`quad_layout()`. If we need align discrete variables vertically,
-this means the data from `ggheatmap()`/`quad_layout()` should be a matrix, the
-column annotations will also require a matrix and the matrix from
-`ggheatmap()`/`quad_layout()` will be transposed for use in the column
-annotations.
+By default, the annotation `stack_layout()` attempts to inherit data from
+`ggheatmap()` or `quad_layout()`. When aligning discrete variables vertically,
+the data provided to `ggheatmap()` or `quad_layout()` must be a matrix. In this
+case, column annotations must also be based on a matrix. Internally, the matrix
+from `ggheatmap()` or `quad_layout()` will be transposed for use in column
+annotations, since rows are always treated as observations and alignment is
+performed along matrix rows.
 ```{r}
 ggheatmap(small_mat) +
     # we set the active context to the top annotation
@@ -260,6 +261,10 @@ In this example:
  the active plot in the annotation stack. 
  - `geom_point(aes(color = branch))` is then added to this active plot
  within the annotation stack, here, it means the `align_dendro()` plot.
+
+> Note: I'll cover `align_dendro()` in more detail in a later chapter. For now,
+just know that when you specify the `k` argument, the resulting internal data will
+include a branch column representing cluster assignments.
 
 `ggheatmap()` aligns discrete variable both horizontally and vertically, so it's
 safe to always use `quad_anno()` directly, as all annotations require a matrix,
@@ -291,9 +296,9 @@ ggheatmap(small_mat) +
     my_stack
 ```
 
-Note when aligning the discrete variable, you must ensure the `number of
-observations` is consistent in the direction. So for column annotations, you
-need transpose the data manually.
+Note when aligning the discrete variable, you must ensure the 
+`number of observations` is consistent in the direction. So for column
+annotations, you need transpose the data manually.
 ```{r}
 my_stack <- stack_discretev(t(small_mat)) +
     align_dendro(aes(color = branch), k = 3L)
@@ -303,8 +308,9 @@ ggheatmap(small_mat) +
 ```
 
 ## `quad_active()`
-To remove the active context and redirect additions back to the heatmap body,
-you can use `quad_active()`. 
+When you want to resume adding layers (using the `"+"` operator) to the main
+heatmap body—after previously adding to an annotation—you need to remove the
+active context. You can do this using `quad_active()`.
 ```{r}
 ggheatmap(small_mat) +
     # we set the active context to the top annotation
@@ -379,7 +385,11 @@ ggheatmap(small_mat) +
 The `quad_anno()` function allows you to control the total annotation stack
 size. The `size` argument controls the relative width (for left and right
 annotations) or height (for top and bottom annotations) of the whole annotation
-stack.
+stack. 
+
+By default, the annotation stack has the same relative size as the heatmap body
+(`height`/`width`). However, if your annotations contain multiple plots, you may
+need to increase this value to prevent overcrowding:
 
 ```{r}
 ggheatmap(small_mat) +
@@ -394,7 +404,7 @@ ggheatmap(small_mat) +
     align_dendro()
 ```
 
-Note that the size of an individual plot ([@sec-stack-layout-plot-size]) does
+>Note that the size of an individual plot ([@sec-stack-layout-plot-size]) does
 not affect the total annotation stack size. You must adjust the annotation size
 using the method described above.
 
@@ -422,10 +432,13 @@ ggheatmap(small_mat) +
 
 :::
 
-In this chapter, we explored the usage of heatmap layout. These features
-provide a strong foundation for visualizing matrix-based data in a structured
-way. However, as your visualization needs grow more complex, the ability to
-further customize and fine-tune the layout becomes essential.
+In this chapter, we explored the fundamentals of heatmap layout. These features
+provide a solid foundation for organizing and visualizing matrix-based data in a
+structured and interpretable way. As your visualization tasks become more
+complex—such as requiring precise control over observation ordering or
+grouping—the need for flexible layout customization becomes increasingly
+important.
 
-In the next chapter, we will dive into the Layout Customize functionalities,
-where you can gain full control over your plot's layout.
+In the next chapter, we’ll introduce layout customization tools that give you
+full control over the structure and arrangement of your heatmap and annotation
+components.

@@ -1,9 +1,9 @@
-# Customize Layout {#sec-customize-layout}
+# Layout customization {#sec-layout-customization}
 
-For layouts that can align observations, the package provides a suite of
-`align_*` functions designed to give you precise control over the observations.
-These functions allow you to reorder observations or partition them into
-multiple groups.
+For layouts that can align observations (discrete variables), the package
+provides a suite of `align_*` functions designed to give you precise control
+over the observations. These functions allow you to reorder observations or
+partition them into multiple groups.
 
 Currently, there are four key `align_*` functions available for layout customization:
 
@@ -119,7 +119,7 @@ ggheatmap(small_mat) +
 :::
 
 Some `align_*` functions also accept a `data` argument. It's important to note
-that all `align_*` functions treat rows as the observations. This means
+that all `align_*` functions treat `rows` as the observations. This means
 `NROW(data)` must match the `number of observations` along the axis used for
 alignment. The `data` argument can also accept a function (supporting purrr-like
 lambda syntax), which will be applied to the layout matrix.
@@ -127,7 +127,7 @@ lambda syntax), which will be applied to the layout matrix.
 As mentioned in @sec-heatmap-layout-annotations, for top and bottom annotations,
 the data matrix of `quad_layout()`/`ggheatmap()` is transposed to create the
 annotation `stack_layout()`. Therefore, you can use `rowMeans()` to calculate
-the mean value across all columns.
+the mean value across all columns in the heatmap body matrix.
 
 ```{r}
 ggheatmap(small_mat) +
@@ -274,7 +274,7 @@ ggheatmap(small_mat) +
 
 ## `align_order2()`
 The `align_order2()` function enables the reordering of observations based on a
-specified statistical function. This function accepts a data argument and
+specified statistical function. This function accepts a `data` argument and
 computes a statistic that determines the new ordering of the observations. The
 resulting order is extracted using the `order2()` function.
 
@@ -304,9 +304,11 @@ This approach gives you the flexibility to apply different statistical or
 algorithmic methods for reordering observations, which can be especially useful
 for exploring complex patterns in data.
 
+>Developers can extend this functionality by implementing a custom `order2()`
+method for their object classes.
 
 With the `align_*` functions in place, we've covered how to reorder and group
 observations within a layout. Now, having set the stage for proper observation
-alignment, we can move on to the next essential step: `plot initialize`. In the
-following chapter, we'll dive deeper into how to set up your plots within the
-layout.
+alignment, we can move on to the next essential step: `plot initialization`. In
+the following chapter, we'll dive deeper into how to set up your plots within
+the layout.
