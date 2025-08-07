@@ -1,6 +1,6 @@
 # Data-Free Composition {#sec-data-free}
 
-ggalign is a grammar-based system for composing multi-panel visualizations in R,
+`ggalign` is a grammar-based system for composing multi-panel visualizations in R,
 designed to extend the expressive capabilities of ggplot2. At its core is a plot
 composer architecture that spatially arranges independent plots—an approach we
 refer to as data-free composition, where plots are combined without assuming any

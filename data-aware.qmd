@@ -1,7 +1,7 @@
 # Data-Aware Composition {#sec-data-aware}
 
 Building on the data-free composition framework, data-aware composition is the
-defining features of ggalign. It enables multiple plots that share common
+defining features of `ggalign`. It enables multiple plots that share common
 observational units-such as genes or samples-to be aligned such that each
 observation appears consistently across all panels. This ensures
 interpretability and coherence in complex, multi-modal visualizations where
@@ -21,24 +21,24 @@ throughout the multi-panel layout.
 
 Supporting this data-aware framework is a sophisticated alignment system built
 around the CraftBox S7 class hierarchy, which serves as the user-facing
-interface and wraps the underlying Craftsman R6-like object system.
-The Craftsman encapsulates core logic for grouping, clustering, ordering, and
+interface and wraps the underlying `Craftsman` R6-like object system.
+The `Craftsman` encapsulates core logic for grouping, clustering, ordering, and
 adding plots to the layout, providing a comprehensive developer-level toolkit
 for managing shared observations and their structural relationships.
 
-Leveraging the Craftsman implementation, ggalign provides a suite of
+Leveraging the `Craftsman` implementation, `ggalign` provides a suite of
 user-friendly functions for organizing and reordering shared observations. These
 include hierarchical clustering (`align_hclust()`), custom ordering
 (`align_order()`), k-means clustering (`align_kmeans()`), and manual grouping
 (`align_group()`). When observations are reordered or grouped in one plot,
 identical transformations are applied consistently across all linked plots,
 maintaining global coherence as enforced by the Layout system. For
-visualization, ggalign provides functions such as `ggalign()` and `ggfree()` to
+visualization, `ggalign` provides functions such as `ggalign()` and `ggfree()` to
 add aligned or freely positioned plots to layouts, as well as `align_dendro()`
 for dendrogram alignment to visualize hierarchical relationships.
 
-In addition, ggalign supports visual linking of observations via lines or
-polygons, implemented within the Craftsman system. These connections are used in
+In addition, `ggalign` supports visual linking of observations via lines or
+polygons, implemented within the `Craftsman` system. These connections are used in
 advanced tools like `ggmark()`, which annotate related observations across
 panels. The linking framework accommodates one-to-one, one-to-many, and
 many-to-many relationships, enabling expressive representations of complex
