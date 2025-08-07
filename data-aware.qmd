@@ -1,131 +1,232 @@
 # Data-Aware Composition {#sec-data-aware}
 
-This part introduces another core feature of the `ggalign` package: data-aware
-composition. Unlike data-free composition, which focuses solely on the visual
-arrangement of plots without considering shared data values, data-aware
-composition aligns plots based on common data characteristics—such as shared
-axis scales or categorical factors. This enables precise alignment of related
-plots where data correspondence matters.
+Building on the data-free composition framework, data-aware composition is the
+defining features of ggalign. It enables multiple plots that share common
+observational units-such as genes or samples-to be aligned such that each
+observation appears consistently across all panels. This ensures
+interpretability and coherence in complex, multi-modal visualizations where
+preserving the correspondence of shared data points is critical.
 
-`ggalign` simplifies data-aware alignment in ggplot2, handling common tasks such
-as sorting, grouping, or clustering observations before composition. It
-introduces the concept of `observation alignment`, which ensures that identical
-data points maintain consistent positions across multiple interconnected plots.
+Unlike data-free composition, which arranges independent plots without enforcing
+data relationships, data-aware composition imposes a strict constraint:
+observations must be precisely matched across all plots in a layout. This
+constraint enables integrated, multi-panel visualization of high-dimensional
+datasets by maintaining consistent ordering and grouping of observations.
 
-![General design of Data-Aware Composition](design.png)
+The Layout S7 class system underpins this capability by tracking axis domains,
+observation counts, and ensuring dimensional compatibility across plot
+components. It also manages user-defined ordering and grouping to prevent
+misaligned visualizations, thereby preserving the identity of each observation
+throughout the multi-panel layout.
 
-## Layout System
-At the heart of `ggalign` data-aware composition is an object-oriented `Layout`
-system that integrates seamlessly with `ggplot2`. It provides three core layout
-types:
+Supporting this data-aware framework is a sophisticated alignment system built
+around the CraftBox S7 class hierarchy, which serves as the user-facing
+interface and wraps the underlying Craftsman R6-like object system.
+The Craftsman encapsulates core logic for grouping, clustering, ordering, and
+adding plots to the layout, providing a comprehensive developer-level toolkit
+for managing shared observations and their structural relationships.
 
- - `StackLayout`: Stacks plots horizontally or vertically.
- - `QuadLayout`: Arranges plots in four quadrants (top, left, bottom, right)
- around a central plot.
- - `CircleLayout`: Positions plots in a circular pattern.
+Leveraging the Craftsman implementation, ggalign provides a suite of
+user-friendly functions for organizing and reordering shared observations. These
+include hierarchical clustering (`align_hclust()`), custom ordering
+(`align_order()`), k-means clustering (`align_kmeans()`), and manual grouping
+(`align_group()`). When observations are reordered or grouped in one plot,
+identical transformations are applied consistently across all linked plots,
+maintaining global coherence as enforced by the Layout system. For
+visualization, ggalign provides functions such as `ggalign()` and `ggfree()` to
+add aligned or freely positioned plots to layouts, as well as `align_dendro()`
+for dendrogram alignment to visualize hierarchical relationships.
 
-Each layout supports both discrete (e.g., categories) and continuous (e.g.,
-numerical) data, and includes specialized alignment functions:
+In addition, ggalign supports visual linking of observations via lines or
+polygons, implemented within the Craftsman system. These connections are used in
+advanced tools like `ggmark()`, which annotate related observations across
+panels. The linking framework accommodates one-to-one, one-to-many, and
+many-to-many relationships, enabling expressive representations of complex
+biological structures such as gene modules, sample groupings, or interaction
+networks.
 
-For `StackLayout`:
+Complementing the `Layout` and `CraftBox` systems is the `Scheme` system, which
+defines visual or structural controls that apply to both `Layout` and `CraftBox`
+objects. Controls applied at the `Layout` level are inherited by associated
+`CraftBox` elements and applied to the plot during rendering. The `Scheme`
+system is explicitly designed for extensibility by developers. It provides a set
+of S7 generic functions—`scheme_init()`, `scheme_update()`, `scheme_inherit()`,
+and `plot_add_scheme()`—which can be overridden to define initialization,
+update, inheritance, and application behavior of new Scheme subclasses.
+Developers can extend this system to support new types of visual control,
+theming strategies, or layout logic, making the framework adaptable to a broad
+range of visualization scenarios. The package currently provides built-in
+schemes for default theming (`scheme_theme()`), input data transformation
+(`scheme_data()`), and alignment specification (`scheme_align()`).
 
- - `stack_discrete()`: Align discrete variable along the stack.
- - `stack_continuous()`: Align continuous variable along the stack.
- - `stack_layout()`: A unified interface that handles both discrete and continuous data.
+```{mermaid}
+flowchart TD
+    %% Layout system
+    subgraph Layout[" "]
+        style Layout fill:#FFF3E0,stroke:#D2691E,stroke-width:3px
+        LayoutTitle["**Layout system**"]
+        style LayoutTitle fill:none,stroke:none,color:#D2691E,font-weight:bold,font-size:28px
 
-For `QuadLayout`: 
+        Stack["**StackLayout**"]
+        Circle["**CircleLayout**"]
+        Quad["**QuadLayout**"]
 
- - `quad_continuous()`/`ggside()`: Align continuous variables in both horizontal and vertical directions. 
- - `quad_discrete()`: Align discrete variables in both horizontal and vertical directions.
- - `quad_layout()`: A general function that adapts to both data types and directions.
+        %%  StackDesc["Stacks plots horizontally or vertically"]
+        %%  CircleDesc["Positions plots in a circular pattern"]
+        %%  QuadDesc["Arranges plots in a grid of four quadrants"]
+    end
+    DataFree["Building with Data-free composition"]
+    Render["Rendering"]
 
-For `CircleLayout`:
+    %% Stack --- StackDesc
+    %% Circle --- CircleDesc
+    %% Quad --- QuadDesc
 
- - `circle_discrete()`: Align discrete variable in the circle.
- - `circle_continuous()`: Align continuous variable in the circle.
- - `circle_layout()`: A unified interface for both cases.
+    style Stack fill:#FFE4B5,stroke:#D2691E,stroke-width:2px,color:#D2691E,font-weight:bold,font-size:28px
+    style Circle fill:#FFE4B5,stroke:#D2691E,stroke-width:2px,color:#D2691E,font-weight:bold,font-size:28px
+    style Quad fill:#FFE4B5,stroke:#D2691E,stroke-width:2px,color:#D2691E,font-weight:bold,font-size:28px
+    %% style StackDesc fill:#FFF5E1,color:#D2691E,font-size:28px
+    %% style CircleDesc fill:#FFF5E1,color:#D2691E,font-size:28px
+    %% style QuadDesc fill:#FFF5E1,color:#D2691E,font-size:28px
 
-## Overview of Supporting Systems {#supporting-systems}
-In addition to the core `Layout` system, `ggalign` provides several helper systems
-that enhance data-aware composition by managing how observations are grouped,
-ordered, and supplemented with additional plot elements. These systems work
-together with layouts to create flexible and insightful multi-plot arrangements:
+    %% CraftBox system
+    subgraph CraftBox[" "]
+        style CraftBox fill:#E6F2E6,stroke:#2E8B57,stroke-width:3px
+        CraftBoxTitle["**CraftBox system**<br><br>User Interface"]
+        style CraftBoxTitle fill:none,stroke:none,color:#2E8B57,font-weight:bold,font-size:28px
+        
+        AlignHclust["align_hclust()"]
+        AlignOrder["align_order()"]
+        AlignKmeans["align_kmeans()"]
+        AlignGroup["align_group()"]
 
-  1. Layout customization:
-      - `align_group()`: Group observations into panel with a group variable.
-      - `align_kmeans()`: Group observations into panel by kmeans.
-      - `align_order()`: Reorder layout observations based on statistical weights or by manually specifying the observation index.
-      - `align_order2`: Reorder observations using an arbitrary statistical function
-      - `align_hclust()`: Reorder or group observations based on hierarchical clustering.
-  2. Plot adding:
-      - `align_dendro()`: Add a dendrogram to the plot, and reorder or group observations based on hierarchical clustering.
-      - `ggalign()`: Initialize a ggplot object and align the axes.
-      - `ggmark()`: Add a plot to annotate selected observations.
-      - `ggcross()`: Initialize a ggplot object to connect two different layout crosswise
-      - `ggfree()`: Initialize a ggplot object without aligning the axes.
+        %% AlignHclustDesc["Hierarchical clustering"]
+        %% AlignOrderDesc["Custom ordering"]
+        %% AlignKmeansDesc["K-means clustering"]
+        %% AlignGroupDesc["Manual grouping"]
 
-![Overview of Data-Aware Composition](overview.png)
+        AlignDendro["align_dendro()"]
+        Ggalign["ggalign()"]
+        Ggfree["ggfree()"]
+        Ggmark["ggmark()"]
+        CrossLink["cross_link()"]
 
-## Input data {#sec-input-data}
-Before exploring data-aware compostion, it’s important to understand how axis alignment works in `ggplot2`.
+        %% GgalignDesc["Add aligned plots to layouts"]
+        %% GgfreeDesc["Add freely positioned plots"]
+        %% GgmarkDesc["Annotate linked observations"]
+        %% CrossLinkDesc["Create cross-panel links (lines/polygons)"]
+    end
 
- - For continuous axes, alignment is straightforward: simply ensure the axis
- limits are consistent across plots.
+    %% AlignHclust --- AlignHclustDesc
+    %% AlignOrder --- AlignOrderDesc
+    %% AlignKmeans --- AlignKmeansDesc
+    %% AlignGroup --- AlignGroupDesc
+    
+    %% Ggalign --- GgalignDesc
+    %% Ggfree --- GgfreeDesc
+    %% Ggmark --- GgmarkDesc
+    %% CrossLink --- CrossLinkDesc
 
- - For discrete axes, alignment is more challenging. You must have the same set
- of unique values and maintain a consistent ordering across all plots. In
- ggplot2, this can be difficult when working with long-format data frames
- because the factor levels or ordering may differ.
+    style AlignHclust fill:#C1E1C1,stroke:#2E8B57,stroke-width:2px,color:#2E8B57,font-weight:bold,font-size:28px
+    style AlignOrder fill:#C1E1C1,stroke:#2E8B57,stroke-width:2px,color:#2E8B57,font-weight:bold,font-size:28px
+    style AlignKmeans fill:#C1E1C1,stroke:#2E8B57,stroke-width:2px,color:#2E8B57,font-weight:bold,font-size:28px
+    style AlignGroup fill:#C1E1C1,stroke:#2E8B57,stroke-width:2px,color:#2E8B57,font-weight:bold,font-size:28px
 
-`ggalign` addresses this challenge by using matrix inputs for layouts that align
-discrete axes (e.g., the `*_discrete()` functions). In this approach:
+    style AlignDendro fill:#A9DFBF,stroke:#2E8B57,stroke-width:2px,color:#2E8B57,font-weight:bold,font-size:28px
+    style Ggalign fill:#A9DFBF,stroke:#2E8B57,stroke-width:2px,color:#2E8B57,font-weight:bold,font-size:28px
+    style Ggfree fill:#A9DFBF,stroke:#2E8B57,stroke-width:2px,color:#2E8B57,font-weight:bold,font-size:28px
+    style Ggmark fill:#A9DFBF,stroke:#2E8B57,stroke-width:2px,color:#2E8B57,font-weight:bold,font-size:28px
+    style CrossLink fill:#A9DFBF,stroke:#2E8B57,stroke-width:2px,color:#2E8B57,font-weight:bold,font-size:28px
 
- - Each row of the matrix represents a unique discrete value (called an
- "observation").
+    %% style AlignHclustDesc fill:#D5F5E3,color:#2E8B57,font-size:28px
+    %% style AlignOrderDesc fill:#D5F5E3,color:#2E8B57,font-size:28px
+    %% style AlignKmeansDesc fill:#D5F5E3,color:#2E8B57,font-size:28px
+    %% style AlignGroupDesc fill:#D5F5E3,color:#2E8B57,font-size:28px
 
- - The total number of rows defines the complete set of unique discrete values.
+    %% style GgalignDesc fill:#DFF0D8,color:#2E8B57,font-size:28px
+    %% style GgfreeDesc fill:#DFF0D8,color:#2E8B57,font-size:28px
+    %% style GgmarkDesc fill:#DFF0D8,color:#2E8B57,font-size:28px
+    %% style CrossLinkDesc fill:#DFF0D8,color:#2E8B57,font-size:28px
 
- - Reordering rows in the matrix controls the ordering of observations
- consistently across all linked plots.
+    %% Linking system
+    subgraph Linking[" "]
+        style Linking fill:#E0F0FF,stroke:#1E90FF,stroke-width:3px
+        LinkingTitle["**Linking system**<br><br>Manages connections between observations"]
+        style LinkingTitle fill:none,stroke:none,color:#1E90FF,font-weight:bold,font-size:28px
+    end
 
-This design is especially useful for layouts that align axes in both directions
-(horizontal and vertical), such as heatmap, since matrices can be easily
-transposed to switch row and column alignment.
+    Linking --o Ggmark
+    Linking --o CrossLink
 
-The matrix is only used for positioning. Before rendering, `ggalign` will
-reorder the matrix rows based on the layout, and automatically converts it into
-a long-format data frame — the standard input for `ggplot2`.
+    %% Developer Interface
+    Craftsman["**Developer interface**<br><br>**Craftsman**<br><br>Core logic for grouping, clustering, ordering, and adding plots"]
+    style Craftsman fill:#FFF8DC,stroke:#B8860B,stroke-width:3px,color:#B8860B,font-weight:bold,font-size:28px
 
-The main difference between discrete and continuous variable alignment in
-`ggalign` lies in the input data:
+    %% Scheme system
+    subgraph Scheme[" "]
+        style Scheme fill:#F5E6FF,stroke:#8B008B,stroke-width:3px
+        SchemeTitle["**Scheme system**<br><br>Visual/Structural controls"]
+        style SchemeTitle fill:none,stroke:none,color:#8B008B,font-weight:bold,font-size:28px
+        SchemeTheme["scheme_theme()"]
+        SchemeData["scheme_data()"]
+        SchemeAlign["scheme_align()"]
 
- - Discrete variables require a matrix as input.
+        %% SchemeThemeDesc["Controls theming"]
+        %% SchemeDataDesc["Data transformations"]
+        %% SchemeAlignDesc["Alignment specifications"]
+    end
 
- - Continuous variables require a data frame, just like in standard ggplot2.
+    %% SchemeTheme --- SchemeThemeDesc
+    %% SchemeData --- SchemeDataDesc
+    %% SchemeAlign --- SchemeAlignDesc
 
-When a data frame is required, the input will be automatically converted using
-`fortify_data_frame()` if needed. When a matrix is required, the input will be
-automatically converted using fortify_matrix().
+    style SchemeTheme fill:#E6E6FA,stroke:#8B008B,stroke-width:2px,color:#8B008B,font-weight:bold,font-size:28px
+    style SchemeData fill:#E6E6FA,stroke:#8B008B,stroke-width:2px,color:#8B008B,font-weight:bold,font-size:28px
+    style SchemeAlign fill:#E6E6FA,stroke:#8B008B,stroke-width:2px,color:#8B008B,font-weight:bold,font-size:28px
 
-By default, `fortify_data_frame()` calls `ggplot2::fortify()` for conversion.
+    %% style SchemeThemeDesc fill:#F0F8FF,color:#8B008B,font-size:28px
+    %% style SchemeDataDesc fill:#F0F8FF,color:#8B008B,font-size:28px
+    %% style SchemeAlignDesc fill:#F0F8FF,color:#8B008B,font-size:28px
 
->Note: When applied to a matrix, `fortify_data_frame()` will convert it into a
-long-formatted data frame, which differs from the behavior of
-`ggplot2::fortify()`.
+    %% Scheme implementation
+    subgraph SchemeImpl[" "]
+        style SchemeImpl fill:#FDE6F8,stroke:#800080,stroke-width:3px
+        SchemeImplTitle["**Developer interface**"]
+        style SchemeImplTitle fill:none,stroke:none,color:#8B008,font-weight:bold,font-size:28px
+        SchemeUpdate["scheme_update()"]
+        SchemeInit["scheme_init()"]
+        SchemeInherit["scheme_inherit()"]
+        PlotAddScheme["plot_add_scheme()"]
 
-## What Will You Learn?
+        SchemeUpdateDesc["Updates scheme properties"]
+        SchemeInitDesc["Initializes scheme"]
+        SchemeInheritDesc["Inherits properties"]
+        PlotAddSchemeDesc["Applies schemes to plots"]
+    end
 
-This part is divided into sections that will guide you through:
+    SchemeUpdate --- SchemeUpdateDesc
+    SchemeInit --- SchemeInitDesc
+    SchemeInherit --- SchemeInheritDesc
+    PlotAddScheme --- PlotAddSchemeDesc
 
-- Exploring the `Layout` system and its core types.
+    style SchemeUpdate fill:#FFF0F5,stroke:#800080,stroke-width:2px,color:#800080,font-weight:bold,font-size:28px
+    style SchemeInit fill:#FFF0F5,stroke:#800080,stroke-width:2px,color:#800080,font-weight:bold,font-size:28px
+    style SchemeInherit fill:#FFF0F5,stroke:#800080,stroke-width:2px,color:#800080,font-weight:bold,font-size:28px
+    style PlotAddScheme fill:#FFF0F5,stroke:#800080,stroke-width:2px,color:#800080,font-weight:bold,font-size:28px
 
-- Understanding key concepts of data-aware composition.
+    style SchemeUpdateDesc fill:#FFE4F1,color:#800080,font-size:28px
+    style SchemeInitDesc fill:#FFE4F1,color:#800080,font-size:28px
+    style SchemeInheritDesc fill:#FFE4F1,color:#800080,font-size:28px
+    style PlotAddSchemeDesc fill:#FFE4F1,color:#800080,font-size:28px
+    style DataFree fill:#FFECB3,stroke:#FF6F00,stroke-width:2px,color:#BF360C,font-weight:bold,font-size:28px
+    style Render fill:#C5CAE9,stroke:#3F51B5,stroke-width:2px,color:#1A237E,font-size:28px
 
-- Learning how to align plots based on shared data features.
-
-- Managing discrete and continuous data for alignment.
-
-- Using grouping, ordering, and clustering to organize observations.
-
-- Adding supporting visual elements like dendrograms and annotations.
-
+    %% Connections
+    SchemeImpl --> Scheme
+    CraftBox --o Layout
+    Craftsman --o CraftBox
+    Scheme --o CraftBox
+    Scheme --o Layout
+    Layout --> DataFree
+    DataFree --> Render
+```
