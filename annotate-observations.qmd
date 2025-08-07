@@ -1,6 +1,5 @@
 # Annotate Observations {#sec-annotate-observations}
 
-
 `ggmark()` can be used to add annotation plot for the selected observations.
 `ggmark` accepts `mark` argument, which should be a `mark_draw()` object to
 define how to draw the links. Currently, two internal functions `mark_line()`,

@@ -57,7 +57,7 @@ book:
         - multiple-quad-layouts.qmd
         - operator.qmd
         - schemes.qmd
-        - link.qmd
+        - links.qmd
         - annotate-observations.qmd
         - difference-with-ggplot2.qmd
         - oncoplot.qmd
