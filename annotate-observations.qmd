@@ -1,96 +1,11 @@
 # Annotate Observations {#sec-annotate-observations}
-```{r setup}
-#| code-fold: true
-library(ggalign)
-set.seed(123)
-small_mat <- matrix(rnorm(56), nrow = 7)
-rownames(small_mat) <- paste0("row", seq_len(nrow(small_mat)))
-colnames(small_mat) <- paste0("column", seq_len(ncol(small_mat)))
-```
 
-To add an annotation plot for specific observations, we must first know how to select
-the observations to be linked.
 
-## Links
-The `pair_links()` function is used to define pairs of connected observations.
-In the formula, the left side (before the `~`) represents `hand1`—the
-observations on the left (for a horizontal stack layout) or top (for a vertical
-stack layout). The right side (after the `~`) represents `hand2`—the observations
-on the right (for horizontal stack) or bottom (for vertical stack).
-
-These defined pairs will either be linked together, or each group in the pair
-will be linked separately within the same plot area.
-
-Both sides of the formula can be specified using integer or character indices of
-the original data (before reordering).
-```{r}
-pair_links(1:2 ~ c("c", "d"), c("a", "b") ~ 3:4)
-```
-
-The print method showed various informations:
-
-  - The object class and the number of paired groups.
-  - The specific groups in each pair.
-  - The total number of groups (rather than the number of paired groups). For
-  example, in this case, there are 4 groups in total since each pair consists of 2
-  groups.
-
-If only the left-hand side of the formula exists, you can input it directly.
-```{r}
-pair_links(1:2, c("a", "b"))
-```
-
-To specify links in the right only, you must use formula:
-```{r}
-pair_links(~ 1:2, ~ c("a", "b"))
-```
-
-For integer indices, wrap them with `I()` to follow ordering from the layout.
-
-```{r}
-pair_links(I(1:2))
-```
-
-You can wrap the whole formula.
-```{r}
-pair_links(I(1:2 ~ 3:4))
-```
-
-`range_link()` function can be used to define a range of observations, which
-accepts two argument that specify the lower and upper bounds of the range. These
-bounds should be defined as a single integer or character.
-
-```{r}
-pair_links(range_link(1, "a"))
-```
-
-In this case, the left-hand is defined as the range between the `1st` observation
-and the observation named `"a"`.
-
-You can also use `waiver()` to inherit values from the opposite group. 
-```{r}
-pair_links(range_link(1, "a") ~ waiver()) # <1>
-```
-  1. inherit values from the left hand
-
-```{r}
-pair_links(waiver() ~ range_link(1, "a")) # <1>
-```
-  1. inherit values from the right hand
-
-You can combine any of these into a list.
-```{r}
-pair_links(list(range_link(1, "a"), waiver()) ~ list(4:5, c("b", "c"))) # <1>
-```
-In this example, the left side combines the range between the `1st` observation
-and "a" with the observations 4 and 5, and the observations "b" and "c".
-
-## `ggmark()`
 `ggmark()` can be used to add annotation plot for the selected observations.
 `ggmark` accepts `mark` argument, which should be a `mark_draw()` object to
 define how to draw the links. Currently, two internal functions `mark_line()`,
-`mark_tetragon()` can be used to quickly draw line and quadrilateral links used
-to connect the selected observations and the plot panel.
+`mark_tetragon()` can be used to quickly draw line or quadrilateral links to
+connect the selected observations and the plot panel.
 
 By default, when no manual observations were selected, `ggmark()` will select
 all observations and split them based on the groups defined in the layout.
@@ -105,6 +20,16 @@ This column indicates the position of the linked observations.
 > Note: Only data for selected observations are retained.
 
 You can adjust the link size by using the `plot.margin` argument.
+
+```{r setup}
+#| echo: false
+#| output: false
+library(ggalign)
+set.seed(123)
+small_mat <- matrix(rnorm(56), nrow = 7)
+rownames(small_mat) <- paste0("row", seq_len(nrow(small_mat)))
+colnames(small_mat) <- paste0("column", seq_len(ncol(small_mat)))
+```
 
 ::: {.grid}
 
@@ -138,7 +63,7 @@ ggheatmap(small_mat) +
 
 If you manually provide the linked observations, you can use the `group1` and
 `group2` arguments to control whether the layout panel groups and their ordering
-should be used to create the annotations.
+should be added too.
 
 ```{r}
 set.seed(123)
