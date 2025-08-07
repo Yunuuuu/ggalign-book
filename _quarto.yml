@@ -51,11 +51,11 @@ book:
         - stack-layout.qmd
         - heatmap-layout.qmd
         - layout-customize.qmd
-        - quad-layout.qmd
         - initialize-plot.qmd
+        - circle-layout.qmd
+        - quad-layout.qmd
         - annotate-observations.qmd
         - multiple-quad-layouts.qmd
-        - circle-layout.qmd
         - operator.qmd
         - schemes.qmd
         - difference-with-ggplot2.qmd

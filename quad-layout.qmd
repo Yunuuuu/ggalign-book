@@ -15,6 +15,7 @@ colnames(small_mat) <- paste0("column", seq_len(ncol(small_mat)))
 
 ```{r}
 #| echo: false
+#| fig-height: 8
 ggside() +
     lapply(c("top", "left", "bottom", "right"), function(side) {
         c(
@@ -73,8 +74,8 @@ and does not automatically add default layers or mappings.
 
 The underlying `ggplot` data of the main plot is the same with
 `ggheatmap()`/`heatmap_layout()` (@sec-heatmap-layout-main-plot), it is
-recommended to use `.y`, or `.discrete_y` as the `y` mapping and use `.x` or
-`.discrete_x` as the `x` mapping in the main plot.
+recommended to use `.y/`.discrete_y` as the `y` mapping and use
+`.x`/`.discrete_x` as the `x` mapping in the main plot.
 
 ```{r}
 quad_discrete(small_mat, aes(.x, .y)) +
@@ -103,9 +104,13 @@ ggside(mpg, aes(displ, hwy, colour = class)) +
     ggalign() +
     geom_density(aes(x = after_stat(density), hwy, colour = class),
         position = "stack"
-    ) &
-    theme_bw()
+    ) +
+    quad_scope(theme_bw(), "tri")
 ```
+
+> The `quad_scope()` function controls the active adding context. The `"tri"`
+argument means adding to the top annotation, right annotation, and the main
+plot. More details will be introduced in the @sec-operators chapter.
 
 `ggside()` allows facetting for the main plot, which should also be applied to
 the annotations for proper alignment.
@@ -126,17 +131,9 @@ ggside(i2, aes(Sepal.Width, Sepal.Length, color = Species)) +
     geom_density(aes(x = after_stat(density), Sepal.Length, colour = Species),
         position = "stack"
     ) +
-    facet_grid(rows = vars(Species)) &
-    theme_bw()
+    facet_grid(rows = vars(Species)) +
+    quad_scope(theme_bw(), "tri")
 ```
-
-If an annotation contains multiple plots, it can be tedious to add the same
-element to each one individually. One way to simplify this is by creating an
-external `stack_layout()` and adding the desired elements using the `&`
-operator. Then, you can add this `stack_layout()` to the `quad_layout()`. In
-@sec-operators, I will introduce another more powerful operator that seamlessly
-combines with the `+` operator, allowing you to add elements to multiple plots
-at once.
 
 ## `quad_layout()` {#sec-quad-layout-quad-layout}
 This function arranges plots around the quad-sides of a main plot, aligning both
@@ -256,8 +253,3 @@ quad_layout(small_mat, ylim = NULL) +
 :::
 
 :::
-
-In the next chapter, we will explore even more advanced techniques for combining
-multiple `quad_layout()`s. These methods will provide you with the tools to manage
-more complex plot arrangements and make your visualizations even more flexible
-and powerful.

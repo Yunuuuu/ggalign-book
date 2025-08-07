@@ -5,11 +5,10 @@ There are following primary functions for adding plots:
   - `ggalign()`: Create a ggplot object and aligns the axes.
   - `ggfree()`: Create a ggplot object without alignment.
   - `align_dendro()`: Create a ggplot object of dendrogram tree, and align the
-  observation. In addition, it can reorder and group the observations.
+  observation. In addition, it can reorder and group the observations based on
+  hierarchical clustering.
 
 All these functions will set the active plot when added to the layout.
-
-Both `ggmark()` and `align_dendro()` can only for discrete variables.
 
 ```{r setup}
 #| code-fold: true
@@ -251,8 +250,8 @@ dendrogram `node` and `edge` contains following columns:
    - `leaf`: A logical value indicates whether current node is a leaf.
 
 By default, `plot_dendrogram` is set to `TRUE`, meaning a `geom_segment()` layer
-will be added using the dendrogram edge data when drawing. Note that this layer
-is always added to the first.
+will be added to draw the dendrogram with edge data. Note that this layer is
+always added to the first.
 ```{r}
 ggheatmap(small_mat) +
     anno_top() +
@@ -355,6 +354,9 @@ ggheatmap(small_mat) +
     )
 ```
 
-Now that you know the general approach to adding a plot, it would be useful to
-explore how to add annotation plots for specific observations. Let's move on to
-the next chapter.
+Now that you're familiar with the general principles of adding plots and
+aligning observations, it's time to explore the two layout systems provided by
+the package: the circle layout and the quad layout. These layouts offer distinct
+structural approaches to organizing your plots, and each is suited to different
+visualization goals. Let’s dive into how they work and how to make the most of
+them.
