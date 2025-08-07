@@ -40,12 +40,12 @@ book:
         - introduction.qmd
         - getting-started.qmd
 
-    - part: data-free.qmd
+    - part: "Data-free composition" # data-free.qmd
       chapters:
         - plot-composer.qmd
         - free.qmd
 
-    - part: data-aware.qmd
+    - part: "Data-aware composition" # data-aware.qmd
       chapters:
         - overview.qmd
         - stack-layout.qmd
