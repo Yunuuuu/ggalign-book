@@ -418,32 +418,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./quad-layout.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Quad-side Layout</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="./initialize-plot.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Integrate Plots</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./annotate-observations.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Annotate Observations</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./multiple-quad-layouts.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Nested Layouts</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Integrate Plots</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./circle-layout.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Circle Layout</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Circle Layout</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./quad-layout.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Quad-side Layout</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./annotate-observations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Annotate Observations</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./multiple-quad-layouts.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Nested Layouts</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -588,7 +588,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 data-number="6.2.1" class="anchored" data-anchor-id="discrete-variables"><span class="header-section-number">6.2.1</span> Discrete variables</h3>
 <p>Without any plots, it’s difficult to see how each layout system works in practice. Here, we introduce the most common <a href="@sec-supporting-systems">plot adding</a> function-<code>ggalign()</code>. This function plays a role similar to <code>ggplot2::ggplot()</code> function-it initialize a <code>ggplot</code> object-but is designed specifically for use within the the <code>Layout</code> system of <a href="#sec-data-aware">Data-Aware Composition</a>.</p>
 <p>When <code>ggalign()</code> is added to the layout, it inherits the layout data and sets itself as the active plot. This means any subsequent <code>+</code> operations will apply to that plot. You can add standard <code>ggplot2</code> components like geoms, stats, scales, etc.</p>
-<p>When aligning discrete variables, the underlying data passed to <code>ggplot</code> through <code>ggalign()</code> will include the following columns (more details will be introduced in <a href="initialize-plot.html#sec-ggalign" class="quarto-xref"><span>Section 10.1</span></a>):</p>
+<p>When aligning discrete variables, the underlying data passed to <code>ggplot</code> through <code>ggalign()</code> will include the following columns (more details will be introduced in <a href="initialize-plot.html#sec-ggalign" class="quarto-xref"><span>Section 9.1</span></a>):</p>
 <ul>
 <li><code>.x</code>/<code>.y</code> and <code>.discrete_x</code>/<code>.discrete_y</code>: an integer index of <code>x</code>/<code>y</code> coordinates and a factor of the data labels (only applicable when <code>names</code>/<code>rownames</code> exists).</li>
 <li><code>.names</code> and <code>.index</code>: A character names (only applicable when <code>names</code>/<code>rownames</code> exists) and an integer of index of the original data.</li>
@@ -625,8 +625,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>By default, axis text on the aligned axis (for vertical stack, <code>x-axis</code>) is removed to prevent duplicate labels. You can re-enable it using <code>theme()</code>.</p>
-<p>One major benefit of this system is that it supports algorithmic ordering of observations (note: <code>rows</code> are considered as <code>observations</code>, <a href="initialize-plot.html#sec-ggalign" class="quarto-xref"><span>Section 10.1</span></a>) and grouping observations into panels.</p>
-<p>I’ll now introduce the most common algorithm — hierarchical clustering, which can also generate dendrograms: <code>align_dendro()</code> (more details will be introduced in <a href="initialize-plot.html#sec-align-dendro" class="quarto-xref"><span>Section 10.4</span></a>). When you add <code>align_dendro()</code>, it can inherit the layout data, computes the dendrogram, and sets the global row ordering of the layout. It also creates a new <code>ggplot</code> object to draw the dendrogram.</p>
+<p>One major benefit of this system is that it supports algorithmic ordering of observations (note: <code>rows</code> are considered as <code>observations</code>, <a href="initialize-plot.html#sec-ggalign" class="quarto-xref"><span>Section 9.1</span></a>) and grouping observations into panels.</p>
+<p>I’ll now introduce the most common algorithm — hierarchical clustering, which can also generate dendrograms: <code>align_dendro()</code> (more details will be introduced in <a href="initialize-plot.html#sec-align-dendro" class="quarto-xref"><span>Section 9.4</span></a>). When you add <code>align_dendro()</code>, it can inherit the layout data, computes the dendrogram, and sets the global row ordering of the layout. It also creates a new <code>ggplot</code> object to draw the dendrogram.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stack_discretev</span>(small_mat) <span class="sc">+</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">align_dendro</span>() <span class="sc">+</span></span>
