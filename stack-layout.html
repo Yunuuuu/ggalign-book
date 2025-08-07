@@ -297,7 +297,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data-aware.html">Data-Aware Composition</a></li><li class="breadcrumb-item"><a href="./stack-layout.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Stack Layout</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./overview.html">Data-aware composition</a></li><li class="breadcrumb-item"><a href="./stack-layout.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Stack Layout</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -362,8 +362,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./data-free.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Data-Free Composition</span></a>
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Data-free composition</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -385,8 +385,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./data-aware.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Data-Aware Composition</span></a>
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Data-aware composition</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -496,7 +496,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data-aware.html">Data-Aware Composition</a></li><li class="breadcrumb-item"><a href="./stack-layout.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Stack Layout</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./overview.html">Data-aware composition</a></li><li class="breadcrumb-item"><a href="./stack-layout.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Stack Layout</span></a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title"><span id="sec-stack-layout" class="quarto-section-identifier"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Stack Layout</span></span></h1>
 </div>
@@ -586,7 +586,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 data-number="6.2" class="anchored" data-anchor-id="how-alignment-works"><span class="header-section-number">6.2</span> How alignment works?</h2>
 <section id="discrete-variables" class="level3" data-number="6.2.1">
 <h3 data-number="6.2.1" class="anchored" data-anchor-id="discrete-variables"><span class="header-section-number">6.2.1</span> Discrete variables</h3>
-<p>Without any plots, it’s difficult to see how each layout system works in practice. Here, we introduce the most common <a href="@sec-supporting-systems">plot adding</a> function-<code>ggalign()</code>. This function plays a role similar to <code>ggplot2::ggplot()</code> function-it initialize a <code>ggplot</code> object-but is designed specifically for use within the the <code>Layout</code> system of <a href="data-aware.html">Data-Aware Composition</a>.</p>
+<p>Without any plots, it’s difficult to see how each layout system works in practice. Here, we introduce the most common <a href="@sec-supporting-systems">plot adding</a> function-<code>ggalign()</code>. This function plays a role similar to <code>ggplot2::ggplot()</code> function-it initialize a <code>ggplot</code> object-but is designed specifically for use within the the <code>Layout</code> system of <a href="#sec-data-aware">Data-Aware Composition</a>.</p>
 <p>When <code>ggalign()</code> is added to the layout, it inherits the layout data and sets itself as the active plot. This means any subsequent <code>+</code> operations will apply to that plot. You can add standard <code>ggplot2</code> components like geoms, stats, scales, etc.</p>
 <p>When aligning discrete variables, the underlying data passed to <code>ggplot</code> through <code>ggalign()</code> will include the following columns (more details will be introduced in <a href="initialize-plot.html#sec-ggalign" class="quarto-xref"><span>Section 10.1</span></a>):</p>
 <ul>
