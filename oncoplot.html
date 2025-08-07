@@ -421,26 +421,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./annotate-observations.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Annotate Observations</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="./multiple-quad-layouts.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Nested Layouts</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Nested Layouts</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./operator.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Operators</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Operators</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./schemes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Schemes</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Schemes</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./annotate-observations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Annotate Observations</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -576,7 +576,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section><section id="advanced-data-handling" class="level2" data-number="17.3"><h2 data-number="17.3" class="anchored" data-anchor-id="advanced-data-handling">
 <span class="header-section-number">17.3</span> Advanced Data Handling</h2>
-<p><code><a href="https://yunuuuu.github.io/ggalign/reference/ggoncoplot.html">ggoncoplot()</a></code> is built on <code><a href="https://yunuuuu.github.io/ggalign/reference/heatmap_layout.html">ggheatmap()</a></code> with a default <code><a href="https://yunuuuu.github.io/ggalign/reference/scheme_data.html">scheme_data()</a></code> (see <a href="schemes.html" class="quarto-xref"><span>Chapter 15</span></a> for details), which splits alterations into separate entries for visualization. (See <code>ggplot2 specification</code> section in <code><a href="https://yunuuuu.github.io/ggalign/reference/heatmap_layout.html">ggheatmap()</a></code> for the input data of <code><a href="https://yunuuuu.github.io/ggalign/reference/scheme_data.html">scheme_data()</a></code>):</p>
+<p><code><a href="https://yunuuuu.github.io/ggalign/reference/ggoncoplot.html">ggoncoplot()</a></code> is built on <code><a href="https://yunuuuu.github.io/ggalign/reference/heatmap_layout.html">ggheatmap()</a></code> with a default <code><a href="https://yunuuuu.github.io/ggalign/reference/scheme_data.html">scheme_data()</a></code> (see <a href="schemes.html" class="quarto-xref"><span>Chapter 14</span></a> for details), which splits alterations into separate entries for visualization. (See <code>ggplot2 specification</code> section in <code><a href="https://yunuuuu.github.io/ggalign/reference/heatmap_layout.html">ggheatmap()</a></code> for the input data of <code><a href="https://yunuuuu.github.io/ggalign/reference/scheme_data.html">scheme_data()</a></code>):</p>
 <div class="cell">
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pdata</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">data</span><span class="op">)</span> <span class="op">{</span></span>
 <span>    <span class="fu">tidyr</span><span class="fu">::</span><span class="fu"><a href="https://tidyr.tidyverse.org/reference/separate_longer_delim.html">separate_longer_delim</a></span><span class="op">(</span><span class="va">data</span>,</span>

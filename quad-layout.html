@@ -61,7 +61,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./annotate-observations.html" rel="next">
+<link href="./multiple-quad-layouts.html" rel="next">
 <link href="./circle-layout.html" rel="prev">
 <link href="./cover.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
@@ -422,26 +422,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./annotate-observations.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Annotate Observations</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="./multiple-quad-layouts.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Nested Layouts</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Nested Layouts</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./operator.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Operators</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Operators</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./schemes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Schemes</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Schemes</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./annotate-observations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Annotate Observations</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -636,7 +636,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <blockquote class="blockquote">
-<p>The <code><a href="https://yunuuuu.github.io/ggalign/reference/quad_scope.html">quad_scope()</a></code> function controls the active adding context. The <code>"tri"</code> argument means adding to the top annotation, right annotation, and the main plot. More details will be introduced in the <a href="operator.html" class="quarto-xref"><span>Chapter 14</span></a> chapter.</p>
+<p>The <code><a href="https://yunuuuu.github.io/ggalign/reference/quad_scope.html">quad_scope()</a></code> function controls the active adding context. The <code>"tri"</code> argument means adding to the top annotation, right annotation, and the main plot. More details will be introduced in the <a href="operator.html" class="quarto-xref"><span>Chapter 13</span></a> chapter.</p>
 </blockquote>
 <p><code><a href="https://yunuuuu.github.io/ggalign/reference/quad_layout.html">ggside()</a></code> allows facetting for the main plot, which should also be applied to the annotations for proper alignment.</p>
 <div class="cell">
@@ -798,6 +798,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
+<p>Now we have explored all the <code>Layout</code> defined in the package, there are something special for <code><a href="https://yunuuuu.github.io/ggalign/reference/stack_layout.html">stack_layout()</a></code> and <code><a href="https://yunuuuu.github.io/ggalign/reference/quad_layout.html">quad_layout()</a></code>, as you should already know <code><a href="https://yunuuuu.github.io/ggalign/reference/quad_layout.html">quad_layout()</a></code> can take <code><a href="https://yunuuuu.github.io/ggalign/reference/stack_layout.html">stack_layout()</a></code> as the input (<a href="heatmap-layout.html#sec-heatmap-layout-add-stack-layout" class="quarto-xref"><span>Section 7.5</span></a>), Similarly, <code><a href="https://yunuuuu.github.io/ggalign/reference/stack_layout.html">stack_layout()</a></code> can also accept a <code><a href="https://yunuuuu.github.io/ggalign/reference/quad_layout.html">quad_layout()</a></code> as input, which is particularly useful for arranging multiple <code><a href="https://yunuuuu.github.io/ggalign/reference/quad_layout.html">quad_layout()</a></code>/<code><a href="https://yunuuuu.github.io/ggalign/reference/heatmap_layout.html">ggheatmap()</a></code> objects together.</p>
+<p>In the next chapter, we will explore even more advanced techniques for combining multiple <code><a href="https://yunuuuu.github.io/ggalign/reference/quad_layout.html">quad_layout()</a></code>s. These methods will provide you with the tools to manage more complex plot arrangements and make your visualizations even more flexible and powerful.</p>
 
 
 </section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
@@ -1256,8 +1258,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./annotate-observations.html" class="pagination-link" aria-label="Annotate Observations">
-        <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Annotate Observations</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./multiple-quad-layouts.html" class="pagination-link" aria-label="Nested Layouts">
+        <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Nested Layouts</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
