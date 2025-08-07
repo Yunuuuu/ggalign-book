@@ -253,3 +253,15 @@ quad_layout(small_mat, ylim = NULL) +
 :::
 
 :::
+
+Now we have explored all the `Layout` defined in the package, there are
+something special for `stack_layout()` and `quad_layout()`, as you should
+already know `quad_layout()` can take `stack_layout()` as the input
+(@sec-heatmap-layout-add-stack-layout), Similarly, `stack_layout()` can also
+accept a `quad_layout()` as input, which is particularly useful for arranging
+multiple `quad_layout()`/`ggheatmap()` objects together.
+
+In the next chapter, we will explore even more advanced techniques for combining
+multiple `quad_layout()`s. These methods will provide you with the tools to
+manage more complex plot arrangements and make your visualizations even more
+flexible and powerful.

@@ -54,10 +54,10 @@ book:
         - initialize-plot.qmd
         - circle-layout.qmd
         - quad-layout.qmd
-        - annotate-observations.qmd
         - multiple-quad-layouts.qmd
         - operator.qmd
         - schemes.qmd
+        - annotate-observations.qmd
         - difference-with-ggplot2.qmd
         - oncoplot.qmd
 

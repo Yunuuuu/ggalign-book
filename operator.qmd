@@ -1,11 +1,11 @@
 # Operators {#sec-operators}
 
-In `ggalign`, operators are used to manage and manipulate the plot elements in
-various layouts. These operators help you build complex visualizations by
-adding, or modifying elements across multiple plots in a layout. You may be
-familiar with the `+` and `&` operators, this section will expand on their
-usage, as well as introduce the subtraction operator (`-`) and how to apply it
-in different contexts.
+In ggalign, operators are used to manage and manipulate plot elements within
+various layouts. These operators enable you to build complex visualizations by
+adding or modifying components across multiple plots in a layout. You are likely
+familiar with the addition operator (`+`); this section expands on its usage and
+introduces two additional operators: logical AND (`&`) and subtraction (`-`),
+explaining how to apply them in different contexts.
 
   1. Addition Operator (`+`): Adds elements to the active plot in the active
   layout.
@@ -21,6 +21,9 @@ small_mat <- matrix(rnorm(56), nrow = 7)
 rownames(small_mat) <- paste0("row", seq_len(nrow(small_mat)))
 colnames(small_mat) <- paste0("column", seq_len(ncol(small_mat)))
 ```
+
+> `circle_layout()` follows the same principles as `stack_layout()` but does not
+support nesting. Examples below focus on `stack_layout()` and quad_layout().
 
 ## Addition Operator
 > `+`: adds elements to the active plot in the active layout.
@@ -88,9 +91,10 @@ ggheatmap(small_mat) +
 
 ## Subtraction Operator
 The `-` operator is more powerful than the `&` operator, enabling flexible
-addition of elements to multiple plots. While its use might initially seem
-unintuitive, the reason behind this is that `-` shares the same precedence group
-as `+`, which allows it to seamlessly combine with `+`.
+addition of elements to multiple plots, especially when working with
+@sec-schemes. While its use might initially seem unintuitive, the reason behind
+this is that `-` shares the same precedence group as `+`, which allows it to
+seamlessly combine with `+`.
 
 ### `quad_layout()` {#sec-quad-layout-subtract}
 For `ggheatmap()`/`quad_layout()`, if the active context is the
@@ -162,6 +166,7 @@ This function accepts two arguments:
     `r ggalign:::oxford_and(c(ggalign:::.tlbr, "i"))` specifies the context for
     applying `x`.
 
+### `quad_layout()`
 Default Behavior by wrapping object with `quad_scope()`:
 
   - When `ggheatmap()`/`quad_layout()` has no active annotation stack, objects
@@ -184,7 +189,7 @@ ggheatmap(small_mat) +
 ```
 
 By wrapping object with `quad_scope()`, the `-` operator will apply the object
-not only to the active plot in the annotation stack, but also to the main plot.
+not only to the active annotation stack, but also to the main plot.
 ```{r}
 ggheatmap(small_mat) +
     # initialize the left annotation
@@ -219,7 +224,8 @@ ggheatmap(small_mat) +
     quad_scope(theme(plot.background = element_rect(fill = "red")), "tl")
 ```
 
-The `position` argument can also be `NULL`, which behaves as if no annotation is active.
+The `position` argument can also be `NULL`, which behaves as if no annotation is
+active.
 ```{r}
 ggheatmap(small_mat) +
     # initialize the left annotation
@@ -234,3 +240,13 @@ ggheatmap(small_mat) +
     # Modify the background of all plots
     quad_scope(theme(plot.background = element_rect(fill = "red")), NULL)
 ```
+
+### `stack_layout()` 
+For `stack_layout()`, if the active layout is the `stack_layout()` itself, `-`
+applies the elements to all plots in the layout and will apply it to the nested
+`ggheatmap()`/`quad_layout()` following the same principles as in `quad_layout()`.
+`+` won't work.
+
+When the active layout is the nested `ggheatmap()`/`quad_layout()`, the `-`/`+`
+operator applies the elements to this nested layout, following the same
+principles of the nested layout.
