@@ -9,7 +9,7 @@ Currently, two helper functions are provided to generate these links:
 - `mark_line()`: draws a line to the annotation panel.
 - `mark_tetragon()`: draws a quadrilateral shape connecting observations and the panel.
 
-All of these functions specify links as `pair_links()` as introduced in @links.
+All of these functions specify links as `pair_links()` as introduced in @sec-links.
 Each pair of links will introduce a panel in ggmark to annotate these
 observations.
 

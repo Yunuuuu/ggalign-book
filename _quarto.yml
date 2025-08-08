@@ -59,8 +59,8 @@ book:
         - schemes.qmd
         - links.qmd
         - annotate-observations.qmd
-        - difference-with-ggplot2.qmd
         - oncoplot.qmd
+        - difference-with-ggplot2.qmd
 
 bibliography: references.bib
 
