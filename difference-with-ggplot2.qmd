@@ -195,9 +195,7 @@ this behaviour with `theme(strip.text = element_text())` to add the panel title
 in the plot area.
 ```{r}
 ggheatmap(small_mat) +
-    facet_grid(
-        labeller = labeller(.column_panel = function(x) letters[as.integer(x)])
-    ) +
+    facet_grid(labeller = labeller(.panel_x = function(x) letters[as.integer(x)])) +
     theme(strip.text = element_text()) +
     anno_top() +
     align_kmeans(centers = 3L)
