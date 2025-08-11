@@ -14,8 +14,7 @@ Each pair of links will introduce a panel in ggmark to annotate these
 observations.
 
 ```{r setup}
-#| echo: false
-#| output: false
+#| code-fold: true
 library(ggalign)
 set.seed(123)
 small_mat <- matrix(rnorm(56), nrow = 7)
