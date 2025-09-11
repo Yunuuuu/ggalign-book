@@ -277,7 +277,7 @@ ggheatmap(small_mat) +
     align_kmeans(3L) +
     ggmark(
         mark_tetragon(4:6, 1:2, 
-            .element =  I(element_polygon(fill = c("red", "blue"), alpha = 0.5))
+            .element =  I(element_polygon(fill = fill_alpha(c("red", "blue"), 0.5)))
         )
     ) +
     geom_boxplot(aes(.names, value, fill = .names)) +
