@@ -500,7 +500,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   
 
 
-</header><p>The <code>ggalign</code> package provides six <code>free_</code> functions that give you precise control over plot alignment behavior by selectively disabling alignment constraints for specific plot elements in <code><a href="https://yunuuuu.github.io/ggalign/reference/align_plots.html">align_plots()</a></code>.</p>
+</header><p>The <code>ggalign</code> package provides six <code>free_</code> functions that give you precise control over plot alignment behavior by selectively disabling alignment constraints for specific plot elements in <code><a href="https://yunuuuu.github.io/ggalign/reference/alignpatches.html">align_plots()</a></code>.</p>
 <ul>
 <li>
 <code><a href="https://yunuuuu.github.io/ggalign/reference/free.html">free_align()</a></code> - Disables panel alignment for specified axes.</li>
@@ -561,10 +561,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section><section id="free_align" class="level2" data-number="4.2"><h2 data-number="4.2" class="anchored" data-anchor-id="free_align">
 <span class="header-section-number">4.2</span> <code>free_align()</code>
 </h2>
-<p>By default, <code><a href="https://yunuuuu.github.io/ggalign/reference/align_plots.html">align_plots()</a></code> aligns plot panels so axes match. This can cause excessive spacing when plots differ in axis label lengths. <code><a href="https://yunuuuu.github.io/ggalign/reference/free.html">free_align()</a></code> disables panel alignment on specified sides.</p>
+<p>By default, <code><a href="https://yunuuuu.github.io/ggalign/reference/alignpatches.html">align_plots()</a></code> aligns plot panels so axes match. This can cause excessive spacing when plots differ in axis label lengths. <code><a href="https://yunuuuu.github.io/ggalign/reference/free.html">free_align()</a></code> disables panel alignment on specified sides.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Problem: When combined, it looks bad due to forced alignment</span></span>
-<span><span class="fu"><a href="https://yunuuuu.github.io/ggalign/reference/align_plots.html">align_plots</a></span><span class="op">(</span><span class="va">p_simple</span>, <span class="va">p_wide_labels</span>, ncol <span class="op">=</span> <span class="fl">1L</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="fu"><a href="https://yunuuuu.github.io/ggalign/reference/alignpatches.html">align_plots</a></span><span class="op">(</span><span class="va">p_simple</span>, <span class="va">p_wide_labels</span>, ncol <span class="op">=</span> <span class="fl">1L</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure"><p><img src="free_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
@@ -574,7 +574,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Solution: Use free_align to prevent panel alignment</span></span>
-<span><span class="fu"><a href="https://yunuuuu.github.io/ggalign/reference/align_plots.html">align_plots</a></span><span class="op">(</span><span class="va">p_simple</span>, <span class="fu"><a href="https://yunuuuu.github.io/ggalign/reference/free.html">free_align</a></span><span class="op">(</span><span class="va">p_wide_labels</span><span class="op">)</span>, ncol <span class="op">=</span> <span class="fl">1L</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="fu"><a href="https://yunuuuu.github.io/ggalign/reference/alignpatches.html">align_plots</a></span><span class="op">(</span><span class="va">p_simple</span>, <span class="fu"><a href="https://yunuuuu.github.io/ggalign/reference/free.html">free_align</a></span><span class="op">(</span><span class="va">p_wide_labels</span><span class="op">)</span>, ncol <span class="op">=</span> <span class="fl">1L</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure"><p><img src="free_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
@@ -584,7 +584,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Partial solution: Free only the left side to maintain right alignment</span></span>
-<span><span class="fu"><a href="https://yunuuuu.github.io/ggalign/reference/align_plots.html">align_plots</a></span><span class="op">(</span><span class="va">p_simple</span>, <span class="fu"><a href="https://yunuuuu.github.io/ggalign/reference/free.html">free_align</a></span><span class="op">(</span><span class="va">p_wide_labels</span>, axes <span class="op">=</span> <span class="st">"l"</span><span class="op">)</span>, ncol <span class="op">=</span> <span class="fl">1L</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="fu"><a href="https://yunuuuu.github.io/ggalign/reference/alignpatches.html">align_plots</a></span><span class="op">(</span><span class="va">p_simple</span>, <span class="fu"><a href="https://yunuuuu.github.io/ggalign/reference/free.html">free_align</a></span><span class="op">(</span><span class="va">p_wide_labels</span>, axes <span class="op">=</span> <span class="st">"l"</span><span class="op">)</span>, ncol <span class="op">=</span> <span class="fl">1L</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure"><p><img src="free_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
@@ -596,7 +596,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="header-section-number">4.3</span> <code>free_space()</code> - Space Constraint Removal</h2>
 <p><code><a href="https://yunuuuu.github.io/ggalign/reference/free.html">free_space()</a></code> removes the allocated space for plot elements when aligning. This is particularly useful for removing padding introduced by long axis labels or titles.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://yunuuuu.github.io/ggalign/reference/align_plots.html">align_plots</a></span><span class="op">(</span><span class="va">p_simple</span>, <span class="fu"><a href="https://yunuuuu.github.io/ggalign/reference/free.html">free_space</a></span><span class="op">(</span><span class="va">p_wide_labels</span>, spaces <span class="op">=</span> <span class="st">"l"</span><span class="op">)</span>, ncol <span class="op">=</span> <span class="fl">1L</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://yunuuuu.github.io/ggalign/reference/alignpatches.html">align_plots</a></span><span class="op">(</span><span class="va">p_simple</span>, <span class="fu"><a href="https://yunuuuu.github.io/ggalign/reference/free.html">free_space</a></span><span class="op">(</span><span class="va">p_wide_labels</span>, spaces <span class="op">=</span> <span class="st">"l"</span><span class="op">)</span>, ncol <span class="op">=</span> <span class="fl">1L</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure"><p><img src="free_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
@@ -610,7 +610,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </h2>
 <p><code><a href="https://yunuuuu.github.io/ggalign/reference/free.html">free_border()</a></code> attaches borders (e.g., axis titles, tick marks) directly to the plot panel. This keeps them visually close to the panel during alignment.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://yunuuuu.github.io/ggalign/reference/align_plots.html">align_plots</a></span><span class="op">(</span><span class="fu"><a href="https://yunuuuu.github.io/ggalign/reference/free.html">free_border</a></span><span class="op">(</span><span class="va">p_simple</span>, borders <span class="op">=</span> <span class="st">"l"</span><span class="op">)</span>, <span class="va">p_wide_labels</span>, ncol <span class="op">=</span> <span class="fl">1L</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://yunuuuu.github.io/ggalign/reference/alignpatches.html">align_plots</a></span><span class="op">(</span><span class="fu"><a href="https://yunuuuu.github.io/ggalign/reference/free.html">free_border</a></span><span class="op">(</span><span class="va">p_simple</span>, borders <span class="op">=</span> <span class="st">"l"</span><span class="op">)</span>, <span class="va">p_wide_labels</span>, ncol <span class="op">=</span> <span class="fl">1L</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure"><p><img src="free_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
@@ -621,7 +621,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>However, <code><a href="https://yunuuuu.github.io/ggalign/reference/free.html">free_border()</a></code> does not remove the space these components occupy. This means that, although the border (e.g., axis title) follows the plot panel more tightly in <code>p_simple</code>, the space reserved for it still exists. During alignment, this space is added to <code>p_wide_labels</code>, potentially adding unnecessary spaces.</p>
 <p>To fully eliminate the size contribution of the border, we often combine <code><a href="https://yunuuuu.github.io/ggalign/reference/free.html">free_border()</a></code> with <code><a href="https://yunuuuu.github.io/ggalign/reference/free.html">free_space()</a></code>:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://yunuuuu.github.io/ggalign/reference/align_plots.html">align_plots</a></span><span class="op">(</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://yunuuuu.github.io/ggalign/reference/alignpatches.html">align_plots</a></span><span class="op">(</span></span>
 <span>    <span class="fu"><a href="https://yunuuuu.github.io/ggalign/reference/free.html">free_space</a></span><span class="op">(</span><span class="fu"><a href="https://yunuuuu.github.io/ggalign/reference/free.html">free_border</a></span><span class="op">(</span><span class="va">p_simple</span>, borders <span class="op">=</span> <span class="st">"l"</span><span class="op">)</span>, spaces <span class="op">=</span> <span class="st">"l"</span><span class="op">)</span>,</span>
 <span>    <span class="va">p_wide_labels</span>,</span>
 <span>    ncol <span class="op">=</span> <span class="fl">1L</span></span>
@@ -654,7 +654,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Blank line at the beginning to keep height consistent</span></span>
 <span></span>
 <span></span>
-<span><span class="fu"><a href="https://yunuuuu.github.io/ggalign/reference/align_plots.html">align_plots</a></span><span class="op">(</span><span class="va">p1</span>, <span class="va">p2</span>, ncol <span class="op">=</span> <span class="fl">2L</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="fu"><a href="https://yunuuuu.github.io/ggalign/reference/alignpatches.html">align_plots</a></span><span class="op">(</span><span class="va">p1</span>, <span class="va">p2</span>, ncol <span class="op">=</span> <span class="fl">2L</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure"><p><img src="free_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
@@ -665,7 +665,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="g-col-6">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://yunuuuu.github.io/ggalign/reference/align_plots.html">align_plots</a></span><span class="op">(</span><span class="va">p1</span>, </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://yunuuuu.github.io/ggalign/reference/alignpatches.html">align_plots</a></span><span class="op">(</span><span class="va">p1</span>, </span>
 <span>    <span class="fu"><a href="https://yunuuuu.github.io/ggalign/reference/free.html">free_vp</a></span><span class="op">(</span><span class="va">p2</span>, height <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grid/unit.html">unit</a></span><span class="op">(</span><span class="fl">0.8</span>, <span class="st">"npc"</span><span class="op">)</span>, just <span class="op">=</span> <span class="st">"bottom"</span>, y <span class="op">=</span> <span class="fl">0</span><span class="op">)</span>, </span>
 <span>    ncol <span class="op">=</span> <span class="fl">2L</span></span>
 <span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -705,7 +705,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>        name <span class="op">=</span> <span class="st">"bottom"</span>,</span>
 <span>        guide <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/guide_colourbar.html">guide_colorbar</a></span><span class="op">(</span>position <span class="op">=</span> <span class="st">"bottom"</span><span class="op">)</span></span>
 <span>    <span class="op">)</span></span>
-<span><span class="fu"><a href="https://yunuuuu.github.io/ggalign/reference/align_plots.html">align_plots</a></span><span class="op">(</span></span>
+<span><span class="fu"><a href="https://yunuuuu.github.io/ggalign/reference/alignpatches.html">align_plots</a></span><span class="op">(</span></span>
 <span>    <span class="fu"><a href="https://yunuuuu.github.io/ggalign/reference/free.html">free_guide</a></span><span class="op">(</span><span class="va">p_right</span>, <span class="cn">NULL</span><span class="op">)</span>,</span>
 <span>    <span class="fu"><a href="https://yunuuuu.github.io/ggalign/reference/free.html">free_guide</a></span><span class="op">(</span><span class="va">p_bottom</span>, <span class="cn">NULL</span><span class="op">)</span>,</span>
 <span>    <span class="fu"><a href="https://yunuuuu.github.io/ggalign/reference/free.html">free_guide</a></span><span class="op">(</span><span class="va">p_top</span>, <span class="cn">NULL</span><span class="op">)</span>,</span>
@@ -721,7 +721,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>You can also specify which guide positions to be collected for individual plots.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://yunuuuu.github.io/ggalign/reference/align_plots.html">align_plots</a></span><span class="op">(</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://yunuuuu.github.io/ggalign/reference/alignpatches.html">align_plots</a></span><span class="op">(</span></span>
 <span>    <span class="fu"><a href="https://yunuuuu.github.io/ggalign/reference/free.html">free_guide</a></span><span class="op">(</span><span class="va">p_right</span>, <span class="st">"r"</span><span class="op">)</span>,</span>
 <span>    <span class="fu"><a href="https://yunuuuu.github.io/ggalign/reference/free.html">free_guide</a></span><span class="op">(</span><span class="va">p_bottom</span>, <span class="st">"b"</span><span class="op">)</span>,</span>
 <span>    <span class="fu"><a href="https://yunuuuu.github.io/ggalign/reference/free.html">free_guide</a></span><span class="op">(</span><span class="va">p_top</span>, <span class="st">"t"</span><span class="op">)</span>,</span>
